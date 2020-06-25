@@ -16,6 +16,6 @@ exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
 github_username: waanan
 
 # Build settings
-# markdown: kramdown
+markdown: kramdown
 
 baidu_analysis: 4366f0ca1b7751ca8e068d531863f2f8
