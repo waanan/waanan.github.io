@@ -1,0 +1,17 @@
+<ul class="list-group">
+    {{ $sps := split .Inner "<--->" }}
+    {{ $head_str := index $sps 0}}
+    {{ $list_str := index $sps 1}}
+    <li class="list-group-item list-group-item-action active" aria-current="true">
+        {{ $head_str }}
+    </li>
+
+    {{ range split $list_str "<-->" }}
+        {{ $item_sp := split . "<->" }}
+        {{ $rpath := index $item_sp 1}}
+        {{ $rtext := index $item_sp 2}}
+        <li class="list-group-item list-group-item-action">
+            <a href="{{ $rpath }}">{{ $rtext }} <i class="bi bi-arrow-right-circle"></i></a>
+        </li>
+    {{ end}}
+</ul>

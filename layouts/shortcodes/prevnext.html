@@ -1,0 +1,22 @@
+{{ $sps := split .Inner "<--->" }}
+{{ $prev_title := index $sps 0}}
+{{ $next_title := index $sps 1}}
+
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">{{ $prev_title }}</p>
+          <a {{ with .Get "prev" }}href="{{ . }}"{{ end }} class="btn-outline-primary"><i class="bi bi-arrow-left-circle"></i> 上一节</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">{{ $next_title }}</p>
+          <a {{ with .Get "next" }}href="{{ . }}"{{ end }} class="btn-outline-primary">下一节 <i class="bi bi-arrow-right-circle"></i></a>
+        </div>
+      </div>
+    </div>
+</div>

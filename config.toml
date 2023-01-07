@@ -1,0 +1,19 @@
+baseURL = 'http://example.org/'
+languageCode = 'zh-cmn-Hans'
+title = 'C++学习网'
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    noHl = false
+    style = 'emacs'
+    tabWidth = 4
