@@ -32,5 +32,9 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter0/introduction-to-c-cpp/<->0.2 C与C++历史
 <-->
 <->/basic/chapter0/introduction-to-development/<->0.3 程序开发流程
+<-->
+<->/basic/chapter0/install-dev-env/<->0.4 安装开发环境
+<-->
+<->/basic/chapter0/write-first-program/<->0.5 第一个C++程序
 {{< /chapterlist >}}
 
