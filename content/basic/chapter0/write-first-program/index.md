@@ -46,6 +46,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< img src="./project.png" title="编辑界面">}}
 
 这时，会在窗口下方的「输出」框里有类似如下的文字，这代表已经编译成功。
+这里编译的可执行文件就是「D:\code\HelloWorld\x64\Debug\HelloWorld.exe」。
 
 ```
 已启动生成...
@@ -56,15 +57,46 @@ date: 2022-12-28T16:40:41+08:00
 ========== 占用时间 00:13.214 ==========
 ```
 
+5. 查看运行效果
+
+可以看到下图中，打印出来了「Hello World！」。
+
 {{< img src="./result.png" title="运行结果">}}
 
 ***
 
 ## 使用命令行进行开发
 
+首先在任意编辑器中输入如下的代码。然后保存为「HelloWorld.cpp」。
+
+```C++
+#include <iostream>
+
+int main()
+{
+    std::cout << "Hello World!" << std::endl;
+    return 0;
+}
+```
+
+然后使用「g++」对cpp文件进行编译。
+
+```bash
+g++ -o HelloWorld HelloWorld.cpp
+```
+
+编译完成后，会在当前目录下看见可执行文件「HelloWorld」。
+
+使用如下命令进行执行，即可看到运行效果。
+
+```bash
+./HelloWorld
+```
+
 ***
 
-{{< prevnext prev="/basic/chapter0/install-dev-env/" next="" >}}
+{{< prevnext prev="/basic/chapter0/install-dev-env/" next="/basic/chapter1/program-structure/" >}}
 安装开发环境
 <--->
+程序结构介绍
 {{< /prevnext >}}

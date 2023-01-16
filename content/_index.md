@@ -38,3 +38,13 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter0/write-first-program/<->0.5 第一个C++程序
 {{< /chapterlist >}}
 
+***
+
+{{< chapterlist>}}
+第一章 基础知识
+<--->
+<->/basic/chapter1/program-structure/<-> 1.0 程序结构介绍
+<->/basic/chapter1/comment/<-> 1.1 注释
+{{< /chapterlist >}}
+
+
