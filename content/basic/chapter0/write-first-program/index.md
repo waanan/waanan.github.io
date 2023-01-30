@@ -48,7 +48,7 @@ date: 2022-12-28T16:40:41+08:00
 这时，会在窗口下方的「输出」框里有类似如下的文字，这代表已经编译成功。
 这里编译的可执行文件就是「D:\code\HelloWorld\x64\Debug\HelloWorld.exe」。
 
-```
+```bash
 已启动生成...
 1>------ 已启动生成: 项目: HelloWorld, 配置: Debug x64 ------
 1>HelloWorld.cpp
