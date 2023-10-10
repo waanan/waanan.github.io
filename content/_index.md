@@ -47,7 +47,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter1/comment/<-> 1.1 注释
 <-->
-<->/basic/chapter1/variable/<-> 1.2 变量
+<->/basic/chapter1/variable/<-> 1.2 对象与变量
 {{< /chapterlist >}}
 
 
