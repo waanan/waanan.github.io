@@ -1,32 +1,32 @@
 ---
-title: "变量分配和初始化"
+title: "变量初始化和赋值"
 date: 2023-10-09T20:06:10+08:00
 ---
 
-在上一课（1.3——对象和变量简介）中，我们介绍了如何定义可用于存储值的变量。在本课中，我们将探索如何将值实际放入变量中并使用这些值。
+在上一节中，我们介绍了如何定义可用于存储值的变量。在本课中，我们将探索如何将值实际放入变量中并使用。
 
-提醒一下，这里有一个简短的片段，它首先分配一个名为x的整数变量，然后再分配两个名为y和z的整数变量：
+这里有一段简短的代码，它首先分配一个名为x的整数变量，然后再分配两个名为y和z的整数变量：
 
 ```C++
-int x;    // define an integer variable named x
-int y, z; // define two integer variables, named y and z
+int x;    // 定义一个类型为int的变量x
+int y, z; // 定义两个类型为int的变量y与z
 ```
 
 ***
 ## 变量赋值
 
-定义变量后，可以使用=运算符（在单独的语句中）为其赋值。这个过程称为赋值，=运算符称为赋权运算符。
+定义变量后，可以使用「=」运算符（在单独的语句中）为其赋值。这个写入的过程称为赋值，「=」运算符称为赋值运算符。
 
 ```C++
-int width; // define an integer variable named width
-width = 5; // assignment of value 5 into variable width
+int width; // 定义一个类型为int的变量width
+width = 5; // 将值5写入width中
 
-// variable width now has value 5
+// 变量width现在的值是5
 ```
 
-默认情况下，赋值将=运算符右侧的值复制到运算符左侧的变量。这称为复制分配。
+默认情况下，赋值将=运算符右侧的值复制到运算符左侧的变量。这称为「拷贝赋值」。
 
-下面是一个我们使用赋值两次的示例：
+下面是一个使用赋值两次的示例：
 
 ```C++
 #include <iostream>
@@ -34,13 +34,13 @@ width = 5; // assignment of value 5 into variable width
 int main()
 {
 	int width;
-	width = 5; // copy assignment of value 5 into variable width
+	width = 5; // 将值 5 拷贝赋值到变量 width
 
-	std::cout << width; // prints 5
+	std::cout << width << std::endl; // 打印出 5
 
-	width = 7; // change value stored in variable width to 7
+	width = 7; // 将width中的值改变为 7
 
-	std::cout << width; // prints 7
+	std::cout << width << std::endl; // 打印出 7
 
 	return 0;
 }
@@ -48,12 +48,17 @@ int main()
 
 这将打印：
 
-当我们将值7赋给可变宽度时，先前存在的值5将被覆盖。法线变量一次只能保存一个值。
+```C++
+5
+7
+```
 
-{{< alert success >}}
+当我们将值7赋给变量width时，先前存在的值5将被覆盖。变量一次只能保存一个值。
+
+{{< alert danger >}}
 **警告**
 
-新程序员最常见的错误之一是混淆赋值运算符（=）和相等运算符（==）。赋值（=）用于将值赋值给变量。相等（==）用于测试两个操作数的值是否相等。
+新手程序员最常见的错误之一是混淆赋值运算符（=）和相等运算符（==）。赋值（=）用于将值赋值给变量。相等（==）用于测试两个操作数的值是否相等。
 
 {{< /alert >}}
 
@@ -317,23 +322,9 @@ int main()
 ```
 
 ***
-## 测验时间
+{{< prevnext prev="/basic/chapter1/variable/" next="" >}}
+对象与变量
+<--->
 
-问题#1
-
-初始化和赋值之间的区别是什么？
-
-显示解决方案
-
-问题#2
-
-当您想要用特定值初始化变量时，您应该选择哪种形式的初始化？
-
-显示解决方案
-
-问题#3
-
-什么是默认初始化和值初始化？每个人的行为是什么？你更喜欢哪一个？
-
-显示解决方案
+{{< /prevnext >}}
 

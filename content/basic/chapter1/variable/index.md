@@ -134,8 +134,8 @@ double b;
 在下一课中，我们将学习如何为变量赋值，以及如何实际使用它们。
 
 ***
-{{< prevnext prev="/basic/chapter1/comment/" next="" >}}
+{{< prevnext prev="/basic/chapter1/comment/" next="/basic/chapter1/variable-init-assign/" >}}
 注释
 <--->
-
+变量初始化和赋值
 {{< /prevnext >}}
