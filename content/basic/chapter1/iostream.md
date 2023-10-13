@@ -3,75 +3,83 @@ title: "iostream:cout、cin和endl简介"
 date: 2023-10-09T20:06:10+08:00
 ---
 
-在本课中，我们将更多地讨论std:：cout，我们在Hello world中使用了它！程序输出文本Hello world！到控制台。我们还将探索如何从用户那里获得输入，我们将使用这些输入来使我们的程序更具交互性。
+在本课中，将更多地讨论在Hello world程序中使用的std::cout。我们使用它输出文本Hello world！到控制台。此外还将讲解如何使用std::cin如何从用户那里获得输入，这将使程序更具交互性。
 
 ***
 ## 输入/输出库
 
-输入/输出库（io库）是处理基本输入和输出的C++标准库的一部分。我们将使用该库中的功能从键盘获取输入，并将数据输出到控制台。iostream的io部分表示输入/输出。
+输入/输出库（io库）是C++标准库中处理基本输入和输出的一部分。我们将使用该库中的功能从键盘获取输入，并将数据输出到控制台。iostream的io部分表示输入（input）/输出（output）。
 
-要使用iostream库中定义的功能，我们需要在使用iostrream中定义的内容的任何代码文件的顶部包含iostream
+要使用iostream库中定义的功能，需要在代码文件的顶部包含对应的头文件。
 
 ```C++
 #include <iostream>
 
-// rest of code that uses iostream functionality here
+// 后续的代码可以使用iostream的函数
 ```
 
 ***
-## 标准：：cout
+## std::cout
 
-iostream库包含一些预定义的变量供我们使用。最有用的一个是std:：cout，它允许我们将数据发送到控制台，以打印为文本。cout代表“字符输出”。
+iostream库包含一些预定义的变量供我们使用。最有用的一个是std::cout，它允许我们将数据发送到控制台，以打印为文本。cout代表“字符输出”(character output)。
 
-作为提醒，这里是我们的Hello world计划：
+下面是之前的Hello world程序：
 
 ```C++
-#include <iostream> // for std::cout
+#include <iostream> // 之后可以使用 std::cout
 
 int main()
 {
-    std::cout << "Hello world!"; // print Hello world! to console
+    std::cout << "Hello world!"; // 打印 Hello world! 到控制台
 
     return 0;
 }
 ```
 
-在这个程序中，我们包含了iostream，以便可以访问std:：cout。在主函数中，我们使用std:：cout和插入操作符（<<）来发送文本Hello world！到要打印的控制台。
+在这个程序中包含了iostream，以便可以访问std::cout。在主函数中，使用std::cout和插入操作符（<<）来发送文本Hello world！到要打印的控制台。
 
-std:：cout不仅可以打印文本，还可以打印数字：
+std::cout不仅可以打印文本，还可以打印数字：
 
 ```C++
-#include <iostream> // for std::cout
+#include <iostream>
 
 int main()
 {
-    std::cout << 4; // print 4 to console
+    std::cout << 4; // 打印 4 到控制台
 
     return 0;
 }
 ```
 
-这将产生以下结果：
+该程序打印：
+
+```C++
+4
+```
 
 它还可以用于打印变量的值：
 
 ```C++
-#include <iostream> // for std::cout
+#include <iostream>
 
 int main()
 {
-    int x{ 5 }; // define integer variable x, initialized with value 5
-    std::cout << x; // print value of x (5) to console
+    int x = 5; // 定义一个初始值为5的变量x
+    std::cout << x; // 打印变量x的值5到控制台
     return 0;
 }
 ```
 
-这将产生以下结果：
-
-要在同一行上打印多个内容，可以在单个语句中多次使用插入运算符（<<）来连接（链接到一起）多个输出。例如：
+该程序打印：
 
 ```C++
-#include <iostream> // for std::cout
+5
+```
+
+要在同一行上打印多个内容，可以在单个语句中多次使用插入运算符（<<）来连接多个输出。例如：
+
+```C++
+#include <iostream>
 
 int main()
 {
@@ -82,14 +90,18 @@ int main()
 
 该程序打印：
 
-下面是另一个例子，我们在同一语句中打印变量的文本和值：
+```C++
+Hello world!
+```
+
+下面是另一个例子，在同一语句中打印文本和变量和值：
 
 ```C++
-#include <iostream> // for std::cout
+#include <iostream>
 
 int main()
 {
-    int x{ 5 };
+    int x = 5;
     std::cout << "x is equal to: " << x;
     return 0;
 }
@@ -97,15 +109,12 @@ int main()
 
 该程序打印：
 
-{{< alert success >}}
-**相关内容**
-
-我们在第2.9课中讨论了std:：前缀的实际作用——命名冲突和名称空间的介绍。
-
-{{< /alert >}}
+```C++
+x is equal to: 5
+```
 
 ***
-## 标准：：endl
+## std::endl
 
 您希望此程序打印什么？
 
