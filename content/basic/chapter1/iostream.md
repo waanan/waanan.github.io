@@ -284,8 +284,8 @@ You entered 5 and 6
 5. >>与std::cin一起使用，并显示数据移动的方向（如果std:∶cin表示键盘，则输入数据从键盘移动到变量）。std::cin>>x将用户输入的值从键盘移动到x中
 
 ***
-{{< prevnext prev="/basic/chapter1/variable-init-assign/" next="" >}}
+{{< prevnext prev="/basic/chapter1/variable-init-assign/" next="/basic/chapter1/uninit-variable/" >}}
 变量初始化和赋值
 <--->
-
+未初始化的变量及未定义的行为
 {{< /prevnext >}}

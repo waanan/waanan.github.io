@@ -50,6 +50,14 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter1/variable/<-> 1.2 对象与变量
 <-->
 <->/basic/chapter1/variable-init-assign/<-> 1.3 变量初始化和赋值
+<-->
+<->/basic/chapter1/iostream/<-> 1.4 iostream:cout、cin和endl简介
+<-->
+<->/basic/chapter1/uninit-variable/<-> 1.5 未初始化的变量及未定义的行为
+<-->
+<->/basic/chapter1/keywords-and-naming-identifiers/<-> 1.6 关键字和变量命名规则
+<-->
+<->/basic/chapter1/whitespace/<-> 1.7 空白字符
 {{< /chapterlist >}}
 
 
