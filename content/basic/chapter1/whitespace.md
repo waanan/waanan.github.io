@@ -139,7 +139,11 @@ int main()
 
 下面是我们对基本代码样式的建议：
 
+1. 使用Tab或空格进行缩进都是可以的（大多数IDE都有一个设置，可以将制表符转换为适当数量的空格）。有些人喜欢空格，因为它使格式具有自我描述性——无论编辑器如何，使用空格分隔的代码看起来总是正确的。Tab的支持者，认为Tab是为缩进而设计的字符，尤其是因为你可以将Tab的展示宽度设置为你喜欢的任何宽度。这里没有正确的答案，争论它就像争论蛋糕还是馅饼更好。归根结底，这取决于个人喜好。
+
 无论哪种方式，建议您将制表符设置为4个空格的缩进值。
+
+2. 有两种函数开头的花括号的放置方式。
 
 Google C++风格指南建议将开头的花括号放在与语句相同的行上：
 
@@ -148,9 +152,9 @@ int main() {
 }
 ```
 
-这样做的理由是，它减少了垂直空白的量，因此您可以在屏幕上容纳更多的代码。屏幕上的更多代码使程序更容易理解。
+这样做的理由是，它使代码段落更加紧凑，因此您可以在屏幕上容纳更多的代码。屏幕上的更多代码使程序更容易理解。
 
-然而，我们更喜欢常用的替代方案，其中左大括号出现在自己单独的行上：
+然而，我们更喜欢常用的替代方案是，其中左大括号出现在自己单独的行上：
 
 ```C++
 int main()
@@ -160,6 +164,8 @@ int main()
 
 这增强了可读性，并且不太容易出错，因为大括号始终缩进到相同的级别。如果由于大括号不匹配而出现编译器错误，则很容易看到错误的位置。
 
+3. 每个语句，在它属于的大括号的层级中，以tab或者4个空格开头。
+
 ```C++
 int main()
 {
@@ -168,20 +174,24 @@ int main()
 }
 ```
 
+4. 每一行不应该太长，通常的限制是80个字符（包含空格）。如果屏幕比较大，一般也可以放宽到120个字符。
+如果语句超长，需要在合适的节点换行。换行后相比原语句，前置额外的tab或4个空格缩进。
+或者换行后的元素和前一行相同类型的元素对齐亦可。
+
 ```C++
 int main()
 {
     std::cout << "This is a really, really, really, really, really, really, really, " 
-        "really long line\n"; // one extra indentation for continuation line
+        "really long line\n"; // 换行后增加缩进
 
     std::cout << "This is another really, really, really, really, really, really, really, "
-                 "really long line\n"; // text aligned with the previous line for continuation line
+                 "really long line\n"; // 换行后按相同元素对齐
 
     std::cout << "This one is short\n";
 }
 ```
 
-这使得你的台词更容易阅读。在现代宽屏显示器上，它还允许您并排放置两个具有类似代码的窗口，并更容易地进行比较。
+5. 如果换行的地方有一个操作符（例如 + 或者 << ）。这个操作符应该出现在下一行的开头，而不是当前行的结尾。
 
 ```C++
     std::cout << 3 + 4
@@ -189,9 +199,11 @@ int main()
         * 7 * 8;
 ```
 
-这有助于明确后续行是前一行的延续，并允许您对齐左侧的操作符，这使得阅读更容易。
+这样可以清楚的看出后续行是前一行的延续，并且对齐左侧的操作符，会使得代码更可读。
 
-更难阅读：
+6. 使用空格将赋值操作，注释对齐。
+
+难以阅读：
 
 ```C++
 cost = 57;
@@ -200,7 +212,7 @@ value = 5;
 numberOfItems = 17;
 ```
 
-更易于阅读：
+容易阅读：
 
 ```C++
 cost          = 57;
@@ -209,102 +221,61 @@ value         = 5;
 numberOfItems = 17;
 ```
 
-更难阅读：
+难以阅读：
 
 ```C++
-std::cout << "Hello world!\n"; // cout lives in the iostream library
-std::cout << "It is very nice to meet you!\n"; // these comments make the code hard to read
-std::cout << "Yeah!\n"; // especially when lines are different lengths
+std::cout << "Hello world!\n"; // cout 在iostream库中
+std::cout << "It is very nice to meet you!\n"; // 这样的注释让代码看起来难以阅读
+std::cout << "Yeah!\n"; // 尤其是每行长度不一
 ```
 
 更易于阅读：
 
 ```C++
-std::cout << "Hello world!\n";                  // cout lives in the iostream library
-std::cout << "It is very nice to meet you!\n";  // these comments are easier to read
-std::cout << "Yeah!\n";                         // especially when all lined up
+std::cout << "Hello world!\n";                  // cout 在iostream库中
+std::cout << "It is very nice to meet you!\n";  // 这样的注释让代码看起来易于阅读
+std::cout << "Yeah!\n";                         // 注释对齐
 ```
 
-更难阅读：
+在本教程中，我们将遵循这些约定。当介绍新知识时，同时将介绍与这些功能配套的新样式建议。
 
-```C++
-// cout lives in the iostream library
-std::cout << "Hello world!\n";
-// these comments make the code hard to read
-std::cout << "It is very nice to meet you!\n";
-// especially when all bunched together
-std::cout << "Yeah!\n";
-```
-
-更易于阅读：
-
-```C++
-// cout lives in the iostream library
-std::cout << "Hello world!\n";
-
-// these comments are easier to read
-std::cout << "It is very nice to meet you!\n";
-
-// when separated by whitespace
-std::cout << "Yeah!\n";
-```
-
-在本教程中，我们将遵循这些约定，它们将成为您的第二天性。当我们向您介绍新主题时，我们将介绍与这些功能配套的新样式建议。
-
-最终，C++为您提供了选择最舒适的风格或认为最好的风格的能力。然而，我们强烈建议您使用我们在示例中使用的相同样式。它已经被数千名程序员在数十亿行代码上进行了战斗测试，并为成功而优化。
-
-一个例外：如果您在其他人的代码库中工作，请采用他们的样式。与其偏好，不如偏好一致性。
+C++为您提供了选择您最舒适的风格或认为最好的风格的能力。然而，我们强烈建议您使用我们在示例中使用的相同样式。
+它已经被大量程序员在数以亿行代码上进行了验证。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
-考虑将行的长度保持在80个字符或更少。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**提示**
-
-许多编辑器都有一个内置功能（或插件/扩展），它将在给定的列（例如，在80个字符处）显示一行（称为“列指南”），因此您可以很容易地看到您的行何时变得太长。要查看编辑器是否支持此功能，请搜索编辑器的名称+“列指南”。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**最佳做法**
-
-在现有项目中工作时，与已经采用的任何样式保持一致。
-
+再已有的项目中开发时，选择与原有项目一致的代码样式。
 {{< /alert >}}
 
 ***
-## 自动设置格式
+## 自动格式化
 
-大多数现代IDE将帮助您在键入代码时格式化代码（例如，当您创建函数时，IDE将自动缩进函数体中的语句）。
+大多数现代IDE将帮助您在编写代码时自动格式化代码（例如，当您创建函数时，IDE将自动缩进函数体中的语句）。
 
-然而，当您添加或删除代码，或更改IDE的默认格式，或粘贴具有不同格式的代码块时，格式可能会变得混乱。修复文件的部分或全部格式可能是一个头痛的问题。幸运的是，现代IDE通常包含自动格式化功能，该功能将重新格式化选择（用鼠标突出显示）或整个文件。
+然而，当您添加或删除代码，或更改IDE的默认格式，或粘贴具有不同格式的代码块时，格式可能会变得混乱。修复文件的部分或全部格式可能是一个头痛的问题。幸运的是，现代IDE通常包含自动格式化功能，该功能将重新格式化选定的代码或整个文件。
 
-为了更容易访问，建议添加键盘快捷方式以自动格式化活动文件。
+为了更容易操作，建议添加使用键盘快捷，来自动格式化代码文件。
 
-还有一些外部工具可以用于自动格式化代码。clang格式是一种流行的格式。
+还有一些外部工具可以用于自动格式化代码。clang-format是一个流行的工具。
 
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，可以在编辑>高级>设置文档格式和编辑>高级>Format Selection下找到自动格式选项。
+在Visual Studio中，可以在 编辑>高级 下找到自动格式化的选项。
 
 {{< /alert >}}
 
 {{< alert success >}}
-**对于代码：：阻止用户**
-
-在代码：：块中，可以在鼠标右键单击>格式使用AStyle下找到自动格式选项。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 强烈建议使用自动格式功能，以保持代码的格式样式一致。
 
 {{< /alert >}}
 
+***
+{{< prevnext prev="/basic/chapter1/keywords-and-naming-identifiers/" next="" >}}
+关键字和变量命名规则
+<--->
+
+{{< /prevnext >}}
