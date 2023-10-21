@@ -59,6 +59,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter1/whitespace/<-> 1.7 空白字符
 <-->
 <->/basic/chapter1/literal-operator/<-> 1.8 字面值和操作符简介
+<-->
+<->/basic/chapter1/exp/<-> 1.9 表达式简介
 {{< /chapterlist >}}
 
 
