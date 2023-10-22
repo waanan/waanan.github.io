@@ -5,10 +5,10 @@ date: 2023-10-09T20:06:10+08:00
 
 ## 表达式
 
-考虑以下一系列陈述：
+考虑以下的语句：
 
 ```C++
-// five() is a function that returns the value 5
+// five() 是个返回 5 的函数
 int five()
 {
     return 5;
@@ -16,33 +16,33 @@ int five()
 
 int main()
 {
-    int a{ 2 };             // initialize variable a with literal value 2
-    int b{ 2 + 3 };         // initialize variable b with computed value 5
-    int c{ (2 * 3) + 4 };   // initialize variable c with computed value 10
-    int d{ b };             // initialize variable d with variable value 5
-    int e{ five() };        // initialize variable e with function return value 5
+    int a{ 2 };             // 使用字面值常量 2 初始化 a
+    int b{ 2 + 3 };         // 使用计算后的结果 5 初始化 b
+    int c{ (2 * 3) + 4 };   // 使用计算后的结果 10 初始化 c
+    int d{ b };             // 使用变量 b 的值初始化 d
+    int e{ five() };        // 使用函数的返回值 5 初始化 e
 
     return 0;
 }
 ```
 
-这些语句中的每一个都定义了一个新变量，并用一个值对其进行初始化。请注意，上面显示的初始值设定项使用了各种不同的构造：文本、变量、运算符和函数调用。不知怎的，C++正在将所有这些不同的东西转换为单个值，然后可以将该值用作变量的初始化值。
+这些语句中都定义了一个新变量，并用一个值对其进行初始化。请注意，上面显示的初始值使用了各种不同的构造方式：字面值常量、变量、运算符和函数调用。C++将所有这些不同的东西转换为单个值，然后将该值用作变量的初始化值。
 
-所有这些有什么共同之处？他们使用一个表达式。
+所有这些有什么共同之处？他们使用的是表达式。
 
-表达式是计算单个值的文本、变量、运算符和函数调用的组合。执行表达式的过程称为求值，生成的单个值称为表达式的结果。
+「表达式」使用字面值常量、变量、运算符和函数调用的组合来计算一个新值。执行表达式的过程称为求值，生成的单个值称为表达式的结果。
 
-计算表达式时，将计算表达式中的每个项，直到保留单个值。下面是一些不同类型的表达式的示例，并附有说明它们如何计算的注释：
+计算表达式时，将计算表达式中的每一项，直到最终生成单个值。下面是一些不同类型的表达式的示例，并附有说明它们如何计算的注释：
 
 ```C++
-2               // 2 is a literal that evaluates to value 2
-"Hello world!"  // "Hello world!" is a literal that evaluates to text "Hello world!"
-x               // x is a variable that evaluates to the value of x
-2 + 3           // operator+ uses operands 2 and 3 to evaluate to value 5
-five()          // evaluates to the return value of function five()
+2               // 2是一个字面值常量，求值结果是2
+"Hello world!"  // "Hello world!" 是一个字面值常量，求值结果是 "Hello world!"
+x               // x 是一个变量，求值结果是 x 中存储的值
+2 + 3           // 操作符 +，对2 和 3 进行求值，结果是 5
+five()          // 求值结果是函数 five() 的返回值
 ```
 
-如您所见，文字的计算结果是它们自己的值。变量计算为变量的值。运算符（如operator+）使用其操作数来计算其他值。我们还没有介绍函数调用，但在表达式的上下文中，函数调用的计算结果是函数返回的任何值。
+如您所见，字面值常量的计算结果是它们自己。变量计算结果是变量存储的值。操作符（如operator+）使用其操作数来计算值。我们还没有介绍函数调用，但在表达式的上下文中，函数调用的计算结果是函数返回的任何值。
 
 涉及具有副作用的运算符的表达式稍微复杂一些：
 
