@@ -116,8 +116,8 @@ std::cout << "Hello" << "world" 的计算结果为（std::cout << "Hello"）<< "
 {{< /alert >}}
 
 ***
-{{< prevnext prev="/basic/chapter1/whitespace/" next="" >}}
+{{< prevnext prev="/basic/chapter1/whitespace/" next="/basic/chapter1/exp/" >}}
 空白字符
 <--->
-
+表达式简介
 {{< /prevnext >}}

@@ -1,6 +1,6 @@
 ---
-title: "开发您的第一个程序"
-date: 2023-10-09T20:06:10+08:00
+title: "第一个程序"
+date: 2023-10-022T20:06:10+08:00
 ---
 
 前面的课程介绍了许多术语和概念，我们将在创建的每个程序中使用这些术语和概念。在本课中，我们将介绍将这些知识集成到第一个简单程序中的过程。
@@ -10,13 +10,18 @@ date: 2023-10-09T20:06:10+08:00
 
 首先，让我们创建一个程序，要求用户输入整数，等待他们输入整数，然后告诉他们该数字的2倍是多少。程序应该产生以下输出（假设我输入了4作为输入）：
 
-我们如何解决这一问题？在步骤中。
+```C++
+Enter an integer: 4
+Double that number is: 8
+```
 
-我们将在这里利用这一战略。在我们完成每个步骤时，将每个程序键入（不要复制/粘贴）到编译器中，编译并运行它。
+我们如何解决这一问题？这里我们将编写该程序分为多步。
+
+在我们完成每个步骤时，将对应的程序输入（不要复制/粘贴）到编译器中，编译并运行它。
 
 首先，创建一个新的控制台项目。
 
-现在，让我们从一些基本的脚手架开始。我们知道我们将需要main（）函数（因为所有C++程序都必须有一个函数），因此如果您的IDE在创建新项目时没有创建空白函数，那么让我们创建一个：
+现在，让我们从一些基本的架子开始。我们知道我们将需要main（）函数（因为所有C++程序都必须有一个main函数），因此如果您的IDE在创建新项目时没有创建，那么让我们创建一个：
 
 ```C++
 int main()
@@ -25,7 +30,7 @@ int main()
 }
 ```
 
-我们知道我们需要将文本输出到控制台，并从用户的键盘获取文本，因此我们需要包括iostream来访问std:：cout和std:：cin。
+我们知道我们需要将文本输出到控制台，并从用户的键盘获取文本，因此我们需要包括iostream来访问std::cout和std::cin。
 
 ```C++
 #include <iostream>
@@ -51,31 +56,46 @@ int main()
 
 此时，程序应产生以下结果：
 
+```C++
+Enter an integer: 
+```
+
 然后终止。
 
-接下来，我们将获取用户的输入。我们将使用std:：cin和operator>>来获取用户的输入。但我们还需要定义一个变量来存储该输入以供以后使用。
+接下来，我们将获取用户的输入。我们将使用std::cin和operator>>来获取用户的输入。但我们还需要定义一个变量来存储该输入以供以后使用。
 
 ```C++
 #include <iostream>
 
-int main() // note: this program has an error somewhere
+int main() // note: 该程序存在一个错误
 {
 	std::cout << "Enter an integer: ";
 
-	int num{ }; // define variable num as an integer variable
-	std::cin << num; // get integer value from user's keyboard
+	int num{ }; // 定义一个存储整数的变量num
+	std::cin << num; // 从用户的键盘输入中，获取一个整数值
 
 	return 0;
 }
 ```
 
-是时候编译我们的更改了…和…
+是时候编译我们的代码了。
 
 啊哦！以下是作者在Visual Studio 2017上获得的信息：
 
+
+```C++
+1>------ Build started: Project: Double, Configuration: Release Win32 ------
+1>Double.cpp
+1>c:\vcprojects\double\double.cpp(8): error C2678: binary '<<': no operator found which takes a left-hand operand of type 'std::istream' (or there is no acceptable conversion)
+1>c:\vcprojects\double\double.cpp: note: could be 'built-in C++ operator<<(bool, int)'
+1>c:\vcprojects\double\double.cpp: note: while trying to match the argument list '(std::istream, int)'
+1>Done building project "Double.vcxproj" -- FAILED.
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+```
+
 我们遇到了编译错误！
 
-首先，由于程序是在我们进行最新更新之前编译的，现在不编译，因此错误一定在我们刚才添加的代码中（第7行和第8行）。这大大减少了我们必须扫描以发现错误的代码量。第7行相当简单（只是一个变量定义），因此错误可能不存在。这使得第8行成为可能的罪魁祸首。
+首先，由于程序是在我们进行最新更新之前可以正常编译。因此错误一定在我们刚才添加的代码中（第7行和第8行）。这大大减少了我们必须扫描以发现错误的代码量。第7行相当简单（只是一个变量定义），因此错误可能不存在。这使得第8行成为可能的罪魁祸首。
 
 其次，这个错误消息不太容易阅读。但让我们来区分一些关键元素：编译器告诉我们它在第8行遇到了错误。这意味着实际的错误可能在第8行，或者可能在前一行，这加强了我们之前的评估。接下来，编译器告诉您，它找不到具有类型std:：istream（即std:∶cin的类型）的左侧操作数的“<<”运算符。换句话说，操作符<<不知道如何处理std:：cin，因此错误必须是由于使用std:∶cin或使用操作符<<。
 
