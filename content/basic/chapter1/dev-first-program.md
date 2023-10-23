@@ -26,7 +26,7 @@ Double that number is: 8
 ```C++
 int main()
 {
-	return 0;
+    return 0;
 }
 ```
 
@@ -37,7 +37,7 @@ int main()
 
 int main()
 {
-	return 0;
+    return 0;
 }
 ```
 
@@ -48,9 +48,9 @@ int main()
 
 int main()
 {
-	std::cout << "Enter an integer: ";
+    std::cout << "Enter an integer: ";
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -69,12 +69,12 @@ Enter an integer:
 
 int main() // note: 该程序存在一个错误
 {
-	std::cout << "Enter an integer: ";
+    std::cout << "Enter an integer: ";
 
-	int num{ }; // 定义一个存储整数的变量num
-	std::cin << num; // 从用户的键盘输入中，获取一个整数值
+    int num{ }; // 定义一个存储整数的变量num
+    std::cin << num; // 从用户的键盘输入中，获取一个整数值
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -108,12 +108,12 @@ int main() // note: 该程序存在一个错误
 
 int main()
 {
-	std::cout << "Enter an integer: ";
+    std::cout << "Enter an integer: ";
 
-	int num{ };
-	std::cin >> num; // std::cin 使用 >>, 而不是 <<!
+    int num{ };
+    std::cin >> num; // std::cin 使用 >>, 而不是 <<!
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -145,16 +145,16 @@ Enter an integer: 4
 // 最坏的方式
 int main()
 {
-	std::cout << "Enter an integer: ";
+    std::cout << "Enter an integer: ";
 
-	int num{ };
-	std::cin >> num;
+    int num{ };
+    std::cin >> num;
 
-	num = num * 2; // 将num的值翻倍，然后赋值给num
+    num = num * 2; // 将num的值翻倍，然后赋值给num
 
-	std::cout << "Double that number is: " << num << '\n';
+    std::cout << "Double that number is: " << num << '\n';
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -175,15 +175,15 @@ int main()
 // 不那么坏的版本
 int main()
 {
-	std::cout << "Enter an integer: ";
+    std::cout << "Enter an integer: ";
 
-	int num{ };
-	std::cin >> num;
+    int num{ };
+    std::cin >> num;
 
-	int doublenum{ num * 2 }; // 将 num * 2 赋值给新的变咯昂
-	std::cout << "Double that number is: " << doublenum << '\n';
+    int doublenum{ num * 2 }; // 将 num * 2 赋值给新的变咯昂
+    std::cout << "Double that number is: " << doublenum << '\n';
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -200,14 +200,14 @@ int main()
 // preferred version
 int main()
 {
-	std::cout << "Enter an integer: ";
+    std::cout << "Enter an integer: ";
 
-	int num{ };
-	std::cin >> num;
+    int num{ };
+    std::cin >> num;
 
-	std::cout << "Double that number is: " <<  num * 2 << '\n'; // 在输出的时候，使用一个表达式来计算num * 2 的值
+    std::cout << "Double that number is: " <<  num * 2 << '\n'; // 在输出的时候，使用一个表达式来计算num * 2 的值
 
-	return 0;
+    return 0;
 }
 ```
 
