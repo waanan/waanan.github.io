@@ -67,4 +67,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter1/summary/<-> 1.11 第1章总结
 {{< /chapterlist >}}
 
+***
 
+{{< chapterlist>}}
+第二章 函数
+<--->
+<->/basic/chapter2/intro-func/<-> 2.0 函数简介
+{{< /chapterlist >}}
