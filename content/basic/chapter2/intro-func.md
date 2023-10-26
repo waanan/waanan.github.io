@@ -19,7 +19,7 @@ C++程序以相同的方式工作。当程序遇到函数调用时，它将在�
 首先，让我们从定义函数的最基本语法开始。在接下来的几节课中，所有用户定义函数都将采用以下形式：
 
 ```C++
-返回值类型 函数名() // This is the function header (tells the compiler about the existence of the function)
+返回值类型 函数名() // 函数头，告知编译器函数的存在
 {
     // 函数体
 }
@@ -27,47 +27,51 @@ C++程序以相同的方式工作。当程序遇到函数调用时，它将在�
 
 第一行非正式地称为函数头，它告诉编译器函数的存在、函数的名称以及我们将在以后的课程中介绍的一些其他信息（如返回类型和参数类型）。
 
-1. 在本课中，我们将使用int（对于函数main（））或void（否则）的returnType。在下一课中，我们将更多地讨论返回类型和返回值（2.2——函数返回值（值返回函数））。现在，您可以忽略这些。
-2. 就像变量有名称一样，用户定义函数也有名称。functionName是用户定义函数的名称（标识符）。
+1. 在本课中，我们将使用int（对于函数main（））或void的返回值类型。在下一课中，我们将更多地讨论返回类型和返回值。现在，您可以忽略这些。
+2. 就像变量有名称一样，用户定义函数也有名称。「函数名」是用户定义函数的名称（标识符）。
 3. 标识符后面的括号告诉编译器我们正在定义函数。
 
-
-中间的花括号和语句称为函数体。这是决定函数执行什么操作的语句的位置。
+中间的花括号和语句称为函数体。这里是决定函数执行什么操作的语句。
 
 下面是一个示例程序，展示了如何定义和调用新函数：
 
 ```C++
-#include <iostream> // for std::cout
+#include <iostream>
 
-// Definition of user-defined function doPrint()
-void doPrint() // doPrint() is the called function in this example
+// 用户自定义函数 doPrint()
+void doPrint() // doPrint() 是被调函数
 {
     std::cout << "In doPrint()\n";
 }
 
-// Definition of function main()
+// 定义函数 main()
 int main()
 {
     std::cout << "Starting main()\n";
-    doPrint(); // Interrupt main() by making a function call to doPrint().  main() is the caller.
-    std::cout << "Ending main()\n"; // this statement is executed after doPrint() ends
+    doPrint(); // 去执行函数 doPrint().  main() 是调用者.
+    std::cout << "Ending main()\n"; // doPrint() 执行结束后，返回这里继续执行
 
     return 0;
 }
 ```
 
 该程序产生以下输出：
+```C++
+Starting main()
+In doPrint()
+Ending main()
+```
 
-该程序在函数main的顶部开始执行，要执行的第一行打印Starting main（）。
+该程序在函数main开始执行，要执行的第一行打印Starting main()。
 
-main中的第二行是对函数doPrint的函数调用。我们通过在函数名后面附加一对括号来调用函数doPrint，如：doPrint（）。请注意，如果忘记括号，则程序可能无法编译（如果忘记，则不会调用函数）。
+main中的第二行是对函数doPrint的函数调用。我们通过在函数名后面附加一对括号来调用函数doPrint，如：doPrint()。请注意，如果忘记括号，则程序可能无法编译。
 
-因为进行了函数调用，所以main中语句的执行被挂起，并且执行跳转到被调用函数doPrint的顶部。doPrint中的第一行（也是唯一一行）在doPrint（）中打印。当doPrint终止时，执行返回给调用方（here:functionmain），并从停止的点恢复。因此，在main中执行的下一条语句打印Endingmain（）。
+因为进行了函数调用，所以main中语句的执行被挂起，并且执行跳转到被调用函数doPrint的顶部。doPrint中的第一行（也是唯一一行）在doPrint() 中打印。当doPrint终止时，执行返回给调用方（main函数），并从停止的点恢复。因此，在main中执行的下一条语句打印Ending main()。
 
 {{< alert success >}}
 **警告**
 
-当进行函数调用时，不要忘记在函数名后面包含括号（）。
+当进行函数调用时，不要忘记在函数名后面包含括号()。
 
 {{< /alert >}}
 
@@ -77,19 +81,17 @@ main中的第二行是对函数doPrint的函数调用。我们通过在函数名
 函数的一个有用之处是它们可以被多次调用。下面的程序演示了这一点：
 
 ```C++
-#include <iostream> // for std::cout
-
+#include <iostream>
 void doPrint()
 {
     std::cout << "In doPrint()\n";
 }
 
-// Definition of function main()
 int main()
 {
     std::cout << "Starting main()\n";
-    doPrint(); // doPrint() called for the first time
-    doPrint(); // doPrint() called for the second time
+    doPrint(); // doPrint() 第一次调用
+    doPrint(); // doPrint() 第二次调用
     std::cout << "Ending main()\n";
 
     return 0;
@@ -97,16 +99,22 @@ int main()
 ```
 
 该程序产生以下输出：
+```C++
+Starting main()
+In doPrint()
+In doPrint()
+Ending main()
+```
 
-由于main调用doPrint两次，doPrint执行两次，In-doPrint（）打印两次（每次调用一次）。
+由于main调用doPrint两次，doPrint执行两次，In doPrint() 打印两次（每次调用一次）。
 
 ***
-## 函数调用函数调用函数
+## 被调用的函数,再调用函数
 
 您已经看到函数main可以调用另一个函数（例如上面例子中的函数doPrint）。任何函数都可以调用任何其他函数。在下面的程序中，函数main调用函数doA，该函数调用函数doB：
 
 ```C++
-#include <iostream> // for std::cout
+#include <iostream>
 
 void doB()
 {
@@ -137,9 +145,17 @@ int main()
 ```
 
 该程序产生以下输出：
+```C++
+Starting main()
+Starting doA()
+In doB()
+Ending doA()
+Ending main()
+```
+
 
 ***
-## 不支持嵌套函数
+## 不支持嵌套函数定义
 
 与其他一些编程语言不同，在C++中，函数不能在其他函数中定义。以下程序不合法：
 
@@ -148,12 +164,12 @@ int main()
 
 int main()
 {
-    void foo() // Illegal: this function is nested inside function main()
+    void foo() // 不合法，不允许再函数中定义函数
     {
         std::cout << "foo!\n";
     }
 
-    foo(); // function call to foo()
+    foo();
     return 0;
 }
 ```
@@ -163,7 +179,7 @@ int main()
 ```C++
 #include <iostream>
 
-void foo() // no longer inside of main()
+void foo()
 {
     std::cout << "foo!\n";
 }
@@ -176,14 +192,10 @@ int main()
 ```
 
 {{< alert success >}}
-**作为旁白…**
+**注**
 
 “foo”是一个无意义的词，当名称对某个概念的演示不重要时，它通常用作函数或变量的占位符名称。这样的词被称为元语法变量（尽管在通用语言中，它们通常被称为“占位符名称”，因为没有人能记住术语“元语法变量”）。C++中其他常见的元语法变量包括“bar”、“baz”和以“oo”结尾的3个字母的单词，如“goo”、“moo”和“boo”）。
 
-对于那些对词源学（单词如何演变）感兴趣的人来说，RFC3092是一本有趣的书。
-
 {{< /alert >}}
 
-***
-## 测验时间
 
