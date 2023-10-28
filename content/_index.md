@@ -73,4 +73,8 @@ date: 2022-12-28T16:40:41+08:00
 第二章 函数
 <--->
 <->/basic/chapter2/intro-func/<-> 2.0 函数简介
+<-->
+<->/basic/chapter2/func-ret/<-> 2.1 函数返回值
+<-->
+<->/basic/chapter2/func-ret-void/<-> 2.2 无返回值函数
 {{< /chapterlist >}}

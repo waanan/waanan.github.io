@@ -1,5 +1,5 @@
 ---
-title: "2.0 函数简介"
+title: "函数简介"
 date: 2023-10-09T20:06:10+08:00
 ---
 
@@ -198,4 +198,9 @@ int main()
 
 {{< /alert >}}
 
-
+***
+{{< prevnext prev="/basic/chapter1/summary/" next="/basic/chapter2/func-ret/" >}}
+第1章总结
+<--->
+函数返回值
+{{< /prevnext >}}
