@@ -24,17 +24,17 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 序章
 <--->
-<->/basic/chapter0/introduction-to-site/<-> 0.0 站点简介
+<->/basic/chapter0/introduction-to-site/<-> 0.0 网站简介
 <-->
-<->/basic/chapter0/introduction-to-programming-languages/<->0.1 什么是编程语言
+<->/basic/chapter0/introduction-to-programming-languages/<-> 0.1 什么是编程语言
 <-->
-<->/basic/chapter0/introduction-to-c-cpp/<->0.2 C与C++历史
+<->/basic/chapter0/introduction-to-c-cpp/<-> 0.2 C与C++
 <-->
-<->/basic/chapter0/introduction-to-development/<->0.3 程序开发流程
+<->/basic/chapter0/introduction-to-development/<-> 0.3 程序开发流程
 <-->
-<->/basic/chapter0/install-dev-env/<->0.4 安装开发环境
+<->/basic/chapter0/install-dev-env/<-> 0.4 安装开发环境
 <-->
-<->/basic/chapter0/write-first-program/<->0.5 第一个C++程序
+<->/basic/chapter0/write-first-program/<-> 0.5 第一个C++程序
 {{< /chapterlist >}}
 
 ***
@@ -56,7 +56,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter1/keywords-and-naming-identifiers/<-> 1.6 关键字和变量命名规则
 <-->
-<->/basic/chapter1/whitespace/<-> 1.7 空白字符
+<->/basic/chapter1/whitespace/<-> 1.7 空白字符与代码样式
 <-->
 <->/basic/chapter1/literal-operator/<-> 1.8 字面值和操作符简介
 <-->
