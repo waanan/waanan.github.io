@@ -70,7 +70,7 @@ CPU并不能直接执行汇编语言。因此需要有一个程序将汇编语�
 ***
 
 {{< prevnext prev="/basic/chapter0/introduction-to-site/" next="/basic/chapter0/introduction-to-c-cpp/" >}}
-网站简介
+0.0 网站简介
 <--->
-C与C++
+0.2 C与C++
 {{< /prevnext >}}

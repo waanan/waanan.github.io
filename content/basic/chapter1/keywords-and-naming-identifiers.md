@@ -119,8 +119,9 @@ int numberOfChars;
 {{< /alert >}}
 
 ***
+
 {{< prevnext prev="/basic/chapter1/uninit-variable/" next="/basic/chapter1/whitespace/" >}}
-未初始化的变量及未定义的行为
+1.5 未初始化的变量及未定义的行为
 <--->
-空白字符
+1.7 空白字符与代码样式
 {{< /prevnext >}}

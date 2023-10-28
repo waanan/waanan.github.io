@@ -199,8 +199,9 @@ int main()
 {{< /alert >}}
 
 ***
+
 {{< prevnext prev="/basic/chapter1/summary/" next="/basic/chapter2/func-ret/" >}}
-第1章总结
+1.11 第1章总结
 <--->
-函数返回值
+2.1 函数返回值
 {{< /prevnext >}}

@@ -245,8 +245,9 @@ int main()
 
 
 ***
+
 {{< prevnext prev="/basic/chapter1/exp/" next="/basic/chapter1/summary/" >}}
-表达式简介
+1.9 表达式简介
 <--->
-第1章总结
+1.11 第1章总结
 {{< /prevnext >}}

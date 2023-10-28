@@ -168,55 +168,9 @@ void printHi() // This function is non-value returning
 ```
 
 ***
-## 测验时间
 
-问题#1
-
-检查以下程序，并说明它们输出的内容，或者它们是否将不编译。
-
-1a）
-
-```C++
-#include <iostream>
-
-void printA()
-{
-    std::cout << "A\n";
-}
-
-void printB()
-{
-    std::cout << "B\n";
-}
-
-int main()
-{
-    printA();
-    printB();
-
-    return 0;
-}
-```
-
-显示解决方案
-
-1b）
-
-```C++
-#include <iostream>
-
-void printA()
-{
-    std::cout << "A\n";
-}
-
-int main()
-{
-    std::cout << printA() << '\n';
-
-    return 0;
-}
-```
-
-显示解决方案
-
+{{< prevnext prev="/basic/chapter2/func-ret/" next="/" >}}
+2.1 函数返回值
+<--->
+主页
+{{< /prevnext >}}

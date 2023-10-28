@@ -159,8 +159,9 @@ int main()
 {{< /alert >}}
 
 ***
+
 {{< prevnext prev="/basic/chapter1/iostream/" next="/basic/chapter1/keywords-and-naming-identifiers/" >}}
-iostream:cout、cin和endl简介
+1.4 iostream:cout、cin和endl简介
 <--->
-关键字和变量命名规则
+1.6 关键字和变量命名规则
 {{< /prevnext >}}

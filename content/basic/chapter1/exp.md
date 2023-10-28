@@ -104,8 +104,9 @@ x = 4 + 5       // 4 + 5 计算结果是 9, 然后赋值给变量 x
 复合表达式是包含两个或多个操作符的表达式。x = 4 + 5 是一个复合表达式，因为它包含两个运算符（operator=和operator+）。2 和 2 + 3 不是复合表达式。
 
 ***
+
 {{< prevnext prev="/basic/chapter1/literal-operator/" next="/basic/chapter1/dev-first-program/" >}}
-字面值和操作符简介
+1.8 字面值和操作符简介
 <--->
-开发第一个程序
+1.10 开发第一个程序
 {{< /prevnext >}}

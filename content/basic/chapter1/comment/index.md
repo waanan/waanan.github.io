@@ -181,7 +181,7 @@ std::cout << 3;
 ***
 
 {{< prevnext prev="/basic/chapter1/program-structure/" next="/basic/chapter1/variable/" >}}
-程序结构介绍
+1.0 程序结构介绍
 <--->
-变量
+1.2 对象与变量
 {{< /prevnext >}}

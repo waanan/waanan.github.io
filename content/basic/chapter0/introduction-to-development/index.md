@@ -115,7 +115,7 @@ C++程序文件一般以「.cpp」作为文件后缀，不过有些人也喜欢�
 ***
 
 {{< prevnext prev="/basic/chapter0/introduction-to-c-cpp/" next="/basic/chapter0/install-dev-env/" >}}
-C与C++
+0.2 C与C++
 <--->
-安装开发环境
+0.4 安装开发环境
 {{< /prevnext >}}

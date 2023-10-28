@@ -96,7 +96,7 @@ g++ -o HelloWorld HelloWorld.cpp
 ***
 
 {{< prevnext prev="/basic/chapter0/install-dev-env/" next="/basic/chapter1/program-structure/" >}}
-安装开发环境
+0.4 安装开发环境
 <--->
-程序结构介绍
+1.0 程序结构介绍
 {{< /prevnext >}}

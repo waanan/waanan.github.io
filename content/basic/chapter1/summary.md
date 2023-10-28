@@ -55,8 +55,9 @@ C++保留一组名为关键字的名称。这些在语言中具有特殊意义�
 第一版编写的代码通常是凌乱和不完美的。大多数代码都需要清理和细化才能变得更好！
 
 ***
+
 {{< prevnext prev="/basic/chapter1/dev-first-program/" next="/basic/chapter2/intro-func/" >}}
-开发第一个程序
+1.10 开发第一个程序
 <--->
-函数简介
+2.0 函数简介
 {{< /prevnext >}}

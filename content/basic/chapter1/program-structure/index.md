@@ -158,7 +158,7 @@ int main()
 ***
 
 {{< prevnext prev="/basic/chapter0/write-first-program/" next="/basic/chapter1/comment/" >}}
-第一个C++程序
+0.5 第一个C++程序
 <--->
-注释
+1.1 注释
 {{< /prevnext >}}

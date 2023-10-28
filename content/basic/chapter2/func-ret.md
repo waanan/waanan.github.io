@@ -346,8 +346,9 @@ DRY的反义词是WET（“将所有内容写入两次”，“Write everything 
 函数提供了一种最小化程序冗余的方法。
 
 ***
+
 {{< prevnext prev="/basic/chapter2/intro-func/" next="/basic/chapter2/func-ret-void/" >}}
-函数简介
+2.0 函数简介
 <--->
-无返回值函数
+2.2 无返回值函数
 {{< /prevnext >}}

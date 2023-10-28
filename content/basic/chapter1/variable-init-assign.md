@@ -257,8 +257,9 @@ int c, d{ 5 };
 由于括号或大括号通常放在变量名的右边，这使得值5仅用于初始化变量b和d，而不是a或c，看起来更容易发现错误。
 
 ***
+
 {{< prevnext prev="/basic/chapter1/variable/" next="/basic/chapter1/iostream/" >}}
-对象与变量
+1.2 对象与变量
 <--->
-iostream:cout、cin和endl简介
+1.4 iostream:cout、cin和endl简介
 {{< /prevnext >}}

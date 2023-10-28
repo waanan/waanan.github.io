@@ -54,7 +54,7 @@ date: 2022-12-28T16:40:41+08:00
 ***
 
 {{< prevnext prev="/basic/chapter0/introduction-to-development/" next="/basic/chapter0/write-first-program/" >}}
-程序开发流程
+0.3 程序开发流程
 <--->
-第一个C++程序
+0.5 第一个C++程序
 {{< /prevnext >}}
