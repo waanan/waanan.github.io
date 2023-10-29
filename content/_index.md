@@ -77,4 +77,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter2/func-ret/<-> 2.1 函数返回值
 <-->
 <->/basic/chapter2/func-ret-void/<-> 2.2 无返回值函数
+<-->
+<->/basic/chapter2/func-arg/<-> 2.3 函数参数简介
 {{< /chapterlist >}}
