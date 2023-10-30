@@ -27,7 +27,7 @@ int main()
 }
 ```
 
-然而，如果我们想将输出行也放入其自己的函数中，该怎么办？您可以尝试这样的操作：
+然而，如果我们想将输出的处理也放到函数中，该怎么办？可以尝试这样的操作：
 
 ```C++
 #include <iostream>
@@ -41,7 +41,7 @@ int getValueFromUser()
 	return input;
 }
 
-// This function won't compile
+// 这个函数无法编译通过
 void printDouble()
 {
 	std::cout << num << " doubled is: " << num * 2 << '\n';
@@ -57,12 +57,12 @@ int main()
 }
 ```
 
-这不会编译，因为函数printDouble不知道标识符num是什么。您可以尝试在函数printDouble（）中将num定义为变量：
+这无法编译通过，因为函数printDouble不知道标识符num是什么。或者我们可以尝试在函数printDouble() 中将num定义为变量：
 
 ```C++
 void printDouble()
 {
-	int num{}; // we added this line
+	int num{}; // 新增一行
 	std::cout << num << " doubled is: " << num * 2 << '\n';
 }
 ```
