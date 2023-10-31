@@ -80,5 +80,5 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter2/func-arg/<-> 2.3 函数参数简介
 <-->
-<->/basic/chapter2/local-var/<-> 2.4 函数参数简介
+<->/basic/chapter2/local-var/<-> 2.4 局部变量
 {{< /chapterlist >}}

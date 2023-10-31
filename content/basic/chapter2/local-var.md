@@ -298,5 +298,9 @@ int main()
 {{< /alert >}}
 
 ***
-## 测验时间
 
+{{< prevnext prev="/basic/chapter2/func-arg/" next="/" >}}
+2.3 函数参数简介
+<--->
+主页
+{{< /prevnext >}}
