@@ -138,52 +138,49 @@ int main()
 ***
 ## 另一个例子
 
-这里有一个稍微复杂一些的例子。记住，生命周期是一个运行时属性，范围是一个编译时属性，因此尽管我们在同一个程序中讨论这两个属性，但它们在不同的点上强制执行。
+这里有一个稍微复杂一些的例子。记住，生命周期是一个运行时属性，作用域是一个编译时属性。
 
 ```C++
 #include <iostream>
 
-int add(int x, int y) // x and y are created and enter scope here
+int add(int x, int y) // x y变量被创建，并且进入作用域
 {
-    // x and y are visible/usable within this function only
+    // x y 只在add函数里，可见，并且可访问
     return x + y;
-} // y and x go out of scope and are destroyed here
+} // x y 作用域结束，并且被销毁，生命周期结束
 
 int main()
 {
-    int a{ 5 }; // a is created, initialized, and enters scope here
-    int b{ 6 }; // b is created, initialized, and enters scope here
+    int a{ 5 }; // a 创建，初始化，进入作用域
+    int b{ 6 }; // b 创建，初始化，进入作用域
 
-    // a and b are usable within this function only
-    std::cout << add(a, b) << '\n'; // calls function add() with x=5 and y=6
+    // a b 只在函数main里可见
+    std::cout << add(a, b) << '\n';
 
     return 0;
-} // b and a go out of scope and are destroyed here
+} // a b 作用域结束，并且被销毁，生命周期结束
 ```
 
-参数x和y是在调用add函数时创建的，只能在函数add中看到/使用，并在add结束时销毁。变量a和b是在函数main中创建的，只能在函数main.中看到/使用，并在main的末尾销毁。
+参数x和y是在调用add函数时创建的，只能在函数add中看到/使用，并在add结束时销毁。变量a和b是在函数main中创建的，只能在函数main()中看到/使用，并在main的末尾销毁。
 
-为了增强您对所有这些如何结合在一起的理解，让我们更详细地跟踪这个程序。按顺序发生以下情况：
+为了增强您对所有这些如何结合在一起的理解，让我们更详细地分析这个程序。按顺序发生以下情况：
 
 1. 执行从main的顶部开始。
-2. 创建主变量a并给定值5。
-3. 创建主变量b并给定值6。
+2. 创建变量a并给定值5。
+3. 创建变量b并给定值6。
 4. 使用参数值5和6调用函数add。
 5. 创建add参数x和y，并分别用值5和6进行初始化。
 6. 计算表达式x+y以产生值11。
-7. add将值11复制回调用方main。
-8. 添加参数y和x被破坏。
+7. add将值11返回调用方main。
+8. y和x被销毁。
 9. main将11打印到控制台。
 10. main将0返回到操作系统。
-11. 主要变量b和a被破坏。
+11. 主要变量b和a被销毁。
 
-
-我们完成了。
-
-注意，如果函数add被调用两次，则参数x和y将被创建和销毁两次——每次调用一次。在具有许多函数和函数调用的程序中，变量经常被创建和销毁。
+注意，如果函数add被调用两次，则参数x和y将被创建和销毁两次。在具有许多函数和函数调用的程序中，变量经常被创建和销毁。
 
 ***
-## 功能分离
+## 不同函数的同名局部变量
 
 在上面的例子中，很容易看出变量a和b是与x和y不同的变量。
 
@@ -192,45 +189,45 @@ int main()
 ```C++
 #include <iostream>
 
-int add(int x, int y) // add's x and y are created and enter scope here
+int add(int x, int y) // add.x add.y变量被创建，并且进入作用域
 {
-    // add's x and y are visible/usable within this function only
+    // add.x add.y 只在add函数里，可见，并且可访问
     return x + y;
-} // add's y and x go out of scope and are destroyed here
+} // add.x add.y 作用域结束，并且被销毁，生命周期结束
 
 int main()
 {
-    int x{ 5 }; // main's x is created, initialized, and enters scope here
-    int y{ 6 }; // main's y is created, initialized, and enters scope here
+    int x{ 5 }; // main.x 创建，初始化，进入作用域
+    int y{ 6 }; // main.y 创建，初始化，进入作用域
 
-    // main's x and y are usable within this function only
-    std::cout << add(x, y) << '\n'; // calls function add() with x=5 and y=6
+    // main.x main.y 只在函数main里可见
+    std::cout << add(x, y) << '\n';
 
     return 0;
-} // main's y and x go out of scope and are destroyed here
+} // main.x main.y 作用域结束，并且被销毁，生命周期结束
 ```
 
-在这个例子中，我们所做的就是将函数main中变量a和b的名称更改为x和y。这个程序的编译和运行是相同的，即使函数main和add都有名为x和y的变量。为什么这样做？
+在这个例子中，我们所做的就是将函数main中变量a和b的名称更改为x和y。这个程序的编译和运行是相同的，即使函数main和add都有名为x和y的变量。为什么会这样？
 
 首先，我们需要认识到，即使函数main和add都有名为x和y的变量，但这些变量是不同的。函数main中的x和y与函数add中的x和y没有任何关系——它们碰巧共享相同的名称。
 
 其次，当函数main内部时，名称x和y指的是main的局部范围变量x和y。这些变量只能在main内部看到（和使用）。类似地，在函数add中，名称x和y指的是函数参数x和y，它们只能在add中看到（和使用）。
 
-简而言之，add和main都不知道另一个函数有同名的变量。因为作用域不重叠，所以编译器总是很清楚在任何时候引用了哪个x和y。
+简而言之，add和main都不知道另一个函数有同名的变量。因为作用域不重叠，所以编译器总是很清楚在什么时候引用了哪个x和y。
 
-在未来的一章中，我们将更多地讨论局部范围和其他类型的范围。
+在未来，我们将更多地讨论局部范围和其他类型的范围。
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
-用于函数体中声明的函数参数或变量的名称仅在声明它们的函数中可见。这意味着可以在不考虑其他函数中变量的名称的情况下命名函数中的局部变量。这有助于保持功能的独立性。
+用于函数的参数或局部变量的名称仅在声明它们的函数中可见。这意味着可以在不考虑其他函数中变量的名称的情况下命名函数中的局部变量。这有助于保持功能的独立性。
 
 {{< /alert >}}
 
 ***
 ## 定义局部变量的位置
 
-在现代C++中，最佳实践是函数体中的局部变量应定义为接近其首次使用时的合理值：
+在现代C++中，函数体中的局部变量，定义的位置应该接近其首次使用的位置：
 
 ```C++
 #include <iostream>
@@ -238,31 +235,24 @@ int main()
 int main()
 {
 	std::cout << "Enter an integer: ";
-	int x{}; // x defined here
-	std::cin >> x; // and used here
+	int x{}; // x 在这里定义
+	std::cin >> x; // 在这里使用
 
 	std::cout << "Enter another integer: ";
-	int y{}; // y defined here
-	std::cin >> y; // and used here
+	int y{}; // y 在这里定义
+	std::cin >> y; // 在这里使用
 
-	int sum{ x + y }; // sum can be initialized with intended value
+	int sum{ x + y }; // sum 在这里定义
 	std::cout << "The sum is: " << sum << '\n';
 
 	return 0;
 }
 ```
 
-在上面的示例中，每个变量都是在首次使用之前定义的。没有必要对此严格要求——如果您更喜欢交换第5行和第6行，那没关系。
+在上面的示例中，每个变量都是在首次使用之前定义的。
 
 {{< alert success >}}
-**最佳做法**
-
-将局部变量定义为尽可能接近其首次使用。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**作为旁白…**
+**注**
 
 由于较旧、更原始的编译器的限制，C语言过去要求在函数的顶部定义所有局部变量。使用该样式的等效C++程序如下所示：
 
@@ -271,7 +261,7 @@ int main()
 
 int main()
 {
-	int x{}, y{}, sum{}; // how are these used?
+	int x, y, sum;
 
 	std::cout << "Enter an integer: ";
 	std::cin >> x;
@@ -288,9 +278,9 @@ int main()
 
 由于以下几个原因，此样式不是最佳的：
 
-1. 在定义时，这些变量的预期用途并不明显。您必须扫描整个函数，以确定在何处以及如何使用每个函数。
-2. 函数顶部可能没有预期的初始化值（例如，我们无法将总和初始化为其预期值，因为我们还不知道x和y的值）。
-3. 变量的初始值设定项和它的首次使用之间可能有许多行。如果我们不记得它是用什么值初始化的，我们将不得不向后滚动到函数的顶部，这会分散注意力。
+1. 在定义时，这些变量的预期用途并不明显。您必须阅读整个函数，以确定在何处以及如何使用对应的变量。
+2. 函数顶部可能没有预期的初始化值（例如，我们无法将sum初始化为其预期值，因为我们还不知道x和y的值）。
+3. 变量的初始值设定项和它的首次使用之间可能有许多行。如果我们不记得它是用什么值初始化的，我们将不得不向前看到函数的顶部，这会分散注意力。
 
 
 在C99语言标准中取消了此限制。
