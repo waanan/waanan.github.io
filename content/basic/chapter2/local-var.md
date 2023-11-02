@@ -289,8 +289,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter2/func-arg/" next="/" >}}
+{{< prevnext prev="/basic/chapter2/func-arg/" next="/basic/chapter2/why-func/" >}}
 2.3 函数参数简介
 <--->
-主页
+2.5 为什么需要函数
 {{< /prevnext >}}
