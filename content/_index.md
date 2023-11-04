@@ -85,4 +85,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter2/why-func/<-> 2.5 为什么需要函数
 <-->
 <->/basic/chapter2/forward-declare/<-> 2.6 前向声明
+<-->
+<->/basic/chapter2/multi-file/<-> 2.7 具有多个代码文件的程序
 {{< /chapterlist >}}
