@@ -37,14 +37,14 @@ date: 2023-10-09T20:06:10+08:00
 {{< alert success >}}
 **作为旁白…**
 
-使用指令（在第2.9课中介绍——命名冲突和名称空间介绍）不是预处理器指令（因此不由预处理器处理）。因此，虽然术语指令通常意味着预处理器指令，但情况并不总是如此。
+using namespace（在命名冲突和名称空间简介一节）不是预处理器指令（因此不由预处理器处理）。
 
 {{< /alert >}}
 
 ***
-## #包括
+## include
 
-您已经看到了#include指令的作用（通常是#incluse<iostream>）。当您#include文件时，预处理器将#include指令替换为所包含文件的内容。然后对包含的内容进行预处理（这可能导致递归地预处理额外的#includes），然后预处理文件的其余部分。
+您已经看到了#include指令的作用（通常是#incluse<iostream>）。当您#include文件时，预处理器将#include指令替换为所包含文件的内容。然后对包含的内容进行预处理（这可能导致递归地预处理额外的#include文件），然后预处理文件的其余部分。
 
 考虑以下程序：
 
@@ -58,16 +58,16 @@ int main()
 }
 ```
 
-当预处理器在此程序上运行时，预处理器将用名为“iostream”的文件的内容替换#include<iostream>，然后预处理包含的内容和文件的其余部分。
+当预处理器在此程序上运行时，预处理器将用名为“iostream”的文件的内容替换#include<iostream>，然后预处理引入的内容和文件的其余部分。
 
 一旦预处理器完成了对代码文件和所有#包含内容的处理，结果就称为翻译单元。翻译单元是发送给编译器进行编译的单元。
 
-由于#include几乎专用于包括头文件，因此我们将在下一课（讨论头文件时）中更详细地讨论#incl包括。
+由于#include几乎专用于处理头文件，因此我们将在下一课（讨论头文件时）中更详细地讨论#include。
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
-翻译单元既包含来自代码文件的已处理代码，也包含来自所有#included文件的处理代码。
+翻译单元既包含来自代码文件的代码，也包含来自所有#included文件的处理代码。
 
 {{< /alert >}}
 
@@ -78,25 +78,30 @@ int main()
 
 宏有两种基本类型：类对象宏和类函数宏。
 
-类函数宏的行为类似于函数，并具有类似的用途。它们的使用通常被认为是不安全的，它们可以做的任何事情都可以由正常功能完成。
+类函数宏的行为类似于函数，并具有类似的用途。它们的使用通常被认为是不安全的，它所做的任何事情都可以由正常功能完成。
 
-类对象宏可以用两种方法之一定义：
+类对象宏可以用两种方法定义：
 
-顶部定义没有替换文本，而底部定义有。由于这些是预处理器指令（不是语句），请注意，两种形式都没有以分号结尾。
+```C++
+#define 标识符
+#define 标识符 替换文本
+```
+
+第一个定义没有替换文本，第二个定义有。这些是预处理器指令（不是语句），请注意，两种形式都没有以分号结尾。
 
 宏的标识符使用与普通标识符相同的命名规则：它们可以使用字母、数字和下划线，不能以数字开头，并且不应以下划线开头。按照惯例，宏名称通常都是大写的，由下划线分隔。
 
 ***
 ## 具有替换文本的类对象宏
 
-当预处理器遇到该指令时，标识符的任何进一步出现都将替换为substitution_text。标识符传统上是用所有大写字母键入的，使用下划线表示空格。
+当预处理器遇到该指令时，后续标识符的任何进一步出现都将替换为substitution_text。标识符传统上是用所有大写字母键入的，使用下划线表示空格。
 
 考虑以下程序：
 
 ```C++
 #include <iostream>
 
-#define MY_NAME "Alex"
+#define MY_NAME "Fly"
 
 int main()
 {
@@ -109,21 +114,21 @@ int main()
 预处理器将上述内容转换为以下内容：
 
 ```C++
-// The contents of iostream are inserted here
+// iostream 中的内容将会被替换到这里
 
 int main()
 {
-    std::cout << "My name is: " << "Alex" << '\n';
+    std::cout << "My name is: " << "Fly" << '\n';
 
     return 0;
 }
 ```
 
-它在运行时打印输出。我的名字是：亚历克斯。
+它在运行时打印输出。"My name is: Fly"。
 
-具有替换文本的类对象宏（在C中）用作将名称分配给文本的方法。这不再是必要的，因为C++中提供了更好的方法。具有替换文本的类对象宏现在通常只能在旧代码中看到。
+具有替换文本的类对象宏（在C中）用作将名称分配给文本。因为C++中提供了更好的方法，这不再是必要的。具有替换文本的类对象宏现在通常只能在旧代码中看到。
 
-我们建议完全避免这些类型的宏，因为有更好的方法来做这类事情。我们在第4.13课中对此进行了更多的讨论——常量变量和符号常量。
+我们建议完全避免这种类型的宏，因为有更好的方法来做这类事情。后续章节对此进行了更多的讨论——常量变量和符号常量。
 
 ***
 ## 无替换文本的类对象宏
@@ -138,7 +143,7 @@ int main()
 
 这种形式的宏的工作方式与您可能期望的一样：标识符的任何进一步出现都将被删除，并且不替换任何内容！
 
-这可能看起来非常无用，并且对于进行文本替换也是无用的。然而，这并不是这种形式的指令通常用于的目的。我们稍后将讨论此形式的用法。
+这可能看起来非常无用，并且对于进行文本替换也是无用的。然而，这并不是这种形式的指令通常用于的目的。
 
 与具有替换文本的类对象宏不同，这种形式的宏通常被认为可以使用。
 
@@ -159,18 +164,18 @@ int main()
 int main()
 {
 #ifdef PRINT_JOE
-    std::cout << "Joe\n"; // will be compiled since PRINT_JOE is defined
+    std::cout << "Joe\n"; // PRINT_JOE被定义，这一行会被编译
 #endif
 
 #ifdef PRINT_BOB
-    std::cout << "Bob\n"; // will be excluded since PRINT_BOB is not defined
+    std::cout << "Bob\n"; // PRINT_BOB未被定义，这一行不会被编译
 #endif
 
     return 0;
 }
 ```
 
-由于PRINT_JOE已定义#，因此将编译行std:：cout<<“JOE\n”。由于尚未#定义PRINT_BOB，因此将忽略行std:：cout<<“BOB\n”。
+由于PRINT_JOE已定义，因此将编译行std::cout<<“JOE\n”。由于尚未定义PRINT_BOB，因此将忽略行std::cout << “BOB\n”。
 
 #ifndef与ifdef相反，它允许您检查标识符是否尚未定义。
 
@@ -187,14 +192,14 @@ int main()
 }
 ```
 
-该程序打印“Bob”，因为PRINT_Bob从未#定义。
+该程序打印“Bob”，因为PRINT_BOB从未定义。
 
-代替#ifdef PRINT_BOB和#ifndef PRINT_TBOB，您还将看到#if defined（PRINT_BOB）和#if！定义（PRINT_BOB）。它们的作用是相同的，但使用了稍微更具C++风格的语法。
+代替#ifdef PRINT_BOB 和#ifndef PRINT_BOB，您还将看到#if defined(PRINT_BOB)和#if !defined(PRINT_BOB)。它们的作用是相同的，但使用了稍微更具C++风格的语法。
 
 ***
-## #如果为0
+## #if 0
 
-条件编译的另一个常见用法是使用#if 0排除正在编译的代码块（就像它在注释块内一样）：
+条件编译的另一个常见用法是使用#if 0排除不需编译的代码块（就像使用注释块一样）：
 
 ```C++
 #include <iostream>
@@ -203,18 +208,18 @@ int main()
 {
     std::cout << "Joe\n";
 
-#if 0 // Don't compile anything starting here
+#if 0 // 从这里开始的不编译
     std::cout << "Bob\n";
     std::cout << "Steve\n";
-#endif // until this point
+#endif // 到这里结束
 
     return 0;
 }
 ```
 
-上面的代码只打印“Joe”，因为#if0预处理器指令将“Bob”和“Steve”排除在编译之外。
+上面的代码只打印“Joe”，因为#if 0预处理器指令将“Bob”和“Steve”排除在编译之外。
 
-这提供了一种方便的方法来“注释掉”包含多行注释的代码（由于多行注释不可嵌套，因此不能使用另一个多行注释注释掉）：
+这提供了一种方便的方法来“注释掉”包含多行注释的代码（由于多行注释不可嵌套，因此不能使用另一个多行注释来注释）：
 
 ```C++
 #include <iostream>
@@ -223,20 +228,20 @@ int main()
 {
     std::cout << "Joe\n";
 
-#if 0 // Don't compile anything starting here
+#if 0 // 从这里开始的不编译
     std::cout << "Bob\n";
-    /* Some
-     * multi-line
-     * comment here
+    /* 一些
+     * 多行
+     * 注释
      */
     std::cout << "Steve\n";
-#endif // until this point
+#endif // 到这里结束
 
     return 0;
 }
 ```
 
-要临时重新启用包装在#if 0中的代码，可以将#if 0:
+要临时重新启用包装在#if 0中的代码，可以将#if 0改成 #if 1。
 
 ```C++
 #include <iostream>
@@ -245,11 +250,11 @@ int main()
 {
     std::cout << "Joe\n";
 
-#if 1 // always true, so the following code will be compiled
+#if 1 // 永远为true, 所以下面的代码会被编译
     std::cout << "Bob\n";
-    /* Some
-     * multi-line
-     * comment here
+    /* 一些
+     * 多行
+     * 注释
      */
     std::cout << "Steve\n";
 #endif
@@ -277,19 +282,19 @@ int main()
 例如：
 
 ```C++
-#define FOO 9 // Here's a macro substitution
+#define FOO 9 // 宏定义
 
-#ifdef FOO // This FOO does not get replaced because it’s part of another preprocessor directive
-    std::cout << FOO << '\n'; // This FOO gets replaced with 9 because it's part of the normal code
+#ifdef FOO // 这里的预处理指令不会受影响
+    std::cout << FOO << '\n'; // FOO 被替换为 9，因为这里是普通代码 
 #endif
 ```
 
-然而，预处理器的最终输出根本不包含指令——它们都是在编译之前解析/剥离的，因为编译器不知道如何处理它们。
+预处理器的最终输出根本不包含预处理指令——它们都是在编译之前解析的，因为编译器不知道如何处理它们。
 
 ***
-## #的范围定义了
+## #define的作用范围
 
-指令在编译之前解析，以逐个文件为基础，从上到下。
+#define 在编译之前解析，从文件中，从上到下，逐个文件进行处理。
 
 考虑以下程序：
 
@@ -298,7 +303,7 @@ int main()
 
 void foo()
 {
-#define MY_NAME "Alex"
+#define MY_NAME "Fly"
 }
 
 int main()
@@ -309,13 +314,13 @@ int main()
 }
 ```
 
-尽管#define MY_NAME“Alex”似乎是在函数foo中定义的，但预处理器不会注意到，因为它不理解C++概念（如函数）。因此，该程序的行为与#define MY_NAME“Alex”在函数foo之前或之后定义的程序相同。为了可读性，通常需要在函数外部#define标识符。
+尽管#define MY_NAME "Fly" 似乎是在函数foo中定义的，但预处理器不理解C++概念（如函数）。因此，该程序的行为与#define MY_NAME "Fly" 在函数foo之前或之后定义的程序相同。为了可读性，通常需要在函数外部设置 #define。
 
-一旦预处理器完成，该文件中定义的所有标识符都将被丢弃。这意味着指令仅从定义点到定义它们的文件末尾有效。在一个代码文件中定义的指令不会影响同一项目中的其他代码文件。
+一旦预处理器处理完成，该文件中定义的所有#define定义的标识符都将被丢弃。这意味着指令仅从定义点到定义它们的文件末尾有效。在一个代码文件中定义的指令不会影响同一项目中的其他代码文件。
 
 考虑以下示例：
 
-功能.cpp：
+function.cpp：
 
 ```C++
 #include <iostream>
@@ -331,10 +336,10 @@ void doSomething()
 }
 ```
 
-主.cpp：
+main.cpp：
 
 ```C++
-void doSomething(); // forward declaration for function doSomething()
+void doSomething(); // 前向声明 doSomething()
 
 #define PRINT
 
@@ -348,7 +353,11 @@ int main()
 
 上述程序将打印：
 
-尽管PRINT是在main.cpp中定义的，但这对function.cpp的任何代码都没有任何影响（PRINT只是从定义点到main.cpp末尾定义的#）。这在我们在以后的课程中讨论页眉保护时将是非常重要的。
+```C++
+Not printing!
+```
+
+PRINT是在main.cpp中定义的，这对function.cpp的任何代码都没有任何影响（PRINT只是从定义点到main.cpp末尾定义有效）。
 
 ***
 
