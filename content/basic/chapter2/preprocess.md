@@ -350,3 +350,10 @@ int main()
 
 尽管PRINT是在main.cpp中定义的，但这对function.cpp的任何代码都没有任何影响（PRINT只是从定义点到main.cpp末尾定义的#）。这在我们在以后的课程中讨论页眉保护时将是非常重要的。
 
+***
+
+{{< prevnext prev="/basic/chapter2/namespace/" next="/" >}}
+2.8 命名冲突和名称空间简介
+<--->
+主页
+{{< /prevnext >}}

@@ -181,8 +181,8 @@ C++的设计使每个源文件都可以独立编译，而不需要知道其他�
 
 ***
 
-{{< prevnext prev="/basic/chapter2/forward-declare/" next="/" >}}
+{{< prevnext prev="/basic/chapter2/forward-declare/" next="/basic/chapter2/namespace/" >}}
 2.6 前向声明
 <--->
-主页
+2.8 命名冲突和名称空间简介
 {{< /prevnext >}}

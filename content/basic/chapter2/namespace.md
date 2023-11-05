@@ -119,42 +119,40 @@ std::cout实际上只是cout，而std是标识符cout所属的命名空间的名
 ***
 ## 显式命名空间限定符std::
 
-告诉编译器我们想从std命名空间中使用cout的最直接的方法是显式使用std:：前缀。例如：
+告诉编译器我们想从std命名空间中使用cout的最直接的方法是显式使用std::前缀。例如：
 
 ```C++
 #include <iostream>
 
 int main()
 {
-    std::cout << "Hello world!"; // when we say cout, we mean the cout defined in the std namespace
+    std::cout << "Hello world!"; // 使用cout, 标明是在 std 命名空间中
     return 0;
 }
 ```
 
-：：符号是一个称为范围解析运算符的运算符。：：符号左侧的标识符标识：：符号右侧的名称所包含的命名空间。如果：：符号左侧没有提供标识符，则假定为全局命名空间。
+「::」 符号是一个称为范围解析运算符的操作符。:: 符号左侧表示命名空间, :: 符号右侧则是在命名空间中的符号。如果 :: 符号左侧没有提供标识符，则假定为全局命名空间。
 
-因此，当我们说std:：cout时，我们是在说“存在于命名空间std中的cout”。
+因此，使用std::cout时，是在说“存在于命名空间std中的cout”。
 
-这是使用cout的最安全的方法，因为对于我们引用的cout（std名称空间中的那个）没有歧义。
-
-当标识符包含名称空间前缀时，该标识符称为限定名。
+这是使用cout的最安全的方法，因为引用的cout（std名称空间中的那个）没有歧义。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 使用显式命名空间前缀来访问命名空间中定义的标识符。
 
 {{< /alert >}}
 
 ***
-## 使用命名空间标准（以及为什么避免它）
+## using namespace（以及为什么避免使用它）
 
 访问命名空间内标识符的另一种方法是使用using指令语句。下面是我们最初的“Hello world”程序，带有using指令：
 
 ```C++
 #include <iostream>
 
-using namespace std; // this is a using directive that allows us to access names in the std namespace with no namespace prefix
+using namespace std; // 这条语句允许之后的代码，直接访问std命名空间中的符号，而不用加限定符
 
 int main()
 {
@@ -163,45 +161,45 @@ int main()
 }
 ```
 
-using指令允许我们在不使用命名空间前缀的情况下访问命名空间中的名称。因此，在上面的示例中，当编译器确定标识符cout是什么时，它将与std:：cout匹配，因为using指令，它可以作为cout访问。
+using指令允许我们在不使用命名空间前缀的情况下访问命名空间中的名称。因此，在上面的示例中，当编译器要确定标识符cout是什么时，因为using指令，它将与std::cout匹配。
 
-许多文本、教程甚至一些IDE建议或使用程序顶部的using指令。然而，以这种方式使用，这是一种不好的做法，非常气馁。
+许多教程甚至一些IDE建议在程序顶部使用using指令。然而，以这种方式使用，这是一种不好的做法。
 
 考虑以下程序：
 
 ```C++
-#include <iostream> // imports the declaration of std::cout
+#include <iostream> // 导入std::cout的定义
 
-using namespace std; // makes std::cout accessible as "cout"
+using namespace std; // 让我们可以用 cout 访问 std::cout
  
-int cout() // defines our own "cout" function in the global namespace
+int cout() // 在全局命名空间中定义cout
 {
     return 5;
 }
  
 int main()
 {
-    cout << "Hello, world!"; // Compile error!  Which cout do we want here?  The one in the std namespace or the one we defined above?
+    cout << "Hello, world!"; // 编译失败!  因为有两个cout
  
     return 0;
 }
 ```
 
-上面的程序不能编译，因为编译器现在不能告诉我们是需要我们定义的cout函数，还是需要在std命名空间中定义的coot。
+上面的程序不能编译，因为编译器现在不能确定使用我们定义的cout函数，还是使用在std命名空间中定义的cout。
 
-以这种方式使用using指令时，我们定义的任何标识符都可能与std命名空间中的任何同名标识符冲突。更糟糕的是，虽然标识符名称今天可能不会冲突，但它可能会与在未来的语言修订中添加到std命名空间的新标识符冲突。这就是首先将标准库中的所有标识符移动到std命名空间的全部要点！
+以这种方式使用using指令时，我们定义的任何标识符都可能与std命名空间中的同名标识符冲突。更糟糕的是，虽然标识符名称现在不会冲突，但它可能会与在未来的语言修订中添加到std命名空间的新标识符冲突。这就是将标准库中的所有标识符移动到std命名空间的好处！
 
 {{< alert success >}}
 **警告**
 
-避免在程序顶部或头文件中使用指令（例如使用命名空间std；）。它们违反了最初添加名称空间的原因。
+避免在程序顶部或头文件中使用using指令（例如使用命名空间std）。它们违反了最初添加名称空间的目的。
 
 {{< /alert >}}
 
-{{< alert success >}}
-**相关内容**
+***
 
-在第7.12课——使用声明和使用指令——中，我们详细讨论了使用声明和指令（以及如何负责任地使用它们）。
-
-{{< /alert >}}
-
+{{< prevnext prev="/basic/chapter2/multi-file/" next="/basic/chapter2/preprocess/" >}}
+2.7 具有多个代码文件的程序
+<--->
+2.9 预处理器简介
+{{< /prevnext >}}

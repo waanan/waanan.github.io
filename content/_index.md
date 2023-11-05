@@ -87,4 +87,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter2/forward-declare/<-> 2.6 前向声明
 <-->
 <->/basic/chapter2/multi-file/<-> 2.7 具有多个代码文件的程序
+<-->
+<->/basic/chapter2/namespace/<-> 2.8 命名冲突和名称空间简介
+<-->
+<->/basic/chapter2/preprocess/<-> 2.9 预处理器简介
 {{< /chapterlist >}}
