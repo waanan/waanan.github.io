@@ -4,16 +4,16 @@ date: 2023-10-09T20:06:10+08:00
 ---
 
 ***
-## 标题及其用途
+## 头文件及其用途
 
-随着程序变得越来越大（并使用更多的文件），必须向前声明在不同文件中定义的每个要使用的函数变得越来越乏味。如果您可以将所有的前向声明放在一个位置，然后在需要时导入它们，这不是很好吗？
+随着程序变得越来越大（并使用更多的文件），在不同cpp文件中需要使用大量重复的向前声明。如果可以将所有的前向声明放在一个地方，然后在需要时导入它们，这样就会很方便。
 
-C++代码文件（扩展名为.cpp）并不是C++程序中常见的唯一文件。另一种类型的文件称为头文件。头文件通常具有.h扩展名，但您偶尔会看到它们具有.hpp扩展名或根本没有扩展名。头文件的主要目的是将声明传播到代码（.cpp）文件。
+C++代码文件（扩展名为.cpp）并不是C++程序中常见的唯一文件类型。另一种类型的文件称为头文件。头文件通常具有.h扩展名，但您偶尔会看到它们具有.hpp扩展名或根本没有扩展名。头文件的主要目的是将声明传播到代码（.cpp）文件。
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
-头文件允许我们将声明放在一个位置，然后在需要的地方导入它们。这可以节省多文件程序中的大量输入。
+头文件允许我们将声明放在一个位置，然后在需要的地方导入它们。这可以节省多文件程序中的大量冗余单调的工作。
 
 {{< /alert >}}
 
@@ -32,27 +32,27 @@ int main()
 }
 ```
 
-该程序使用std:：cout将“Hello，world！”打印到控制台。然而，该程序从未提供std:：cout的定义或声明，那么编译器如何知道什么是std:∶cout？
+该程序使用std::cout将“Hello，world！”打印到控制台。然而，该程序从未提供std::cout的定义或声明，那么编译器如何知道什么是std::cout？
 
-答案是std:：cout已在“iostream”头文件中向前声明。当我们#include<iostream>时，我们请求预处理器将所有内容（包括std:：cout的前向声明）从名为“iostream”的文件复制到执行#incluse的文件中。
+答案是std::cout已在“iostream”头文件中向前声明。当我们#include<iostream>时，预处理器将所有内容（包括std::cout的前向声明）从名为“iostream”的文件复制到#include<iostream> 的位置。
 
-考虑如果iostream标头不存在会发生什么。无论在哪里使用std:：cout，都必须手动将与std:∶cout相关的所有声明键入或复制到使用std::cout！这将需要大量关于如何声明std:：cout的知识，并且将是一项繁重的工作。更糟糕的是，如果添加或更改了函数原型，我们就必须手动更新所有的前向声明。
+考虑如果iostream头文件不存在会发生什么？无论在哪里使用std::cout，都必须手动将与std::cout相关的所有声明复制到使用std::cout的地方。这将需要大量关于std::cout的知识，并且将是一项繁重的工作。更糟糕的是，如果添加或更改了对应的函数或变量原型，我们就必须手动更新所有的前向声明。
 
-只#include<iostream>要容易得多！
+只使用#include<iostream>要容易得多！
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
-当您#包含文件时，所包含文件的内容将插入到包含点。这提供了一种从另一个文件中拉入声明的有用方法。
+当您#include引用文件时，所引用的文件的内容将插入到包含点。这提供了一种从另一个文件中拉入声明的有用方法。
 
 {{< /alert >}}
 
 ***
 ## 使用头文件传播前向声明
 
-现在，让我们回到上一课中讨论的示例。当我们停止时，有两个文件，add.cpp和main.cpp，如下所示：
+现在，让我们回到上一课中讨论的示例。有两个文件，add.cpp和main.cpp，如下所示：
 
-添加.cpp：
+add.cpp：
 
 ```C++
 int add(int x, int y)
@@ -61,12 +61,12 @@ int add(int x, int y)
 }
 ```
 
-主.cpp：
+main.cpp：
 
 ```C++
 #include <iostream>
 
-int add(int x, int y); // forward declaration using function prototype
+int add(int x, int y); // 前向声明函数原型
 
 int main()
 {
@@ -75,37 +75,40 @@ int main()
 }
 ```
 
-（如果从头开始重新创建此示例，请不要忘记将add.cpp添加到项目中，以便在中进行编译）。
+（如果从头开始重新创建此示例，请不要忘记将add.cpp添加到项目中，以便进行编译）。
 
-在本例中，我们使用了前向声明，以便编译器在编译main.cpp时知道添加的标识符是什么。如前所述，为您想要使用的位于另一个文件中的每个函数手动添加前向声明可能会很快变得乏味。
+在本例中，我们使用了前向声明，以便编译器在编译main.cpp时知道添加的标识符是什么。如前所述，为想要使用的位于另一个文件中的每个函数手动添加前向声明可能会很快变得乏味。
 
 让我们编写一个头文件来减轻我们的负担。编写头文件非常容易，因为头文件仅由两部分组成：
 
-将头文件添加到项目中的工作方式类似于添加源文件（在第2.8课-具有多个代码文件的程序中介绍）。
+1. 头文件保护，下一节中讨论。
+2. 头文件的实际内容。包含其它文件想要使用的所有前向声明。
 
-如果使用IDE，请执行相同的步骤，并在询问时选择“标题”而不是“源”。头文件应作为项目的一部分出现。
+将头文件添加到项目中的工作方式类似于添加源文件。
+
+如果使用IDE，请执行相同的步骤，并选择“头文件”而不是“源文件”。头文件应作为项目的一部分出现。
 
 如果使用命令行，只需在您喜爱的编辑器中创建一个新文件，该文件与源（.cpp）文件位于同一目录中。与源文件不同，头文件不应添加到编译命令中（它们被#include语句隐式包含并编译为源文件的一部分）。
 
-头文件通常与代码文件配对，头文件为相应的代码文件提供前向声明。由于头文件将包含add.cpp中定义的函数的前向声明，因此我们将调用新的头文件add.h。
+头文件通常与代码文件配对，头文件为相应的代码文件提供前向声明。由于头文件将包含add.cpp中定义的函数的前向声明，因此我们将新建头文件add.h。
 
-这是我们完成的头文件：
+这是对应的头文件：
 
-添加.h：
+add.h：
 
 ```C++
-// 1) We really should have a header guard here, but will omit it for simplicity (we'll cover header guards in the next lesson)
+// 1) 这里需要一个头文件保护，但暂时不影响程序编译，下一节讨论对应细节。
 
-// 2) This is the content of the .h file, which is where the declarations go
-int add(int x, int y); // function prototype for add.h -- don't forget the semicolon!
+// 2) 这里是 .h 文件内容
+int add(int x, int y); // add的函数声明，这里不要忘记分号
 ```
 
-为了在main.cpp中使用此头文件，我们必须#包含它（使用引号，而不是尖括号）。
+为了在main.cpp中使用此头文件，我们必须#include引用它（使用引号，而不是尖括号）。
 
-主.cpp：
+main.cpp：
 
 ```C++
-#include "add.h" // Insert contents of add.h at this point.  Note use of double quotes here.
+#include "add.h" // add.h 的内容会被插入这里。需要使用双引号
 #include <iostream>
 
 int main()
@@ -115,10 +118,10 @@ int main()
 }
 ```
 
-添加.cpp：
+add.cpp：
 
 ```C++
-#include "add.h" // Insert contents of add.h at this point.  Note use of double quotes here.
+#include "add.h" // add.h 的内容会被插入这里。需要使用双引号
 
 int add(int x, int y)
 {
@@ -126,16 +129,14 @@ int add(int x, int y)
 }
 ```
 
-当预处理器处理#include“add.h”行时，它会在该点将add.h的内容复制到当前文件中。因为我们的add.h包含函数add（）的前向声明，所以该前向声明将被复制到main.cpp.最终结果是一个程序，其功能与我们在main.cpp顶部手动添加前向声明的程序相同。
+当预处理器处理#include "add.h" 时，它会在该点将add.h的内容复制到当前文件中。因为我们的add.h包含函数add() 的前向声明，所以该前向声明将被复制到main.cpp。最终结果是一个程序，其功能与我们在main.cpp顶部手动添加前向声明的程序相同。
 
 因此，我们的程序将正确编译和链接。
 
-
-
-注意：在上图中，“标准运行库”应标记为“C++标准库”。
+{{< img src="./IncludeHeader.webp" title="引用关系示意图">}}
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 命名头文件时首选.h后缀（除非您的项目已经遵循其他约定）。
 
@@ -144,35 +145,35 @@ int add(int x, int y)
 {{< /alert >}}
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
-如果头文件与代码文件成对出现（例如，add.h与add.cpp），则它们都应该具有相同的基名称（add）。
+如果头文件与代码文件成对出现（例如，add.h与add.cpp），则它们都应该具有相同的基本名称（add）。
 
 {{< /alert >}}
 
 ***
-## 在头文件中包含定义如何导致违反一个定义规则
+## 在头文件中包含定义如何导致违反单定义规则
 
-现在，应该避免将函数或变量定义放在头文件中。在头文件包含在多个源文件中的情况下，这样做通常会导致违反一个定义规则（ODR）。
+应该避免将函数或变量定义放在头文件中。在头文件被多个源文件使用的情况下，这样做通常会导致违反单定义规则（ODR）。
 
 让我们来说明这是如何发生的：
 
-添加.h：
+add.h：
 
 ```C++
-// We really should have a header guard here, but will omit it for simplicity (we'll cover header guards in the next lesson)
+// 这里需要一个头文件保护，下一节讨论对应细节。
 
-// definition for add() in header file -- don't do this!
+// add() 函数定义 -- 不要这样做!
 int add(int x, int y)
 {
     return x + y;
 }
 ```
 
-主.cpp：
+main.cpp：
 
 ```C++
-#include "add.h" // Contents of add.h copied here
+#include "add.h" // add.h 的内容会被插入这里
 #include <iostream>
 
 int main()
@@ -183,13 +184,13 @@ int main()
 }
 ```
 
-添加.cpp：
+add.cpp：
 
 ```C++
-#include "add.h" // Contents of add.h copied here
+#include "add.h" // add.h 的内容会被插入这里
 ```
 
-编译main.cpp时，#include“add.h”将替换为add.h的内容，然后进行编译。因此，编译器将编译如下所示的内容：
+编译main.cpp时，#include "add.h" 将替换为add.h的内容，然后进行编译。因此，编译器将编译如下所示的内容：
 
 main.cpp（预处理后）：
 
@@ -208,9 +209,9 @@ int main()
 }
 ```
 
-这将编译得很好。
+这可以编译通过。
 
-编译器编译add.cpp时，#include“add.h”将替换为add.h的内容，然后进行编译。因此，编译器将编译如下：
+编译器编译add.cpp时，#include "add.h" 将替换为add.h的内容，然后进行编译。因此，编译器将编译如下：
 
 add.cpp（预处理后）：
 
@@ -223,33 +224,26 @@ int add(int x, int y)
 
 这也可以很好地编译。
 
-最后，链接器将运行。链接器将看到函数add（）现在有两个定义：一个在main.cpp中，另一个在add.cpp.这违反了ODR第2部分的规定，该部分指出，“在给定的程序中，变量或普通函数只能有一个定义。”
+最后，链接器将运行。链接器将看到函数add() 现在有两个定义：一个在main.cpp中，另一个在add.cpp。这违反了ODR第2部分的规定，该部分指出，“在给定的程序中，变量或普通函数只能有一个定义。”
 
 {{< alert success >}}
-**相关内容**
+**最佳实践**
 
-我们在第2.7课中讨论了单定义规则（ODR）——转发声明和定义。
+不要将函数和变量定义放在头文件中。
+
+如果随后将头文件包含在多个源（.cpp）文件中，则在头文件中定义其中之一可能会导致违反单定义规则（ODR）。
 
 {{< /alert >}}
 
 {{< alert success >}}
-**最佳做法**
-
-不要将函数和变量定义放在头文件中（目前）。
-
-如果随后将头#包含在多个源（.cpp）文件中，则在头文件中定义其中之一可能会导致违反一个定义规则（ODR）。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**作者注释**
+**注**
 
 在以后的课程中，我们将遇到可以在头文件中安全定义的其他类型的定义（因为它们不受ODR的限制）。这包括内联函数、内联变量、类型和模板的定义。我们将在介绍其中的每一个时进一步讨论这一点。
 
 {{< /alert >}}
 
 ***
-## 源文件应包括它们的成对标头
+## 代码中.h与.cpp应该成对
 
 在C++中，代码文件的最佳实践是#包含其成对的头文件（如果存在）。在上面的示例中，add.cpp包括add.h。
 
@@ -462,4 +456,4 @@ void something(int) // error: wrong return type
 8. 不要#include.cpp文件。
 9. 更喜欢在页眉中放置关于某事的作用或如何使用它的文档。它更可能在那里被看到。描述某些内容如何工作的文档应保留在源文件中。
 
-
+***
