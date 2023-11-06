@@ -361,8 +361,8 @@ PRINT是在main.cpp中定义的，这对function.cpp的任何代码都没有任�
 
 ***
 
-{{< prevnext prev="/basic/chapter2/namespace/" next="/" >}}
+{{< prevnext prev="/basic/chapter2/namespace/" next="/basic/chapter2/header-file/" >}}
 2.8 命名冲突和名称空间简介
 <--->
-主页
+2.10 头文件
 {{< /prevnext >}}
