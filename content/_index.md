@@ -95,4 +95,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter2/header-file/<-> 2.10 头文件
 <-->
 <->/basic/chapter2/header-guard/<-> 2.11 头文件保护
+<-->
+<->/basic/chapter2/design-first-program/<-> 2.12 头文件
+<-->
+<->/basic/chapter2/summary/<-> 2.13 头文件保护
 {{< /chapterlist >}}
