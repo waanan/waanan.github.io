@@ -100,3 +100,10 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter2/summary/<-> 2.13 第2章总结
 {{< /chapterlist >}}
+
+
+{{< chapterlist>}}
+第三章 程序调试
+<--->
+<->/basic/chapter3/syntax-semantic-errors/<-> 3.0 函数简介
+{{< /chapterlist >}}
