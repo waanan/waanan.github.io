@@ -386,8 +386,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter2/header-file/" next="/" >}}
+{{< prevnext prev="/basic/chapter2/header-file/" next="/basic/chapter2/design-first-program/" >}}
 2.10 头文件
 <--->
-主页
+2.12 设计第一个程序
 {{< /prevnext >}}
