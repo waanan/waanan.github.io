@@ -94,3 +94,9 @@ int main()
 在上面的例子中，错误相当容易发现。但在大多数有用的的程序中，语义错误不容易通过目测代码来发现。这就是调试技术可以派上用场的地方。
 
 ***
+
+{{< prevnext prev="/basic/chapter2/summary/" next="/basic/chapter3/debug-process/" >}}
+2.13 第2章总结
+<--->
+3.1 程序调试过程
+{{< /prevnext >}}

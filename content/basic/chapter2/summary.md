@@ -42,8 +42,8 @@ date: 2023-10-09T20:06:10+08:00
 
 ***
 
-{{< prevnext prev="/basic/chapter2/design-first-program/" next="/" >}}
+{{< prevnext prev="/basic/chapter2/design-first-program/" next="/basic/chapter3/syntax-semantic-errors/" >}}
 2.12 设计第一个程序
 <--->
-主页
+3.0 语法和语义错误
 {{< /prevnext >}}
