@@ -110,4 +110,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter3/debug-process/<-> 3.1 程序调试过程
 <-->
 <->/basic/chapter3/debug-strategy/<-> 3.2 调试策略
+<-->
+<->/basic/chapter3/debug-tatics/<-> 3.3 调试策略
 {{< /chapterlist >}}
