@@ -52,8 +52,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter3/syntax-semantic-errors/" next="/" >}}
+{{< prevnext prev="/basic/chapter3/syntax-semantic-errors/" next="/basic/chapter3/debug-strategy/" >}}
 3.0 语法和语义错误
 <--->
-主页
+3.2 调试策略
 {{< /prevnext >}}

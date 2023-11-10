@@ -106,6 +106,8 @@ date: 2022-12-28T16:40:41+08:00
 第三章 程序调试
 <--->
 <->/basic/chapter3/syntax-semantic-errors/<-> 3.0 语法和语义错误
-<--->
+<-->
 <->/basic/chapter3/debug-process/<-> 3.1 程序调试过程
+<-->
+<->/basic/chapter3/debug-strategy/<-> 3.2 调试策略
 {{< /chapterlist >}}
