@@ -112,4 +112,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter3/debug-strategy/<-> 3.2 调试策略
 <-->
 <->/basic/chapter3/debug-tatics/<-> 3.3 调试策略
+<-->
+<->/basic/chapter3/more-tatics/<-> 3.4 调试策略
+<-->
+<->/basic/chapter3/step/<-> 3.5 调试策略
 {{< /chapterlist >}}
