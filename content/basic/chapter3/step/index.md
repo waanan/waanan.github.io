@@ -76,6 +76,13 @@ int main()
 
 首先，执行一次step into调试命令。
 
+{{< alert success >}}
+**对于Visual Studio用户**
+
+在Visual Studio中，可以通过“调试”菜单>“step into”或按F11快捷键来执行step into命令。
+
+{{< /alert >}}
+
 当程序未开始运行并且执行第一个调试命令时，您可能会看到许多事情发生：
 
 1. 如果需要，程序将重新编译。
@@ -85,38 +92,25 @@ int main()
 
 因为我们已经执行了step into，所以您现在应该看到函数main的左大括号（第9行）的左侧出现了某种标记。在Visual Studio中，此标记是一个黄色箭头。如果您使用的是不同的IDE，则应该看到具有相同用途的东西。
 
+{{< img src="./StepInto-Line9-min.webp" title="代码执行行指示">}}
+
 该箭头标记指示所指向的行将随后执行。在这种情况下，调试器告诉我们，要执行的下一行是函数main的左大括号（第9行）。
 
 选择step-into（使用上面列出的IDE的适当命令）来执行左大括号，箭头将移动到下一条语句（第10行）。
 
+{{< img src="./StepInto-Line10-min.webp" title="执行下一条语句">}}
+
 这意味着将要执行的下一行是对函数printValue的调用。
 
-再次选择步骤到。由于该语句包含对printValue的函数调用，因此我们单步执行该函数，箭头将移动到printValue.正文的顶部（第4行）。
+再次选择step-into。由于该语句包含对printValue的函数调用，因此我们单步执行该函数，箭头将移动到printValue的顶部（第4行）。
+
+{{< img src="./StepInto-Line4-min.webp" title="执行函数调用">}}
 
 再次选择step-into以执行函数printValue的左大括号，这将把箭头推进到第5行。
 
-再次选择step-into，它将执行语句std:：cout<<value<<'\n'，并将箭头移动到第6行。
+{{< img src="./StepInto-Line5-min.webp" title="执行函数中第一行">}}
 
-现在，由于执行了std:：cout<<value<<'\n'，我们应该会看到值5出现在控制台窗口中。
-
-再次选择step-into以执行函数printValue的右大括号。此时，printValue已完成执行，控制权返回给main。
-
-您将注意到箭头再次指向printValue！
-
-虽然您可能认为调试器打算再次调用printValue，但实际上调试器只是让您知道它正在从函数调用返回。
-
-再选择三次步进。此时，我们已经执行了程序中的所有行，因此我们完成了。一些调试器将在此时自动终止调试会话，其他调试器可能不会。如果调试器没有，则可能需要在菜单中找到“停止调试”命令（在Visual Studio中，这位于调试>停止调试下）。
-
-请注意，可以在调试过程中的任何时候使用“停止调试”来结束调试会话。
-
-祝贺您，您现在已经逐步完成了一个程序，并观看了每一行的执行！
-
-{{< alert success >}}
-**对于Visual Studio用户**
-
-在Visual Studio中，可以通过“调试”菜单>“单步执行”或按F11快捷键来访问单步执行命令。
-
-{{< /alert >}}
+再次选择step-into，它将执行语句 std::cout << value << '\n'; ，并将箭头移动到第6行。
 
 {{< alert success >}}
 **警告**
@@ -127,22 +121,24 @@ int main()
 
 {{< /alert >}}
 
+现在，由于执行了 std::cout << value << '\n'; ，我们应该会看到值5出现在控制台窗口中。
+
 {{< alert success >}}
 **提示**
 
-在上一课中，我们提到std:：cout是缓冲的，这意味着在要求std:∶cout打印值和它实际打印值之间可能存在延迟。因此，此时可能看不到值5。为了确保立即输出std:：cout的所有输出，可以将以下语句临时添加到main（）函数的顶部：
+在之前的学习中，我们提到std::cout是带缓冲的，这意味着在要求std::cout打印值和它实际打印值之间可能存在延迟。因此，此时可能看不到值5。为了确保立即输出std::cout的所有输出，可以将以下语句临时添加到main（）函数的顶部：
 
 ```C++
-std::cout << std::unitbuf; // enable automatic flushing for std::cout (for debugging)
+std::cout << std::unitbuf; // 打开 std::cout 的自动清空缓冲功能
 ```
 
 出于性能原因，应该在调试后删除或注释掉该语句。
 
-如果不想连续添加/删除/注释/取消注释上面的内容，可以将语句包装在条件编译预处理器指令中（在第2.10课--预处理器简介中介绍）：
+如果不想连续添加/删除/注释/取消注释上面的内容，可以将语句包装在条件编译预处理器指令中：
 
 ```C++
 #ifdef DEBUG
-std::cout << std::unitbuf; // enable automatic flushing for std::cout (for debugging)
+std::cout << std::unitbuf; // 打开 std::cout 的自动清空缓冲功能
 #endif
 ```
 
@@ -150,10 +146,25 @@ std::cout << std::unitbuf; // enable automatic flushing for std::cout (for debug
 
 {{< /alert >}}
 
-***
-## 跨过（Step over）
+再次选择step-into以执行函数printValue的右大括号。此时，printValue已完成执行，控制权返回给main。
 
-与单步执行到类似，step-over命令在程序的正常执行路径中执行下一条语句。然而，尽管step-into将输入函数调用并逐行执行它们，但step-over将在不停止的情况下执行整个函数，并在函数执行后将控制权返回给您。
+您将注意到箭头再次指向printValue！
+
+{{< img src="./StepInto-Line10-min.webp" title="函数执行结束">}}
+
+虽然您可能认为调试器打算再次调用printValue，但实际上调试器只是让您知道它刚从函数调用返回。
+
+再选择三次step-into。此时，我们已经执行了程序中的所有行，因此程序执行完成。一些调试器将在此时自动终止调试会话，其他调试器可能不会。如果调试器没有，则可能需要在菜单中找到“停止调试”命令（在Visual Studio中，这位于调试>停止调试下）。
+
+请注意，可以在调试过程中的任何时候使用“停止调试”来结束调试会话。
+
+祝贺您，您现在已经逐行执行完了一个程序，并观看了每一行的执行！
+
+
+***
+## Step over
+
+与step-into类似，step-over命令在程序的正常执行路径中执行下一条语句。然而，step-into将进入函数调用并逐行执行它们，但step-over将在不停止的情况下执行完整个函数，并在函数执行后将控制权返回给您。
 
 让我们来看一个示例，其中我们单步执行对printValue的函数调用：
 
@@ -173,35 +184,23 @@ int main()
 }
 ```
 
-首先，在程序上使用步骤到，直到执行标记位于第10行：
+首先，使用step into，直到执行标记位于第10行：
+
+{{< img src="./StepInto-Line10-min.webp" title="执行到调用函数前">}}
 
 现在，选择step over。调试器将执行该函数（它在控制台输出窗口中打印值5），然后在下一条语句（第12行）上将控制权返回给您。
 
-当您确定函数已经工作或对立即调试它们不感兴趣时，step-over命令提供了一种方便的方法来跳过这些函数。
+当您确定函数已经正常工作或对立即调试它们不感兴趣时，step-over命令提供了一种方便的方法来跳过这些函数。
 
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，可以通过“调试”菜单>“单步执行”或按F10快捷键来访问单步执行命令。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**对于代码：：阻止用户**
-
-在代码：：块中，切换命令称为下一行，可以通过调试菜单>下一行或按F7快捷键访问。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**对于VS代码用户**
-
-在VS代码中，可以通过运行>单步执行或按F10快捷键来访问单步执行命令。
+在Visual Studio中，可以通过“调试”菜单>“step-over”或按F10快捷键来执行step-over命令。
 
 {{< /alert >}}
 
 ***
-## 退出（Step out）
+## Step out
 
 与其他两个单步执行命令不同，Step-out不只是执行下一行代码。相反，它执行当前正在执行的函数中的所有剩余代码，然后在函数返回时将控制权返回给您。
 
@@ -223,35 +222,25 @@ int main()
 }
 ```
 
-单步进入程序，直到进入函数printValue，执行标记在第4行。
+首先，使用step into执行程序，直到进入函数printValue，执行标记在第4行。
+
+{{< img src="./StepInto-Line4-min.webp" title="进入函数调用">}}
 
 然后选择step out。您将注意到值5出现在输出窗口中，并且调试器在函数终止后将控制返回给您（在第10行）。
+
+{{< img src="./StepInto-Line10-min.webp" title="执行完调用函数">}}
 
 当您意外地进入了不想调试的函数时，该命令最有用。
 
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，可以通过“调试”菜单>“退出”或按Shift-F11快捷组合键来访问“退出”命令。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**对于代码：：阻止用户**
-
-在代码：：块中，可以通过“调试”菜单>“退出”或按ctrl-F7快捷组合键来访问退出命令。
-
-{{< /alert >}}
-
-{{< alert success >}}
-**对于VS代码用户**
-
-在VS代码中，可以通过Run>step out或按shift+F11快捷组合键来访问step out命令。
+在Visual Studio中，可以通过“调试”菜单>“Step out”或按Shift-F11快捷组合键来访问“Step out”命令。
 
 {{< /alert >}}
 
 ***
-## 一步走得太远了
+## 执行太多代码
 
 单步执行程序时，通常只能向前迈进。很容易不小心跨过（超越）你想检查的地方。
 
@@ -260,7 +249,8 @@ int main()
 ***
 ## 后退一步
 
-一些调试器（如VisualStudioEnterpriseEdition和rr）引入了一种单步执行功能，通常称为后退或反向调试。后退的目标是倒退最后一步，以便您可以将程序返回到先前的状态。如果您超越了步骤，或者如果您想重新检查刚刚执行的语句，这可能很有用。
+一些调试器（如VisualStudio Enterprise Edition）引入了一种单步执行功能，通常称为后退或反向调试。后退的目标是倒退最后一步，以便您可以将程序返回到先前的状态。如果您执行了过多的步骤，或者如果您想重新检查刚刚执行的语句，这可能很有用。
 
-实现后退需要调试器方面的大量复杂性（因为它必须跟踪每个步骤的单独程序状态）。由于复杂性，此功能尚未标准化，并且因调试器而异。截至编写时（2019年1月），Visual Studio社区版和最新版本的Code:：Blocks都不支持此功能。希望在未来的某个时候，它将渗透到这些产品中，并可用于更广泛的用途。
+实现后退功能提高了调试器的复杂性（因为它必须跟踪每个步骤的单独程序状态）。由于复杂性，此功能尚未标准化，并且因调试器而异。希望在未来的某个时候，它可用于更广泛的用途。
 
+***
