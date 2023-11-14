@@ -116,4 +116,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter3/more-tatics/<-> 3.4 调试策略
 <-->
 <->/basic/chapter3/step/<-> 3.5 调试策略
+<-->
+<->/basic/chapter3/breakpoint/<-> 3.6 调试策略
+<-->
+<->/basic/chapter3/watch-var/<-> 3.7 调试策略
 {{< /chapterlist >}}
