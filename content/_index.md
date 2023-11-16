@@ -120,4 +120,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter3/breakpoint/<-> 3.6 调试策略
 <-->
 <->/basic/chapter3/watch-var/<-> 3.7 调试策略
+<-->
+<->/basic/chapter3/call-stack/<-> 3.8 调试策略
 {{< /chapterlist >}}
