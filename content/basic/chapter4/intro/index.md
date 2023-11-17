@@ -53,8 +53,8 @@ C++内置了对许多不同数据类型的支持。这些称为基本数据类�
 |  ----  | ----  | ----  | ----  |
 | float double long double | 浮点数 | 有分数部分的数字 | 3.1415926 |
 | bool | bool 整型 | true 或 false | true |
-| char    wchar_t    char8_t (C++20)     char16_t (C++11)     char32_t (C++11) | 字符 整型 | 一个单独的字符 | ‘c’ |
-| short int    int    long int    long long int (C++11) | 整数 整型 | 含0，正数或负数 | 42 |
+| char  /  wchar_t  /  char8_t (C++20)  /   char16_t (C++11)   /  char32_t (C++11) | 字符 整型 | 一个单独的字符 | ‘c’ |
+| short int /  int  /  long int  /  long long int (C++11) | 整数 整型 | 含0，正数或负数 | 42 |
 | std::nullptr_t (C++11) | Null Pointer | 空指针 | nullptr |
 | void | Void | 无类型 | n/a |
 
