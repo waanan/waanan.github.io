@@ -95,8 +95,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter3/debug-process/" next="/" >}}
+{{< prevnext prev="/basic/chapter3/debug-process/" next="/basic/chapter3/debug-tatics/" >}}
 3.1 程序调试过程
 <--->
-主页
+3.3 基本调试策略
 {{< /prevnext >}}

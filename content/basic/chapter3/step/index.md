@@ -254,3 +254,9 @@ int main()
 实现后退功能提高了调试器的复杂性（因为它必须跟踪每个步骤的单独程序状态）。由于复杂性，此功能尚未标准化，并且因调试器而异。希望在未来的某个时候，它可用于更广泛的用途。
 
 ***
+
+{{< prevnext prev="/basic/chapter3/more-tatics/" next="/basic/chapter3/breakpoint/" >}}
+3.4 更多调试策略
+<--->
+3.6 断点
+{{< /prevnext >}}

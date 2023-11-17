@@ -155,3 +155,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter3/debug-tatics/" next="/basic/chapter3/step/" >}}
+3.3 基本调试策略
+<--->
+3.5 使用集成调试器：单步执行
+{{< /prevnext >}}

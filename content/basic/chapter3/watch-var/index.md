@@ -147,3 +147,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter3/breakpoint/" next="/basic/chapter3/call-stack/" >}}
+3.6 断点
+<--->
+3.8 调用堆栈
+{{< /prevnext >}}

@@ -610,3 +610,9 @@ The answer is: 7
 我们可以做得更好。我们将在以后的课程中探索如何。
 
 ***
+
+{{< prevnext prev="/basic/chapter3/debug-strategy/" next="/basic/chapter3/more-tatics/" >}}
+3.2 调试策略
+<--->
+3.4 更多调试策略
+{{< /prevnext >}}

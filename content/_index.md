@@ -111,15 +111,15 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter3/debug-strategy/<-> 3.2 调试策略
 <-->
-<->/basic/chapter3/debug-tatics/<-> 3.3 调试策略
+<->/basic/chapter3/debug-tatics/<-> 3.3 基本调试策略
 <-->
-<->/basic/chapter3/more-tatics/<-> 3.4 调试策略
+<->/basic/chapter3/more-tatics/<-> 3.4 更多调试策略
 <-->
-<->/basic/chapter3/step/<-> 3.5 调试策略
+<->/basic/chapter3/step/<-> 3.5 使用集成调试器：单步执行
 <-->
-<->/basic/chapter3/breakpoint/<-> 3.6 调试策略
+<->/basic/chapter3/breakpoint/<-> 3.6 断点
 <-->
-<->/basic/chapter3/watch-var/<-> 3.7 调试策略
+<->/basic/chapter3/watch-var/<-> 3.7 监视变量
 <-->
-<->/basic/chapter3/call-stack/<-> 3.8 调试策略
+<->/basic/chapter3/call-stack/<-> 3.8 调用堆栈
 {{< /chapterlist >}}
