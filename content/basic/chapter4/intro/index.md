@@ -49,6 +49,15 @@ C++内置了对许多不同数据类型的支持。这些称为基本数据类�
 
 下面是基本数据类型的列表，其中一些您已经看到过：
 
+|  类型 |  类别  |  含义 |  样例 |
+|  ----  | ----  | ----  | ----  |
+| float double long double | 浮点数 | 有分数部分的数字 | 3.1415926 |
+| bool | bool 整型 | true 或 false | true |
+| char    wchar_t    char8_t (C++20)     char16_t (C++11)     char32_t (C++11) | 字符 整型 | 一个单独的字符 | ‘c’ |
+| short int    int    long int    long long int (C++11) | 整数 整型 | 含0，正数或负数 | 42 |
+| std::nullptr_t (C++11) | Null Pointer | 空指针 | nullptr |
+| void | Void | 无类型 | n/a |
+
 本章致力于详细研究这些基本数据类型（除了std:：nullptr_t，我们将在讨论指针时讨论它）。C++还支持许多其他更复杂的类型，称为复合类型。我们将在未来的一章中探索复合类型。
 
 

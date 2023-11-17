@@ -101,6 +101,7 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter2/summary/<-> 2.13 第2章总结
 {{< /chapterlist >}}
 
+***
 
 {{< chapterlist>}}
 第三章 程序调试
@@ -122,4 +123,12 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter3/watch-var/<-> 3.7 监视变量
 <-->
 <->/basic/chapter3/call-stack/<-> 3.8 调用堆栈
+{{< /chapterlist >}}
+
+***
+
+{{< chapterlist>}}
+第四章 基本数据类型
+<--->
+<->/basic/chapter4/intro/<-> 4.0 基本数据类型简介
 {{< /chapterlist >}}
