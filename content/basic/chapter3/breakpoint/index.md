@@ -41,7 +41,7 @@ int main()
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，通过右键单击代码中的语句并从菜单中选择run to cursor，或者按ctrl-F10键盘组合键，可以访问run to cursor命令。
+在Visual Studio中，通过右键单击代码中的语句并从菜单中选择 「运行到光标处」，或者按ctrl-F10键盘组合键，可以访问run to cursor命令。
 
 {{< /alert >}}
 
@@ -55,7 +55,7 @@ int main()
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，在已经调试程序的情况下，可以通过“调试”菜单>“继续”或按F5快捷键来访问continue命令。
+在Visual Studio中，在已经调试程序的情况下，可以通过菜单 “调试”>“继续”或按F5快捷键来访问continue命令。
 
 {{< /alert >}}
 
@@ -69,7 +69,7 @@ continue命令有一个名为start的孪生兄弟。start命令执行与continue
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，在不调试程序时，可以通过“调试”菜单>“开始调试”或按F5快捷键来访问启动命令。
+在Visual Studio中，在不调试程序时，可以通过菜单 “调试”>“开始调试”或按F5快捷键来访问启动命令。
 
 {{< /alert >}}
 

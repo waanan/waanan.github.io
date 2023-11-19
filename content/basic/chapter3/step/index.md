@@ -52,7 +52,7 @@ Stepping是一组相关调试器功能的名称，这些功能允许我们逐语
 我们将依次介绍许多相关的单步执行命令。
 
 ***
-## Step into
+## 逐语句（Step into）
 
 Step into 命令在程序的正常执行路径中执行下一条语句，然后暂停程序的执行，以便我们可以使用调试器检查程序的状态。如果正在执行的语句包含函数调用，则单步执行将导致程序跳到被调用函数的顶部，在那里它将暂停。
 
@@ -79,7 +79,7 @@ int main()
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，可以通过“调试”菜单>“step into”或按F11快捷键来执行step into命令。
+在Visual Studio中，可以通过菜单 “调试”>“逐语句”或按F11快捷键来执行step into命令。
 
 {{< /alert >}}
 
@@ -162,7 +162,7 @@ std::cout << std::unitbuf; // 打开 std::cout 的自动清空缓冲功能
 
 
 ***
-## Step over
+## 逐过程（Step over）
 
 与step-into类似，step-over命令在程序的正常执行路径中执行下一条语句。然而，step-into将进入函数调用并逐行执行它们，但step-over将在不停止的情况下执行完整个函数，并在函数执行后将控制权返回给您。
 
@@ -195,12 +195,12 @@ int main()
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，可以通过“调试”菜单>“step-over”或按F10快捷键来执行step-over命令。
+在Visual Studio中，可以通过菜单“调试”>“逐过程”或按F10快捷键来执行step-over命令。
 
 {{< /alert >}}
 
 ***
-## Step out
+## 跳出（Step out）
 
 与其他两个单步执行命令不同，Step-out不只是执行下一行代码。相反，它执行当前正在执行的函数中的所有剩余代码，然后在函数返回时将控制权返回给您。
 
@@ -235,7 +235,7 @@ int main()
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，可以通过“调试”菜单>“Step out”或按Shift-F11快捷组合键来访问“Step out”命令。
+在Visual Studio中，可以通过菜单“调试”>“跳出”或按Shift-F11快捷组合键来访问“Step out”命令。
 
 {{< /alert >}}
 
