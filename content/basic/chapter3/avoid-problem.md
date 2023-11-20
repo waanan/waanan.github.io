@@ -146,3 +146,9 @@ Visual Studio 附带内置静态分析工具。您可以通过「生成>对解�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter3/call-stack/" next="/basic/chapter3/summary/" >}}
+3.8 调用堆栈
+<--->
+3.10 第3章总结
+{{< /prevnext >}}

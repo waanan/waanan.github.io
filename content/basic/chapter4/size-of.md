@@ -159,3 +159,9 @@ sizeof不包括对象使用时动态分配的内存。我们将在以后的课�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter4/void/" next="/" >}}
+4.1 Void
+<--->
+主页
+{{< /prevnext >}}

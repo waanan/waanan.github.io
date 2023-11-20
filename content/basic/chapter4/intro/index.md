@@ -76,3 +76,9 @@ C++内置了对许多不同数据类型的支持。这些称为基本数据类�
 如果您看到带_t后缀的东西，它可能是一种类型。但许多类型没有_t后缀，这是不同版本引入的不一致导致的。
 
 ***
+
+{{< prevnext prev="/basic/chapter3/summary/" next="/basic/chapter4/void/" >}}
+3.10 第3章总结
+<--->
+4.1 Void
+{{< /prevnext >}}
