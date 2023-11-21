@@ -159,8 +159,8 @@ sizeof不包括对象使用时动态分配的内存。我们将在以后的课�
 
 ***
 
-{{< prevnext prev="/basic/chapter4/void/" next="/" >}}
+{{< prevnext prev="/basic/chapter4/void/" next="/basic/chapter4/sign-int/" >}}
 4.1 Void
 <--->
-主页
+4.3 有符号整数
 {{< /prevnext >}}

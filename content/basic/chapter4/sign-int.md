@@ -174,3 +174,8 @@ int main()
 
 ***
 
+{{< prevnext prev="/basic/chapter4/size-of/" next="/basic/chapter4/unsign-int/" >}}
+4.2 对象大小和sizeof运算符
+<--->
+4.4 无符号整数，以及为什么要避免使用它们
+{{< /prevnext >}}
