@@ -139,4 +139,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter4/void/<-> 4.1 Void
 <-->
 <->/basic/chapter4/size-of/<-> 4.2 对象大小和sizeof运算符
+<-->
+<->/basic/chapter4/sign-int/<-> 4.3 有符号整数
+<-->
+<->/basic/chapter4/unsign-int/<-> 4.4 无符号整数，以及为什么要避免使用它们
 {{< /chapterlist >}}

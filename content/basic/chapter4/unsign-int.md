@@ -244,3 +244,8 @@ doSomething() 的作者希望有人只使用正数调用此函数。但调用者
 
 ***
 
+{{< prevnext prev="/basic/chapter4/sign-int/" next="/" >}}
+4.3 有符号整数
+<--->
+主页
+{{< /prevnext >}}
