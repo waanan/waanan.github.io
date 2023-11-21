@@ -92,8 +92,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter3/watch-var/" next="/" >}}
+{{< prevnext prev="/basic/chapter3/watch-var/" next="/basic/chapter3/avoid-problem/" >}}
 3.7 监视变量
 <--->
-主页
+3.9 在问题变成问题进行避免
 {{< /prevnext >}}

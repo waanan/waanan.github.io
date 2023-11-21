@@ -66,3 +66,8 @@ Run-to-cursor执行程序，直到执行到达鼠标光标选择的语句。
 
 ***
 
+{{< prevnext prev="/basic/chapter3/avoid-problem/" next="/basic/chapter4/intro/" >}}
+3.9 在问题变成问题进行避免
+<--->
+4.0 基本数据类型简介
+{{< /prevnext >}}

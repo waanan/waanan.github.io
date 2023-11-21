@@ -123,6 +123,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter3/watch-var/<-> 3.7 监视变量
 <-->
 <->/basic/chapter3/call-stack/<-> 3.8 调用堆栈
+<-->
+<->/basic/chapter3/avoid-problem/<-> 3.9 在问题变成问题进行避免
+<-->
+<->/basic/chapter3/summary/<-> 3.10 第3章总结
 {{< /chapterlist >}}
 
 ***
@@ -131,4 +135,8 @@ date: 2022-12-28T16:40:41+08:00
 第四章 基本数据类型
 <--->
 <->/basic/chapter4/intro/<-> 4.0 基本数据类型简介
+<-->
+<->/basic/chapter4/void/<-> 4.1 Void
+<-->
+<->/basic/chapter4/size-of/<-> 4.2 对象大小和sizeof运算符
 {{< /chapterlist >}}

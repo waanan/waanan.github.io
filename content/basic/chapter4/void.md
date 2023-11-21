@@ -79,3 +79,9 @@ int getValue() // 无参数函数
 void关键字在C++中有第三种（更高级）用法，我们在介绍指针时介绍了这一用法——void指针。因为我们还没有讨论指针是什么，所以您现在不需要担心这种情况。
 
 ***
+
+{{< prevnext prev="/basic/chapter4/intro/" next="/basic/chapter4/size-of/" >}}
+4.0 基本数据类型简介
+<--->
+4.2 对象大小和sizeof运算符
+{{< /prevnext >}}
