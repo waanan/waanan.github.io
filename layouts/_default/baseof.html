@@ -153,7 +153,10 @@
   var lst = document.getElementsByTagName("table");
   for (var i = 0; i < lst.length; i++)
   {
-    lst[i].className = "table table-bordered";
+    if (lst[i].className == "")
+    {
+      lst[i].className = "table table-bordered";
+    }
   }
 </script>
   </body>
