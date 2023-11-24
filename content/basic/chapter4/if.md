@@ -5,15 +5,24 @@ date: 2023-10-09T20:06:10+08:00
 
 考虑一个你要去市场的例子，你的室友告诉你，“如果他们有草莓打折，买一些”。这是一个条件语句，意味着只有当条件（“他们有出售的草莓”）为真时，您才会执行一些操作（“买一些”）。
 
-这样的条件在编程中很常见，因为它们允许我们在程序中实现条件行为。C++中最简单的条件语句类型称为if语句。只有在某些条件为真时，if语句才允许我们执行一行（或多行）代码。
+这样的条件在编程中很常见，因为它允许我们在程序中实现条件行为。C++中最简单的条件语句类型称为if语句。只有在某些条件为真时，if语句才允许我们执行一行（或多行）代码。
 
 最简单的if语句采用以下形式：
 
+```C++
+if (条件表达式) true_对应的语句;
+```
+
 为了可读性，这通常写为：
+
+```C++
+if (条件表达式)
+    true_对应的语句;
+```
 
 条件（也称为条件表达式）是计算为布尔值的表达式。
 
-如果If语句的条件计算为布尔值true，则执行true_statement。如果条件的计算结果为布尔值false，则跳过true_statement。
+如果if语句的条件计算为布尔值true，则执行 true_对应的语句。如果条件的计算结果为布尔值false，则跳过 true_对应的语句。
 
 ***
 ## 使用if语句的示例程序
@@ -38,27 +47,34 @@ int main()
 
 下面是此程序一次运行的输出：
 
-让我们更详细地研究一下这是如何工作的。
+```C++
+Enter an integer: 0
+The value is zero
+```
 
-首先，用户输入一个整数。然后计算条件x==0。相等运算符（==）用于测试两个值是否相等。运算符==如果操作数相等，则返回true；如果不相等，则为false。由于x的值为0，并且0==0为true，因此该表达式的计算结果为true。
+首先，用户输入一个整数。然后计算条件 x == 0。相等运算符（==）用于测试两个值是否相等。运算符== 如果操作数相等，则返回true；如果不相等，则为false。由于x的值为0，并且 0 == 0 为true，因此该表达式的计算结果为true。
 
-由于条件的计算结果为true，因此执行后续语句，并打印值为零。
+由于条件的计算结果为true，因此执行后续语句，并打印“The value is zero”。
 
-下面是此程序的另一个运行：
+下面是此程序的另一个运行结果：
+
+```C++
+Enter an integer: 5
+```
 
 在这种情况下，x==0的计算结果为false。随后的语句被跳过，程序结束，并且不打印任何其他内容。
 
 {{< alert success >}}
 **警告**
 
-If语句仅有条件地执行单个语句。我们在第8.2课中讨论了如何有条件地执行多个语句——If语句和块。
+If语句仅有条件地执行单个语句。我们在后续课程讨论如何有条件地执行多个语句——If语句和块。
 
 {{< /alert >}}
 
 ***
-## 如果不是这样
+## if-else
 
-考虑到上面的例子，如果我们想告诉用户他们输入的数字不是零，该怎么办？
+考虑上面的例子，如果我们想告诉用户他们输入的数字不是零，该怎么办？
 
 我们可以这样写：
 
@@ -101,11 +117,18 @@ int main()
 }
 ```
 
-这两个程序都比需要的复杂。相反，我们可以使用另一种形式的if语句，调用if-else。如果为else，则采用以下形式：
+这两个程序都比需要的复杂。我们可以使用另一种形式的if语句，叫做 if-else。为以下形式：
 
-如果条件的计算结果为布尔true，则执行true_statement。否则执行false_statement。
+```C++
+if (条件表达式)
+    true_对应的语句;
+else
+    false_对应的语句;
+```
 
-让我们修改以前的程序，使用if-else。
+如果条件的计算结果为布尔true，则执行 true_对应的语句。否则执行 false_对应的语句。
+
+让我们修改上面的程序，使用if-else。
 
 ```C++
 #include <iostream>
@@ -127,10 +150,20 @@ int main()
 
 现在，我们的程序将产生以下输出：
 
-***
-## 链接if语句
+```C++
+Enter an integer: 0
+The value is zero
+```
 
-有时，我们想检查几个事情的顺序是真是假。我们可以通过将if语句（或if-else）链接到前面的if-else来实现，如下所示：
+```C++
+Enter an integer: 5
+The value is non-zero
+```
+
+***
+## 串联if语句
+
+有时，我们想检查几个事情按顺序是真是假。我们可以通过将if语句（或if-else）链接到前面的if-else来实现，如下所示：
 
 ```C++
 #include <iostream>
@@ -156,39 +189,52 @@ int main()
 
 下面是该程序的几次运行的输出：
 
-请注意，可以根据需要计算的条件多次链接if语句。我们将在测验中看到一个例子，这是有用的。
+```C++
+Enter an integer: 4
+The value is positive
+```
+
+```C++
+Enter an integer: -3
+The value is negative
+```
+
+```C++
+Enter an integer: 0
+The value is zero
+```
+
+请注意，可以根据需要计算的条件多次链接if语句。
 
 ***
 ## 布尔返回值和if语句
 
-在上一课（4.9——布尔值）中，我们使用返回布尔值的函数编写了此程序：
+在上一课中，我们使用返回布尔值的函数编写了此程序：
 
 ```C++
 #include <iostream>
- 
-// returns true if x and y are equal, false otherwise
+
+// x与y相等返回true, 不然返回false
 bool isEqual(int x, int y)
 {
-    return (x == y); // operator== returns true if x equals y, and false otherwise
+    return (x == y); // 操作符== ， x 等于y，返回true，否则返回false
 }
- 
+
 int main()
 {
     std::cout << "Enter an integer: ";
-    int x {};
+    int x{};
     std::cin >> x;
- 
+
     std::cout << "Enter another integer: ";
-    int y {};
+    int y{};
     std::cin >> y;
- 
-    std::cout << std::boolalpha; // print bools as true or false
+
+    std::cout << std::boolalpha; // 以  true ， false 格式打印bool
     
     std::cout << x << " and " << y << " are equal? ";
-    std::cout << isEqual(x, y); // will return true or false
+    std::cout << isEqual(x, y) << '\n'; // isEqual返回true或false
 
-    std::cout << '\n';
- 
     return 0;
 }
 ```
@@ -198,10 +244,10 @@ int main()
 ```C++
 #include <iostream>
  
-// returns true if x and y are equal, false otherwise
+// x与y相等返回true, 不然返回false
 bool isEqual(int x, int y)
 {
-    return (x == y); // operator== returns true if x equals y, and false otherwise
+    return (x == y); // 操作符== ， x 等于y，返回true，否则返回false
 }
  
 int main()
@@ -223,16 +269,28 @@ int main()
 }
 ```
 
-该程序的两次运行：
+该程序的两次运行情况：
 
-在这种情况下，我们的条件表达式只是对函数isEqual的函数调用，它返回布尔值。
+```C++
+Enter an integer: 5
+Enter another integer: 5
+5 and 5 are equal
+```
+
+```C++
+Enter an integer: 6
+Enter another integer: 4
+6 and 4 are not equal
+```
+
+在这种情况下，我们的条件表达式是对函数isEqual的函数调用，获取返回的布尔值。
 
 ***
 ## 非布尔条件
 
 在上面的所有示例中，我们的条件要么是布尔值（true或false）、布尔变量，要么是返回布尔值的函数。如果条件是不计算为布尔值的表达式，会发生什么情况？
 
-在这种情况下，条件表达式被转换为布尔值：非零值被转换为Boolean true，零值被转化为布尔false。
+在这种情况下，条件表达式被转换为布尔值：非零值被转换为 true，零值被转化为 false。
 
 因此，如果我们这样做：
 
@@ -241,7 +299,7 @@ int main()
 
 int main()
 {
-    if (4) // nonsensical, but for the sake of example...
+    if (4) // 无任何意义，用来作为示例...
         std::cout << "hi\n";
     else
         std::cout << "bye\n";
@@ -250,10 +308,10 @@ int main()
 }
 ```
 
-这将打印“hi”，因为4是一个非零值，它被转换为布尔true，导致执行附加到if的语句。
+这将打印“hi”，因为4是一个非零值，它被转换为布尔true。
 
 ***
-## If语句和早期返回
+## If语句和提前返回
 
 不是函数中最后一个语句的返回语句称为早期返回。这样的语句将导致函数在执行return语句时返回给调用方（在函数以其他方式返回到调用方之前，因此是“早”）。
 
@@ -303,60 +361,6 @@ int main()
 
 在未来的第8.2课——if语句和块中，我们将继续探索if语句。
 
-{{< alert success >}}
-**相关内容**
-
-我们在第8.11课中进一步讨论了关于早期回报的辩论——中断并继续
-
-{{< /alert >}}
-
 ***
-## 测验时间
 
-问题#1
-
-什么是早期回报，它的行为是什么？
-
-显示解决方案
-
-问题#2
-
-质数是一个大于1的整数，它只能被1和它本身等分。编写一个程序，要求用户输入数字0到9（包括0和9）。如果用户在此范围内输入一个素数（2、3、5或7），则打印“the digit is prime”。否则，打印“数字不是质数”。
-
-显示提示
-
-显示解决方案
-
-问题#3
-
-如何在不更改格式的情况下缩短以下代码的长度？
-
-```C++
-#include <iostream>
-
-bool isAllowedToTakeFunRide()
-{
-  std::cout << "How tall are you? (cm)\n";
-
-  double height{};
-  std::cin >> height;
-
-  if (height > 140.0)
-    return true;
-  else
-    return false;
-}
-
-int main()
-{
-  if (isAllowedToTakeFunRide())
-    std::cout << "Have fun!\n";
-  else
-    std::cout << "Sorry, you're too short.\n";
-
-  return 0;
-}
-```
-
-显示解决方案
 
