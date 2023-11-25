@@ -1,9 +1,9 @@
 ---
-title: "Chars（字符）"
+title: "字符"
 date: 2023-10-09T20:06:10+08:00
 ---
 
-到目前为止，我们研究的基本数据类型已经用于保存数字（整数和浮点）或真/假值（布尔）。但如果我们想存储字母或标点符号呢？
+到目前为止，我们研究的基本数据类型包含保存数字（整数和浮点）或真/假值（布尔）。但如果我们想存储字母或标点符号呢？
 
 ```C++
 #include <iostream>
@@ -12,28 +12,61 @@ int main()
 {
     std::cout << "Would you like a burrito? (y/n)";
 
-    // We want the user to enter a 'y' or 'n' character
-    // How do we do this?
+    // 想让用户输入 'y' or 'n' 的字符
+    // 如何做到？
 
     return 0;
 }
 ```
 
-char数据类型被设计为保存单个字符。字符可以是单个字母、数字、符号或空白。
+char数据类型被设计为保存单个字符。字符可以是单个英文字母、数字、符号或空白。
 
-char数据类型是整型，这意味着底层值存储为整数。与布尔值0被解释为false而非零被解释为true的方式类似，char变量存储的整数被解释为ASCII字符。
+char数据类型是整型，这意味着底层值存储为整数。与布尔值0被解释为false而非零，1被解释为true的方式类似，char变量存储的整数被解释为ASCII字符。
 
-ASCII代表美国信息交换标准代码，它定义了一种特殊的方法，将英语字符（加上一些其他符号）表示为0到127之间的数字（称为ASCII代码或码位）。例如，ASCII代码97被解释为字符“a”。
+ASCII（ American Standard Code for Information Interchange，美国信息交换标准代码），它定义了一种特殊的编码方法，将英语字符（加上一些其他符号）表示为0到127之间的数字（称为ASCII码）。例如，ASCII码97被解释为字符'a'。
 
-字符文本总是放在单引号之间（例如“g”、“1”、“”）。
+字符文本总是放在单引号之间（例如'g'、'1'、''）。
 
 下面是ASCII字符的完整表格：
 
+|  编号 |  字符  |  编号 |  字符  |  编号 |  字符  |  编号 |  字符  |
+|  ----  | ----  |  ----  | ----  |  ----  | ----  |  ----  | ----  |
+| 0 | NUL (null) | 32 | (space) | 64 | @ | 96 | ` |
+| 1 | SOH (start of header) | 33 | ! | 65 | A | 97 | a |
+| 2 | STX (start of text) | 34 | ” | 66 | B | 98 | b |
+| 3 | ETX (end of text) | 35 | # | 67 | C | 99 | c |
+| 4 | EOT (end of transmission) | 36 | $ | 68 | D | 100 | d |
+| 5 | ENQ (enquiry) | 37 | % | 69 | E | 101 | e |
+| 6 | ACK (acknowledge) | 38 | & | 70 | F | 102 | f |
+| 7 | BEL (bell) | 39 | ’ | 71 | G | 103 | g |
+| 8 | BS (backspace) | 40 | ( | 72 | H | 104 | h |
+| 9 | HT (horizontal tab) | 41 | ) | 73 | I | 105 | i |
+| 10 | LF (line feed/new line) | 42 | * | 74 | J | 106 | j |
+| 11 | VT (vertical tab) | 43 | + | 75 | K | 107 | k |
+| 12 | FF (form feed / new page) | 44 | , | 76 | L | 108 | l |
+| 13 | CR (carriage return) | 45 | - | 77 | M | 109 | m |
+| 14 | SO (shift out) | 46 | . | 78 | N | 110 | n |
+| 15 | SI (shift in) | 47 | / | 79 | O | 111 | o |
+| 16 | DLE (data link escape) | 48 | 0 | 80 | P | 112 | p |
+| 17 | DC1 (data control 1) | 49 | 1 | 81 | Q | 113 | q |
+| 18 | DC2 (data control 2) | 50 | 2 | 82 | R | 114 | r |
+| 19 | DC3 (data control 3) | 51 | 3 | 83 | S | 115 | s |
+| 20 | DC4 (data control 4) | 52 | 4 | 84 | T | 116 | t |
+| 21 | NAK (negative acknowledge) | 53 | 5 | 85 | U | 117 | u |
+| 22 | SYN (synchronous idle) | 54 | 6 | 86 | V | 118 | v |
+| 23 | ETB (end of transmission block) | 55 | 7 | 87 | W | 119 | w |
+| 24 | CAN (cancel) | 56 | 8 | 88 | X | 120 | x |
+| 25 | EM (end of medium) | 57 | 9 | 89 | Y | 121 | y |
+| 26 | SUB (substitute) | 58 | : | 90 | Z | 122 | z |
+| 27 | ESC (escape) | 59 | ; | 91 | [ | 123 | {  |
+| 28 | FS (file separator) | 60 | < | 92 | \ | 124 | \| |
+| 29 | GS (group separator) | 61 | = | 93 | ] | 125 | }  |
+| 30 | RS (record separator) | 62 | > | 94 | ^ | 126 | ~  |
+| 31 | US (unit separator) | 63 | ? | 95 | _ | 127 | DEL (delete)  |
 
+字符0-31被称为不可打印字符，它们主要用于格式化和控制打印机。其中大多数现在已经过时了。如果尝试打印这些字符，结果取决于您的操作系统（您可能会得到一些类似表情符号的字符）。
 
-代码0-31被称为不可打印字符，它们主要用于格式化和控制打印机。其中大多数现在已经过时了。如果尝试打印这些字符，结果取决于您的操作系统（您可能会得到一些类似表情符号的字符）。
-
-代码32-127被称为可打印字符，它们表示大多数计算机用于显示基本英语文本的字母、数字字符和标点符号。
+字符32-127被称为可打印字符，它们表示大多数计算机用于显示基本英语文本的字母、数字字符和标点符号。
 
 ***
 ## 正在初始化字符
@@ -242,14 +275,14 @@ int main()
 
 int add(int x, int y)
 {
-	return x + y;
+ | return x + y;
 }
 
 int main()
 {
-	std::cout << add(1, 2) << '/n';
+ | std::cout << add(1, 2) << '/n';
 
-	return 0;
+ | return 0;
 }
 ```
 
