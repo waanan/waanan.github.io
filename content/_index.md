@@ -143,4 +143,16 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter4/sign-int/<-> 4.3 有符号整数
 <-->
 <->/basic/chapter4/unsign-int/<-> 4.4 无符号整数，以及为什么要避免使用它们
+<-->
+<->/basic/chapter4/fix-int/<-> 4.5 对象大小和sizeof运算符
+<-->
+<->/basic/chapter4/sci-notation/<-> 4.6 有符号整数
+<-->
+<->/basic/chapter4/float/<-> 4.7 无符号整数，以及为什么要避免使用它们
+<-->
+<->/basic/chapter4/bool/<-> 4.8 对象大小和sizeof运算符
+<-->
+<->/basic/chapter4/if/<-> 4.9 有符号整数
+<-->
+<->/basic/chapter4/char/<-> 4.10 无符号整数，以及为什么要避免使用它们
 {{< /chapterlist >}}
