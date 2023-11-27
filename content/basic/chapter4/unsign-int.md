@@ -244,8 +244,8 @@ doSomething() 的作者希望有人只使用正数调用此函数。但调用者
 
 ***
 
-{{< prevnext prev="/basic/chapter4/sign-int/" next="/" >}}
+{{< prevnext prev="/basic/chapter4/sign-int/" next="/basic/chapter4/fix-int/" >}}
 4.3 有符号整数
 <--->
-主页
+4.5 固定宽度整数和size_t
 {{< /prevnext >}}

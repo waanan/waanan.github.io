@@ -370,3 +370,9 @@ char16_t和char32_t被添加到C++11中，以提供对16位和32位Unicode字符
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter4/if/" next="/" >}}
+4.9 if语句简介
+<--->
+主页
+{{< /prevnext >}}

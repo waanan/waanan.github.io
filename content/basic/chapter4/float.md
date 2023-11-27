@@ -324,3 +324,9 @@ INF代表无穷大，IND代表无法确定结果。请注意，打印Inf和NaN�
 
 
 ***
+
+{{< prevnext prev="/basic/chapter4/sci-notation/" next="/basic/chapter4/bool/" >}}
+4.6 科学记数法
+<--->
+4.8 布尔值（Boolean）
+{{< /prevnext >}}

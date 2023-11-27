@@ -254,3 +254,9 @@ Enter another integer: 4
 这是如何运行的？首先读取x和y的整数值。然后，计算表达式“isEqual（x，y）”。在第一次运行中，这导致对isEqual（5,5）的函数调用。在该函数中，计算5==5，生成值true。值true返回给调用者，由std::cout打印。在第二次运行中，对isEqual（6,4）的调用返回值false。
 
 ***
+
+{{< prevnext prev="/basic/chapter4/float/" next="/basic/chapter4/if/" >}}
+4.7 浮点数
+<--->
+4.9 if语句简介
+{{< /prevnext >}}

@@ -358,3 +358,9 @@ int main()
 当调用 abs(-3) 时，x的值为-3。if (x < 0) 为true，执行提前返回语句。此时，函数将-x（值3）返回给调用方。
 
 ***
+
+{{< prevnext prev="/basic/chapter4/bool/" next="/basic/chapter4/char/" >}}
+4.8 布尔值（Boolean）
+<--->
+4.10 字符
+{{< /prevnext >}}
