@@ -371,8 +371,8 @@ char16_t和char32_t被添加到C++11中，以提供对16位和32位Unicode字符
 
 ***
 
-{{< prevnext prev="/basic/chapter4/if/" next="/" >}}
+{{< prevnext prev="/basic/chapter4/if/" next="/basic/chapter4/type-convert/" >}}
 4.9 if语句简介
 <--->
-主页
+4.11 类型转换和static_cast简介
 {{< /prevnext >}}

@@ -155,4 +155,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter4/if/<-> 4.9 if语句简介
 <-->
 <->/basic/chapter4/char/<-> 4.10 字符
+<-->
+<->/basic/chapter4/type-convert/<-> 4.11 类型转换和static_cast简介
 {{< /chapterlist >}}

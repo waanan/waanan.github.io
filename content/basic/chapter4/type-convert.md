@@ -316,3 +316,9 @@ You entered: 51
 相反，其他固定宽度类型将始终打印并作为整数值输入。
 
 ***
+
+{{< prevnext prev="/basic/chapter4/char/" next="/" >}}
+4.10 字符
+<--->
+主页
+{{< /prevnext >}}
