@@ -317,8 +317,8 @@ You entered: 51
 
 ***
 
-{{< prevnext prev="/basic/chapter4/char/" next="/" >}}
+{{< prevnext prev="/basic/chapter4/char/" next="/basic/chapter4/summary/" >}}
 4.10 字符
 <--->
-主页
+4.12 第4章总结
 {{< /prevnext >}}

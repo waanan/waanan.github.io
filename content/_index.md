@@ -158,7 +158,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter4/type-convert/<-> 4.11 类型转换和static_cast简介
 <-->
-<->/basic/chapter4/summary/<-> 4.12 类型转换和static_cast简介
+<->/basic/chapter4/summary/<-> 4.12 第4章总结
 {{< /chapterlist >}}
 
 ***
@@ -166,5 +166,5 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第五章 常量，字符串
 <--->
-<->/basic/chapter5/const-var/<-> 5.0 基本数据类型简介
+<->/basic/chapter5/const-var/<-> 5.0 常量（命名常量）
 {{< /chapterlist >}}

@@ -288,3 +288,9 @@ volatile限定符用于告诉编译器对象的值可以随时更改。这个很
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter4/summary/" next="/" >}}
+4.12 第4章总结
+<--->
+主页
+{{< /prevnext >}}

@@ -39,3 +39,9 @@ char用于存储解释为ASCII字符的值。使用字符时，请注意不要�
 尖括号 <> 通常在C++中用于表示需要参数化类型的内容。它与static_cast一起使用，以确定参数应转换为哪种数据类型（例如，static_cast<int>(x)，将x的值作为int返回）。
 
 ***
+
+{{< prevnext prev="/basic/chapter4/type-convert/" next="/basic/chapter5/const-var/" >}}
+4.11 类型转换和static_cast简介
+<--->
+5.0 常量（命名常量）
+{{< /prevnext >}}
