@@ -289,8 +289,8 @@ volatile限定符用于告诉编译器对象的值可以随时更改。这个很
 
 ***
 
-{{< prevnext prev="/basic/chapter4/summary/" next="/" >}}
+{{< prevnext prev="/basic/chapter4/summary/" next="/basic/chapter5/const-exp/" >}}
 4.12 第4章总结
 <--->
-主页
+5.1 常量表达式、编译时常量和运行时常量
 {{< /prevnext >}}
