@@ -167,6 +167,12 @@ date: 2022-12-28T16:40:41+08:00
 第五章 常量，字符串
 <--->
 <->/basic/chapter5/const-var/<-> 5.0 常量（命名常量）
-<--->
+<-->
 <->/basic/chapter5/const-exp/<-> 5.1 常量表达式、编译时常量和运行时常量
+<-->
+<->/basic/chapter5/constexpr/<-> 5.2 常量表达式、编译时常量和运行时常量
+<-->
+<->/basic/chapter5/literal/<-> 5.3 常量表达式、编译时常量和运行时常量
+<-->
+<->/basic/chapter5/num-sys/<-> 5.4 常量表达式、编译时常量和运行时常量
 {{< /chapterlist >}}
