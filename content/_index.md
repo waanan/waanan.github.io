@@ -175,4 +175,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter5/literal/<-> 5.3 常量表达式、编译时常量和运行时常量
 <-->
 <->/basic/chapter5/num-sys/<-> 5.4 常量表达式、编译时常量和运行时常量
+<-->
+<->/basic/chapter5/cond-op/<-> 5.5 常量表达式、编译时常量和运行时常量
+<-->
+<->/basic/chapter5/inline/<-> 5.6 常量表达式、编译时常量和运行时常量
 {{< /chapterlist >}}

@@ -48,9 +48,9 @@ greater = ((x > y) ? x : y);
 在这种情况下，条件运算符可以帮助压缩代码，而不会丢失可读性。
 
 ***
-## 条件运算符计算为表达式
+## 条件运算符是表达式
 
-由于条件运算符的操作数是表达式而不是语句，因此条件运算符可以用于需要表达式的位置。
+由于条件运算符是表达式而不是语句，因此条件运算符可以用于需要表达式的位置。
 
 例如，初始化变量时：
 
@@ -67,7 +67,7 @@ int main()
 }
 ```
 
-没有直接的if-else替代。您可能会认为尝试这样的操作：
+如果用if-else替代。您可能会尝试这样的操作：
 
 ```C++
 #include <iostream>
@@ -87,7 +87,7 @@ int main()
 }
 ```
 
-然而，这不会编译，并且您将得到一条错误消息，即classSize未定义。就像函数中定义的变量如何在函数的末尾死亡一样，在if语句或else语句内定义的变量也会在if声明或else声明的末尾死亡。因此，在我们尝试打印classSize时，它已经被破坏了。
+然而，这无法编译，并且将得到一条错误消息，即classSize未定义。就像函数中定义的变量在函数的末尾失效一样，在if语句或else语句内定义的变量也会在if或else的末尾失效。因此，在我们尝试打印classSize时，它已经被破坏了。
 
 如果要使用If-else，则必须执行以下操作：
 
@@ -111,12 +111,12 @@ int main()
 }
 ```
 
-这一个可以工作，因为getClassSize（false）是一个表达式，而if-else逻辑位于函数内部（我们可以在其中使用语句）。但这是许多额外的代码，当我们可以只使用条件运算符时。
+这一个可以工作，因为getClassSize(false) 是一个表达式，而if-else逻辑位于函数内部（可以在其中使用语句）。但这是许多额外的代码。
 
 ***
 ## 带圆括号的条件运算符
 
-由于C++将大多数操作符的求值优先于条件操作符的计算，因此使用不按预期求值的条件操作符编写表达式是相当容易的。
+由于C++大多数操作符的求值优先于条件操作符的计算，因此条件操作符容易与您的预期执行顺序不同。
 
 例如：
 
@@ -134,38 +134,37 @@ int main()
 }
 ```
 
-您可能期望它的计算结果为10-（x>y？x:y）（这将计算为8），但它实际上的计算结果是（10-x）>y？x:y（计算为2）。
+您可能期望它的计算结果为10 - (x > y ? x : y )（这将计算为8），但它实际上的计算结果是(10 - x) > y ? x : y（计算为2）。
 
-由于这个原因，条件运算符应该用括号括起来，如下所示：
+由于这个原因，条件运算符应该用括号括起来：
 
-1. 在复合表达式（具有其他运算符的表达式）中使用时，用圆括号括住整个条件运算符。
-2. 为了可读性，如果条件包含任何运算符（函数调用运算符除外），请用括号括起来。
-
+1. 如果条件运算符作为子表达式，用圆括号括住整个条件运算符。
+2. 为了可读性，条件运算符如果条件表达式中包含任何运算符（函数调用运算符除外），请用括号括起来。
 
 条件运算符的操作数不需要括号。
 
 让我们看一下包含条件运算符的一些语句，以及如何将它们括起来：
 
 ```C++
-return isStunned ? 0 : movesLeft;           // not used in compound expression, condition contains no operators
-int z { (x > y) ? x : y };                  // not used in compound expression, condition contains operators
-std::cout << (isAfternoon() ? "PM" : "AM"); // used in compound expression, condition contains no operators (function call operator excluded)
-std::cout << ((x > y) ? x : y);             // used in compound expression, condition contains operators
+return isStunned ? 0 : movesLeft;           // 不作为子表达式, 条件表达式中无操作符
+int z { (x > y) ? x : y };                  // 不作为子表达式, 条件表达式中有操作符
+std::cout << (isAfternoon() ? "PM" : "AM"); // 作为子表达式, 条件表达式中无操作符 (函数调用运算符除外)
+std::cout << ((x > y) ? x : y);             // 作为子表达式, 条件表达式中有操作符
 ```
 
 {{< alert success >}}
 **相关内容**
 
-在未来的第6.1课——运算符优先级和结合性——中，我们讨论了C++对运算符求值进行优先级排序的方法。
+在未来的——运算符优先级和结合性——中，我们讨论了C++对运算符求值进行优先级排序的方法。
 
 {{< /alert >}}
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 在复合表达式中使用时，用圆括号括住整个条件运算符。
 
-为了可读性，如果条件包含任何运算符（函数调用运算符除外），请用括号括起来。
+为了可读性，如果条件表达式中包含任何运算符（函数调用运算符除外），请用括号括起来。
 
 {{< /alert >}}
 
@@ -185,11 +184,11 @@ std::cout << ((x > y) ? x : y);             // used in compound expression, cond
 
 int main()
 {
-    std::cout << (true ? 1 : 2) << '\n';    // okay: both operands have matching type int
+    std::cout << (true ? 1 : 2) << '\n';    // okay: 两个操作数的类型都是int
 
-    std::cout << (false ? 1 : 2.2) << '\n'; // okay: int value 1 converted to double
+    std::cout << (false ? 1 : 2.2) << '\n'; // okay: int  1 被转换为 double
 
-    std::cout << (true ? -1 : 2u) << '\n';  // surprising result: -1 converted to unsigned int, result out of range
+    std::cout << (true ? -1 : 2u) << '\n';  // 令人惊讶: -1 被转换为 unsigned int, 发生溢出
 
     return 0;
 }
@@ -197,7 +196,13 @@ int main()
 
 以上打印内容：
 
-通常，可以将操作数与基本类型混合（不包括混合有符号和无符号值）。如果其中一个操作数不是基本类型，通常最好自己显式地将一个或两个操作数转换为匹配类型，以便您确切地知道将得到什么。
+```C++
+1
+2.2
+4294967295
+```
+
+通常，可以将操作数中的基本类型混用（不包括混合有符号和无符号值）。如果其中一个操作数不是基本类型，通常最好自己显式地将它转换为匹配类型，以便确切地知道将得到什么。
 
 如果编译器无法找到将第二个和第三个操作数转换为匹配类型的方法，则将导致编译错误：
 
@@ -207,13 +212,13 @@ int main()
 int main()
 {
     constexpr int x{ 5 };
-    std::cout << (x != 5 ? x : "x is 5"); // compile error: compiler can't find common type for constexpr int and C-style string literal
+    std::cout << (x != 5 ? x : "x is 5"); // compile error: constexpr int 与 C-style 字符串 类型无法匹配
 
     return 0;
 }
 ```
 
-在上面的示例中，一个表达式是整数，另一个是C样式的字符串文字。编译器将无法自己找到匹配的类型，因此将导致编译错误。
+在上面的示例中，一个表达式是整数，另一个是C样式的字符串文字。编译器将无法找到匹配的类型，因此将导致编译错误。
 
 在这种情况下，可以执行显式转换，也可以使用if-else语句：
 
@@ -225,10 +230,10 @@ int main()
 {
     constexpr int x{ 5 };
 
-    // We can explicitly convert the types to match
+    // 可以现实的做类型转换
     std::cout << (x != 5 ? std::to_string(x) : std::string{"x is 5"}) << '\n';
 
-    // Or use an if-else statement
+    // 或者使用 if-else
     if (x != 5)
         std::cout << x << '\n';
     else
@@ -241,7 +246,7 @@ int main()
 ***
 ## 那么什么时候应该使用条件运算符？
 
-当执行以下操作之一时，条件运算符最有用：
+当执行以下操作之一时，条件运算符有限使用：
 
 1. 使用两个值之一初始化对象。
 2. 将两个值之一指定给对象。
@@ -249,13 +254,13 @@ int main()
 4. 从函数中返回两个值之一。
 5. 打印两个值之一。
 
-
 复杂的表达式通常应避免使用条件运算符，因为它们往往容易出错，并且难以阅读。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 在复杂的表达式中，最好避免使用条件运算符。
 
 {{< /alert >}}
 
+***
