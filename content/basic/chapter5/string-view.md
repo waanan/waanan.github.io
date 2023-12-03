@@ -1,9 +1,9 @@
 ---
-title: "std:：string_view简介"
+title: "std::string_view简介"
 date: 2023-11-28T13:19:42+08:00
 ---
 
-考虑以下程序：
+考虑以下程序:
 
 ```C++
 #include <iostream>
@@ -19,7 +19,7 @@ int main()
 
 当执行x的定义时，初始化值5被复制到为变量int x分配的内存中。对于基本类型，初始化和复制变量是快速的。
 
-现在考虑一下类似的程序：
+现在考虑一下类似的程序:
 
 ```C++
 #include <iostream>
@@ -34,11 +34,11 @@ int main()
 }
 ```
 
-初始化s时，C样式字符串文本“Hello，world！”将复制到为std:：string s分配的内存中。与基本类型不同，初始化和复制std:∶string的速度很慢。
+初始化s时，C样式字符串文本“Hello，world！”将复制到为std::string s分配的内存中。与基本类型不同，初始化和复制std:∶string的速度很慢。
 
 在上面的程序中，我们对s所做的一切就是将值打印到控制台，然后销毁s。我们基本上制作了一个“你好，世界！”的副本，只是为了打印然后销毁该副本。这是低效的。
 
-我们在这个例子中看到类似的东西：
+我们在这个例子中看到类似的东西:
 
 ```C++
 #include <iostream>
@@ -58,14 +58,14 @@ int main()
 }
 ```
 
-这个例子制作了C样式字符串“Hello，world！”的两个副本：一个是在main（）中初始化s时，另一个是当在printString（）中初始参数str时。仅仅为了打印字符串而进行大量不必要的复制！
+这个例子制作了C样式字符串“Hello，world！”的两个副本:一个是在main（）中初始化s时，另一个是当在printString（）中初始参数str时。仅仅为了打印字符串而进行大量不必要的复制！
 
 ***
-## 标准：：字符串视图C++17
+## 标准::字符串视图C++17
 
-为了解决std:：string初始化（或复制）开销大的问题，C++17引入了std::string_view（位于<string_view>头中）。std:：string_view提供对现有字符串（C样式字符串、std:：string或另一个std:：string _view）的只读访问，而不制作副本。只读意味着我们可以访问和使用正在查看的值，但不能修改它。
+为了解决std::string初始化（或复制）开销大的问题，C++17引入了std::string_view（位于<string_view>头中）。std::string_view提供对现有字符串（C样式字符串、std::string或另一个std::string _view）的只读访问，而不制作副本。只读意味着我们可以访问和使用正在查看的值，但不能修改它。
 
-下面的示例与前面的示例相同，只是我们用std:：string_view替换了std:：string。
+下面的示例与前面的示例相同，只是我们用std::string_view替换了std::string。
 
 ```C++
 #include <iostream>
@@ -88,19 +88,19 @@ int main()
 
 该程序产生与前一个程序相同的输出，但没有生成字符串“Hello，world！”的副本。
 
-当我们用C样式的字符串文本“Hello，world！”初始化std:：string_views时，s提供对“HelloWorld！”的只读访问，而不制作字符串的副本。当我们将s传递给printSV（）时，参数str从s初始化。这允许我们再次通过str访问“Hello，world！”，而无需复制字符串。
+当我们用C样式的字符串文本“Hello，world！”初始化std::string_views时，s提供对“HelloWorld！”的只读访问，而不制作字符串的副本。当我们将s传递给printSV（）时，参数str从s初始化。这允许我们再次通过str访问“Hello，world！”，而无需复制字符串。
 
 {{< alert success >}}
 **最佳做法**
 
-当您需要只读字符串时，特别是对于函数参数，请首选std:：string_view而不是std::string。
+当您需要只读字符串时，特别是对于函数参数，请首选std::string_view而不是std::string。
 
 {{< /alert >}}
 
 ***
-## 可以用许多不同类型的字符串初始化std:：string_view
+## 可以用许多不同类型的字符串初始化std::string_view
 
-关于std:：string_view的一个好处是它有多么灵活。可以使用C样式的字符串、std:：string或另一个std:
+关于std::string_view的一个好处是它有多么灵活。可以使用C样式的字符串、std::string或另一个std:
 
 ```C++
 #include <iostream>
@@ -124,9 +124,9 @@ int main()
 ```
 
 ***
-## std:：string_view参数将接受许多不同类型的字符串参数
+## std::string_view参数将接受许多不同类型的字符串参数
 
-C样式的字符串和std:：string都将隐式转换为std:：string_view。因此，std:：string_view参数将接受类型为C-样式字符串、std:：string或std:∶string_view:的参数
+C样式的字符串和std::string都将隐式转换为std::string_view。因此，std::string_view参数将接受类型为C-样式字符串、std::string或std:∶string_view:的参数
 
 ```C++
 #include <iostream>
@@ -153,13 +153,13 @@ int main()
 ```
 
 ***
-## std:：string_view不会隐式转换为std:：string
+## std::string_view不会隐式转换为std::string
 
-由于std:：string复制了其初始值设定项（这很昂贵），C++不允许将std:∶string_view隐式转换为std::string。这是为了防止意外地将std:：string_view参数传递到std::string参数，并防止意外地制作昂贵的副本，其中可能不需要这样的副本。
+由于std::string复制了其初始值设定项（这很昂贵），C++不允许将std:∶string_view隐式转换为std::string。这是为了防止意外地将std::string_view参数传递到std::string参数，并防止意外地制作昂贵的副本，其中可能不需要这样的副本。
 
-然而，如果需要，我们有两个选项：
+然而，如果需要，我们有两个选项:
 
-以下示例显示了这两个选项：
+以下示例显示了这两个选项:
 
 ```C++
 #include <iostream>
@@ -187,11 +187,11 @@ int main()
 ```
 
 ***
-## 分配更改std:：string_view正在查看的内容
+## 分配更改std::string_view正在查看的内容
 
-将新字符串分配给std:：string_view会导致std::string_view查看新字符串。它不会以任何方式修改正在查看的先前字符串。
+将新字符串分配给std::string_view会导致std::string_view查看新字符串。它不会以任何方式修改正在查看的先前字符串。
 
-下面的示例对此进行了说明：
+下面的示例对此进行了说明:
 
 ```C++
 #include <iostream>
@@ -216,9 +216,9 @@ int main()
 在上面的示例中，sv=“John”使sv现在查看字符串“John“。它不会更改名称持有的值（仍然是“Alex”）。
 
 ***
-## std:：string_view的文本
+## std::string_view的文本
 
-默认情况下，双引号字符串文本是C样式的字符串文本。我们可以通过在双引号字符串文本之后使用sv后缀来创建类型为std:：string_view的字符串文本。
+默认情况下，双引号字符串文本是C样式的字符串文本。我们可以通过在双引号字符串文本之后使用sv后缀来创建类型为std::string_view的字符串文本。
 
 ```C++
 #include <iostream>
@@ -238,21 +238,21 @@ int main()
 };
 ```
 
-使用C样式的字符串文本初始化std:：string_view对象是可以的（不需要使用std::string_view文本初始化它）。
+使用C样式的字符串文本初始化std::string_view对象是可以的（不需要使用std::string_view文本初始化它）。
 
-也就是说，使用std:：string_view文本初始化std:∶string_view不会导致问题（因为这样的文本实际上是伪装的C样式字符串文本）。
+也就是说，使用std::string_view文本初始化std:∶string_view不会导致问题（因为这样的文本实际上是伪装的C样式字符串文本）。
 
 {{< alert success >}}
 **相关内容**
 
-我们在第5.9课——std:：string简介中讨论了使用名称空间的这种用法。同样的建议也适用于这里。
+我们在第5.9课——std::string简介中讨论了使用名称空间的这种用法。同样的建议也适用于这里。
 
 {{< /alert >}}
 
 ***
-## constexpr标准：：字符串视图
+## constexpr标准::字符串视图
 
-与std:：string不同，std:：string_view完全支持constexpr:
+与std::string不同，std::string_view完全支持constexpr:
 
 ```C++
 #include <iostream>
@@ -267,7 +267,7 @@ int main()
 }
 ```
 
-这使得constexpr std:：string_view成为需要字符串符号常量时的首选。
+这使得constexpr std::string_view成为需要字符串符号常量时的首选。
 
-我们将在下一课中继续讨论std:：string_view。
+我们将在下一课中继续讨论std::string_view。
 
