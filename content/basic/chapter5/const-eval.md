@@ -347,25 +347,25 @@ int main()
 {{< /alert >}}
 
 ***
-## constexpr/consteval函数参数不是constexpr，但可以用作其他constexpr函数的参数
+## constexpr/consteval函数的参数不是constexpr，但参数可以用作其他constexpr函数的参数
 
-constexpr函数的参数不是constexpr（因此不能在常量表达式中使用）。这样的参数可以声明为const（在这种情况下，它们被视为运行时常量），但不能声明为constexpr。这是因为constexpr函数可以在运行时求值（如果参数是编译时常量，则这是不可能的）。
+constexpr函数的参数不是constexpr（因此不能在常量表达式中使用）。参数可以声明为const（在这种情况下，它们被视为运行时常量），但不能声明为constexpr。这是因为constexpr函数可以在运行时求值（如果参数是编译时常量，则无法在运行时求值）。
 
-然而，在一种情况下会发生异常：constexpr函数可以将这些参数作为参数传递给另一个constexper函数，并且可以在编译时解析后续的constexpr。这允许在编译时调用其他constexpr函数（递归地包括它们自己）时仍然解析constexper函数。
+然而，在一种情况下会发生异常：constexpr函数可以将自己的参数，作为参数传递给另一个constexper函数，并且可以在编译时求值后续调用的constexpr函数。这允许在编译时调用其他constexpr函数（或递归地调用自己）时仍然计算constexper函数。
 
-也许令人惊讶的是，consteval函数的参数也不被认为是函数中的constexpr（即使consteval.函数只能在编译时求值）。这一决定是为了一致性而作出的。
+也许令人惊讶的是，consteval函数的参数也不被认为是constexpr变量（即使consteval函数只能在编译时求值）。这一决定是为了一致性而作出的。
 
 {{< alert success >}}
 **相关内容**
 
-如果在函数中需要constexpr参数（例如，在需要常量表达式的地方使用），请参见10.18——非类型模板参数。
+如果在函数中需要constexpr参数（例如，在需要常量表达式的地方使用），请参见后续的——非类型模板参数。
 
 {{< /alert >}}
 
 ***
 ## constexpr函数可以调用非常量表达式函数吗？
 
-答案是肯定的，但仅当constexpr函数在非常量上下文中求值时。当constexpr函数在常量上下文中求值时，不能调用非常量表达式函数（因为这样，constexpl函数将无法生成编译时常量值）。
+答案是肯定的，但仅当constexpr函数在非常量上下文中求值时可以。当constexpr函数在常量上下文中求值时，不能调用非常量表达式函数（因为这样，constexpr函数将无法生成编译时常量值）。
 
 允许调用非常量表达式函数，以便constexpr函数可以执行以下操作：
 
@@ -374,10 +374,10 @@ constexpr函数的参数不是constexpr（因此不能在常量表达式中使�
 
 constexpr int someFunction()
 {
-    if (std::is_constant_evaluated()) // if compile-time evaluation
-        return someConstexprFcn();    // calculate some value at compile time
-    else                              // runtime evaluation
-        return someNonConstexprFcn(); // calculate some value at runtime
+    if (std::is_constant_evaluated()) // 如果在编译时求值
+        return someConstexprFcn();    // 做编译时的计算
+    else                              // 如果在运行时求值
+        return someNonConstexprFcn(); // 做运行时的计算
 }
 ```
 
@@ -393,9 +393,14 @@ constexpr int someFunction(bool b)
 }
 ```
 
-只要从未在常量表达式中调用someFunction（false），这就是合法的。
+只要从未在常量表达式中调用someFunction(false) ，这就是合法的。
 
-C++标准规定，constexpr函数必须为至少一组参数返回constexper值，否则它在技术上是格式错误的。因此，在constexpr函数中无条件调用非常量表达式函数会导致constexper函数格式错误。然而，编译器不需要为这种情况生成错误或警告——因此，编译器可能不会抱怨，除非您尝试在常量上下文中调用这样的constexpr函数。
+C++标准规定，constexpr函数必须为至少一组参数返回constexpr值，否则它在技术上是格式错误的。因此，在constexpr函数中无条件调用非常量表达式函数会导致constexpr函数格式错误。然而，编译器不需要为这种情况生成错误或警告——因此，编译器可能不会报错，除非您尝试在常量上下文中调用这样的constexpr函数。
 
-因此，我们建议：
+因此，建议：
 
+1. 尽量避免在constexpr函数中调用 非constexpr函数
+2. 如果constexpr函数需要区分运行时与编译时计算的行为，使用 std::is_constant_evaluated()。
+3. 测试constexpr函数时，使用常量上下文。因为constexpr函数可能可以在非常量上下文可以编译，但是在常量上下文中不行。
+
+***

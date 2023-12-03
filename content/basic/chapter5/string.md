@@ -1,43 +1,43 @@
 ---
-title: "std:：string简介"
+title: "std::string简介"
 date: 2023-11-28T13:19:42+08:00
 ---
 
-在第5.4课-文字中，我们介绍了C样式的字符串文字：
+在之前，我们介绍了C样式的字符串：
 
 ```C++
 #include <iostream>
  
 int main()
 {
-    std::cout << "Hello, world!"; // "Hello world!" is a C-style string literal.
+    std::cout << "Hello, world!"; // "Hello world!" 是C样式的字符串.
     return 0;
 }
 ```
 
 虽然C样式字符串文本很好使用，但C样式字符串变量的行为很奇怪，很难使用（例如，不能使用赋值来为C样式的字符串变量分配新值），并且很危险（例如，如果将较大的C样式字符串复制到分配给较短C样式字符串的空间中，将导致未定义的行为）。在现代C++中，最好避免使用C样式的字符串变量。
 
-幸运的是，C++在语言中引入了两种额外的字符串类型，使用它们更容易、更安全：std:：string和std:∶string_view（C++17）。尽管std:：string和std:：string_view不是基本类型，但它们非常简单，非常有用，我们将在这里介绍它们。
+幸运的是，C++在语言中引入了两种额外的字符串类型，使用它们更容易、更安全：std::string和std::string_view（C++17）。尽管std::string和std::string_view不是基本类型，但它们非常简单，非常有用，将在这里介绍它们。
 
 ***
-## 引入std:：string
+## 引入std::string
 
-在C++中处理字符串和字符串对象的最简单方法是通过std:：string类型，它位于<string>头中。
+在C++中处理字符串和字符串对象的最简单方法是通过std::string类型，它位于<string>头文件中。
 
-我们可以像创建其他对象一样创建std:：string类型的对象：
+我们可以像创建其他对象一样创建std::string类型的对象：
 
 ```C++
-#include <string> // allows use of std::string
+#include <string> // 引入 std::string
 
 int main()
 {
-    std::string name {}; // empty string
+    std::string name {}; // 空 string
 
     return 0;
 }
 ```
 
-就像普通变量一样，您可以按预期初始化或分配值给std:：string对象：
+就像普通变量一样，您可以初始化或分配值给std::string对象：
 
 ```C++
 #include <string>
