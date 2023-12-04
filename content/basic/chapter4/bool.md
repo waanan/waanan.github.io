@@ -48,12 +48,12 @@ bool b2 { !false }; // b2 初始化成 true
 
 int main()
 {
-    std::cout << true << '\n'; // true evaluates to 1
-    std::cout << !true << '\n'; // !true evaluates to 0
+    std::cout << true << '\n'; // true 求值结果是 1
+    std::cout << !true << '\n'; // !true 求值结果是 0
 
     bool b{false};
-    std::cout << b << '\n'; // b is false, which evaluates to 0
-    std::cout << !b << '\n'; // !b is true, which evaluates to 1
+    std::cout << b << '\n'; // b 是 false, 求值结果是 0
+    std::cout << !b << '\n'; // !b 是 true, 求值结果是 1
     return 0;
 }
 ```
@@ -61,10 +61,13 @@ int main()
 输出：
 
 ```C++
-
+1
+0
+0
+1
 ```
 
-如果希望std:：cout打印“true”或“false”，而不是0或1，则可以使用std::boolalpha。下面是一个示例：
+如果希望std::cout打印“true”或“false”，而不是0或1，则可以使用std::boolalpha。下面是一个示例：
 
 ```C++
 #include <iostream>
@@ -74,7 +77,7 @@ int main()
     std::cout << true << '\n';
     std::cout << false << '\n';
 
-    std::cout << std::boolalpha; // print bools as true or false
+    std::cout << std::boolalpha; // 以  true ， false 格式打印bool
 
     std::cout << true << '\n';
     std::cout << false << '\n';
@@ -82,40 +85,47 @@ int main()
 }
 ```
 
-这将打印：
+将打印：
 
-可以使用std:：nopoolalpha将其关闭。
+```C++
+1
+0
+true
+false
+```
+
+可以使用std::nopoolalpha关闭。
 
 ***
 ## 整数到布尔转换
 
-不能使用统一初始化用整数初始化布尔值：
+不能使用列表初始化，用整数初始化布尔值：
 
 ```C++
 #include <iostream>
 
 int main()
 {
-	bool b{ 4 }; // error: narrowing conversions disallowed
+	bool b{ 4 }; // 错误: 发生数据范围舍入
 	std::cout << b << '\n';
 	
 	return 0;
 }
 ```
 
-然而，在整数可以转换为布尔值的任何上下文中，整数0转换为false，任何其他整数转换为true。
+然而，在整数可以转换为布尔值的其它地方，整数0转换为false，任何其他整数转换为true。
 
 ```C++
 #include <iostream>
 
 int main()
 {
-	std::cout << std::boolalpha; // print bools as true or false
+	std::cout << std::boolalpha; // 以  true ， false 格式打印bool
 
-	bool b1 = 4 ; // copy initialization allows implicit conversion from int to bool
+	bool b1 = 4 ; // 拷贝初始化允许隐式的将 int 转成 bool
 	std::cout << b1 << '\n';
 
-	bool b2 = 0 ; // copy initialization allows implicit conversion from int to bool
+	bool b2 = 0 ; // 拷贝初始化允许隐式的将 int 转成 bool
 	std::cout << b2 << '\n';
 
 	
@@ -125,12 +135,17 @@ int main()
 
 这将打印：
 
-注：布尔b1=4；可能会生成警告。如果是这样，则必须禁用将警告视为错误来编译示例。
+```C++
+true
+false
+```
+
+注：bool b1 = 4; 可能会生成警告。如果是这样，则必须禁用 将警告视为错误 的规则才能编译。
 
 ***
 ## 输入布尔值
 
-使用std:：cin输入布尔值有时会绊倒新程序员。
+从std::cin获取输入的布尔值有时会难倒新程序员。
 
 考虑以下程序：
 
@@ -139,7 +154,7 @@ int main()
 
 int main()
 {
-	bool b{}; // default initialize to false
+	bool b{}; // 列表初始化默认为 false
 	std::cout << "Enter a boolean value: ";
 	std::cin >> b;
 	std::cout << "You entered: " << b << '\n';
@@ -148,9 +163,14 @@ int main()
 }
 ```
 
-等等，什么？
+```C++
+Enter a Boolean value: true
+You entered: 0
+```
 
-结果表明，std:：cin只接受布尔变量的两个输入：0和1（不是true或false）。任何其他输入都将导致std:：cin静默失败。在这种情况下，由于我们输入了true，std:：cin默默地失败了。失败的输入也将使变量归零，因此b的赋值也为false。因此，当std:：cout打印b的值时，它打印0。
+等等，发生了什么？
+
+结果表明，std::cin只接受布尔变量的两个输入：0和1（不是true或false）。任何其他输入都将导致std::cin读取失败但不报错。在这种情况下，由于我们输入了true，std::cin默默地失败了。失败的输入也将使变量归零，因此b的赋值也为false。因此，当std::cout打印b的值时，它打印0。
 
 要允许std:：cin接受“false”和“true”作为输入，必须启用std::boolalpha选项：
 
@@ -162,8 +182,8 @@ int main()
 	bool b{};
 	std::cout << "Enter a boolean value: ";
 
-	// Allow the user to enter 'true' or 'false' for boolean values
-	// This is case-sensitive, so True or TRUE will not work
+	// 允许用户输入 'true' or 'false' 作为bool变量的值
+	// 大小写敏感, True or TRUE 都不行
 	std::cin >> std::boolalpha;
 	std::cin >> b;
 
@@ -178,7 +198,7 @@ int main()
 {{< alert success >}}
 **警告**
 
-启用std:：boolalpha将仅允许接受小写的“false”或“true”。不接受大写字母的变更。
+启用std:：boolalpha将仅允许接受小写的“false”或“true”。不接受大写字母的输入。
 
 {{< /alert >}}
 
@@ -187,15 +207,15 @@ int main()
 
 布尔值通常用作检查某些内容是否为真的函数的返回值。此类函数通常以单词is（例如isEqual）或has（例如hasCommonDivisor）开头命名。
 
-考虑下面的例子，它与上面的非常相似：
+考虑下面的例子：
 
 ```C++
 #include <iostream>
 
-// returns true if x and y are equal, false otherwise
+// x与y相等返回true, 不然返回false
 bool isEqual(int x, int y)
 {
-    return (x == y); // operator== returns true if x equals y, and false otherwise
+    return (x == y); // 操作符== ， x 等于y，返回true，否则返回false
 }
 
 int main()
@@ -208,10 +228,10 @@ int main()
     int y{};
     std::cin >> y;
 
-    std::cout << std::boolalpha; // print bools as true or false
+    std::cout << std::boolalpha; // 以  true ， false 格式打印bool
     
     std::cout << x << " and " << y << " are equal? ";
-    std::cout << isEqual(x, y) << '\n'; // will return true or false
+    std::cout << isEqual(x, y) << '\n'; // isEqual返回true或false
 
     return 0;
 }
@@ -219,10 +239,24 @@ int main()
 
 下面是该程序两次运行的输出：
 
-这是如何工作的？首先读取x和y的整数值。然后，计算表达式“isEqual（x，y）”。在第一次运行中，这导致对isEqual（5,5）的函数调用。在该函数中，计算5==5，生成值true。值true返回给调用者，由std:：cout打印。在第二次运行中，对isEqual（6,4）的调用返回值false。
+```C++
+Enter an integer: 5
+Enter another integer: 5
+5 and 5 are equal? true
+```
 
-布尔值需要一点时间来适应，但一旦您将思维集中在它们上面，它们的简单性就会令人耳目一新！布尔值也是语言的一个很大的组成部分——您最终将比所有其他基本类型加在一起更多地使用它们！
+```C++
+Enter an integer: 6
+Enter another integer: 4
+6 and 4 are equal? false
+```
 
-在下一课中，我们将继续探索布尔值。
+这是如何运行的？首先读取x和y的整数值。然后，计算表达式“isEqual（x，y）”。在第一次运行中，这导致对isEqual（5,5）的函数调用。在该函数中，计算5==5，生成值true。值true返回给调用者，由std::cout打印。在第二次运行中，对isEqual（6,4）的调用返回值false。
 
 ***
+
+{{< prevnext prev="/basic/chapter4/float/" next="/basic/chapter4/if/" >}}
+4.7 浮点数
+<--->
+4.9 if语句简介
+{{< /prevnext >}}

@@ -143,4 +143,44 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter4/sign-int/<-> 4.3 有符号整数
 <-->
 <->/basic/chapter4/unsign-int/<-> 4.4 无符号整数，以及为什么要避免使用它们
+<-->
+<->/basic/chapter4/fix-int/<-> 4.5 固定宽度整数和size_t
+<-->
+<->/basic/chapter4/sci-notation/<-> 4.6 科学记数法
+<-->
+<->/basic/chapter4/float/<-> 4.7 浮点数
+<-->
+<->/basic/chapter4/bool/<-> 4.8 布尔值（Boolean）
+<-->
+<->/basic/chapter4/if/<-> 4.9 if语句简介
+<-->
+<->/basic/chapter4/char/<-> 4.10 字符
+<-->
+<->/basic/chapter4/type-convert/<-> 4.11 类型转换和static_cast简介
+<-->
+<->/basic/chapter4/summary/<-> 4.12 第4章总结
+{{< /chapterlist >}}
+
+***
+
+{{< chapterlist>}}
+第五章 常量，字符串
+<--->
+<->/basic/chapter5/const-var/<-> 5.0 常量（命名常量）
+<-->
+<->/basic/chapter5/const-exp/<-> 5.1 常量表达式、编译时常量和运行时常量
+<-->
+<->/basic/chapter5/constexpr/<-> 5.2 Constexpr
+<-->
+<->/basic/chapter5/literal/<-> 5.3 字面值常量
+<-->
+<->/basic/chapter5/num-sys/<-> 5.4 数字系统（十进制、二进制、十六进制和八进制）
+<-->
+<->/basic/chapter5/cond-op/<-> 5.5 条件运算符
+<-->
+<->/basic/chapter5/inline/<-> 5.6 内联函数和变量
+<-->
+<->/basic/chapter5/const-eval/<-> 5.7 Constexpr和consteval函数
+<-->
+<->/basic/chapter5/string/<-> 5.8 std::string简介
 {{< /chapterlist >}}

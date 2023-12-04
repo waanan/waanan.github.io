@@ -225,3 +225,9 @@ std::size_t的大小给对象的大小施加了严格的数学上限。在实践
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter4/unsign-int/" next="/basic/chapter4/sci-notation/" >}}
+4.4 无符号整数，以及为什么要避免使用它们
+<--->
+4.6 科学记数法
+{{< /prevnext >}}

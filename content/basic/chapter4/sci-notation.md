@@ -77,4 +77,8 @@ date: 2023-10-09T20:06:10+08:00
 
 ***
 
-
+{{< prevnext prev="/basic/chapter4/fix-int/" next="/basic/chapter4/float/" >}}
+4.5 固定宽度整数和size_t
+<--->
+4.7 浮点数
+{{< /prevnext >}}
