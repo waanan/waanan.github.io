@@ -256,3 +256,8 @@ int main()
 
 ***
 
+{{< prevnext prev="/basic/chapter5/literal/" next="/basic/chapter5/cond-op/" >}}
+5.3 字面值常量
+<--->
+5.5 条件运算符
+{{< /prevnext >}}

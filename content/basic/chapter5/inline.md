@@ -182,3 +182,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter5/cond-op/" next="/basic/chapter5/const-eval/" >}}
+5.5 条件运算符
+<--->
+5.7 Constexpr和consteval函数
+{{< /prevnext >}}

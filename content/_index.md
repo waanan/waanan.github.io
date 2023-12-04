@@ -170,17 +170,17 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter5/const-exp/<-> 5.1 常量表达式、编译时常量和运行时常量
 <-->
-<->/basic/chapter5/constexpr/<-> 5.2 常量表达式、编译时常量和运行时常量
+<->/basic/chapter5/constexpr/<-> 5.2 Constexpr
 <-->
-<->/basic/chapter5/literal/<-> 5.3 常量表达式、编译时常量和运行时常量
+<->/basic/chapter5/literal/<-> 5.3 字面值常量
 <-->
-<->/basic/chapter5/num-sys/<-> 5.4 常量表达式、编译时常量和运行时常量
+<->/basic/chapter5/num-sys/<-> 5.4 数字系统（十进制、二进制、十六进制和八进制）
 <-->
-<->/basic/chapter5/cond-op/<-> 5.5 常量表达式、编译时常量和运行时常量
+<->/basic/chapter5/cond-op/<-> 5.5 条件运算符
 <-->
-<->/basic/chapter5/inline/<-> 5.6 常量表达式、编译时常量和运行时常量
+<->/basic/chapter5/inline/<-> 5.6 内联函数和变量
 <-->
-<->/basic/chapter5/const-eval/<-> 5.7 常量表达式、编译时常量和运行时常量
+<->/basic/chapter5/const-eval/<-> 5.7 Constexpr和consteval函数
 <-->
-<->/basic/chapter5/string/<-> 5.8 常量表达式、编译时常量和运行时常量
+<->/basic/chapter5/string/<-> 5.8 std::string简介
 {{< /chapterlist >}}

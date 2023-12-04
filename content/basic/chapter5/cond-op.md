@@ -264,3 +264,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter5/num-sys/" next="/basic/chapter5/inline/" >}}
+5.4 数字系统（十进制、二进制、十六进制和八进制）
+<--->
+5.6 内联函数和变量
+{{< /prevnext >}}

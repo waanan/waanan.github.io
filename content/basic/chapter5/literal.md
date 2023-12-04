@@ -248,3 +248,9 @@ int kmtoM(int km)
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter5/constexpr/" next="/basic/chapter5/num-sys/" >}}
+5.2 Constexpr
+<--->
+5.4 数字系统（十进制、二进制、十六进制和八进制）
+{{< /prevnext >}}

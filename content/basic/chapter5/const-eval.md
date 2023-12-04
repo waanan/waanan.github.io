@@ -404,3 +404,9 @@ C++标准规定，constexpr函数必须为至少一组参数返回constexpr值�
 3. 测试constexpr函数时，使用常量上下文。因为constexpr函数可能可以在非常量上下文可以编译，但是在常量上下文中不行。
 
 ***
+
+{{< prevnext prev="/basic/chapter5/inline/" next="/basic/chapter5/string/" >}}
+5.6 内联函数和变量
+<--->
+5.8 std::string简介
+{{< /prevnext >}}

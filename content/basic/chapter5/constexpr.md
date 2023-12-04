@@ -142,3 +142,9 @@ int main()
 将变量设为constexpr，可以确保在常量子表达式中使用这些变量时，它们符合常量折叠的条件。
 
 ***
+
+{{< prevnext prev="/basic/chapter5/const-exp/" next="/basic/chapter5/literal/" >}}
+5.1 常量表达式、编译时常量和运行时常量
+<--->
+5.3 字面值常量
+{{< /prevnext >}}

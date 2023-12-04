@@ -250,8 +250,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter5/const-var/" next="/" >}}
+{{< prevnext prev="/basic/chapter5/const-var/" next="/basic/chapter5/constexpr/" >}}
 5.0 常量（命名常量）
 <--->
-主页
+5.2 Constexpr
 {{< /prevnext >}}

@@ -487,3 +487,9 @@ int main()
 string很复杂，利用了许多我们尚未介绍的语言功能。幸运的是，您不需要理解这些复杂性，就可以将std::string用于简单的任务，如基本的字符串输入和输出。我们鼓励您现在就开始尝试字符串，稍后我们将介绍其他字符串功能。
 
 ***
+
+{{< prevnext prev="/basic/chapter5/const-eval/" next="/" >}}
+5.7 Constexpr和consteval函数
+<--->
+主页
+{{< /prevnext >}}
