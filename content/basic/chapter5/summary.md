@@ -61,3 +61,9 @@ C样式的字符串字面值在整个程序运行过程中有效，因此可以�
 子字符串是现有字符串中的连续字符序列。
 
 ***
+
+{{< prevnext prev="/basic/chapter5/string-view2/" next="/" >}}
+5.10 std::string_view（第2部分）
+<--->
+主页
+{{< /prevnext >}}

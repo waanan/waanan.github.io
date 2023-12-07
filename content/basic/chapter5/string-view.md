@@ -264,3 +264,9 @@ int main()
 我们将在下一课中继续讨论std::string_view。
 
 ***
+
+{{< prevnext prev="/basic/chapter5/string/" next="/basic/chapter5/string-view2/" >}}
+5.8 std::string简介
+<--->
+5.10 std::string_view（第2部分）
+{{< /prevnext >}}
