@@ -501,3 +501,9 @@ C样式字符串文本和std::string始终以null结尾。std::string_view可以
 4. std::string_view可能不是以null结尾。
 
 ***
+
+{{< prevnext prev="/basic/chapter5/string-view/" next="/basic/chapter5/summary/" >}}
+5.9 std::string_view简介
+<--->
+5.11 第五章总结
+{{< /prevnext >}}
