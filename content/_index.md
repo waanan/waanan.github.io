@@ -199,4 +199,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter6/op-precedence/<-> 6.0 常量（命名常量）
 <-->
 <->/basic/chapter6/arithmetic-op/<-> 6.1 第五章总结
+<-->
+<->/basic/chapter6/remaind-exp/<-> 6.2 第五章总结
 {{< /chapterlist >}}
