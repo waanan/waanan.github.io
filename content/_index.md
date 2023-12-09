@@ -201,4 +201,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter6/arithmetic-op/<-> 6.1 第五章总结
 <-->
 <->/basic/chapter6/remaind-exp/<-> 6.2 第五章总结
+<-->
+<->/basic/chapter6/incre-decre/<-> 6.3 第五章总结
 {{< /chapterlist >}}
