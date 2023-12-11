@@ -62,8 +62,8 @@ C样式的字符串字面值在整个程序运行过程中有效，因此可以�
 
 ***
 
-{{< prevnext prev="/basic/chapter5/string-view2/" next="/" >}}
+{{< prevnext prev="/basic/chapter5/string-view2/" next="/basic/chapter6/op-precedence/" >}}
 5.10 std::string_view（第2部分）
 <--->
-主页
+6.0 运算符优先级和结合性
 {{< /prevnext >}}

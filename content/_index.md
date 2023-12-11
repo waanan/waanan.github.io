@@ -196,11 +196,11 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第五章 运算符
 <--->
-<->/basic/chapter6/op-precedence/<-> 6.0 常量（命名常量）
+<->/basic/chapter6/op-precedence/<-> 6.0 运算符优先级和结合性
 <-->
-<->/basic/chapter6/arithmetic-op/<-> 6.1 第五章总结
+<->/basic/chapter6/arithmetic-op/<-> 6.1 算术运算符
 <-->
-<->/basic/chapter6/remaind-exp/<-> 6.2 第五章总结
+<->/basic/chapter6/remaind-exp/<-> 6.2 余数和指数
 <-->
-<->/basic/chapter6/incre-decre/<-> 6.3 第五章总结
+<->/basic/chapter6/incre-decre/<-> 6.3 自增/自减运算符和副作用
 {{< /chapterlist >}}

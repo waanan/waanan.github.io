@@ -154,3 +154,9 @@ x += 4; // 将变量 x 保存的值加4
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter6/op-precedence/" next="/basic/chapter6/remaind-exp/" >}}
+6.0 运算符优先级和结合性
+<--->
+6.2 余数和指数
+{{< /prevnext >}}

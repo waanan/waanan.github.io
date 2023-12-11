@@ -262,3 +262,9 @@ constexpr std::int64_t powint_safe(std::int64_t base, int exp)
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter6/arithmetic-op/" next="/basic/chapter6/incre-decre/" >}}
+6.1 算术运算符
+<--->
+6.3 自增/自减运算符和副作用
+{{< /prevnext >}}

@@ -293,3 +293,8 @@ int main()
 
 ***
 
+{{< prevnext prev="/basic/chapter5/summary/" next="/basic/chapter6/arithmetic-op/" >}}
+5.11 第五章总结
+<--->
+6.1 算术运算符
+{{< /prevnext >}}

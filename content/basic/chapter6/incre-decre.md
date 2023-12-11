@@ -199,3 +199,9 @@ C++不定义函数参数或运算符的操作数的求值顺序。
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter6/remaind-exp/" next="/" >}}
+6.2 余数和指数
+<--->
+主页
+{{< /prevnext >}}
