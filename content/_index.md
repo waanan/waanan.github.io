@@ -203,4 +203,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter6/remaind-exp/<-> 6.2 余数和指数
 <-->
 <->/basic/chapter6/incre-decre/<-> 6.3 自增/自减运算符和副作用
+<-->
+<->/basic/chapter6/comma/<-> 6.4 自增/自减运算符和副作用
 {{< /chapterlist >}}

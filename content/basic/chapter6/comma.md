@@ -3,7 +3,11 @@ title: "逗号运算符"
 date: 2023-12-07T13:09:17+08:00
 ---
 
-逗号运算符（,）允许在允许单个表达式的地方可以编写多个表达式。逗号运算符计算左操作数，然后计算右操作数，最后返回右操作数的结果。
+| 运算符 |  符号  |  使用形式 |  结果 |
+|  ----  | ----  | ----  | ----  |
+| 逗号 | , | x, y | 分别计算x与y，然后返回y求值的结果 |
+
+逗号运算符（,）让我们在允许单个表达式的地方可以编写多个表达式。逗号运算符计算左操作数，然后计算右操作数，最后返回右操作数的结果。
 
 例如：
 
@@ -15,7 +19,7 @@ int main()
     int x{ 1 };
     int y{ 2 };
 
-    std::cout << (++x, ++y) << '\n'; // increment x and y, evaluates to the right operand
+    std::cout << (++x, ++y) << '\n'; // x与y分别加以, 计算的结果是右操作数
 
     return 0;
 }
@@ -26,13 +30,13 @@ int main()
 请注意，逗号在所有运算符中的优先级最低，甚至低于赋值。因此，以下两行代码执行不同的操作：
 
 ```C++
-z = (a, b); // evaluate (a, b) first to get result of b, then assign that value to variable z.
-z = a, b; // evaluates as "(z = a), b", so z gets assigned the value of a, and b is evaluated and discarded.
+z = (a, b); // 首先计算 (a, b) 得到b的值, 将结果赋值给 z.
+z = a, b; // 计算过程是 "(z = a), b", 所以 z 拿到的是 a 的值, 然后计算b，丢弃b的求值结果。
 ```
 
 这使得逗号运算符的使用有些危险。
 
-在几乎所有情况下，使用逗号运算符编写的语句最好编写为单独的语句。例如，上述代码可以编写为：
+在几乎所有情况下，使用逗号运算符编写的语句最好拆开为单独的语句。例如，上述代码可以编写为：
 
 ```C++
 #include <iostream>
@@ -49,10 +53,10 @@ int main()
 }
 ```
 
-大多数程序员根本不使用逗号操作符，唯一的例外是inide for循环，在那里它的使用相当普遍。我们将在以后的第8.10课中讨论for循环——for语句。
+大多数程序员根本不使用逗号操作符，唯一的例外是for循环中。我们将在以后介绍for语句。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 避免使用逗号运算符，但在for循环中除外。
 
@@ -64,12 +68,13 @@ int main()
 在C++中，逗号符号通常用作分隔符，这些用法不会调用逗号运算符。分隔符逗号的一些示例：
 
 ```C++
-void foo(int x, int y) // Separator comma used to separate parameters in function definition
+void foo(int x, int y) // 逗号用来区分函数中的不同参数
 {
-    add(x, y); // Separator comma used to separate arguments in function call
-    constexpr int z{ 3 }, w{ 5 }; // Separator comma used to separate multiple variables being defined on the same line (don't do this)
+    add(x, y); // 逗号用来区分函数调用中的不同参数
+    constexpr int z{ 3 }, w{ 5 }; // 逗号用来分隔同一语句中的变量声明 (不要这样写)
 }
 ```
 
-没有必要避免分隔符逗号（除非在声明多个变量时，您不应该这样做）。
+没有必要避免使用分隔符逗号（除非是在同一语句里声明多个变量时）。
 
+***
