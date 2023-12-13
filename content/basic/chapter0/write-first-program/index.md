@@ -87,7 +87,7 @@ g++ -o HelloWorld HelloWorld.cpp
 
 编译完成后，当前目录下看见可执行文件「HelloWorld」。
 
-使用如下命令执行，即可看到运行效果。
+如下命令执行，即可得到运行效果。
 
 ```bash
 ./HelloWorld
