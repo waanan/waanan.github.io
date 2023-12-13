@@ -200,8 +200,8 @@ C++不定义函数参数或运算符的操作数的求值顺序。
 
 ***
 
-{{< prevnext prev="/basic/chapter6/remaind-exp/" next="/" >}}
+{{< prevnext prev="/basic/chapter6/remaind-exp/" next="/basic/chapter6/comma/" >}}
 6.2 余数和指数
 <--->
-主页
+6.4 逗号运算符
 {{< /prevnext >}}
