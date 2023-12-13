@@ -78,3 +78,9 @@ void foo(int x, int y) // 逗号用来区分函数中的不同参数
 没有必要避免使用分隔符逗号（除非是在同一语句里声明多个变量时）。
 
 ***
+
+{{< prevnext prev="/basic/chapter6/incre-decre/" next="/" >}}
+6.3 自增/自减运算符和副作用
+<--->
+主页
+{{< /prevnext >}}
