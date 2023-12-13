@@ -205,6 +205,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter6/incre-decre/<-> 6.3 自增/自减运算符和副作用
 <-->
 <->/basic/chapter6/comma/<-> 6.4 逗号运算符
+<-->
+<->/basic/chapter6/relation-op/<-> 6.5 逗号运算符
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
