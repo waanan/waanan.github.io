@@ -79,8 +79,8 @@ void foo(int x, int y) // 逗号用来区分函数中的不同参数
 
 ***
 
-{{< prevnext prev="/basic/chapter6/incre-decre/" next="/" >}}
+{{< prevnext prev="/basic/chapter6/incre-decre/" next="/basic/chapter6/relation-op/" >}}
 6.3 自增/自减运算符和副作用
 <--->
-主页
+6.5 关系运算符和浮点比较
 {{< /prevnext >}}

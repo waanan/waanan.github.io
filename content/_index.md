@@ -206,7 +206,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter6/comma/<-> 6.4 逗号运算符
 <-->
-<->/basic/chapter6/relation-op/<-> 6.5 逗号运算符
+<->/basic/chapter6/relation-op/<-> 6.5 关系运算符和浮点比较
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
