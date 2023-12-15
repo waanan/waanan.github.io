@@ -194,7 +194,7 @@ date: 2022-12-28T16:40:41+08:00
 ***
 
 {{< chapterlist>}}
-第五章 运算符
+第六章 运算符
 <--->
 <->/basic/chapter6/op-precedence/<-> 6.0 运算符优先级和结合性
 <-->
@@ -207,10 +207,14 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter6/comma/<-> 6.4 逗号运算符
 <-->
 <->/basic/chapter6/relation-op/<-> 6.5 关系运算符和浮点比较
+<-->
+<->/basic/chapter6/logic-op/<-> 6.6 逻辑运算符
+<-->
+<->/basic/chapter6/summary/<-> 6.7 第六章总结
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
-第六章 作用域与编译链接
+第七章 作用域与编译链接
 <--->
 {{< /chapterlist >}}
 
