@@ -441,8 +441,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter6/comma/" next="/" >}}
+{{< prevnext prev="/basic/chapter6/comma/" next="/basic/chapter6/logic-op/" >}}
 6.4 逗号运算符
 <--->
-主页
+6.6 逻辑运算符
 {{< /prevnext >}}

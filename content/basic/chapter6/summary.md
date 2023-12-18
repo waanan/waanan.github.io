@@ -23,3 +23,9 @@ date: 2023-12-07T13:09:17+08:00
 逻辑运算符允许我们编写复合条件语句。
 
 ***
+
+{{< prevnext prev="/basic/chapter6/logic-op/" next="/" >}}
+6.6 逻辑运算符
+<--->
+主页
+{{< /prevnext >}}

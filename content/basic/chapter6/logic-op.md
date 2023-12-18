@@ -321,3 +321,9 @@ std::cout << not a and (b or c);
 虽然这些替代名称现在似乎更容易理解，但大多数有经验的C++开发人员更喜欢使用符号名称，而不是关键字名称。因此，我们建议学习和使用符号名称，因为这是在现有代码中使用的。
 
 ***
+
+{{< prevnext prev="/basic/chapter6/relation-op/" next="/basic/chapter6/summary/" >}}
+6.5 关系运算符和浮点比较
+<--->
+6.7 第六章总结
+{{< /prevnext >}}
