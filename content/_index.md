@@ -216,6 +216,9 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第七章 作用域与编译链接
 <--->
+<->/basic/chapter7/code-block/<-> 7.0 运算符优先级和结合性
+<-->
+<->/basic/chapter7/user-def-namespace/<-> 7.1 第六章总结
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
