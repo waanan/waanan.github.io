@@ -219,6 +219,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter7/code-block/<-> 7.0 代码块
 <-->
 <->/basic/chapter7/user-def-namespace/<-> 7.1 自定义命名空间和作用域解析操作符
+<-->
+<->/basic/chapter7/local-var/<-> 7.2 局部变量
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
