@@ -144,3 +144,9 @@ C++标准规定C++编译器应该支持256级嵌套——然而，并非所有�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter6/summary/" next="/basic/chapter7/user-def-namespace/" >}}
+6.7 第六章总结
+<--->
+7.1 自定义命名空间和作用域解析操作符
+{{< /prevnext >}}

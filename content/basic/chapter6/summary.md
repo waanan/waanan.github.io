@@ -24,8 +24,8 @@ date: 2023-12-07T13:09:17+08:00
 
 ***
 
-{{< prevnext prev="/basic/chapter6/logic-op/" next="/" >}}
+{{< prevnext prev="/basic/chapter6/logic-op/" next="/basic/chapter7/code-block/" >}}
 6.6 逻辑运算符
 <--->
-主页
+7.0 代码块
 {{< /prevnext >}}
