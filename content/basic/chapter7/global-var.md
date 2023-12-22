@@ -136,15 +136,15 @@ int g_z { 1 }; // 使用特定的值，进行列表初始化
 ```C++
 #include <iostream>
 
-const int g_x;     // error: constant variables must be initialized
-constexpr int g_w; // error: constexpr variables must be initialized
+const int g_x;     // 错误: const 变量必须初始化
+constexpr int g_w; // 错误: constexpr 变量必须初始化
 
-const int g_y { 1 };     // const global variable g_y, initialized with a value
-constexpr int g_z { 2 }; // constexpr global variable g_z, initialized with a value
+const int g_y { 1 };     // const 全局变量 g_y, 使用1初始化
+constexpr int g_z { 2 }; // constexpr 全局变量 g_z, 使用2初始化
 
 void doSomething()
 {
-    // global variables can be seen and used everywhere in the file
+    // 全局变量声明后，可以在文件内的任意位置看到和使用
     std::cout << g_y << '\n';
     std::cout << g_z << '\n';
 }
@@ -153,42 +153,34 @@ int main()
 {
     doSomething();
 
-    // global variables can be seen and used everywhere in the file
+    // 全局变量声明后，可以在文件内的任意位置看到和使用
     std::cout << g_y << '\n';
     std::cout << g_z << '\n';
 
     return 0;
 }
-// g_y and g_z goes out of scope here
+// g_y g_z 离开作用域
 ```
-
-{{< alert success >}}
-**相关内容**
-
-我们在第7.9课中更详细地讨论了全局常量——在多个文件中共享全局常量（使用内联变量）。
-
-{{< /alert >}}
 
 ***
 ## 关于（非常量）全局变量的一句话
 
-新的程序员经常试图使用许多全局变量，因为可以使用它们，而不必将它们显式地传递给每个需要它们的函数。然而，通常应完全避免使用非常量全局变量！我们将在即将到来的第7.8课中讨论为什么——为什么（非常数）全局变量是邪恶的。
-
+新手程序员经常试图使用许多全局变量。因为可以使用它们，可以不必将它们显式地传递给每个需要它们的函数。然而，通常应完全避免使用非常量的全局变量！
 ***
 ## 快速摘要
 
 ```C++
-// Non-constant global variables
-int g_x;                 // defines non-initialized global variable (zero initialized by default)
-int g_x {};              // defines explicitly value-initialized global variable
-int g_x { 1 };           // defines explicitly initialized global variable
+// 非常量全局变量
+int g_x;                 // 定义一个未显式初始化的全局变量 (默认初始化为0)
+int g_x {};              // 定义一个显示初始化为0的全局变量
+int g_x { 1 };           // 定义一个显示初始化为1的全局变量
 
-// Const global variables
-const int g_y;           // error: const variables must be initialized
-const int g_y { 2 };     // defines initialized global const
+// Const 全局变量
+const int g_y;           // 错误: const 变量必须初始化
+const int g_y { 2 };     // 定义一个使用2初始化的 const 全局变量
 
-// Constexpr global variables
-constexpr int g_y;       // error: constexpr variables must be initialized
+// Constexpr 全局变量
+constexpr int g_y;       // 错误: constexpr 变量必须初始化
 constexpr int g_y { 3 }; // defines initialized global constexpr
 ```
 
