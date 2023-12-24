@@ -14,15 +14,15 @@ date: 2023-12-18T16:52:52+08:00
 
 具有内部链接的全局变量有时称为内部变量。
 
-为了使非常量全局变量成为内部变量，我们使用static关键字。
+为了使非常量的全局变量成为内部变量，使用static关键字。
 
 ```C++
 #include <iostream>
 
-static int g_x{}; // non-constant globals have external linkage by default, but can be given internal linkage via the static keyword
+static int g_x{}; // 非常量的全局变量默认是外部链接, 但可以通过 static 关键字使它成为内部链接
 
-const int g_y{ 1 }; // const globals have internal linkage by default
-constexpr int g_z{ 2 }; // constexpr globals have internal linkage by default
+const int g_y{ 1 }; // const 全局变量默认是内部链接
+constexpr int g_z{ 2 }; // constexpr 全局变量默认是内部链接
 
 int main()
 {
@@ -31,26 +31,26 @@ int main()
 }
 ```
 
-默认情况下，Const和constexpr全局变量具有内部链接（因此不需要static关键字——如果使用它，它将被忽略）。
+默认情况下，Const和constexpr全局变量具有内部链接属性（因此不需要static关键字——如果使用static关键字也无额外作用）。
 
 下面是使用内部变量的多个文件的示例：
 
 a.cpp：
 
 ```C++
-[[maybe_unused]] constexpr int g_x { 2 }; // this internal g_x is only accessible within a.cpp
+constexpr int g_x { 2 }; // 这里的内部链接 g_x 只在 a.cpp 中能被访问
 ```
 
-主.cpp：
+main.cpp：
 
 ```C++
 #include <iostream>
 
-static int g_x { 3 }; // this separate internal g_x is only accessible within main.cpp
+static int g_x { 3 }; // 这里的内部链接 g_x is 只在main.cpp 中能被访问
 
 int main()
 {
-    std::cout << g_x << '\n'; // uses main.cpp's g_x, prints 3
+    std::cout << g_x << '\n'; // 使用 main.cpp 中的 g_x, 打印 3
 
     return 0;
 }
@@ -58,37 +58,41 @@ int main()
 
 该程序打印：
 
-因为g_x是每个文件的内部文件，所以main.cpp不知道.cpp也有一个名为g_x的变量（反之亦然）。
+```C++
+3
+```
+
+因为g_x是每个文件的内部变量，所以main.cpp不知道a.cpp也有一个名为g_x的变量（反之亦然）。
 
 {{< alert success >}}
 **对于高级读者**
 
-上面静态关键字的使用是存储类说明符的一个示例，它设置名称的链接及其存储持续时间。最常用的存储类说明符是静态、外部和可变的。术语存储类说明符主要用于技术文档。
+上面static关键字的使用是存储类说明符（ storage class specifier）的一个示例，它设置名称的链接属性及其存储期。最常用的存储类说明符是static、extern和mutable的。
 
 {{< /alert >}}
 
 ***
-## 具有内部联动装置的功能
+## 具有内部链接的函数
 
-由于链接是标识符的属性（不是变量的属性），函数标识符具有与变量标识符相同的链接属性。函数默认为外部链接（我们将在下一课中介绍），但可以通过static关键字设置为内部链接：
+由于链接是标识符的属性（不是变量的属性），函数标识符也具有链接属性。函数默认为外部链接（我们将在下一课中介绍），但可以通过static关键字设置为内部链接：
 
-添加.cpp：
+add.cpp：
 
 ```C++
-// This function is declared as static, and can now be used only within this file
-// Attempts to access it from another file via a function forward declaration will fail
-[[maybe_unused]] static int add(int x, int y)
+// 这个函数被声明为 static, 因此只能在本文件中被使用
+// 即是其它文件中有add函数的前向声明，但也仍然不能访问到add函数
+static int add(int x, int y)
 {
     return x + y;
 }
 ```
 
-主.cpp：
+main.cpp：
 
 ```C++
 #include <iostream>
 
-static int add(int x, int y); // forward declaration for function add
+static int add(int x, int y); // 前向声明 add
 
 int main()
 {
@@ -98,41 +102,40 @@ int main()
 }
 ```
 
-此程序将不会链接，因为在add.cpp之外无法访问函数add。
+此程序无法链接成功，因为在add.cpp之外无法访问函数add。
 
 ***
-## 一个定义规则和内部链接
+## 单定义规则和内部链接
 
-在第2.7课——转发声明和定义中，我们注意到一个定义规则指出，对象或函数不能在文件或程序中具有多个定义。
+根据单定义规则，我们注意到，对象或函数不能在文件或程序中具有多个定义。
 
-然而，值得注意的是，在不同文件中定义的内部对象（和函数）被认为是独立的实体（即使它们的名称和类型相同），因此不会违反一个定义规则。每个内部对象只有一个定义。
+然而，值得注意的是，在不同文件中定义的内部对象（和函数）被认为是独立的实体（即使它们的名称和类型相同），因此不会违反单定义规则。每个文件内部对象只有一个定义。
 
 ***
-## 静态命名空间与未命名命名空间
+## static 对比 未命名的命名空间
 
-在现代C++中，使用static关键字为标识符提供内部链接越来越不受欢迎。未命名的名称空间可以为更广泛的标识符（例如，类型标识符）提供内部链接，并且它们更适合为许多标识符提供内部链接。
+在现代C++中，使用static关键字为标识符提供内部链接越来越不受欢迎。未命名的名称空间可以为更广泛的标识符（例如，类型标识符）提供内部链接，并且它们更适合为多个标识符提供内部链接。
 
-在第7.13课中，我们讨论了未命名的名称空间——未命名的和内联的名称空间。
+在后续，会讨论未命名的名称空间。
 
 ***
 ## 为什么要费心为标识符提供内部链接？
 
-给出标识符内部链接通常有两个原因：
+让标识符具有内部链接通常有两个原因：
 
 1. 有一个标识符，我们要确保其他文件无法访问。这可能是一个我们不想弄乱的全局变量，或者是一个不想调用的辅助函数。
-2. 迂腐地避免命名冲突。由于具有内部链接的标识符不会向链接器公开，因此它们只能与同一翻译单元中的名称发生冲突，而不能在整个程序中发生冲突。
+2. 避免命名冲突。由于具有内部链接的标识符不会向链接器公开，因此它们只能与同一翻译单元中的名称发生冲突，而不会在整个程序中发生冲突。
 
+许多现代开发指南建议，不打算在其它文件中访问的变量或函数，都设置为内部链接。如果你可以完全遵守，这是一个很好的建议。
 
-许多现代开发指南建议提供不打算从另一个文件内部链接使用的每个变量和函数。如果你有纪律，这是一个很好的建议。
-
-现在，我们至少推荐一种更轻量级的接触方法：为您有明确理由不允许从其他文件访问的任何标识符提供内部链接。
+当然，有一个更为轻量级的准则：将有明确理由不允许从其他文件访问的任何标识符设置为内部链接。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
-当您有明确的理由不允许从其他文件访问时，请提供标识符内部链接。
+当您有明确的理由不允许从其他文件访问时，将标识符设置为内部链接。
 
-考虑为其他文件提供您不希望访问的所有标识符的内部链接（为此使用未命名的命名空间）。
+最好将您不希望其他文件访问的所有标识符设置为内部链接（使用未命名的命名空间）。
 
 {{< /alert >}}
 
@@ -140,16 +143,15 @@ int main()
 ## 快速摘要
 
 ```C++
-// Internal global variables definitions:
-static int g_x;          // defines non-initialized internal global variable (zero initialized by default)
-static int g_x{ 1 };     // defines initialized internal global variable
+// 全局变量 内部链接 定义:
+static int g_x;          // 定义未初始化的 内部全局变量 (默认初始化为0)
+static int g_x{ 1 };     // 定义初始化了的 内部全局变量
 
-const int g_y { 2 };     // defines initialized internal global const variable
-constexpr int g_y { 3 }; // defines initialized internal global constexpr variable
+const int g_y { 2 };     // 定义初始化了的 const 内部全局变量
+constexpr int g_y { 3 }; // 定义初始化了的 constexpr 内部全局变量
 
-// Internal function definitions:
-static int foo() {};     // defines internal function
+// 函数 内部链接 定义:
+static int foo() {};     // 定义 内部 函数
 ```
 
-我们在第7.11课中提供了一个全面的总结——范围、持续时间和链接总结。
-
+***
