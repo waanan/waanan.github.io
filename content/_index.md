@@ -221,6 +221,14 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter7/user-def-namespace/<-> 7.1 自定义命名空间和作用域解析操作符
 <-->
 <->/basic/chapter7/local-var/<-> 7.2 局部变量
+<-->
+<->/basic/chapter7/global-var/<-> 7.3 局部变量
+<-->
+<->/basic/chapter7/name-shadow/<-> 7.4 局部变量
+<-->
+<->/basic/chapter7/internal-link/<-> 7.5 局部变量
+<-->
+<->/basic/chapter7/external-link/<-> 7.6 局部变量
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
