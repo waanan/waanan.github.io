@@ -168,3 +168,9 @@ GCC和Clang支持标记 -Wshadow，如果变量被遮挡，则会生成警告。
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter7/global-var/" next="/basic/chapter7/internal-link/" >}}
+7.3 全局变量
+<--->
+7.5 内部链接
+{{< /prevnext >}}

@@ -222,13 +222,13 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter7/local-var/<-> 7.2 局部变量
 <-->
-<->/basic/chapter7/global-var/<-> 7.3 局部变量
+<->/basic/chapter7/global-var/<-> 7.3 全局变量
 <-->
-<->/basic/chapter7/name-shadow/<-> 7.4 局部变量
+<->/basic/chapter7/name-shadow/<-> 7.4 变量名称遮挡（Variable shadowing）
 <-->
-<->/basic/chapter7/internal-link/<-> 7.5 局部变量
+<->/basic/chapter7/internal-link/<-> 7.5 内部链接
 <-->
-<->/basic/chapter7/external-link/<-> 7.6 局部变量
+<->/basic/chapter7/external-link/<-> 7.6 外部链接和变量前向声明
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

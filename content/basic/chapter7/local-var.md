@@ -202,3 +202,8 @@ int main()
 
 ***
 
+{{< prevnext prev="/basic/chapter7/user-def-namespace/" next="/basic/chapter7/global-var/" >}}
+7.1 自定义命名空间和作用域解析操作符
+<--->
+7.3 全局变量
+{{< /prevnext >}}

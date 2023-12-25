@@ -576,8 +576,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter7/code-block/" next="/" >}}
+{{< prevnext prev="/basic/chapter7/code-block/" next="/basic/chapter7/local-var/" >}}
 7.0 代码块
 <--->
-主页
+7.2 局部变量
 {{< /prevnext >}}

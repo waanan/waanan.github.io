@@ -184,3 +184,10 @@ constexpr int g_y;       // 错误: constexpr 变量必须初始化
 constexpr int g_y { 3 }; // defines initialized global constexpr
 ```
 
+***
+
+{{< prevnext prev="/basic/chapter7/local-var/" next="/basic/chapter7/name-shadow/" >}}
+7.2 局部变量
+<--->
+7.4 变量名称遮挡（Variable shadowing）
+{{< /prevnext >}}

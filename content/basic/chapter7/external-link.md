@@ -148,3 +148,10 @@ extern constexpr int g_y;      // 不被允许: constexpr 变量 不能被前向
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter7/internal-link/" next="/" >}}
+7.5 内部链接
+<--->
+主页
+{{< /prevnext >}}
+
