@@ -154,8 +154,6 @@ constexpr int g_y { 3 }; // 定义初始化了的 constexpr 内部全局变量
 static int foo() {};     // 定义 内部 函数
 ```
 
-我们在第7.11课中提供了一个全面的总结——范围、持续时间和链接总结。
-
 ***
 
 {{< prevnext prev="/basic/chapter7/name-shadow/" next="/basic/chapter7/external-link/" >}}
