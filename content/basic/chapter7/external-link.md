@@ -146,5 +146,9 @@ extern constexpr int g_y;      // not allowed: constexpr variables can't be forw
 我们在第7.11课中提供了一个全面的总结——范围、持续时间和链接总结。
 
 ***
-## 测验时间
 
+{{< prevnext prev="/basic/chapter7/internal-link/" next="/" >}}
+7.5 内部链接
+<--->
+主页
+{{< /prevnext >}}

@@ -153,3 +153,10 @@ static int foo() {};     // defines internal function
 
 我们在第7.11课中提供了一个全面的总结——范围、持续时间和链接总结。
 
+***
+
+{{< prevnext prev="/basic/chapter7/name-shadow/" next="/basic/chapter7/external-link/" >}}
+7.4 变量名称遮挡（Variable shadowing）
+<--->
+7.6 外部链接和变量前向声明
+{{< /prevnext >}}
