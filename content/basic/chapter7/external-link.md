@@ -149,9 +149,8 @@ extern constexpr int g_y;      // 不被允许: constexpr 变量 不能被前向
 
 ***
 
-{{< prevnext prev="/basic/chapter7/internal-link/" next="/" >}}
+{{< prevnext prev="/basic/chapter7/internal-link/" next="/basic/chapter7/why-non-const-global-var-evil/" >}}
 7.5 内部链接
 <--->
-主页
+7.7 为什么（非常量）全局变量是邪恶的
 {{< /prevnext >}}
-

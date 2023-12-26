@@ -283,3 +283,9 @@ int main()
 答案：//
 
 ***
+
+{{< prevnext prev="/basic/chapter7/external-link/" next="/" >}}
+7.6 外部链接和变量前向声明
+<--->
+主页
+{{< /prevnext >}}
