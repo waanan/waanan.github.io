@@ -231,6 +231,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter7/external-link/<-> 7.6 外部链接和变量前向声明
 <-->
 <->/basic/chapter7/why-non-const-global-var-evil/<-> 7.7 为什么（非常量）全局变量是邪恶的
+<-->
+<->/basic/chapter7/share-const-global/<-> 7.8 外部链接和变量前向声明
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
