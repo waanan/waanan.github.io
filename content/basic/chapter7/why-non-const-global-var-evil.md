@@ -284,8 +284,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter7/external-link/" next="/" >}}
+{{< prevnext prev="/basic/chapter7/external-link/" next="/basic/chapter7/share-const-global/" >}}
 7.6 外部链接和变量前向声明
 <--->
-主页
+7.8 在多个文件中共享全局常量（使用内联变量）
 {{< /prevnext >}}

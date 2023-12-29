@@ -232,7 +232,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter7/why-non-const-global-var-evil/<-> 7.7 为什么（非常量）全局变量是邪恶的
 <-->
-<->/basic/chapter7/share-const-global/<-> 7.8 外部链接和变量前向声明
+<->/basic/chapter7/share-const-global/<-> 7.8 在多个文件中共享全局常量（使用内联变量）
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
