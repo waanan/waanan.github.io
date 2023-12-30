@@ -234,9 +234,9 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter7/share-const-global/<-> 7.8 在多个文件中共享全局常量（使用内联变量）
 <-->
-<->/basic/chapter7/static-local-var/<-> 7.9 在多个文件中共享全局常量（使用内联变量）
+<->/basic/chapter7/static-local-var/<-> 7.9 静态局部变量
 <-->
-<->/basic/chapter7/scope-duration-linkage/<-> 7.10 在多个文件中共享全局常量（使用内联变量）
+<->/basic/chapter7/scope-duration-linkage/<-> 7.10 作用域、存储期和链接摘要
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

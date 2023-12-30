@@ -105,3 +105,9 @@ C++现支持4个存储类说明符：
 术语存储类说明符通常仅在正式文档中使用。
 
 ***
+
+{{< prevnext prev="/basic/chapter7/static-local-var/" next="/" >}}
+7.9 静态局部变量
+<--->
+主页
+{{< /prevnext >}}

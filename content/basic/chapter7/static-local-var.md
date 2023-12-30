@@ -232,3 +232,8 @@ getInteger() 不可重用，因为它具有内部状态（静态局部变量s_is
 
 ***
 
+{{< prevnext prev="/basic/chapter7/share-const-global/" next="/basic/chapter7/scope-duration-linkage/" >}}
+7.8 在多个文件中共享全局常量（使用内联变量）
+<--->
+7.10 作用域、存储期和链接摘要
+{{< /prevnext >}}

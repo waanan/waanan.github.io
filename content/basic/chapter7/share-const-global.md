@@ -223,8 +223,8 @@ Constexpr函数是隐式内联的，但Constexpr变量不是隐式内嵌的。
 
 ***
 
-{{< prevnext prev="/basic/chapter7/why-non-const-global-var-evil/" next="/" >}}
+{{< prevnext prev="/basic/chapter7/why-non-const-global-var-evil/" next="/basic/chapter7/static-local-var/" >}}
 7.7 为什么（非常量）全局变量是邪恶的
 <--->
-主页
+7.9 静态局部变量
 {{< /prevnext >}}
