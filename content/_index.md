@@ -213,6 +213,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter6/summary/<-> 6.7 第六章总结
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
 第七章 作用域与编译链接
 <--->
@@ -245,13 +247,16 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter7/summary/<-> 7.13 第七章总结
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
-第七章 控制流与错误处理
+第八章 控制流与错误处理
 <--->
+<->/basic/chapter8/control-flow-intro/<-> 8.0 代码块
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
-第八章 类型转换与函数重载
+第九章 类型转换与函数重载
 <--->
 {{< /chapterlist >}}
 
