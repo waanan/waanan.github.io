@@ -238,11 +238,11 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter7/scope-duration-linkage/<-> 7.10 作用域、存储期和链接摘要
 <-->
-<->/basic/chapter7/using/<-> 7.11 作用域、存储期和链接摘要
+<->/basic/chapter7/using/<-> 7.11 using声明和using指令
 <-->
-<->/basic/chapter7/unname-namespace/<-> 7.12 作用域、存储期和链接摘要
+<->/basic/chapter7/unname-namespace/<-> 7.12 未命名与内联的命名空间
 <-->
-<->/basic/chapter7/summary/<-> 7.13 作用域、存储期和链接摘要
+<->/basic/chapter7/summary/<-> 7.13 第七章总结
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

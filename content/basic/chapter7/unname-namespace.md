@@ -250,3 +250,9 @@ int main()
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter7/using/" next="/basic/chapter7/summary/" >}}
+7.11 using声明和using指令
+<--->
+7.13 第七章总结
+{{< /prevnext >}}

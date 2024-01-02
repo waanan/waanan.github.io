@@ -370,3 +370,9 @@ using关键字还用于定义类型别名，这与using语句无关。将在后�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter7/scope-duration-linkage/" next="/basic/chapter7/unname-namespace/" >}}
+7.10 作用域、存储期和链接摘要
+<--->
+7.12 未命名与内联的命名空间
+{{< /prevnext >}}

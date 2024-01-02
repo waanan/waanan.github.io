@@ -106,8 +106,8 @@ C++现支持4个存储类说明符：
 
 ***
 
-{{< prevnext prev="/basic/chapter7/static-local-var/" next="/" >}}
+{{< prevnext prev="/basic/chapter7/static-local-var/" next="/basic/chapter7/using/" >}}
 7.9 静态局部变量
 <--->
-主页
+7.11 using声明和using指令
 {{< /prevnext >}}
