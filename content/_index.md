@@ -257,6 +257,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter8/if-block/<-> 8.1 代码块
 <-->
 <->/basic/chapter8/if-problem/<-> 8.2 代码块
+<-->
+<->/basic/chapter8/constexpr-if/<-> 8.3 代码块
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
