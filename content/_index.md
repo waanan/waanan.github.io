@@ -259,6 +259,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter8/if-problem/<-> 8.2 常见的if语句问题
 <-->
 <->/basic/chapter8/constexpr-if/<-> 8.3 Constexpr if语句
+<-->
+<->/basic/chapter8/switch/<-> 8.4 Constexpr if语句
+<-->
+<->/basic/chapter8/switch-fallthrough-scope/<-> 8.5 Constexpr if语句
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

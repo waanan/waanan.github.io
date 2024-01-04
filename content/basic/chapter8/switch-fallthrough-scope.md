@@ -1,18 +1,22 @@
 ---
-title: "交换机故障转移和作用域"
+title: "switch fallthrough机制与作用域"
 date: 2024-01-02T10:33:49+08:00
 ---
 
-本课继续我们在上一课8.5——switch语句基础知识中开始的switch声明的探索。在上一课中，我们提到标签下的每一组语句都应该以break语句或return语句结尾。
+在上一课中，我们提到标签下的每一组语句都应该以break语句或return语句结尾。
 
-在本课中，我们将探索原因，并讨论一些有时会绊倒新程序员的交换机作用域问题。
+在本课中，我们将探索原因，并讨论一些有时会绊倒新程序员的switch作用域问题。
 
 ***
-## Fallthrough公司
+## Fallthrough机制
 
 当switch表达式与case标签或可选的默认标签匹配时，执行从匹配标签之后的第一条语句开始。然后继续按顺序执行，直到发生以下终止条件之一：
 
-请注意，另一个case标签的存在不是这些终止条件之一——因此，如果没有中断或返回，执行将溢出到后续的情况中。
+1. switch代码块结束
+2. 另一个控制流语句（通常是break或return）导致退出代码块或函数。
+3. 其它打断程序正常控制流的事情（操作系统杀死了对应的进程等其它原因）
+
+请注意，另一个case标签的存在不是这些终止条件之一——因此，如果没有中断或返回，执行将溢出到后续的case情况中。
 
 下面是一个显示此行为的程序：
 
@@ -23,16 +27,16 @@ int main()
 {
     switch (2)
     {
-    case 1: // Does not match
-        std::cout << 1 << '\n'; // Skipped
-    case 2: // Match!
-        std::cout << 2 << '\n'; // Execution begins here
+    case 1: // 不匹配
+        std::cout << 1 << '\n'; // 跳过
+    case 2: // 匹配
+        std::cout << 2 << '\n'; // 从这里开始执行
     case 3:
-        std::cout << 3 << '\n'; // This is also executed
+        std::cout << 3 << '\n'; // 这里也会执行
     case 4:
-        std::cout << 4 << '\n'; // This is also executed
+        std::cout << 4 << '\n'; // 这里也会执行
     default:
-        std::cout << 5 << '\n'; // This is also executed
+        std::cout << 5 << '\n'; // 这里也会执行
     }
 
     return 0;
@@ -41,14 +45,21 @@ int main()
 
 该程序输出以下内容：
 
-这可能不是我们想要的！当执行从标签下的语句流到后续标签下的声明时，这称为fallthrough。
+```C++
+2
+3
+4
+5
+```
 
-由于很少需要或有意进行故障转移，因此许多编译器和代码分析工具将故障转移标记为警告。
+这可能不是我们想要的！当执行从标签下的语句流到后续标签下的语句时，这称为fallthrough。
+
+由于很少需要有意进行fallthrough，因此许多编译器和代码分析工具将fallthrough标记为警告。
 
 {{< alert success >}}
 **警告**
 
-一旦case或默认标签下的语句开始执行，它们将溢出（失效）到后续的case中。Break或return语句通常用于防止这种情况。
+一旦case或默认标签下的语句开始执行，它们将溢出（fallthrough）到后续的case中。Break或return语句通常用于防止这种情况。
 
 {{< /alert >}}
 
