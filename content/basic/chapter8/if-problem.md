@@ -230,3 +230,9 @@ You entered 1
 事实上，该程序将始终产生结果1。这是因为x = 0首先将值0赋值给x，然后计算x的值，该值现在为0，这是布尔false。由于条件语句结果总是false，因此else语句总是执行。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/if-block/" next="/basic/chapter8/constexpr-if/" >}}
+8.1 If语句与代码块
+<--->
+8.3 Constexpr if语句
+{{< /prevnext >}}

@@ -35,8 +35,8 @@ using语句（包括using声明和using指令）可以用于避免必须用显�
 
 ***
 
-{{< prevnext prev="/basic/chapter7/unname-namespace/" next="/" >}}
+{{< prevnext prev="/basic/chapter7/unname-namespace/" next="/basic/chapter8/control-flow-intro/" >}}
 7.12 未命名与内联的命名空间
 <--->
-主页
+8.0 控制流简介
 {{< /prevnext >}}

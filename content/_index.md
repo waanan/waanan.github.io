@@ -252,13 +252,13 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第八章 控制流与错误处理
 <--->
-<->/basic/chapter8/control-flow-intro/<-> 8.0 代码块
+<->/basic/chapter8/control-flow-intro/<-> 8.0 控制流简介
 <-->
-<->/basic/chapter8/if-block/<-> 8.1 代码块
+<->/basic/chapter8/if-block/<-> 8.1 If语句与代码块
 <-->
-<->/basic/chapter8/if-problem/<-> 8.2 代码块
+<->/basic/chapter8/if-problem/<-> 8.2 常见的if语句问题
 <-->
-<->/basic/chapter8/constexpr-if/<-> 8.3 代码块
+<->/basic/chapter8/constexpr-if/<-> 8.3 Constexpr if语句
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

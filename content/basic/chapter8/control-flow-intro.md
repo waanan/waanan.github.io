@@ -50,3 +50,9 @@ int main()
 这是真正的乐趣开始的地方。让我们开始吧！
 
 ***
+
+{{< prevnext prev="/basic/chapter7/summary/" next="/basic/chapter8/if-block/" >}}
+7.13 第七章总结
+<--->
+8.1 If语句与代码块
+{{< /prevnext >}}

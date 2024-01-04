@@ -81,3 +81,9 @@ int main()
 遇到具有常量条件的非constexpr-if语句，编译器可能会发出警告，建议您改用constexpr-if语句。这将确保发生编译时计算（即使禁用编译优化）。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/if-problem/" next="/" >}}
+8.2 常见的if语句问题
+<--->
+主页
+{{< /prevnext >}}

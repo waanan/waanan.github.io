@@ -301,3 +301,9 @@ int main()
 在下一课中，我们将继续探索if语句。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/control-flow-intro/" next="/basic/chapter8/if-problem/" >}}
+8.0 控制流简介
+<--->
+8.2 常见的if语句问题
+{{< /prevnext >}}
