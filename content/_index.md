@@ -263,6 +263,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter8/switch/<-> 8.4 Constexpr if语句
 <-->
 <->/basic/chapter8/switch-fallthrough-scope/<-> 8.5 Constexpr if语句
+<-->
+<->/basic/chapter8/goto/<-> 8.6 Constexpr if语句
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

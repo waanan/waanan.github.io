@@ -66,13 +66,13 @@ int main()
 ***
 ## [[fallthrough]]属性
 
-注释有意的故障转移是一种常见的约定，用于告诉其他开发人员故障转移是有意的。虽然这对其他开发人员有效，但编译器和代码分析工具不知道如何解释注释，因此它不会消除警告。
+可以通过注释，来告诉其它开发人员，switch的fallthrough行为是有意设计的。虽然这对其他开发人员有效，但编译器和代码分析工具不知道如何解释注释，因此不会消除警告。
 
 为了帮助解决这个问题，C++17添加了一个名为[[fallthrough]]的新属性。
 
 属性是一种现代C++功能，它允许程序员向编译器提供有关代码的一些附加数据。要指定属性，请将属性名称放在双括号之间。属性不是语句——相反，它们几乎可以在上下文相关的任何地方使用。
 
-[[fallthrough]]属性修改null语句，以指示fallthrough是有意的（不应触发任何警告）：
+下面的例子中，[[fallthrough]]属性修改null语句，以指示fallthrough是有意的（不应触发任何警告）：
 
 ```C++
 #include <iostream>
@@ -85,10 +85,10 @@ int main()
         std::cout << 1 << '\n';
         break;
     case 2:
-        std::cout << 2 << '\n'; // Execution begins here
-        [[fallthrough]]; // intentional fallthrough -- note the semicolon to indicate the null statement
+        std::cout << 2 << '\n'; // 这里开始执行
+        [[fallthrough]]; // 有意的进行 fallthrough -- 注意这里的分号代表空语句
     case 3:
-        std::cout << 3 << '\n'; // This is also executed
+        std::cout << 3 << '\n'; // 这里也会执行到
         break;
     }
 
@@ -98,17 +98,22 @@ int main()
 
 该程序打印：
 
-并且它不应该生成任何关于故障的警告。
+```C++
+2
+3
+```
+
+并且它不应该生成任何关于fallthrough的警告。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
-使用[[fallthrough]]属性（以及null语句）来指示有意的故障转移。
+使用[[fallthrough]]属性（以及null语句）来指示有意的fallthrough。
 
 {{< /alert >}}
 
 ***
-## 连续箱标签
+## 连续case标签
 
 您可以使用逻辑OR运算符将多个测试组合到单个语句中：
 
@@ -120,9 +125,9 @@ bool isVowel(char c)
 }
 ```
 
-这与我们在switch语句介绍中提出的挑战相同：c被多次求值，读者必须确保每次求值的是c。
+这里c被多次求值。
 
-通过按顺序放置多个大小写标签，可以使用switch语句执行类似的操作：
+通过按顺序放置多个case标签，可以使用switch语句执行类似的操作：
 
 ```C++
 bool isVowel(char c)
@@ -146,20 +151,20 @@ bool isVowel(char c)
 }
 ```
 
-请记住，执行从匹配的case标签之后的第一条语句开始。案例标签不是陈述（它们是标签），因此它们不算数。
+请记住，执行从匹配的case标签之后的第一条语句开始。case标签不是语句（它们是标签），因此它们不算数。
 
 上面程序中所有case语句之后的第一个语句都返回true，因此如果任何case标签匹配，函数将返回true。
 
-因此，我们可以“堆叠”case标签，以使所有这些case标签在之后共享相同的语句集。这不被认为是故障转移行为，因此这里不需要使用注释或[[fallthrough]]。
+因此，我们可以“堆叠”case标签，以使所有这些case标签在之后共享相同的语句集。这不被认为是fallthrough行为，因此这里不需要使用注释或[[fallthrough]]。
 
 ***
-## 开关盒范围
+## switch语句中case的作用域
 
-使用if语句，在if条件之后只能有一条语句，并且该语句被认为隐式地位于块内：
+使用if语句，在if条件之后只能有一条语句，并且该语句被认为隐式地位于代码块内：
 
 ```C++
 if (x > 10)
-    std::cout << x << " is greater than 10\n"; // this line implicitly considered to be inside a block
+    std::cout << x << " is greater than 10\n"; // 该语句被认为隐式地位于代码块内
 ```
 
 然而，对于switch语句，标签后的语句都作用于switch块。不会创建隐式块。
@@ -167,36 +172,36 @@ if (x > 10)
 ```C++
 switch (1)
 {
-    case 1: // does not create an implicit block
-        foo(); // this is part of the switch scope, not an implicit block to case 1
-        break; // this is part of the switch scope, not an implicit block to case 1
+    case 1: // 不会创建隐式块
+        foo(); // 在switch的作用域内，而不是case 1内
+        break; // 在switch的作用域内，而不是case 1内
     default:
         std::cout << "default case\n";
         break;
 }
 ```
 
-在上面的示例中，案例1和默认标签之间的2条语句的作用域是开关块的一部分，而不是案例1隐含的块。
+在上面的示例中，case 1 标签和default标签之间的2条语句的作用域是switch块的一部分，而不是case 1 隐含的代码块。
 
 ***
 ## case语句中的变量声明和初始化
 
-您可以在案例标签之前和之后声明或定义（但不能初始化）开关内的变量：
+您可以在case标签之前和之后声明或定义（但不能初始化）switch语句内的变量：
 
 ```C++
 switch (1)
 {
-    int a; // okay: definition is allowed before the case labels
-    int b{ 5 }; // illegal: initialization is not allowed before the case labels
+    int a; // okay: case标签之前可以声明变量
+    int b{ 5 }; // 不合法: case 标签之前，不可以初始化变量
 
     case 1:
-        int y; // okay but bad practice: definition is allowed within a case
-        y = 4; // okay: assignment is allowed
+        int y; // okay 但不推荐
+        y = 4; // okay: 赋值语句可以
         break;
 
     case 2:
-        int z{ 4 }; // illegal: initialization is not allowed if subsequent cases exist
-        y = 5; // okay: y was declared above, so we can use it here too
+        int z{ 4 }; // 不合法: 后面还有case标签，不允许初始化变量
+        y = 5; // okay: y 在上面声明，所以这里可以赋值
         break;
 
     case 3:
@@ -204,18 +209,18 @@ switch (1)
 }
 ```
 
-尽管在案例1中定义了变量y，但在案例2中也使用了它。交换机内的所有语句都被视为同一范围的一部分。因此，在一种情况下声明或定义的变量可以在以后的情况下使用，即使定义该变量的情况从未执行（因为开关跳过它）！
+在 case 1 中定义了变量y，在 case 2 中使用了它。switch内的所有语句都被视为同一作用域的一部分。因此，在 case 1 内声明或定义的变量可以在以后使用。
 
-然而，变量的初始化确实需要在运行时执行定义（因为初始值设定项的值必须在该点确定）。在不是最后一种情况的任何情况下都不允许初始化变量（因为初始化器可以被跳过，这将使变量未初始化）。在第一种情况之前也不允许初始化，因为这些语句永远不会执行，因为交换机无法到达它们。
+然而，变量的初始化，需要在运行时执行（因为需要将初始值设置给变量）。如果后续还有case标签，则不允许初始化变量（因为初始化可能被跳过，这将使变量未初始化）。在第一个case标签之前不允许初始化，因为这些语句永远不会执行，switch语句无法指定到它们。
 
-如果案例需要定义和/或初始化新变量，最佳实践是在case语句下的显式块内进行定义和/或者初始化：
+如果case标签内需要定义和初始化新变量，最佳实践是在case语句下的显式块内进行定义和初始化：
 
 ```C++
 switch (1)
 {
     case 1:
-    { // note addition of explicit block here
-        int x{ 4 }; // okay, variables can be initialized inside a block inside a case
+    { // 这里有一个显示的代码块
+        int x{ 4 }; // okay, 变量在一个新的代码块内初始化
         std::cout << x;
         break;
     }
@@ -226,12 +231,10 @@ switch (1)
 ```
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
-如果定义case语句中使用的变量，请在case内的块中定义。
+如果定义case语句中使用的变量，请在case内的显示代码块中定义。
 
 {{< /alert >}}
 
 ***
-## 测验时间
-
