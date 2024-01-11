@@ -271,3 +271,9 @@ int main()
 我们的立场是，提前返回更有帮助，而不是有害。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/for/" next="/" >}}
+8.9 for语句
+<--->
+主页
+{{< /prevnext >}}

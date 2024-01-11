@@ -238,3 +238,9 @@ switch (1)
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter8/switch/" next="/basic/chapter8/goto/" >}}
+8.4 Switch语句基础
+<--->
+8.6 goto语句
+{{< /prevnext >}}

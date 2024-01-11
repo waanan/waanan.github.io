@@ -122,3 +122,9 @@ int main()
 在实践中，do-while语句并不常用。将条件放在循环的底部会模糊循环条件，可能导致错误。因此，许多开发人员建议完全避免do-while循环。这里采取更温和的立场，并主张在给予平等选择时，优先选择while循环而不是do-while。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/loop/" next="/basic/chapter8/for/" >}}
+8.7 循环和while语句简介
+<--->
+8.9 for语句
+{{< /prevnext >}}

@@ -82,8 +82,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter8/if-problem/" next="/" >}}
+{{< prevnext prev="/basic/chapter8/if-problem/" next="/basic/chapter8/switch/" >}}
 8.2 常见的if语句问题
 <--->
-主页
+8.4 Switch语句基础
 {{< /prevnext >}}

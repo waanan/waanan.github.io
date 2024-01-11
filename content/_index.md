@@ -260,19 +260,19 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter8/constexpr-if/<-> 8.3 Constexpr if语句
 <-->
-<->/basic/chapter8/switch/<-> 8.4 Constexpr if语句
+<->/basic/chapter8/switch/<-> 8.4 Switch语句基础
 <-->
-<->/basic/chapter8/switch-fallthrough-scope/<-> 8.5 Constexpr if语句
+<->/basic/chapter8/switch-fallthrough-scope/<-> 8.5 switch fallthrough机制与作用域
 <-->
-<->/basic/chapter8/goto/<-> 8.6 Constexpr if语句
+<->/basic/chapter8/goto/<-> 8.6 goto语句
 <-->
-<->/basic/chapter8/loop/<-> 8.7 Constexpr if语句
+<->/basic/chapter8/loop/<-> 8.7 循环和while语句简介
 <-->
-<->/basic/chapter8/do-while/<-> 8.8 Constexpr if语句
+<->/basic/chapter8/do-while/<-> 8.8 Do while语句
 <-->
-<->/basic/chapter8/for/<-> 8.9 Constexpr if语句
+<->/basic/chapter8/for/<-> 8.9 for语句
 <-->
-<->/basic/chapter8/break-continue/<-> 8.10 Constexpr if语句
+<->/basic/chapter8/break-continue/<-> 8.10 break与continue
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

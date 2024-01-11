@@ -107,3 +107,9 @@ skip:
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter8/switch-fallthrough-scope/" next="/basic/chapter8/loop/" >}}
+8.5 switch fallthrough机制与作用域
+<--->
+8.7 循环和while语句简介
+{{< /prevnext >}}

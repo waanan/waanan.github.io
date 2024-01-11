@@ -309,3 +309,9 @@ switch语句中标签下的每一组语句都应该以break语句或return语句
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter8/constexpr-if/" next="/basic/chapter8/switch-fallthrough-scope/" >}}
+8.3 Constexpr if语句
+<--->
+8.5 switch fallthrough机制与作用域
+{{< /prevnext >}}

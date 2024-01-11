@@ -369,3 +369,9 @@ For语句是C++语言中最常用的循环。尽管它的语法对于新程序�
 如果有计数器，优先使用for语句，否则，可能while语句是更好的选择。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/do-while/" next="/basic/chapter8/break-continue/" >}}
+8.8 Do while语句
+<--->
+8.10 break与continue
+{{< /prevnext >}}

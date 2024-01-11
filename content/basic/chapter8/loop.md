@@ -333,3 +333,9 @@ int main()
 如果您仍然感到困惑，请在调试器中逐行遍历该程序，并观察inner和outer的值，这是更好地理解正在发生的事情的好方法。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/goto/" next="/basic/chapter8/do-while/" >}}
+8.6 goto语句
+<--->
+8.8 Do while语句
+{{< /prevnext >}}
