@@ -279,6 +279,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter8/random-intro/<-> 8.12 break与continue
 <-->
 <->/basic/chapter8/random-ms/<-> 8.13 break与continue
+<-->
+<->/basic/chapter8/random-global/<-> 8.14 break与continue
+<-->
+<->/basic/chapter8/summary/<-> 8.15 break与continue
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
