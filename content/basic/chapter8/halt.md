@@ -180,3 +180,9 @@ std::terminate()函数通常与异常一起使用（我们将在后面的一章�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter8/break-continue/" next="/basic/chapter8/random-intro/" >}}
+8.10 break与continue
+<--->
+8.12 随机数生成简介
+{{< /prevnext >}}

@@ -389,3 +389,9 @@ Visual Studio的rand()实现有（或仍然有？）一个错误，其中第一�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter8/random-intro/" next="/basic/chapter8/random-global/" >}}
+8.12 随机数生成简介
+<--->
+8.14 全局随机数
+{{< /prevnext >}}
