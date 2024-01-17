@@ -272,8 +272,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter8/for/" next="/" >}}
+{{< prevnext prev="/basic/chapter8/for/" next="/basic/chapter8/halt/" >}}
 8.9 for语句
 <--->
-主页
+8.11 提前退出程序
 {{< /prevnext >}}

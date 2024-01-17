@@ -274,15 +274,15 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter8/break-continue/<-> 8.10 break与continue
 <-->
-<->/basic/chapter8/halt/<-> 8.11 break与continue
+<->/basic/chapter8/halt/<-> 8.11 提前退出程序
 <-->
-<->/basic/chapter8/random-intro/<-> 8.12 break与continue
+<->/basic/chapter8/random-intro/<-> 8.12 随机数生成简介
 <-->
-<->/basic/chapter8/random-ms/<-> 8.13 break与continue
+<->/basic/chapter8/random-ms/<-> 8.13 使用Mersenne Twister生成随机数
 <-->
-<->/basic/chapter8/random-global/<-> 8.14 break与continue
+<->/basic/chapter8/random-global/<-> 8.14 全局随机数
 <-->
-<->/basic/chapter8/summary/<-> 8.15 break与continue
+<->/basic/chapter8/summary/<-> 8.15 第八章总结
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

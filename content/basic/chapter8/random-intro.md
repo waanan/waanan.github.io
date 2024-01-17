@@ -292,3 +292,9 @@ C++中的随机化功能可以通过标准库的<random>头文件。在随机库
 现在这些就足够了。下节讨论如何在C++中使用Mersenne Twister实际生成随机数。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/halt/" next="/basic/chapter8/random-ms/" >}}
+8.11 提前退出程序
+<--->
+8.13 使用Mersenne Twister生成随机数
+{{< /prevnext >}}

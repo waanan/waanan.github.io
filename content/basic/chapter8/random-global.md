@@ -93,3 +93,9 @@ int main()
 2. 可以通过Random::mt直接访问std::mt19937对象，并对其执行任何操作。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/random-ms/" next="/basic/chapter8/summary/" >}}
+8.13 使用Mersenne Twister生成随机数
+<--->
+8.15 第八章总结
+{{< /prevnext >}}

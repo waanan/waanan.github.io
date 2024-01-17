@@ -49,3 +49,9 @@ Break语句允许中断switch、while、do-while或for循环。Continue语句允
 随机数分布将PRNG的输出转换为其他一些数字分布。均匀分布是在两个数字X和Y（包括X和Y）之间以相等概率产生输出的随机数分布。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/random-global/" next="/" >}}
+8.14 全局随机数
+<--->
+主页
+{{< /prevnext >}}
