@@ -286,6 +286,14 @@ date: 2022-12-28T16:40:41+08:00
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
+第九章 错误检查与处理
+<--->
+<->/basic/chapter9/intro/<-> 9.0 控制流简介
+<-->
+<->/basic/chapter9/code-coverage/<-> 9.1 第八章总结
+{{< /chapterlist >}}
+
+{{< chapterlist>}}
 第九章 类型转换与函数重载
 <--->
 {{< /chapterlist >}}
