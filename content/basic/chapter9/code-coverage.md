@@ -167,3 +167,8 @@ void spam(int timesToPrint)
 
 ***
 
+{{< prevnext prev="/basic/chapter9/intro/" next="/" >}}
+9.0 代码测试简介
+<--->
+主页
+{{< /prevnext >}}

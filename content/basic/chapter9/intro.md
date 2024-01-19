@@ -280,3 +280,9 @@ int main()
 一旦隔离测试了每个单元，就可以将它们集成到程序中并重新测试，以确保它们正确集成。这称为集成测试。集成测试往往更复杂——现在，运行程序几次并抽查集成后的行为就足够了。
 
 ***
+
+{{< prevnext prev="/basic/chapter8/summary/" next="/basic/chapter9/code-coverage/" >}}
+8.15 第八章总结
+<--->
+9.1 代码覆盖率
+{{< /prevnext >}}

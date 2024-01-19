@@ -199,7 +199,7 @@ int main()
 ***
 
 {{< prevnext prev="/basic/chapter2/multi-file/" next="/basic/chapter2/preprocess/" >}}
-2.7 具有多个代码文件的程序
+2.7 多代码文件程序
 <--->
 2.9 预处理器简介
 {{< /prevnext >}}

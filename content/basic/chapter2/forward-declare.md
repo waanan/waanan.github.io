@@ -279,5 +279,5 @@ ODR不适用于纯声明（它是描述定义的规则，而不是关于声明�
 {{< prevnext prev="/basic/chapter2/why-func/" next="/basic/chapter2/multi-file/" >}}
 2.5 为什么需要函数
 <--->
-2.7 具有多个代码文件的程序
+2.7 多代码文件程序
 {{< /prevnext >}}

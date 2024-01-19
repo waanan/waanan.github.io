@@ -50,8 +50,8 @@ Break语句允许中断switch、while、do-while或for循环。Continue语句允
 
 ***
 
-{{< prevnext prev="/basic/chapter8/random-global/" next="/" >}}
+{{< prevnext prev="/basic/chapter8/random-global/" next="/basic/chapter9/intro/" >}}
 8.14 全局随机数
 <--->
-主页
+9.0 代码测试简介
 {{< /prevnext >}}
