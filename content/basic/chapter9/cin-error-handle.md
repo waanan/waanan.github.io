@@ -133,15 +133,15 @@ int main()
 ***
 ## 无效文本输入的类型
 
-我们通常可以将输入文本错误分为四种类型:
+通常可以将输入文本错误分为四种类型:
 
 1. 输入提取成功，但输入对程序没有意义（例如，输入“k”作为数学运算符）。
-2. 输入提取成功，但用户输入了其他输入（例如，输入“*q hello”作为数学运算符）。
+2. 输入提取成功，但用户后续输入了其他输入（例如，输入“*q hello”作为数学运算符）。
 3. 输入提取失败（例如，尝试在数字输入中输入“q”）。
-4. 输入提取成功，但用户溢出了数值。
+4. 输入提取成功，但输入数值发生了溢出。
 
 
-因此，为了使我们的程序健壮，每当我们要求用户输入时，理想情况下，我们应该确定上述每一种情况是否可能发生，如果可能，则编写代码来处理这些情况。
+因此，为了使程序健壮，每当要求用户输入时，理想情况下，应该确定上述每一种情况是否可能发生，并编写代码来处理这些情况。
 
 让我们深入研究每一种情况，以及如何使用std::cin处理它们。
 
@@ -150,66 +150,85 @@ int main()
 
 这是最简单的情况。考虑上述程序的以下执行:
 
-在这种情况下，我们要求用户输入四个符号中的一个，但他们输入的是“k”k是一个有效字符，因此std::cin很高兴地将其提取到变量op中，并将其返回给main。但我们的程序并没有预料到这种情况会发生，因此它没有正确地处理这种情况（因此从不输出任何内容）。
+```C++
+Enter a decimal number: 5
+Enter one of the following: +, -, *, or /: k
+Enter a decimal number: 7
+```
 
-这里的解决方案很简单:进行输入验证。这通常包括3个步骤:
+在这种情况下，要求用户输入四个符号中的一个，但他们输入的是“k”，k是一个有效字符，因此std::cin将其提取到变量op中，并将其返回给main。但程序并没有预料到这种情况会发生，因此它没有正确地处理这种情况（因此从不输出任何内容）。
 
-下面是一个更新的getOperator（）函数，用于进行输入验证。
+这里的解决方案很简单:进行输入验证。这通常包括3部分:
+
+1. 检查用户的输入是否是我们所期望的
+2. 如果是的话，执行后续流程
+3. 如果不是，提示用户，并让用户进行重试
+
+下面是一个新的getOperator()函数，对用户输入进行验证。
 
 ```C++
 char getOperator()
 {
-    while (true) // Loop until user enters a valid input
+    while (true) // 无限循环，直到用户输入有效的数据
     {
         std::cout << "Enter one of the following: +, -, *, or /: ";
         char operation{};
         std::cin >> operation;
 
-        // Check whether the user entered meaningful input
+        // 检查是否用户输入是否有效
         switch (operation)
         {
         case '+':
         case '-':
         case '*':
         case '/':
-            return operation; // return it to the caller
-        default: // otherwise tell the user what went wrong
+            return operation; // 将有效的输入返回
+        default: // 否则提示用户输入有误
             std::cout << "Oops, that input is invalid.  Please try again.\n";
         }
-    } // and try again
+    }
 }
 ```
 
-正如您所看到的，我们使用while循环来持续循环，直到用户提供有效的输入。如果他们不这样做，我们要求他们重试，直到他们为我们提供有效的输入、关闭程序或销毁他们的计算机。
+如上使用while来无限的循环，直到用户提供有效的输入。如果输入有误，要求他们重试，直到提供有效的输入、关闭程序或销毁他们的计算机。
 
 ***
-## 错误情况2:提取成功，但输入无关
+## 错误情况2:提取成功，但有多余的输入
 
 考虑上述程序的以下执行:
 
+```C++
+Enter a decimal number: 5*7
+```
+
 你认为接下来会发生什么？
+
+```C++
+Enter a decimal number: 5*7
+Enter one of the following: +, -, *, or /: Enter a decimal number: 5 * 7 is 35
+```
 
 程序打印了正确的答案，但格式完全混乱。让我们仔细看看原因。
 
-当用户输入5*7作为输入时，该输入进入缓冲区。然后操作符>>将5提取为变量x，将*7\n留在缓冲区中。接下来，程序打印“输入以下值之一:+、-、*或/:”。然而，当调用提取操作符时，它看到*7\n正在缓冲区中等待提取，因此它使用该操作符，而不是要求用户提供更多输入。因此，它提取“*”字符，在缓冲区中\n保留7。
+当用户输入5\*7作为输入时，该输入进入缓冲区。然后操作符>>将5提取到变量x，将"\*7\n"留在缓冲区中。接下来，程序打印"Enter one of the following: +, -, \*, or /:"。然而，当调用提取操作符时，它看到"\*7\n"正在缓冲区中等待提取，因此它使用该操作符，而不是要求用户提供更多输入。r然后，它提取“*”字符，在缓冲区中保留"7\n"。
 
-在要求用户输入另一个十进制数后，在不要求用户的情况下提取缓冲区中的7。由于用户从未有机会输入额外的数据并按enter键（导致换行），因此输出提示都在同一行上一起运行。
+在要求用户输入另一个十进制数后，直接从缓冲区中提取7。由于用户从未有机会输入额外的数据并按enter键（换行），因此输出提示都在同一行上一起运行。
 
-尽管上面的程序可以工作，但执行是混乱的。最好是简单地忽略输入的任何无关字符。幸运的是，很容易忽略字符:
+尽管上面的程序可以工作，但执行是混乱的。最好一个办法是简单地忽略输入的任何无关字符。幸运的是，很容易忽略字符:
 
 ```C++
-std::cin.ignore(100, '\n');  // clear up to 100 characters out of the buffer, or until a '\n' character is removed
+std::cin.ignore(100, '\n');  // 清空缓存中的100个字符, 或者直到一个 '\n' 被清除
 ```
 
-这个调用将删除多达100个字符，但如果用户输入的字符超过100个，我们将再次得到混乱的输出。要忽略下一个“\n”之前的所有字符，可以将std::numeric_limits<std:∶streamsize>::max（）传递给std::cin.ignore（）.std::numeric_limits<std::streamssize>::max（）返回可以存储在类型为std::streamsize的变量中的最大值。将该值传递给std::cin.ignore（）会导致它禁用计数检查。
+这个调用将删除多达100个字符，但如果用户输入的字符超过100个，我们将再次得到混乱的输出。要忽略下一个“\n”之前的所有字符，可以将std::numeric_limits<std::streamsize>::max()传递给std::cin.ignore()。std::numeric_limits<std::streamsize>::max() 返回可以存储在类型为std::streamsize的变量中的最大值。将该值传递给std::cin.ignore()会导致std::cin清空所有缓存。
 
-要忽略直到并包括下一个“\n”字符的所有内容，我们调用
+要忽略直到并包括下一个“\n”字符的所有内容，调用
 
 ```C++
 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 ```
 
-因为这一行对于它所做的事情来说相当长，所以将它包装在一个可以代替std::cin.ignore（）调用的函数中很方便。
+这一行代码对于它所做的事情来说相当长，所以将它包装在一个可以代替std::cin.ignore()调用的函数中很方便。
 
 ```C++
 #include <limits> // for std::numeric_limits
@@ -220,9 +239,9 @@ void ignoreLine()
 }
 ```
 
-由于用户输入的最后一个字符通常是“\n”，因此我们可以告诉std::cin忽略缓冲字符，直到它找到换行符（它也被删除）。
+由于用户输入的最后一个字符通常是“\n”，因此我们可以告诉std::cin忽略缓冲字符，直到它找到换行符（“\n”也被删除）。
 
-让我们更新getDouble（）函数以忽略任何无关的输入:
+现在更新getDouble()函数以忽略任何无关的输入:
 
 ```C++
 double getDouble()
@@ -236,30 +255,30 @@ double getDouble()
 }
 ```
 
-现在，我们的程序将按预期工作，即使我们为第一个输入输入“5*7”——5将被提取，其余的字符将从输入缓冲区中删除。由于输入缓冲区现在为空，因此下次执行提取操作时将正确要求用户输入！
+现在，程序将按预期工作，即使第一个输入了“5*7”——5将被提取，其余的字符将从输入缓冲区中删除。由于输入缓冲区现在为空，因此下次执行提取操作时将正确要求用户输入！
 
 {{< alert success >}}
 **提示**
 
-在某些情况下，最好将无关的输入视为故障情况（而不是忽略它）。然后，我们可以要求用户重新输入他们的输入。
+在某些情况下，最好将无关的输入视为故障情况（而不是忽略它）。然后，我们可以要求用户重新输入。
 
-为了做到这一点，我们需要某种方法来确定在成功提取后输入流中是否还有任何输入。我们可以使用std::cin.peek（）函数，它允许我们查看输入流中的下一个字符，而不提取它。
+为了做到这一点，我们需要某种方法来确定在成功提取后输入流中是否还有任何输入。我们可以使用std::cin.peek()函数，它允许查看输入流中的下一个字符，而不提取它。
 
-下面是getDouble（）的变体，它要求用户在输入任何无关输入时重新输入其输入:
+下面是getDouble()的变体，它要求用户在输入任何无关输入时重新输入:
 
 ```C++
 double getDouble()
 {
-    while (true) // Loop until user enters a valid input
+    while (true) // 无限循环，直到用户输入有效的数据
     {
         std::cout << "Enter a decimal number: ";
         double x{};
         std::cin >> x;
 
-        // If there is extraneous input, treat as failure case
+        // 如果有额外的输入, 当做用户输入失败
         if (!std::cin.eof() && std::cin.peek() != '\n')
         {
-            ignoreLine(); // remove extraneous input
+            ignoreLine(); // 移除缓冲区内的所有字符
             continue;
         }
     
@@ -275,95 +294,106 @@ double getDouble()
 ***
 ## 错误情况3:提取失败
 
-现在考虑执行以下更新的计算器程序:
+现在考虑执行以下的执行:
+
+```C++
+Enter a decimal number: a
+```
 
 您不应该对程序没有按预期执行感到惊讶，但它如何失败是有趣的:
 
-最后一行继续打印，直到程序关闭。
+```C++
+Enter a decimal number: a
+Enter one of the following: +, -, *, or /: Oops, that input is invalid.  Please try again.
+Enter one of the following: +, -, *, or /: Oops, that input is invalid.  Please try again.
+Enter one of the following: +, -, *, or /: Oops, that input is invalid.  Please try again.
+```
+
+最后一行持续打印，直到程序关闭。
 
 这看起来与无关的输入案例非常相似，但有点不同。让我们仔细看看。
 
-当用户输入“a”时，该字符将放在缓冲区中。然后操作符>>尝试将“a”提取到变量x，该变量的类型为double。由于“a”无法转换为双精度，因此操作符>>无法执行提取。此时会发生两件事:“a”留在缓冲区中，std::cin进入“故障模式”。
+当用户输入“a”时，该字符将放在缓冲区中。然后操作符>>尝试将“a”提取到变量x，该变量的类型为double。由于“a”无法转换为double，因此操作符>>无法执行提取。此时会发生两件事:“a”留在缓冲区中，std::cin进入“故障模式”。
 
-一旦进入“故障模式”，未来的输入提取请求将自动失败。因此，在我们的计算器程序中，输出提示仍然打印，但任何进一步提取的请求都将被忽略。这意味着，相反，等待我们输入操作时，将跳过输入提示符，并且我们将陷入无限循环中，因为无法到达有效的情况之一。
+一旦进入“故障模式”，未来的输入提取请求将自动失败。因此，在我们的程序中，输出提示仍然打印，但任何进一步提取的请求都将被忽略。这意味着，进行输入操作时，将跳过输入提示符，并且将陷入无限循环中。
 
 幸运的是，我们可以检测提取是否失败:
 
 ```C++
-if (std::cin.fail()) // if the previous extraction failed
+if (std::cin.fail()) // 是否之前的提取失败
 {
-    // let's handle the failure
-    std::cin.clear(); // put us back in 'normal' operation mode
-    ignoreLine();     // and remove the bad input
+    // 这里来处理失败
+    std::cin.clear(); // 将std::cin调回 '正常' 模式 
+    ignoreLine();     // 移除缓存中的错误数据
 }
 ```
 
-由于std::cin具有指示最后一个输入是否成功的布尔转换，因此更习惯于将上面的内容编写为:
+由于std::cin可以直接指示上一次提取操作的状态，因此更习惯于将上面的内容编写为:
 
 ```C++
-if (!std::cin) // if the previous extraction failed
+if (!std::cin) // 是否之前的提取失败
 {
-    // let's handle the failure
-    std::cin.clear(); // put us back in 'normal' operation mode
-    ignoreLine();     // and remove the bad input
+    // 这里来处理失败
+    std::cin.clear(); // 将std::cin调回 '正常' 模式 
+    ignoreLine();     // 移除缓存中的错误数据
 }
 ```
 
-让我们将其集成到getDouble（）函数中:
+让我们将其集成到getDouble()函数中:
 
 ```C++
 double getDouble()
 {
-    while (true) // Loop until user enters a valid input
+    while (true) // 无限循环，直到用户输入有效的数据
     {
         std::cout << "Enter a decimal number: ";
         double x{};
         std::cin >> x;
 
-        if (!std::cin) // if the previous extraction failed
+        if (!std::cin) // 是否之前的提取失败
         {
-            // let's handle the failure
-            std::cin.clear(); // put us back in 'normal' operation mode
-            ignoreLine();     // and remove the bad input
+            // 这里来处理失败
+            std::cin.clear(); // 将std::cin调回 '正常' 模式 
+            ignoreLine();     // 移除缓存中的错误数据
         }
-        else // else our extraction succeeded
+        else // 或者之前提取成功
         {
             ignoreLine();
-            return x; // so return the value we extracted
+            return x; // 这里返回提取的数据
         }
     }
 }
 ```
 
-由于无效输入而导致提取失败将导致为变量分配值0（或变量类型中0转换为的任何值）。
+由于无效输入而导致提取失败，将导致变量分配为值0。
 
-在Unix系统上，输入文件尾（EOF）字符（通过ctrl-D）关闭输入流。这是std::cin.clear（）无法修复的问题，因此std::cin永远不会离开故障模式，这会导致所有后续输入操作失败。当这发生在无限循环中时，您的程序将无限循环，直到被杀死。
+在Unix系统上，输入文件尾（EOF）字符（键盘上输入ctrl-D）关闭输入流。这是std::cin.clear()无法修复的问题，此时std::cin永远不会离开故障模式，这会导致所有后续输入操作失败。这也会导致程序无限循环，直到被杀死。
 
-要更优雅地处理这种情况，可以显式测试EOF:
+要更优雅地处理这种情况，可以显式检查是否EOF:
 
 ```C++
-        if (!std::cin) // if the previous extraction failed
+        if (!std::cin) // 是否之前的提取失败
         {
-            if (std::cin.eof()) // if the stream was closed
+            if (std::cin.eof()) // 是否输入流被关闭
             {
-                exit(0); // shut down the program now
+                exit(0); // 直接关闭程序
             }
 
-            // let's handle the failure
-            std::cin.clear(); // put us back in 'normal' operation mode
-            ignoreLine();     // and remove the bad input
+            // 这里来处理失败
+            std::cin.clear(); // 将std::cin调回 '正常' 模式 
+            ignoreLine();     // 移除缓存中的错误数据
         }
 ```
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
-一旦提取失败，未来的输入提取请求（包括对ignore（）的调用）将静默失败，直到调用clear（）函数。因此，在检测到失败的提取后，调用clear（）通常是您应该做的第一件事。
+一旦提取失败，未来的输入提取请求（包括对ignore()的调用）将静默失败，直到调用clear()函数。因此，在检测到失败的提取后，调用clear()通常是您应该做的第一件事。
 
 {{< /alert >}}
 
 ***
-## 错误情况4:提取成功，但用户溢出了数值
+## 错误情况4:输入提取成功，但输入数值发生了溢出
 
 考虑下面的简单示例:
 
@@ -373,11 +403,11 @@ double getDouble()
 
 int main()
 {
-    std::int16_t x{}; // x is 16 bits, holds from -32768 to 32767
+    std::int16_t x{}; // x 是 16 位, 存储范围 -32768 到 32767
     std::cout << "Enter a number between -32768 and 32767: ";
     std::cin >> x;
 
-    std::int16_t y{}; // y is 16 bits, holds from -32768 to 32767
+    std::int16_t y{}; // y 是 16 位, 存储范围 -32768 到 32767
     std::cout << "Enter another number between -32768 and 32767: ";
     std::cin >> y;
 
@@ -388,12 +418,12 @@ int main()
 
 如果用户输入的数字太大（例如40000），会发生什么情况？
 
-在上述情况下，std::cin会立即进入“故障模式”，但也会将范围内最接近的值分配给变量。因此，x的赋值为32767。跳过其他输入，将y保留为初始化值0。我们可以用与失败提取相同的方法来处理这种错误。
+在上述情况下，std::cin会立即进入“故障模式”，但也会将范围内最接近的值分配给变量。因此，x的赋值为32767。这时会跳过其他输入，将y保留为初始化值0。可以用与处理提取失败相同的方法来处理这种错误。
 
 ***
 ## 把它们放在一起
 
-下面是我们的示例计算器，更新了一些额外的错误检查:
+下面是我们的示例中，更新了一些额外的错误检查:
 
 ```C++
 #include <iostream>
@@ -406,29 +436,29 @@ void ignoreLine()
 
 double getDouble()
 {
-    while (true) // Loop until user enters a valid input
+    while (true) // 无限循环，直到用户输入有效的数据
     {
         std::cout << "Enter a decimal number: ";
         double x{};
         std::cin >> x;
 
-        // Check for failed extraction
-        if (!std::cin) // if the previous extraction failed
+        // 检查是否提取失败
+        if (!std::cin) // 提取失败的情况
         {
-            if (std::cin.eof()) // if the stream was closed
+            if (std::cin.eof()) // 是否输入流被关闭
             {
-                exit(0); // shut down the program now
+                exit(0); // 直接关闭程序
             }
 
-            // let's handle the failure
-            std::cin.clear(); // put us back in 'normal' operation mode
-            ignoreLine();     // and remove the bad input
+            // 这里来处理失败
+            std::cin.clear(); // 将std::cin调回 '正常' 模式 
+            ignoreLine();     // 移除缓存中的错误数据
 
             std::cout << "Oops, that input is invalid.  Please try again.\n";
         }
         else
         {
-            ignoreLine(); // remove any extraneous input
+            ignoreLine(); // 移除任何额外的输入
             return x;
         }
     }
@@ -436,37 +466,37 @@ double getDouble()
 
 char getOperator()
 {
-    while (true) // Loop until user enters a valid input
+    while (true) // 无限循环，直到用户输入有效的数据
     {
         std::cout << "Enter one of the following: +, -, *, or /: ";
         char operation{};
         std::cin >> operation;
 
-        if (!std::cin) // if the previous extraction failed
+        if (!std::cin) // 检查是否提取失败
         {
-            if (std::cin.eof()) // if the stream was closed
+            if (std::cin.eof()) // 是否输入流被关闭
             {
-                exit(0); // shut down the program now
+                exit(0); // 直接关闭程序
             }
 
-            // let's handle the failure
-            std::cin.clear(); // put us back in 'normal' operation mode
+            // 这里来处理失败
+            std::cin.clear(); // 将std::cin调回 '正常' 模式 
         }
 
-        ignoreLine(); // remove any extraneous input
+        ignoreLine(); // 移除任何额外的输入
 
-        // Check whether the user entered meaningful input
+        // 检查输入是否在范围内
         switch (operation)
         {
         case '+':
         case '-':
         case '*':
         case '/':
-            return operation; // return it to the caller
-        default: // otherwise tell the user what went wrong
+            return operation; // 将输入返回
+        default: // 告诉用户输入错误
             std::cout << "Oops, that input is invalid.  Please try again.\n";
         }
-    } // and try again
+    }
 }
  
 void printResult(double x, char operation, double y)
@@ -485,7 +515,7 @@ void printResult(double x, char operation, double y)
     case '/':
         std::cout << x << " / " << y << " is " << x / y << '\n';
         break;
-    default: // Being robust means handling unexpected parameters as well, even though getOperator() guarantees operation is valid in this particular program
+    default: // 即使getOperator()函数确保返回有效的输入，这里的检查可以让程序更加健壮
         std::cout << "Something went wrong: printResult() got an invalid operator.\n";
     }
 }
@@ -510,10 +540,10 @@ int main()
 1. 提取是否会失败？
 2. 用户是否可以输入比预期更多的输入？
 3. 用户是否可以输入无意义的输入？
-4. 用户是否会溢出输入？
+4. 用户输入是否会溢出？
 
 
-您可以使用if语句和布尔逻辑来测试输入是否预期和有意义。
+可以使用if语句和布尔逻辑来测试输入是否预期和有意义。
 
 以下代码将清除任何无关的输入:
 
@@ -524,37 +554,38 @@ std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 以下代码将测试并修复失败的提取或溢出（并删除无关的输入）:
 
 ```C++
-if (!std::cin) // has a previous extraction failed or overflowed?
+if (!std::cin) // 是否之前提出失败，或者发生了溢出
 {
-    if (std::cin.eof()) // if the stream was closed
+    if (std::cin.eof()) // 是否输入流关闭
     {
-        exit(0); // shut down the program now
+        exit(0); // 关闭程序
     }
 
-    // yep, so let's handle the failure
-    std::cin.clear(); // put us back in 'normal' operation mode
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // and remove the bad input
+    // 这里来处理故障
+    std::cin.clear(); // 将std::cin调回 '正常' 模式 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 移除缓存中的无关输入
 }
 ```
 
 我们可以测试是否存在未提取的输入（换行除外），如下所示:
 
 ```C++
-        // If there is extraneous input
+        // 是否有额外的输入
         if (!std::cin.eof() && std::cin.peek() != '\n')
         {
-            // do whatever you want here -- for example:
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // remove extraneous input
-            continue; // go back to top of loop to ask user for input again
+            // 做我们想做的任何事情 -- 例如:
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 移除无关输入
+            continue; // 返回循环的顶部，让用户重新输入
         }
 ```
 
-最后，如果原始输入无效，则使用循环要求用户重新输入输入。
+最后，如果原始输入无效，则使用循环要求用户重新输入。
 
 {{< alert success >}}
-**作者注释**
+**注**
 
-输入验证很重要，也很有用，但它也会使示例变得更复杂，更难理解。因此，在未来的课程中，我们通常不会进行任何类型的输入验证，除非它与我们试图教授的内容相关。
+输入验证很重要，也很有用，但它也会使程序变得更复杂，更难理解。因此，在未来的课程中，通常不会进行任何类型的输入验证，除非它与试图教授的内容相关。
 
 {{< /alert >}}
 
+***
