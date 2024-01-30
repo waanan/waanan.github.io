@@ -297,6 +297,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter9/detect-handle-error/<-> 9.3 检测和处理错误
 <-->
 <->/basic/chapter9/cin-error-handle/<-> 9.4 std::cin和处理无效输入
+<-->
+<->/basic/chapter9/assert/<-> 9.5 代码覆盖率
+<-->
+<->/basic/chapter9/summary/<-> 9.6 代码覆盖率
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

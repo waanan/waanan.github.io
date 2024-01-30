@@ -41,7 +41,7 @@ bool b2 { !false }; // b2 初始化成 true
 ***
 ## 打印布尔值
 
-打印布尔值时，std:：cout打印0表示false，打印1表示true:
+打印布尔值时，std::cout打印0表示false，打印1表示true:
 
 ```C++
 #include <iostream>
