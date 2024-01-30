@@ -167,8 +167,8 @@ void spam(int timesToPrint)
 
 ***
 
-{{< prevnext prev="/basic/chapter9/intro/" next="/" >}}
+{{< prevnext prev="/basic/chapter9/intro/" next="/basic/chapter9/common-semantic-errors/" >}}
 9.0 代码测试简介
 <--->
-主页
+9.2 常见的语义错误
 {{< /prevnext >}}

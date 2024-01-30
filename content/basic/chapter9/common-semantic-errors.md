@@ -343,3 +343,9 @@ Kaboom!
 上面是新C++程序员倾向于犯的最常见的一些语义错误，但还有更多。读者们，如果您有任何其他认为是常见陷阱的问题，请在评论留言。
 
 ***
+
+{{< prevnext prev="/basic/chapter9/code-coverage/" next="/basic/chapter9/detect-handle-error/" >}}
+9.1 代码覆盖率
+<--->
+9.3 检测和处理错误
+{{< /prevnext >}}

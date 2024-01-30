@@ -292,11 +292,11 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter9/code-coverage/<-> 9.1 代码覆盖率
 <-->
-<->/basic/chapter9/common-semantic-errors/<-> 9.2 代码覆盖率
+<->/basic/chapter9/common-semantic-errors/<-> 9.2 常见的语义错误
 <-->
-<->/basic/chapter9/detect-handle-error/<-> 9.3 代码覆盖率
+<->/basic/chapter9/detect-handle-error/<-> 9.3 检测和处理错误
 <-->
-<->/basic/chapter9/cin-error-handle/<-> 9.4 代码覆盖率
+<->/basic/chapter9/cin-error-handle/<-> 9.4 std::cin和处理无效输入
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

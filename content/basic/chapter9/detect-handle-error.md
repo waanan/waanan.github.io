@@ -207,3 +207,9 @@ double doDivision(int x, int y)
 4. 对于本质上是事务性的任何应用程序类型（例如，处理特定事件的应用程序类型，如交互式web浏览器或非交互式web服务器），使用日志文件生成事件的事务日志，这些事件可以在以后查看。例如，输出当前正在处理的文件、完成百分比、开始计算的某个阶段的时间戳、警告和错误消息。
 
 ***
+
+{{< prevnext prev="/basic/chapter9/common-semantic-errors/" next="/basic/chapter9/cin-error-handle/" >}}
+9.2 常见的语义错误
+<--->
+9.4 std::cin和处理无效输入
+{{< /prevnext >}}
