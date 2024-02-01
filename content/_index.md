@@ -285,6 +285,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter8/summary/<-> 8.15 第八章总结
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
 第九章 错误检查与处理
 <--->
@@ -303,9 +305,12 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter9/summary/<-> 9.6 代码覆盖率
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
-第九章 类型转换与函数重载
+第十章 类型转换与函数重载
 <--->
+<->/basic/chapter10/implicit-type-convert/<-> 10.0 代码测试简介
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
