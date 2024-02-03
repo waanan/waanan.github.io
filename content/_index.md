@@ -313,6 +313,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter10/implicit-type-convert/<-> 10.0 代码测试简介
 <-->
 <->/basic/chapter10/promotion/<-> 10.1 代码覆盖率
+<-->
+<->/basic/chapter10/num-convert/<-> 10.2 代码覆盖率
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
