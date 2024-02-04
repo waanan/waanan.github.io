@@ -315,6 +315,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter10/promotion/<-> 10.1 代码覆盖率
 <-->
 <->/basic/chapter10/num-convert/<-> 10.2 代码覆盖率
+<-->
+<->/basic/chapter10/narrow-convert-list-constexpr-init/<-> 10.3 代码覆盖率
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
