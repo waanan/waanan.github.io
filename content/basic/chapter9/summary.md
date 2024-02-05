@@ -27,3 +27,9 @@ cerr是一个输出流（如std::cout），旨在用于输出错误消息。
 断言应该用于记录逻辑上不可能的情况。错误处理应用于处理可能发生问题的情况。
 
 ***
+
+{{< prevnext prev="/basic/chapter9/assert/" next="/basic/chapter10/implicit-type-convert/" >}}
+9.5 断言
+<--->
+10.0 隐式类型转换
+{{< /prevnext >}}

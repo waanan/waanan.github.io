@@ -131,3 +131,9 @@ int main()
 这里的区别主要是学术性的。然而，在某些情况下，编译器更喜欢数值提升，而不是数字转换。我们将看到在讨论函数重载解决方案时这会产生影响的示例。
 
 ***
+
+{{< prevnext prev="/basic/chapter10/implicit-type-convert/" next="/basic/chapter10/num-convert/" >}}
+10.0 隐式类型转换
+<--->
+10.2 数值转换
+{{< /prevnext >}}

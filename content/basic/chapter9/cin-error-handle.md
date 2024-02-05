@@ -590,8 +590,8 @@ if (!std::cin) // 是否之前提出失败，或者发生了溢出
 
 ***
 
-{{< prevnext prev="/basic/chapter9/detect-handle-error/" next="/" >}}
+{{< prevnext prev="/basic/chapter9/detect-handle-error/" next="/basic/chapter9/assert/" >}}
 9.3 检测和处理错误
 <--->
-主页
+9.5 断言
 {{< /prevnext >}}

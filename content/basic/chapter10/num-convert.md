@@ -306,3 +306,9 @@ int main()
 虽然数值转换规则可能看起来很可怕，但在现实中，如果您试图执行危险的操作（不包括一些有符号/无符号转换），编译器通常会警告您。
 
 ***
+
+{{< prevnext prev="/basic/chapter10/promotion/" next="/basic/chapter10/narrow-convert-list-constexpr-init/" >}}
+10.1 数值提升
+<--->
+10.3 窄化转换、列表初始化和constexpr初始化
+{{< /prevnext >}}

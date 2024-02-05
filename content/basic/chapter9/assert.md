@@ -220,3 +220,9 @@ int main()
 在C++17之前，必须将诊断消息作为第二个参数提供。在C++17及之后，提供诊断消息是可选的。
 
 ***
+
+{{< prevnext prev="/basic/chapter9/cin-error-handle/" next="/basic/chapter9/summary/" >}}
+9.4 std::cin和处理无效输入
+<--->
+9.6 第9章总结
+{{< /prevnext >}}

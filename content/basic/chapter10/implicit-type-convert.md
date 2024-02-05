@@ -115,3 +115,9 @@ C++语言标准定义了如何将不同的基本类型（在某些情况下，�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter9/summary/" next="/basic/chapter10/promotion/" >}}
+9.6 第9章总结
+<--->
+10.1 数值提升
+{{< /prevnext >}}

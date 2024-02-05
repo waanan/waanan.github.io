@@ -300,9 +300,9 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter9/cin-error-handle/<-> 9.4 std::cin和处理无效输入
 <-->
-<->/basic/chapter9/assert/<-> 9.5 代码覆盖率
+<->/basic/chapter9/assert/<-> 9.5 断言
 <-->
-<->/basic/chapter9/summary/<-> 9.6 代码覆盖率
+<->/basic/chapter9/summary/<-> 9.6 第9章总结
 {{< /chapterlist >}}
 
 ***
@@ -310,13 +310,13 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第十章 类型转换与函数重载
 <--->
-<->/basic/chapter10/implicit-type-convert/<-> 10.0 代码测试简介
+<->/basic/chapter10/implicit-type-convert/<-> 10.0 隐式类型转换
 <-->
-<->/basic/chapter10/promotion/<-> 10.1 代码覆盖率
+<->/basic/chapter10/promotion/<-> 10.1 数值提升
 <-->
-<->/basic/chapter10/num-convert/<-> 10.2 代码覆盖率
+<->/basic/chapter10/num-convert/<-> 10.2 数值转换
 <-->
-<->/basic/chapter10/narrow-convert-list-constexpr-init/<-> 10.3 代码覆盖率
+<->/basic/chapter10/narrow-convert-list-constexpr-init/<-> 10.3 窄化转换、列表初始化和constexpr初始化
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

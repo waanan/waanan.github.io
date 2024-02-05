@@ -209,3 +209,9 @@ int main()
 然而，在这种情况下，编译器可能仍然会发出警告（如果使用-Wconversion编译标志，GCC和Clang会发出警告）。
 
 ***
+
+{{< prevnext prev="/basic/chapter10/num-convert/" next="/" >}}
+10.2 数值转换
+<--->
+主页
+{{< /prevnext >}}
