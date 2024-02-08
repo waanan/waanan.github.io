@@ -321,6 +321,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter10/arithmetic-convert/<-> 10.4 窄化转换、列表初始化和constexpr初始化
 <-->
 <->/basic/chapter10/explicit-type-convert-static-cast/<-> 10.5 窄化转换、列表初始化和constexpr初始化
+<-->
+<->/basic/chapter10/typedef/<-> 10.6 窄化转换、列表初始化和constexpr初始化
+<-->
+<->/basic/chapter10/auto-type-object/<-> 10.7 窄化转换、列表初始化和constexpr初始化
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
