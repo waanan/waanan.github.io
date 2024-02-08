@@ -318,13 +318,13 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter10/narrow-convert-list-constexpr-init/<-> 10.3 窄化转换、列表初始化和constexpr初始化
 <-->
-<->/basic/chapter10/arithmetic-convert/<-> 10.4 窄化转换、列表初始化和constexpr初始化
+<->/basic/chapter10/arithmetic-convert/<-> 10.4 算术转换
 <-->
-<->/basic/chapter10/explicit-type-convert-static-cast/<-> 10.5 窄化转换、列表初始化和constexpr初始化
+<->/basic/chapter10/explicit-type-convert-static-cast/<-> 10.5 显式类型转换和static_cast
 <-->
-<->/basic/chapter10/typedef/<-> 10.6 窄化转换、列表初始化和constexpr初始化
+<->/basic/chapter10/typedef/<-> 10.6 typedef和类型别名
 <-->
-<->/basic/chapter10/auto-type-object/<-> 10.7 窄化转换、列表初始化和constexpr初始化
+<->/basic/chapter10/auto-type-object/<-> 10.7 使用auto关键字的对象类型自动推导
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

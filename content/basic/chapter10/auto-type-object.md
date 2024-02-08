@@ -228,3 +228,9 @@ auto sum { add(5, 6) + gravity };
 总的来说，现代的共识是类型推导通常是安全的，并且这样做可以取消强调类型信息来使代码更具可读性，使代码的逻辑更好地突出。
 
 ***
+
+{{< prevnext prev="/basic/chapter10/typedef/" next="/" >}}
+10.6 typedef和类型别名
+<--->
+主页
+{{< /prevnext >}}

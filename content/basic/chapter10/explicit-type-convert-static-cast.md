@@ -194,3 +194,8 @@ i = static_cast<int>(i / 2.5);
 
 ***
 
+{{< prevnext prev="/basic/chapter10/arithmetic-convert/" next="/basic/chapter10/typedef/" >}}
+10.4 算术转换
+<--->
+10.6 typedef和类型别名
+{{< /prevnext >}}

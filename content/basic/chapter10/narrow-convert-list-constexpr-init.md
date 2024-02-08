@@ -210,8 +210,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter10/num-convert/" next="/" >}}
+{{< prevnext prev="/basic/chapter10/num-convert/" next="/basic/chapter10/arithmetic-convert/" >}}
 10.2 数值转换
 <--->
-主页
+10.4 算术转换
 {{< /prevnext >}}

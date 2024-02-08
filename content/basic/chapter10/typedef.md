@@ -341,3 +341,9 @@ TestScore的返回类型，使函数返回表示测试分数的目的变得更�
 由于这个原因，类型别名应该主要用于对代码可读性或代码维护有明显好处的情况。这既是一门科学，也是一门艺术。当类型别名可以在代码中的许多地方使用，而不是在较少的地方使用时，它们最有用。
 
 ***
+
+{{< prevnext prev="/basic/chapter10/explicit-type-convert-static-cast/" next="/basic/chapter10/auto-type-object/" >}}
+10.5 显式类型转换和static_cast
+<--->
+10.7 使用auto关键字的对象类型自动推导
+{{< /prevnext >}}

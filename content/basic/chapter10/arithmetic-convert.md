@@ -172,3 +172,9 @@ int main()
 这是避免无符号整数的主要原因之一，当您在算术表达式中将它们与有符号整数混合时，您可能会遇到意外结果。编译器甚至可能不会发出警告。
 
 ***
+
+{{< prevnext prev="/basic/chapter10/narrow-convert-list-constexpr-init/" next="/basic/chapter10/explicit-type-convert-static-cast/" >}}
+10.3 窄化转换、列表初始化和constexpr初始化
+<--->
+10.5 显式类型转换和static_cast
+{{< /prevnext >}}
