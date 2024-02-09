@@ -325,6 +325,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter10/typedef/<-> 10.6 typedef和类型别名
 <-->
 <->/basic/chapter10/auto-type-object/<-> 10.7 使用auto关键字的对象类型自动推导
+<-->
+<->/basic/chapter10/auto-type-func/<-> 10.8 使用auto关键字的对象类型自动推导
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
