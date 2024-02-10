@@ -308,7 +308,7 @@ date: 2022-12-28T16:40:41+08:00
 ***
 
 {{< chapterlist>}}
-第十章 类型转换与函数重载
+第十章 类型转换，类型别名与类型推导
 <--->
 <->/basic/chapter10/implicit-type-convert/<-> 10.0 隐式类型转换
 <-->
@@ -329,6 +329,14 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter10/auto-type-func/<-> 10.8 使用auto关键字的对象类型自动推导
 <-->
 <->/basic/chapter10/summary/<-> 10.9 使用auto关键字的对象类型自动推导
+{{< /chapterlist >}}
+
+***
+
+{{< chapterlist>}}
+第十一章 函数重载与函数模版
+<--->
+<->/basic/chapter11/func-overload-intro/<-> 11.0 隐式类型转换
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
