@@ -29,3 +29,9 @@ auto关键字有许多用法。首先，auto可以用于进行类型推导，这
 Auto也可以用作函数返回类型，以使编译器从函数的return语句推导函数的返回类型，对于普通函数应该避免这种情况。Auto也用作尾部返回语法的一部分。
 
 ***
+
+{{< prevnext prev="/basic/chapter10/auto-type-func/" next="/basic/chapter11/func-overload-intro/" >}}
+10.8 函数的类型推导
+<--->
+11.0 函数重载简介
+{{< /prevnext >}}

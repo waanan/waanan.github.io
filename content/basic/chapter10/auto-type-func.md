@@ -155,3 +155,8 @@ int main()
 
 ***
 
+{{< prevnext prev="/basic/chapter10/auto-type-object/" next="/basic/chapter10/summary/" >}}
+10.7 使用auto关键字的对象类型自动推导
+<--->
+10.9 第10章总结
+{{< /prevnext >}}

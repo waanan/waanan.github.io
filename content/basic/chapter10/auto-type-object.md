@@ -229,8 +229,8 @@ auto sum { add(5, 6) + gravity };
 
 ***
 
-{{< prevnext prev="/basic/chapter10/typedef/" next="/" >}}
+{{< prevnext prev="/basic/chapter10/typedef/" next="/basic/chapter10/auto-type-func/" >}}
 10.6 typedef和类型别名
 <--->
-主页
+10.8 函数的类型推导
 {{< /prevnext >}}
