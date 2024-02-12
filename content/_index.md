@@ -341,6 +341,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter11/func-overload-diff/<-> 11.1 函数重载简介
 <-->
 <->/basic/chapter11/func-overload-resolution/<-> 11.2 函数重载简介
+<-->
+<->/basic/chapter11/func-del/<-> 11.3 函数重载简介
 {{< /chapterlist >}}
 
 ***
