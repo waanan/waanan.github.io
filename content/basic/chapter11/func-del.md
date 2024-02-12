@@ -112,3 +112,9 @@ int main()
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter11/func-overload-resolution/" next="/" >}}
+11.2 函数重载决议
+<--->
+主页
+{{< /prevnext >}}

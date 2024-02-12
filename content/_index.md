@@ -338,11 +338,11 @@ date: 2022-12-28T16:40:41+08:00
 <--->
 <->/basic/chapter11/func-overload-intro/<-> 11.0 函数重载简介
 <-->
-<->/basic/chapter11/func-overload-diff/<-> 11.1 函数重载简介
+<->/basic/chapter11/func-overload-diff/<-> 11.1 被重载函数之间互相区分
 <-->
-<->/basic/chapter11/func-overload-resolution/<-> 11.2 函数重载简介
+<->/basic/chapter11/func-overload-resolution/<-> 11.2 函数重载决议
 <-->
-<->/basic/chapter11/func-del/<-> 11.3 函数重载简介
+<->/basic/chapter11/func-del/<-> 11.3 函数的delete说明符
 {{< /chapterlist >}}
 
 ***

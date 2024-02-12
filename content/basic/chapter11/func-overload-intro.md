@@ -132,8 +132,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter10/summary/" next="/" >}}
+{{< prevnext prev="/basic/chapter10/summary/" next="/basic/chapter11/func-overload-diff/" >}}
 10.9 第10章总结
 <--->
-主页
+11.1 被重载函数之间互相区分
 {{< /prevnext >}}

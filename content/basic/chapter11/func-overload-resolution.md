@@ -370,3 +370,9 @@ int main()
 在上面的程序中，所有函数都与第一个参数完全匹配。然而，第一个函数通过数值提升匹配第二个参数，而其他函数需要转换。因此，print(char, int)无疑是最佳匹配。
 
 ***
+
+{{< prevnext prev="/basic/chapter11/func-overload-diff/" next="/basic/chapter11/func-del/" >}}
+11.1 被重载函数之间互相区分
+<--->
+11.3 函数的delete说明符
+{{< /prevnext >}}

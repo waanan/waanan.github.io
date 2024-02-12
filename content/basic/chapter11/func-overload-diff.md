@@ -150,3 +150,9 @@ double getRandomDouble();
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter11/func-overload-intro/" next="/basic/chapter11/func-overload-resolution/" >}}
+11.0 函数重载简介
+<--->
+11.2 函数重载决议
+{{< /prevnext >}}
