@@ -343,6 +343,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter11/func-overload-resolution/<-> 11.2 函数重载决议
 <-->
 <->/basic/chapter11/func-del/<-> 11.3 函数的delete说明符
+<-->
+<->/basic/chapter11/default-param/<-> 11.4 函数的delete说明符
 {{< /chapterlist >}}
 
 ***
