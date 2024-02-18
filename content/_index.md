@@ -351,6 +351,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter11/func-template-instane/<-> 11.6 函数的delete说明符
 <-->
 <->/basic/chapter11/func-template-mutli-type/<-> 11.7 函数的delete说明符
+<-->
+<->/basic/chapter11/func-template-none-type-param/<-> 11.8 函数的delete说明符
+<-->
+<->/basic/chapter11/summary/<-> 11.9 函数的delete说明符
 {{< /chapterlist >}}
 
 ***
