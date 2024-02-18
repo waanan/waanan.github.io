@@ -82,20 +82,20 @@ T max(T x, T y)
 
 int main()
 {
-    std::cout << max(static_cast<double>(2), 3.5) << '\n'; // convert our int to a double so we can call max(double, double)
+    std::cout << max(static_cast<double>(2), 3.5) << '\n'; // 将int转换为double，以便调用 max(double, double)
 
     return 0;
 }
 ```
 
-既然这两个参数都是double类型，编译器将能够实例化满足此函数调用的max（double，double）。
+既然这两个参数都是double类型，编译器将能够实例化满足此函数调用的max(double, double)。
 
-然而，这个解决方案很难理解。
+然而，这个解决方案不一定总能满足需求。
 
 ***
 ## 提供显式类型模板参数
 
-如果我们已经编写了一个非模板max（double，double）函数，那么我们将能够调用max（int，doubel），并让隐式类型转换规则将int参数转换为double，以便可以解析函数调用：
+如果我们已经编写了一个非模板max(double, double)函数，那么我们将能够调用max(int，double)，并通过隐式类型转换规则将int参数转换为double，以便可以解析到对应的函数调用：
 
 ```C++
 #include <iostream>
@@ -107,13 +107,13 @@ double max(double x, double y)
 
 int main()
 {
-    std::cout << max(2, 3.5) << '\n'; // the int argument will be converted to a double
+    std::cout << max(2, 3.5) << '\n'; // int 参数会被转换为 double
 
     return 0;
 }
 ```
 
-然而，当编译器进行模板参数推导时，它不会进行任何类型转换。幸运的是，如果指定要使用的显式类型模板参数，则不必使用模板参数演绎：
+然而，当编译器进行模板参数推导时，它不会进行任何类型转换。幸运的是，如果指定要使用的显式类型模板参数，则不必使用模板参数推导：
 
 ```C++
 #include <iostream>
@@ -126,31 +126,31 @@ T max(T x, T y)
 
 int main()
 {
-    // we've explicitly specified type double, so the compiler won't use template argument deduction
+    // 显示声明类型 double, 编译器无需进行模板类型推导
     std::cout << max<double>(2, 3.5) << '\n';
 
     return 0;
 }
 ```
 
-在上面的示例中，我们将max<double>（2，3.5）称为。因为我们已经明确指定T应该替换为double，所以编译器不会使用模板参数推导。相反，它将只实例化函数max<double>（double，double），然后键入convert任何不匹配的参数。我们的int参数将隐式转换为double。
+在上面的示例中，我们将显式调用max<double>(2, 3.5)。因为已经明确指定T应该替换为double，所以编译器不会使用模板参数推导。相反，它将只实例化函数max<double>(double, double)，然后转换任何不匹配的参数。int参数将隐式转换为double。
 
 虽然这比使用static_cast更具可读性，但如果我们在对max进行函数调用时根本不必考虑类型，那就更好了。
 
 ***
 ## 具有多个模板类型参数的函数模板
 
-问题的根源是，我们只为函数模板定义了单个模板类型（T），然后指定两个参数必须是同一类型。
+问题的根源是，我们只为函数模板定义了单个模板类型参数（T），然后指定两个参数必须是同一类型。
 
-解决这个问题的最好方法是重写函数模板，使我们的参数可以解析为不同的类型。我们现在将使用两个（T和U），而不是使用一个模板类型参数T：
+解决这个问题的最好方法是重写函数模板，使我们的参数可以解析为不同的类型。我们现在将使用两个（T和U）：
 
 ```C++
 #include <iostream>
 
-template <typename T, typename U> // We're using two template type parameters named T and U
-T max(T x, U y) // x can resolve to type T, and y can resolve to type U
+template <typename T, typename U> // 使用两个模板类型参数 T 和 U
+T max(T x, U y) // x 是类型 T, y 是类型 U
 {
-    return (x < y) ? y : x; // uh oh, we have a narrowing conversion problem here
+    return (x < y) ? y : x; // uh ，这里有个隐式的窄化转换
 }
 
 int main()
@@ -161,11 +161,11 @@ int main()
 }
 ```
 
-因为我们已经用模板类型T定义了x，用模板类型U定义了y，所以x和y现在可以独立地解析它们的类型。当我们调用max（2,3.5）时，T可以是int，U可以是double。编译器将愉快地为我们实例化max<int，double>（int，downle）。
+因为我们已经用模板类型T定义了x，用模板类型U定义了y，所以x和y现在可以独立地解析它们的类型。当我们调用max(2, 3.5)时，T是int，U是double。编译器将为我们实例化max<int，double>(int, double)。
 
-然而，上面的代码仍然有一个问题：使用通常的算术规则（10.5——算术转换），double优先于int，因此我们的条件运算符将返回double。但我们的函数被定义为返回T——在T解析为int的情况下，我们的双精度返回值将进行缩小转换为int，这将产生警告（以及可能的数据丢失）。
+然而，上面的代码仍然有一个问题：double优先于int，因此我们的条件运算符将返回double。但我们的函数被定义为返回T——在T解析为int的情况下，double返回值将窄化转换为int，这将产生编译告警（以及可能的数据丢失）。
 
-相反，将返回类型设置为U并不能解决问题，因为我们总是可以在函数调用中翻转操作数的顺序，以翻转t和U的类型。
+相反，将返回类型设置为U并不能解决问题，因为我们总是可以在函数调用中翻转操作数的顺序，翻转T和U的类型。
 
 我们如何解决这个问题？这是自动返回类型的一个很好的用途——我们让编译器从return语句中推断出返回类型应该是什么：
 
@@ -189,7 +189,7 @@ int main()
 这个版本的max现在可以很好地处理不同类型的操作数。
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
 每个模板类型参数都将独立解析其类型。
 
@@ -198,9 +198,9 @@ int main()
 {{< /alert >}}
 
 ***
-## 缩写函数模板C++20
+## 函数模板简化（C++20）
 
-C++20引入了auto关键字的新用法：当auto关键字用作普通函数中的参数类型时，编译器将自动将函数转换为函数模板，每个auto参数都成为独立的模板类型参数。用于创建函数模板的方法称为缩写函数模板。
+C++20引入了auto关键字的新用法：当auto关键字用作普通函数中的参数类型时，编译器将自动将函数转换为函数模板，每个auto参数都成为独立的模板类型参数。用于创建函数模板的方法称为简写函数模板（abbreviated function template）。
 
 例如：
 
@@ -225,20 +225,21 @@ auto max(T x, U y)
 
 在希望每个模板类型参数都是独立类型的情况下，最好使用这种形式，因为删除模板参数声明行会使代码更简洁和可读。
 
-当您希望多个自动参数为同一类型时，没有一种简明的方法来使用缩写函数模板。也就是说，对于这样的内容，没有简单的缩写函数模板：
+当您希望多个自动参数为同一类型时，没有一种简明的方法来使用简写函数模板。也就是说，对于这样的内容，没有简单的缩写函数模板：
 
 ```C++
 template <typename T>
-T max(T x, T y) // two parameters of the same type
+T max(T x, T y) // 两个参数是相同的类型
 {
     return (x < y) ? y : x;
 }
 ```
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
-可以将缩写的函数模板与单个自动参数一起使用，或者其中每个自动参数都应该是独立的类型（并且您的语言标准设置为C++20或更高版本）。
+可以将简写的函数模板与auto参数一起使用，每个auto参数都应该是独立的类型（并且您的语言标准设置为C++20或更高版本）。
 
 {{< /alert >}}
 
+***
