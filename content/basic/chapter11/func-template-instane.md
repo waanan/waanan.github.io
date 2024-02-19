@@ -635,3 +635,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter11/func-template/" next="/basic/chapter11/func-template-mutli-type/" >}}
+11.5 函数模板
+<--->
+11.7 具有多个模板类型的函数模板
+{{< /prevnext >}}

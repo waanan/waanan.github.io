@@ -193,3 +193,9 @@ const T& max( const T& a, const T& b, Compare comp ); // 暂时忽略 & ， 我�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter11/default-param/" next="/basic/chapter11/func-template-instane/" >}}
+11.4 默认参数
+<--->
+11.6 函数模板实例化
+{{< /prevnext >}}

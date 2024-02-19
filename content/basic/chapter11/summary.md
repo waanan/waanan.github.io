@@ -29,3 +29,9 @@ date: 2024-02-10T01:33:43+08:00
 非类型模板参数是具有固定类型的模板参数，它作为模板参数传入的constexpr值的占位符。
 
 ***
+
+{{< prevnext prev="/basic/chapter11/func-template-none-type-param/" next="/" >}}
+11.8 非类型模板参数
+<--->
+主页
+{{< /prevnext >}}

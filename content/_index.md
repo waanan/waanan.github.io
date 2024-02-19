@@ -344,17 +344,17 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter11/func-del/<-> 11.3 函数的delete说明符
 <-->
-<->/basic/chapter11/default-param/<-> 11.4 函数的delete说明符
+<->/basic/chapter11/default-param/<-> 11.4 默认参数
 <-->
-<->/basic/chapter11/func-template/<-> 11.5 函数的delete说明符
+<->/basic/chapter11/func-template/<-> 11.5 函数模板
 <-->
-<->/basic/chapter11/func-template-instane/<-> 11.6 函数的delete说明符
+<->/basic/chapter11/func-template-instane/<-> 11.6 函数模板实例化
 <-->
-<->/basic/chapter11/func-template-mutli-type/<-> 11.7 函数的delete说明符
+<->/basic/chapter11/func-template-mutli-type/<-> 11.7 具有多个模板类型的函数模板
 <-->
-<->/basic/chapter11/func-template-none-type-param/<-> 11.8 函数的delete说明符
+<->/basic/chapter11/func-template-none-type-param/<-> 11.8 非类型模板参数
 <-->
-<->/basic/chapter11/summary/<-> 11.9 函数的delete说明符
+<->/basic/chapter11/summary/<-> 11.9 第11章总结
 {{< /chapterlist >}}
 
 ***

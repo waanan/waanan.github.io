@@ -243,3 +243,9 @@ T max(T x, T y) // 两个参数是相同的类型
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter11/func-template-instane/" next="/basic/chapter11/func-template-none-type-param/" >}}
+11.6 函数模板实例化
+<--->
+11.8 非类型模板参数
+{{< /prevnext >}}

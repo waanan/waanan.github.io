@@ -113,8 +113,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter11/func-overload-resolution/" next="/" >}}
+{{< prevnext prev="/basic/chapter11/func-overload-resolution/" next="/basic/chapter11/default-param/" >}}
 11.2 函数重载决议
 <--->
-主页
+11.4 默认参数
 {{< /prevnext >}}

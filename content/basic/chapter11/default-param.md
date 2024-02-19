@@ -227,3 +227,9 @@ print(1); // 不明确匹配的函数调用
 默认参数提供了一种有用的机制，用户可以选择覆盖或不覆盖参数的默认值。它在C++中经常使用，您将在以后的课程中看到它。
 
 ***
+
+{{< prevnext prev="/basic/chapter11/func-del/" next="/basic/chapter11/func-template/" >}}
+11.3 函数的delete说明符
+<--->
+11.5 函数模板
+{{< /prevnext >}}
