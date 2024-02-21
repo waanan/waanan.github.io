@@ -367,6 +367,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter12/value-category/<-> 12.1 第11章总结
 <-->
 <->/basic/chapter12/lvalue-ref/<-> 12.2 第11章总结
+<-->
+<->/basic/chapter12/const-lvalue-ref/<-> 12.3 第11章总结
 {{< /chapterlist >}}
 
 ***
