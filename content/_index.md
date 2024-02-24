@@ -124,7 +124,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter3/call-stack/<-> 3.8 调用堆栈
 <-->
-<->/basic/chapter3/avoid-problem/<-> 3.9 在问题变成问题进行避免
+<->/basic/chapter3/avoid-problem/<-> 3.9 在问题变成问题前进行避免
 <-->
 <->/basic/chapter3/summary/<-> 3.10 第3章总结
 {{< /chapterlist >}}
@@ -373,6 +373,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter12/lvalue-ref-func-arg/<-> 12.4 第11章总结
 <-->
 <->/basic/chapter12/const-lvalue-ref-func-arg/<-> 12.5 第11章总结
+<-->
+<->/basic/chapter12/pointer-intro/<-> 12.6 第11章总结
 {{< /chapterlist >}}
 
 ***
