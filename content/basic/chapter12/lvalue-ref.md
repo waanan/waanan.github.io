@@ -284,3 +284,9 @@ int& ref2{ ref1 }; // 绑定到var的左值引用
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter12/value-category/" next="/basic/chapter12/const-lvalue-ref/" >}}
+12.1 值类别（左值 lvalue 和右值 rvalue）
+<--->
+12.3 const的左值引用
+{{< /prevnext >}}

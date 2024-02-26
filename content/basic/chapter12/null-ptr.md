@@ -293,3 +293,9 @@ int main()
 因为引用更安全，所以优先使用引用而不是指针，除非需要指针提供的额外功能。
 
 ***
+
+{{< prevnext prev="/basic/chapter12/pointer-intro/" next="/" >}}
+12.6 指针简介
+<--->
+主页
+{{< /prevnext >}}

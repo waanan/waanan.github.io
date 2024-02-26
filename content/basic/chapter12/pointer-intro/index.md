@@ -507,3 +507,9 @@ int main()
 指针比引用更灵活，也更危险。我们将在接下来的课程中继续探索这一点。
 
 ***
+
+{{< prevnext prev="/basic/chapter12/const-lvalue-ref-func-arg/" next="/basic/chapter12/null-ptr/" >}}
+12.5 通过常量左值引用传递函数参数
+<--->
+12.7 空指针
+{{< /prevnext >}}

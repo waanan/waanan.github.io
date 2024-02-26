@@ -362,21 +362,21 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第十二章 复合类型：引用与指针
 <--->
-<->/basic/chapter12/compound-data-intro/<-> 12.0 函数重载简介
+<->/basic/chapter12/compound-data-intro/<-> 12.0 复合数据类型简介
 <-->
-<->/basic/chapter12/value-category/<-> 12.1 第11章总结
+<->/basic/chapter12/value-category/<-> 12.1 值类别（左值 lvalue 和右值 rvalue）
 <-->
-<->/basic/chapter12/lvalue-ref/<-> 12.2 第11章总结
+<->/basic/chapter12/lvalue-ref/<-> 12.2 左值引用
 <-->
-<->/basic/chapter12/const-lvalue-ref/<-> 12.3 第11章总结
+<->/basic/chapter12/const-lvalue-ref/<-> 12.3 const的左值引用
 <-->
-<->/basic/chapter12/lvalue-ref-func-arg/<-> 12.4 第11章总结
+<->/basic/chapter12/lvalue-ref-func-arg/<-> 12.4 通过左值引用传递函数参数
 <-->
-<->/basic/chapter12/const-lvalue-ref-func-arg/<-> 12.5 第11章总结
+<->/basic/chapter12/const-lvalue-ref-func-arg/<-> 12.5 通过常量左值引用传递函数参数
 <-->
-<->/basic/chapter12/pointer-intro/<-> 12.6 第11章总结
+<->/basic/chapter12/pointer-intro/<-> 12.6 指针简介
 <-->
-<->/basic/chapter12/null-ptr/<-> 12.7 第11章总结
+<->/basic/chapter12/null-ptr/<-> 12.7 空指针
 {{< /chapterlist >}}
 
 ***

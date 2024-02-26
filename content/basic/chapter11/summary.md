@@ -30,8 +30,8 @@ date: 2024-02-10T01:33:43+08:00
 
 ***
 
-{{< prevnext prev="/basic/chapter11/func-template-none-type-param/" next="/" >}}
+{{< prevnext prev="/basic/chapter11/func-template-none-type-param/" next="/basic/chapter12/compound-data-intro/" >}}
 11.8 非类型模板参数
 <--->
-主页
+12.0 复合数据类型简介
 {{< /prevnext >}}

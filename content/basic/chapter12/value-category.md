@@ -302,3 +302,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter12/compound-data-intro/" next="/basic/chapter12/lvalue-ref/" >}}
+12.0 复合数据类型简介
+<--->
+12.2 左值引用
+{{< /prevnext >}}

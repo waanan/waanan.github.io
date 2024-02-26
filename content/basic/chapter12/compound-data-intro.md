@@ -108,3 +108,9 @@ void doSomething(int x, double y)
 我们走吧！
 
 ***
+
+{{< prevnext prev="/basic/chapter11/summary/" next="/basic/chapter12/value-category/" >}}
+11.9 第11章总结
+<--->
+12.1 值类别（左值 lvalue 和右值 rvalue）
+{{< /prevnext >}}

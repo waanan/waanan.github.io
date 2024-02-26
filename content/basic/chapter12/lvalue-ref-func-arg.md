@@ -209,3 +209,9 @@ int main()
 幸运的是，有一种简单的方法可以解决这个问题，我们将在下一课中讨论。同时还将研究何时按值传递与按引用传递。
 
 ***
+
+{{< prevnext prev="/basic/chapter12/const-lvalue-ref/" next="/basic/chapter12/const-lvalue-ref-func-arg/" >}}
+12.3 const的左值引用
+<--->
+12.5 通过常量左值引用传递函数参数
+{{< /prevnext >}}

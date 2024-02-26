@@ -253,3 +253,9 @@ int main()
 此外，我们需要考虑函数内部访问参数的成本。由于std::string_view参数是普通对象，因此可以直接访问正在查看的字符串。访问std::string&参数需要额外的步骤来访问被引用的对象，然后才能访问字符串。
 
 ***
+
+{{< prevnext prev="/basic/chapter12/lvalue-ref-func-arg/" next="/basic/chapter12/pointer-intro/" >}}
+12.4 通过左值引用传递函数参数
+<--->
+12.6 指针简介
+{{< /prevnext >}}
