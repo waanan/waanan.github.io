@@ -186,3 +186,9 @@ int main()
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter12/null-ptr/" next="/basic/chapter12/pointer-func-arg/" >}}
+12.7 空指针
+<--->
+12.9 通过指针传递函数参数
+{{< /prevnext >}}

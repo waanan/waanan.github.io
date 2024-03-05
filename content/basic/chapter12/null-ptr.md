@@ -294,8 +294,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter12/pointer-intro/" next="/" >}}
+{{< prevnext prev="/basic/chapter12/pointer-intro/" next="/basic/chapter12/const-ptr/" >}}
 12.6 指针简介
 <--->
-主页
+12.8 指针与常量
 {{< /prevnext >}}

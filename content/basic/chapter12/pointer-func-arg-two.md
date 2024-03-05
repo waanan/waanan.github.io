@@ -261,3 +261,9 @@ int main()
 因此，我们可以得出结论，C++确实按值传递所有内容！传递地址（和引用）的能力在于，可以解引用传递的地址来更改参数指向的对象，这是使用普通值作为参数所不能做到的！
 
 ***
+
+{{< prevnext prev="/basic/chapter12/pointer-func-arg/" next="/basic/chapter12/ret-ref-pointer/" >}}
+12.9 通过指针传递函数参数
+<--->
+12.11 引用或指针作为函数返回值
+{{< /prevnext >}}

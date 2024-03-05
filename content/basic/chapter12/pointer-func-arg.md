@@ -333,3 +333,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter12/const-ptr/" next="/basic/chapter12/pointer-func-arg-two/" >}}
+12.8 指针与常量
+<--->
+12.10 通过指针传递函数参数（第2部分）
+{{< /prevnext >}}

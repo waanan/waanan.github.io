@@ -378,13 +378,13 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter12/null-ptr/<-> 12.7 空指针
 <-->
-<->/basic/chapter12/const-ptr/<-> 12.8 空指针
+<->/basic/chapter12/const-ptr/<-> 12.8 指针与常量
 <-->
-<->/basic/chapter12/pointer-func-arg/<-> 12.9 空指针
+<->/basic/chapter12/pointer-func-arg/<-> 12.9 通过指针传递函数参数
 <-->
-<->/basic/chapter12/pointer-func-arg-two/<-> 12.10 空指针
+<->/basic/chapter12/pointer-func-arg-two/<-> 12.10 通过指针传递函数参数（第2部分）
 <-->
-<->/basic/chapter12/ret-ref-pointer/<-> 12.11 空指针
+<->/basic/chapter12/ret-ref-pointer/<-> 12.11 引用或指针作为函数返回值
 {{< /chapterlist >}}
 
 ***
