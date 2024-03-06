@@ -385,6 +385,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter12/pointer-func-arg-two/<-> 12.10 通过指针传递函数参数（第2部分）
 <-->
 <->/basic/chapter12/ret-ref-pointer/<-> 12.11 引用或指针作为函数返回值
+<-->
+<->/basic/chapter12/io-args/<-> 12.12 引用或指针作为函数返回值
 {{< /chapterlist >}}
 
 ***
