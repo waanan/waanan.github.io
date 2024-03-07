@@ -387,6 +387,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter12/ret-ref-pointer/<-> 12.11 引用或指针作为函数返回值
 <-->
 <->/basic/chapter12/io-args/<-> 12.12 引用或指针作为函数返回值
+<-->
+<->/basic/chapter12/auto-type-deduct-ptr-ref-const/<-> 12.13 引用或指针作为函数返回值
+<-->
+<->/basic/chapter12/summary/<-> 12.14 引用或指针作为函数返回值
 {{< /chapterlist >}}
 
 ***
