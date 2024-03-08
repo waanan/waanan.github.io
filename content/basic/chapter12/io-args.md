@@ -275,3 +275,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter12/ret-ref-pointer/" next="/basic/chapter12/auto-type-deduct-ptr-ref-const/" >}}
+12.11 引用或指针作为函数返回值
+<--->
+12.13 指针、引用和常量的类型自动推导
+{{< /prevnext >}}

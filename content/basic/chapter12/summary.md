@@ -55,3 +55,9 @@ date: 2024-02-19T14:35:47+08:00
 变量的类型推导（通过auto关键字）将从推导的类型中删除任何引用或顶层const限定符。如果需要，可以将它们作为变量声明的一部分重新设置。
 
 ***
+
+{{< prevnext prev="/basic/chapter12/auto-type-deduct-ptr-ref-const/" next="/" >}}
+12.13 指针、引用和常量的类型自动推导
+<--->
+主页
+{{< /prevnext >}}

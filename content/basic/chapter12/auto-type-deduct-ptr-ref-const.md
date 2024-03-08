@@ -337,3 +337,9 @@ ptr5和ptr6，在这两种情况下，顶层常量都会被删除。对于ptr5�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter12/io-args/" next="/basic/chapter12/summary/" >}}
+12.12 输入和输出参数
+<--->
+12.14 第12章总结
+{{< /prevnext >}}

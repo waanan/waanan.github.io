@@ -403,8 +403,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter12/pointer-func-arg-two/" next="/" >}}
+{{< prevnext prev="/basic/chapter12/pointer-func-arg-two/" next="/basic/chapter12/io-args/" >}}
 12.10 通过指针传递函数参数（第2部分）
 <--->
-主页
+12.12 输入和输出参数
 {{< /prevnext >}}
