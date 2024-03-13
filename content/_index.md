@@ -399,6 +399,8 @@ date: 2022-12-28T16:40:41+08:00
 第十三章 复合类型：枚举与结构体
 <--->
 <->/basic/chapter13/user_define_type/<-> 13.0 复合数据类型简介
+<-->
+<->/basic/chapter13/unscoped-enum/<-> 13.1 复合数据类型简介
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
