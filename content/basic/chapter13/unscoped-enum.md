@@ -334,85 +334,85 @@ void sortData(SortOrder order)
 由于枚举很小，并且复制成本很低，因此可以通过值传递（并返回）它们。
 
 ***
-## 非范围枚举的范围
+## 非限定作用域枚举的作用域
 
-无范围枚举之所以如此命名，是因为它们将其枚举器名称放入与枚举定义本身相同的范围中（而不是像命名空间那样创建新的范围区域）。
+之所以如此命名，是因为非限定作用域枚举，将其枚举元素的名称放入与枚举定义本身相同的作用域中（而不是像命名空间那样创建新的作用域）。
 
-例如，给定此程序：
+例如，此程序：
 
 ```C++
-enum Color // this enum is defined in the global namespace
+enum Color // Color 在全局命名空间定义
 {
-    red, // so red is put into the global namespace
+    red, // red 因此也是在全局命名空间可见
     green,
     blue, 
 };
 
 int main()
 {
-    Color apple { red }; // my apple is red
+    Color apple { red }; // apple 的颜色是 red
 
     return 0;
 }
 ```
 
-颜色枚举在全局范围中定义。因此，所有枚举名称（红色、绿色和蓝色）也都进入全局范围。这会污染全局范围，并显著增加命名冲突的可能性。
+red枚举在全局命名空间中定义。因此，所有枚举元素的名称（red、green和blue）也都在全局命名空间中。这会污染全局命名空间，并显著增加命名冲突的可能性。
 
-这样做的一个后果是不能在同一范围内的多个枚举中使用枚举器名称：
+这样做的一个后果是不能在同一作用域内的多个枚举定义中使用相同枚举元素名称：
 
 ```C++
 enum Color
 {
     red,
     green,
-    blue, // blue is put into the global namespace
+    blue, // blue 在全局命名空间
 };
 
 enum Feeling
 {
     happy,
     tired,
-    blue, // error: naming collision with the above blue
+    blue, // 错误: 与上面的 blue 命名冲突
 };
 
 int main()
 {
-    Color apple { red }; // my apple is red
-    Feeling me { happy }; // I'm happy right now (even though my program doesn't compile)
+    Color apple { red }; // apple 颜色是 red
+    Feeling me { happy }; // I'm happy (但是程序无法编译通过)
 
     return 0;
 }
 ```
 
-在上面的示例中，两个非范围枚举（颜色和感觉）都将具有相同名称的枚举器蓝色放入全局范围。这会导致命名冲突和随后的编译错误。
+在上面的示例中，两个非限定作用域枚举（Color和Feeling）都将具有相同名称的枚举元素blue放入全局命名空间。这会导致命名冲突和随后的编译错误。
 
-无范围枚举还为其枚举器提供命名范围区域（就像命名空间充当中声明的名称的命名范围区域一样）。这意味着我们可以按如下方式访问未范围枚举的枚举器：
+非限定作用域枚举可以为其枚举元素提供作用域。这意味着可以按如下方式访问其中的枚举元素：
 
 ```C++
 enum Color
 {
     red,
     green,
-    blue, // blue is put into the global namespace
+    blue, // blue 在全局命名空间
 };
 
 int main()
 {
-    Color apple { red }; // okay, accessing enumerator from global namespace
-    Color raspberry { Color::red }; // also okay, accessing enumerator from scope of Color
+    Color apple { red }; // okay, 从全局命名空间访问
+    Color raspberry { Color::red }; // 也 okay, 通过 Color 提供的作用域访问
 
     return 0;
 }
 ```
 
-通常，在不使用范围解析操作符的情况下访问未范围枚举器。
+通常，都是在不使用域解析操作符的情况下访问非限定作用域枚举。
 
 ***
-## 避免枚举器命名冲突
+## 避免枚举元素命名冲突
 
-有许多常见的方法可以防止未范围枚举器命名冲突。
+有许多常见的方法可以防止非限定作用域枚举命名冲突。
 
-一个选项是用枚举本身的名称作为每个枚举器的前缀：
+一个选项是用枚举本身的名称作为每个枚举元素的前缀：
 
 ```C++
 enum Color
@@ -426,7 +426,7 @@ enum Feeling
 {
     feeling_happy,
     feeling_tired,
-    feeling_blue, // no longer has a naming collision with color_blue
+    feeling_blue, // 不在与 color_blue 命名冲突
 };
 
 int main()
@@ -438,14 +438,14 @@ int main()
 }
 ```
 
-这仍然会污染名称空间，但通过使名称更长、更唯一，减少了命名冲突的机会。
+但这仍然会污染命名空间，但通过使名称更长、更唯一，减少了命名冲突的机会。
 
-更好的选择是将枚举类型放在提供单独作用域区域的内容中，例如命名空间：
+更好的选择是将枚举类型放在提供单独作用域的其它东西里面，例如命名空间：
 
 ```C++
 namespace Color
 {
-    // The names Color, red, blue, and green are defined inside namespace Color
+    // Color, red, blue, 和 green 在命名空间 Color 中
     enum Color
     {
         red,
@@ -460,7 +460,7 @@ namespace Feeling
     {
         happy,
         tired,
-        blue, // Feeling::blue doesn't collide with Color::blue
+        blue, // Feeling::blue 不与 Color::blue 冲突
     };
 }
 
@@ -473,30 +473,28 @@ int main()
 }
 ```
 
-这意味着我们现在必须用作用域区域的名称作为枚举和枚举器名称的前缀。
+这意味着现在必须用命名空间作为枚举和枚举元素名称的前缀。
 
-一个相关的选项是使用作用域枚举（它定义自己的作用域区域）。我们将很快讨论范围枚举（13.4——范围枚举（枚举类））。
-
-或者，如果枚举仅在单个函数体中使用，则应在函数内部定义枚举。这将枚举及其枚举器的范围限制为仅限于该函数。这种枚举的枚举器将隐藏全局范围中定义的同名枚举器。
+或者，如果枚举仅在单个函数体中使用，则应在函数内部定义枚举。这将枚举及其枚举元素的作用域限制为该函数。这种枚举的枚举元素将隐藏全局作用域中定义的同名枚举元素。
 
 {{< alert success >}}
 **对于高级读者**
 
-类还提供范围区域，通常将与类相关的枚举类型放在类的范围区域内。我们在第15.3课——嵌套类型（成员类型）中讨论了这一点。
+class也提供作用域，通常将与class相关的枚举类型放在class内。后续讨论class相关内容时进行介绍。
 
 {{< /alert >}}
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
-更喜欢将枚举放在命名范围区域（如命名空间或类）内，以便枚举器不会污染全局命名空间。
+优先将枚举放在提供命名功能的其它东西（如命名空间或类）内，以便枚举器不会污染全局命名空间。
 
 {{< /alert >}}
 
 ***
-## 与普查员进行比较
+## 枚举元素的比较
 
-我们可以使用相等运算符（operator==和operator！=）来测试枚举是否具有特定枚举器的值。
+可以使用相等运算符（operator==和operator!=）来测试对象是否具有特定枚举元素的值。
 
 ```C++
 #include <iostream>
@@ -512,7 +510,7 @@ int main()
 {
     Color shirt{ blue };
 
-    if (shirt == blue) // if the shirt is blue
+    if (shirt == blue) // 如果 shirt 是 blue
         std::cout << "Your shirt is blue!";
     else
         std::cout << "Your shirt is not blue!";
@@ -521,8 +519,8 @@ int main()
 }
 ```
 
-在上面的示例中，我们使用if语句来测试shirt是否等于枚举器blue。这为我们提供了一种基于枚举所持有的枚举器来限制程序行为的方法。
+在上面的示例中，使用if语句来测试shirt是否等于枚举元素blue。这提供了一种基于变量所持有的枚举元素来控制程序行为的方法。
 
-在下一课中，我们将更多地利用这一点。
+在下一课中，将更多地利用这一点。
 
 ***
