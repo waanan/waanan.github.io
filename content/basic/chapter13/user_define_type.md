@@ -189,3 +189,9 @@ C++语言标准以非常规的方式使用术语“用户定义类型”。在�
 | 程序定义类型 | 类类型和枚举类型 （排除标准库与编译器实现的） | Fraction |
 
 ***
+
+{{< prevnext prev="/basic/chapter12/summary/" next="/basic/chapter13/unscoped-enum/" >}}
+12.14 第12章总结
+<--->
+13.1 非限定作用域枚举
+{{< /prevnext >}}

@@ -398,11 +398,11 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第十三章 复合类型：枚举与结构体
 <--->
-<->/basic/chapter13/user_define_type/<-> 13.0 复合数据类型简介
+<->/basic/chapter13/user_define_type/<-> 13.0 用户自定义类型简介
 <-->
-<->/basic/chapter13/unscoped-enum/<-> 13.1 复合数据类型简介
+<->/basic/chapter13/unscoped-enum/<-> 13.1 非限定作用域枚举
 <-->
-<->/basic/chapter13/unscoped-enum-io/<-> 13.2 复合数据类型简介
+<->/basic/chapter13/unscoped-enum-io/<-> 13.2 非限定作用域枚举的输入与输出
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

@@ -456,3 +456,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter13/unscoped-enum/" next="/" >}}
+13.1 非限定作用域枚举
+<--->
+主页
+{{< /prevnext >}}
