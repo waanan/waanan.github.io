@@ -524,3 +524,9 @@ int main()
 在下一课中，将更多地利用这一点。
 
 ***
+
+{{< prevnext prev="/basic/chapter13/user_define_type/" next="/basic/chapter13/unscoped-enum-io/" >}}
+13.0 用户自定义类型简介
+<--->
+13.2 非限定作用域枚举的输入与输出
+{{< /prevnext >}}

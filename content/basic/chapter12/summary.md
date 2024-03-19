@@ -56,8 +56,8 @@ date: 2024-02-19T14:35:47+08:00
 
 ***
 
-{{< prevnext prev="/basic/chapter12/auto-type-deduct-ptr-ref-const/" next="/" >}}
+{{< prevnext prev="/basic/chapter12/auto-type-deduct-ptr-ref-const/" next="/basic/chapter13/user_define_type/" >}}
 12.13 指针、引用和常量的类型自动推导
 <--->
-主页
+13.0 用户自定义类型简介
 {{< /prevnext >}}
