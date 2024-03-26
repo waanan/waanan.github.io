@@ -184,3 +184,9 @@ int main()
 在下一课中，将继续探索结构体，研究如何初始化它们。
 
 ***
+
+{{< prevnext prev="/basic/chapter13/scoped-enum/" next="/" >}}
+13.3 限定作用域枚举（枚举类）
+<--->
+主页
+{{< /prevnext >}}

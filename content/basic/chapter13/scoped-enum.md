@@ -305,3 +305,9 @@ int main()
 这就避免了在switch语句中有多个冗余的明显前缀。
 
 ***
+
+{{< prevnext prev="/basic/chapter13/unscoped-enum-io/" next="/basic/chapter13/struct-intro/" >}}
+13.2 非限定作用域枚举的输入与输出
+<--->
+13.4 结构体简介
+{{< /prevnext >}}

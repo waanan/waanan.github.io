@@ -404,9 +404,9 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter13/unscoped-enum-io/<-> 13.2 非限定作用域枚举的输入与输出
 <-->
-<->/basic/chapter13/scoped-enum/<-> 13.3 非限定作用域枚举的输入与输出
+<->/basic/chapter13/scoped-enum/<-> 13.3 限定作用域枚举（枚举类）
 <-->
-<->/basic/chapter13/struct-intro/<-> 13.4 非限定作用域枚举的输入与输出
+<->/basic/chapter13/struct-intro/<-> 13.4 结构体简介
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

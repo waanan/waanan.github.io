@@ -457,8 +457,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter13/unscoped-enum/" next="/" >}}
+{{< prevnext prev="/basic/chapter13/unscoped-enum/" next="/basic/chapter13/scoped-enum/" >}}
 13.1 非限定作用域枚举
 <--->
-主页
+13.3 限定作用域枚举（枚举类）
 {{< /prevnext >}}
