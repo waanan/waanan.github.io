@@ -407,6 +407,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter13/scoped-enum/<-> 13.3 限定作用域枚举（枚举类）
 <-->
 <->/basic/chapter13/struct-intro/<-> 13.4 结构体简介
+<-->
+<->/basic/chapter13/struct-init/<-> 13.5 结构体简介
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
