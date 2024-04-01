@@ -413,6 +413,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter13/struct-member-default-init/<-> 13.6 结构体简介
 <-->
 <->/basic/chapter13/struct-arg-ret/<-> 13.7 结构体简介
+<-->
+<->/basic/chapter13/struct-other/<-> 13.8 结构体简介
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
