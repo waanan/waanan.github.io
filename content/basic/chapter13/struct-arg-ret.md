@@ -196,3 +196,9 @@ Point3d getZeroPoint()
 结构体很有用，类（是C++和面向对象编程的核心）直接构建在这里介绍的概念之上。很好地理解结构体（特别是数据成员、成员选择和默认成员初始化）将使您更容易过渡到类。
 
 ***
+
+{{< prevnext prev="/basic/chapter13/struct-member-default-init/" next="/basic/chapter13/struct-other/" >}}
+13.6 成员变量的默认初始化
+<--->
+13.8 结构体杂项
+{{< /prevnext >}}

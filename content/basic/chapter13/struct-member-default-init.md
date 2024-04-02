@@ -184,3 +184,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter13/struct-init/" next="/basic/chapter13/struct-arg-ret/" >}}
+13.5 结构体初始化
+<--->
+13.7 结构体作为函数的输入与输出
+{{< /prevnext >}}

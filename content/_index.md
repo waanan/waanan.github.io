@@ -408,13 +408,13 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter13/struct-intro/<-> 13.4 结构体简介
 <-->
-<->/basic/chapter13/struct-init/<-> 13.5 结构体简介
+<->/basic/chapter13/struct-init/<-> 13.5 结构体初始化
 <-->
-<->/basic/chapter13/struct-member-default-init/<-> 13.6 结构体简介
+<->/basic/chapter13/struct-member-default-init/<-> 13.6 成员变量的默认初始化
 <-->
-<->/basic/chapter13/struct-arg-ret/<-> 13.7 结构体简介
+<->/basic/chapter13/struct-arg-ret/<-> 13.7 结构体作为函数的输入与输出
 <-->
-<->/basic/chapter13/struct-other/<-> 13.8 结构体简介
+<->/basic/chapter13/struct-other/<-> 13.8 结构体杂项
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

@@ -228,3 +228,9 @@ C++编译器不允许对成员重新排序，因此必须手动完成。
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter13/struct-arg-ret/" next="/" >}}
+13.7 结构体作为函数的输入与输出
+<--->
+主页
+{{< /prevnext >}}

@@ -185,8 +185,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter13/scoped-enum/" next="/" >}}
+{{< prevnext prev="/basic/chapter13/scoped-enum/" next="/basic/chapter13/struct-init/" >}}
 13.3 限定作用域枚举（枚举类）
 <--->
-主页
+13.5 结构体初始化
 {{< /prevnext >}}

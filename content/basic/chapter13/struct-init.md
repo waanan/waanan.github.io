@@ -353,3 +353,9 @@ int main()
 请注意，这使用了我们熟悉的标准形式的初始化（拷贝、直接或列表初始化），而不是聚合初始化。
 
 ***
+
+{{< prevnext prev="/basic/chapter13/struct-intro/" next="/basic/chapter13/struct-member-default-init/" >}}
+13.4 结构体简介
+<--->
+13.6 成员变量的默认初始化
+{{< /prevnext >}}
