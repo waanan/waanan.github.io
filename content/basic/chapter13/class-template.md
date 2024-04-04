@@ -3,19 +3,19 @@ title: "类模板"
 date: 2024-03-08T13:20:57+08:00
 ---
 
-在第11.6课——函数模板中，我们介绍了一个挑战，即必须为要使用的每个不同类型集创建单独的（重载）函数：
+在前面函数模板中，介绍了一个挑战，即必须为不同的参数类型创建单独的（重载）函数：
 
 ```C++
 #include <iostream>
 
-// function to calculate the greater of two int values
+// 计算两个int值中最大值的函数
 int max(int x, int y)
 {
     return (x < y) ? y : x;
 }
 
-// almost identical function to calculate the greater of two double values
-// the only difference is the type information
+// 与上面的函数几乎相同
+// 只是输入类型不同
 double max(double x, double y)
 {
     return (x < y) ? y : x;
@@ -23,20 +23,20 @@ double max(double x, double y)
 
 int main()
 {
-    std::cout << max(5, 6);     // calls max(int, int)
+    std::cout << max(5, 6);     // 调用 max(int, int)
     std::cout << '\n';
-    std::cout << max(1.2, 3.4); // calls max(double, double)
+    std::cout << max(1.2, 3.4); // 调用 max(double, double)
 
     return 0;
 }
 ```
 
-解决方案是创建一个函数模板，编译器可以使用该模板为我们需要的任何类型集实例化普通函数：
+解决方案是创建一个函数模板，编译器可以使用该模板为需要的任何类型集实例化普通函数：
 
 ```C++
 #include <iostream>
 
-// a single function template for max
+// max 函数模版
 template <typename T>
 T max(T x, T y)
 {
@@ -45,27 +45,20 @@ T max(T x, T y)
 
 int main()
 {
-    std::cout << max(5, 6);     // instantiates and calls max<int>(int, int)
+    std::cout << max(5, 6);     // 实例化并调用 max<int>(int, int)
     std::cout << '\n';
-    std::cout << max(1.2, 3.4); // instantiates and calls max<double>(double, double)
+    std::cout << max(1.2, 3.4); // 实例化并调用 max<double>(double, double)
 
     return 0;
 }
 ```
 
-{{< alert success >}}
-**相关内容**
-
-我们在第11.7课——函数模板实例化中介绍了函数模板实例的工作原理。
-
-{{< /alert >}}
-
 ***
 ## 聚合类型具有类似的挑战
 
-在聚合类型（结构/类/联合和数组）方面，我们遇到了类似的挑战。
+在聚合类型（结构体/类/联合和数组）方面，会遇到类似的挑战。
 
-例如，假设我们正在编写一个程序，需要处理成对的int值，并需要确定两个数字中哪个更大。我们可以编写这样的程序：
+例如，假设正在编写一个程序，需要处理成对的int值，并需要确定两个数字中哪个更大。可以编写这样的程序：
 
 ```C++
 #include <iostream>
@@ -76,7 +69,7 @@ struct Pair
     int second{};
 };
 
-constexpr int max(Pair p) // pass by value because Pair is small
+constexpr int max(Pair p) // 直接传递Pair，因为它很小
 {
     return (p.first < p.second ? p.second : p.first);
 }
@@ -90,7 +83,7 @@ int main()
 }
 ```
 
-后来，我们发现我们还需要成对的双精度值。因此，我们将计划更新为：
+后来，我们发现还需要成对的double。因此，将程序更新为：
 
 ```C++
 #include <iostream>
@@ -101,7 +94,7 @@ struct Pair
     int second{};
 };
 
-struct Pair // compile error: erroneous redefinition of Pair
+struct Pair // 编译失败: 重复定义Pair
 {
     double first{};
     double second{};
@@ -112,7 +105,7 @@ constexpr int max(Pair p)
     return (p.first < p.second ? p.second : p.first);
 }
 
-constexpr double max(Pair p) // compile error: overloaded function differs only by return type
+constexpr double max(Pair p) // 编译失败: 重载函数，但是只有返回类型不同
 {
     return (p.first < p.second ? p.second : p.first);
 }
@@ -131,16 +124,16 @@ int main()
 
 不幸的是，这个程序无法编译，并且有许多问题需要解决。
 
-首先，与函数不同，类型定义不能重载。编译器将把Pair的双秒定义视为Pair的第一个定义的错误重新声明。其次，尽管函数可以重载，但我们的max（Pair）函数仅在返回类型上有所不同，并且重载函数不能仅根据返回类型来区分。第三，这里有许多冗余。每个Pair结构都相同（除了数据类型），并且与max（Pair）函数相同（除了返回类型）。
+首先，与函数不同，类型定义不能重载。编译器将把Pair的第二个定义视为Pair的第一个定义的错误重新声明。其次，尽管函数可以重载，但max(Pair)函数仅在返回类型上有所不同，重载函数不能仅根据返回类型来区分。第三，这里有许多冗余。每个Pair结构体都相同（除了数据类型），并且max(Pair)函数相同（除了返回类型）。
 
-我们可以通过为Pair结构赋予不同的名称（例如，PairInt和PairDouble）来解决前两个问题。但是，我们都必须记住我们的命名方案，并且本质上为我们想要的每个额外的对类型克隆一组代码，这并不能解决冗余问题。
+可以通过为Pair结构赋予不同的名称（例如，PairInt和PairDouble）来解决前两个问题。但是，必须记住它们的命名方案，并且为每个类型拷贝一组代码，这有严重的冗余问题。
 
-幸运的是，我们可以做得更好。
+幸运的是，可以做得更好。
 
 {{< alert success >}}
-**作者注释**
+**注**
 
-在继续之前，如果您对函数模板、模板类型或函数模板实例化的工作方式不清楚，请复习第11.6课——函数模板和第11.7课——函数样板实例化。
+在继续之前，如果您对函数模板、模板类型或函数模板实例化的工作方式不清楚，请复习之前相关内容。
 
 {{< /alert >}}
 
@@ -149,7 +142,7 @@ int main()
 
 就像函数模板是用于实例化函数的模板定义一样，类模板是用于实例化类类型的模板定义。
 
-提醒一下，这里是我们的int对结构定义：
+下面这是int Pair的定义：
 
 ```C++
 struct Pair
@@ -159,7 +152,7 @@ struct Pair
 };
 ```
 
-让我们将pair类重写为类模板：
+让我们将Pair类重写为类模板：
 
 ```C++
 #include <iostream>
@@ -173,47 +166,47 @@ struct Pair
 
 int main()
 {
-    Pair<int> p1{ 5, 6 };        // instantiates Pair<int> and creates object p1
+    Pair<int> p1{ 5, 6 };        // 实例化 Pair<int> 并创建对象 p1
     std::cout << p1.first << ' ' << p1.second << '\n';
 
-    Pair<double> p2{ 1.2, 3.4 }; // instantiates Pair<double> and creates object p2
+    Pair<double> p2{ 1.2, 3.4 }; // 实例化 Pair<double> 并创建对象 p2
     std::cout << p2.first << ' ' << p2.second << '\n';
 
-    Pair<double> p3{ 7.8, 9.0 }; // creates object p3 using prior definition for Pair<double>
+    Pair<double> p3{ 7.8, 9.0 }; // 创建 p3，使用已经实例化了的 Pair<double>
     std::cout << p3.first << ' ' << p3.second << '\n';
 
     return 0;
 }
 ```
 
-就像函数模板一样，我们使用模板参数声明来启动类模板定义。我们从模板关键字开始。接下来，我们指定类模板将在尖括号（<>）内使用的所有模板类型。对于我们需要的每个模板类型，我们使用关键字typename（preferred）或class（not preferred.），后跟模板类型的名称（例如T）。在这种情况下，由于我们的两个成员将是相同的类型，因此我们只需要一个模板类型。
+就像函数模板一样，使用template来启动类模板定义。从template关键字开始。接下来，在尖括号（<>）内指定使用的所有模板类型。对于需要的每个模板类型，使用关键字typename（推荐）或class（不推荐），后跟模板类型的名称（例如T）。在这种情况下，由于两个成员变量是相同的类型，因此只需要一个模板类型。
 
-接下来，我们像往常一样定义结构，除了我们可以在任何需要模板化类型的地方使用模板类型（T），该类型稍后将被替换为真实类型。就是这样！我们完成了类模板定义。
+接下来，像往常一样定义结构体，可以在任何需要模板化类型的地方使用模板类型（T），该类型稍后将被替换为真实类型。就是这样！我们完成了类模板定义。
 
-在main中，我们可以使用所需的任何类型实例化Pair对象。首先，我们实例化一个类型为Pair<int>的对象。由于Pair<int>的类型定义尚不存在，编译器使用类模板实例化名为Pair<int>的结构类型定义，其中模板类型t的所有出现都被类型int替换。
+在main中，可以使用所需的任何类型实例化Pair对象。首先，实例化一个类型为Pair\<int\>的对象。由于Pair\<int\>的类型定义尚不存在，编译器使用类模板实例化名为Pair\<int\>的结构体类型定义，其中模板类型T的所有出现都被类型int替换。
 
-接下来，我们实例化一个类型为Pair<double>的对象，该对象实例化名为Pair<double>T的结构类型定义，其中T被double替换。对于p3，Pair<double>已经被实例化，因此编译器将使用先前的类型定义。
+接下来，实例化一个类型为Pair\<double\>的对象，其中T被double替换。对于p3，Pair<double>已经被实例化，因此编译器将使用先前的类型定义。
 
 下面是与上面相同的示例，显示了在完成所有模板实例化后编译器实际编译的内容：
 
 ```C++
 #include <iostream>
 
-// A declaration for our Pair class template
-// (we don't need the definition any more since it's not used)
+// Pair 类模版定义
+// (模版实例化后这个定义不再被需要了)
 template <typename T>
 struct Pair;
 
-// Explicitly define what Pair<int> looks like
-template <> // tells the compiler this is a template type with no template parameters
+// 显示定义 Pair<int>
+template <> // 告诉编译器这是一个没有类型参数的模版
 struct Pair<int>
 {
     int first{};
     int second{};
 };
 
-// Explicitly define what Pair<double> looks like
-template <> // tells the compiler this is a template type with no template parameters
+// 显示定义 Pair<double>
+template <> // 告诉编译器这是一个没有类型参数的模版
 struct Pair<double>
 {
     double first{};
@@ -222,13 +215,13 @@ struct Pair<double>
 
 int main()
 {
-    Pair<int> p1{ 5, 6 };        // instantiates Pair<int> and creates object p1
+    Pair<int> p1{ 5, 6 };        // 实例化 Pair<int> 并创建对象 p1
     std::cout << p1.first << ' ' << p1.second << '\n';
 
-    Pair<double> p2{ 1.2, 3.4 }; // instantiates Pair<double> and creates object p2
+    Pair<double> p2{ 1.2, 3.4 }; // 实例化 Pair<double> 并创建对象 p2
     std::cout << p2.first << ' ' << p2.second << '\n';
 
-    Pair<double> p3{ 7.8, 9.0 }; // creates object p3 using prior definition for Pair<double>
+    Pair<double> p3{ 7.8, 9.0 }; // 创建 p3，使用已经实例化了的 Pair<double>
     std::cout << p3.first << ' ' << p3.second << '\n';
 
     return 0;
@@ -238,16 +231,16 @@ int main()
 您可以直接编译这个示例，并看到它按预期工作！
 
 {{< alert success >}}
-**一个提醒**
+**提醒**
 
-“类类型”是结构、类或联合类型。尽管为了简单起见，我们将在结构上演示“类模板”，但这里的一切都同样适用于类。
+“类类型”是结构体、类或联合类型。为了简单起见，这里在结构体上演示“类模板”，但这里的一切都同样适用于类。
 
 {{< /alert >}}
 
 {{< alert success >}}
 **对于高级读者**
 
-上面的示例使用了一个名为类模板专门化的功能（在未来的第26.4课——类模板专门化中介绍）。此时不需要了解此功能的工作原理。
+上面的示例使用了一个名为类模板特化的功能（后面介绍）。此时不需要了解此功能的工作原理。
 
 {{< /alert >}}
 
