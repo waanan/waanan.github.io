@@ -1,20 +1,20 @@
 ---
-title: "类模板参数演绎（CTAD）和演绎指南"
+title: "类模板参数推导（CTAD）"
 date: 2024-03-08T13:20:57+08:00
 ---
 
 ***
-## 类模板参数推导（CTAD）C++17
+## 类模板参数推导（Class template argument deduction，CTAD）（C++17）
 
-从C++17开始，当从类模板实例化对象时，编译器可以从对象的初始值设定项的类型中推断模板类型（这称为类模板参数推导或简称CTAD）。例如：
+从C++17开始，当从类模板实例化对象时，编译器可以从对象的初始值的类型推断模板参数类型（这称为类模板参数推导或简称CTAD）。例如：
 
 ```C++
 #include <utility> // for std::pair
 
 int main()
 {
-    std::pair<int, int> p1{ 1, 2 }; // explicitly specify class template std::pair<int, int> (C++11 onward)
-    std::pair p2{ 1, 2 };           // CTAD used to deduce std::pair<int, int> from the initializers (C++17)
+    std::pair<int, int> p1{ 1, 2 }; // 显示声明 std::pair<int, int> (C++11)
+    std::pair p2{ 1, 2 };           // CTAD，从初始值列表推导 std::pair<int, int> (C++17)
 
     return 0;
 }
@@ -27,43 +27,43 @@ int main()
 
 int main()
 {
-    std::pair<> p1 { 1, 2 };    // error: too few template arguments, both arguments not deduced
-    std::pair<int> p2 { 3, 4 }; // error: too few template arguments, second argument not deduced
+    std::pair<> p1 { 1, 2 };    // error: 模版参数太少, 2个模版参数都缺少了
+    std::pair<int> p2 { 3, 4 }; // error: 模版参数太少, 第二个模版参数缺少
 
     return 0;
 }
 ```
 
-由于CTAD是类型推导的一种形式，我们可以使用文字后缀来更改推导的类型：
+由于CTAD是类型推导的一种形式，因此可以使用字面值后缀来更改推导的类型：
 
 ```C++
 #include <utility> // for std::pair
 
 int main()
 {
-    std::pair p1 { 3.4f, 5.6f }; // deduced to pair<float, float>
-    std::pair p2 { 1u, 2u };     // deduced to pair<unsigned int, unsigned int>
+    std::pair p1 { 3.4f, 5.6f }; // 推导为 pair<float, float>
+    std::pair p2 { 1u, 2u };     // 推导为 pair<unsigned int, unsigned int>
 
     return 0;
 }
 ```
 
 {{< alert success >}}
-**作者注释**
+**注**
 
-该网站上的许多未来课程都使用CTAD。如果您使用C++14标准（或更早版本）编译这些示例，您将得到一个关于缺少模板参数的错误。您需要将这些参数显式添加到示例中，以使其可编译。
+本网站上的许多未来课程都使用CTAD。如果您使用C++14标准（或更早版本）编译这些示例，您将得到一个缺少模板参数的错误。需要将这些参数显式添加到示例中，以使其可编译。
 
 {{< /alert >}}
 
 ***
-## 模板参数推导指南C++17
+## 模板参数推导指南（C++17）
 
 在大多数情况下，CTAD是开箱即用的。然而，在某些情况下，编译器可能需要一些额外的帮助来理解如何正确推导模板参数。
 
-您可能会惊讶地发现，以下程序（几乎与上面使用std:：pair的示例相同）不能在C++17中编译（仅）：
+您可能会惊讶地发现，以下程序（几乎与上面使用std::pair的示例相同）不能在C++17中编译：
 
 ```C++
-// define our own Pair type
+// 自定义 Pair 类型
 template <typename T, typename U>
 struct Pair
 {
@@ -73,8 +73,8 @@ struct Pair
 
 int main()
 {
-    Pair<int, int> p1{ 1, 2 }; // ok: we're explicitly specifying the template arguments
-    Pair p2{ 1, 2 };           // compile error in C++17 (okay in C++20)
+    Pair<int, int> p1{ 1, 2 }; // ok: 显示指定模版参数
+    Pair p2{ 1, 2 };           // C++17 中编译失败 (C++20 可以编译)
 
     return 0;
 }
