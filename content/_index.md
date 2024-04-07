@@ -419,6 +419,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter13/struct-member-select/<-> 13.9 结构体杂项
 <-->
 <->/basic/chapter13/class-template/<-> 13.10 结构体杂项
+<-->
+<->/basic/chapter13/class-template-arg-deduct/<-> 13.11 结构体杂项
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
