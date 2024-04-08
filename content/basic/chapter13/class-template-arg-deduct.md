@@ -264,3 +264,9 @@ int main()
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter13/class-template/" next="/" >}}
+13.10 类模板
+<--->
+主页
+{{< /prevnext >}}

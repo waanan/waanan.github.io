@@ -194,3 +194,9 @@ int main()
 注意，(ptr->paw).claws中，括号是不必要的，因为 操作符-> 和 操作符. 都是按从左到右的顺序进行计算，但它确实稍微有助于可读性。
 
 ***
+
+{{< prevnext prev="/basic/chapter13/struct-other/" next="/basic/chapter13/class-template/" >}}
+13.8 结构体杂项
+<--->
+13.10 类模板
+{{< /prevnext >}}

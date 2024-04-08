@@ -527,3 +527,9 @@ int main()
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter13/struct-member-select/" next="/basic/chapter13/class-template-arg-deduct/" >}}
+13.9 结构体指针和引用的成员选择操作
+<--->
+13.11 类模板参数推导（CTAD）
+{{< /prevnext >}}

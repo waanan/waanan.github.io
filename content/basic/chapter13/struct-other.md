@@ -229,8 +229,8 @@ C++编译器不允许对成员重新排序，因此必须手动完成。
 
 ***
 
-{{< prevnext prev="/basic/chapter13/struct-arg-ret/" next="/" >}}
+{{< prevnext prev="/basic/chapter13/struct-arg-ret/" next="/basic/chapter13/struct-member-select/" >}}
 13.7 结构体作为函数的输入与输出
 <--->
-主页
+13.9 结构体指针和引用的成员选择操作
 {{< /prevnext >}}
