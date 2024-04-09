@@ -422,7 +422,9 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter13/class-template-arg-deduct/<-> 13.11 类模板参数推导（CTAD）
 <-->
-<->/basic/chapter13/template-alias/<-> 13.12 类模板参数推导（CTAD）
+<->/basic/chapter13/template-alias/<-> 13.12 模板别名
+<-->
+<->/basic/chapter13/summary/<-> 13.13 第13章总结
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

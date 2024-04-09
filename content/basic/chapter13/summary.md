@@ -30,3 +30,9 @@ struct（structure的缩写）是一种程序定义的数据类型，它允许�
 类模板是用于实例化类类型（结构体、类或联合）的模板定义。类模板参数推导（CTAD）是C++17的一个功能，它允许编译器从初始值设定项中推导模板类型参数。
 
 ***
+
+{{< prevnext prev="/basic/chapter13/template-alias/" next="/" >}}
+13.12 模板别名
+<--->
+主页
+{{< /prevnext >}}

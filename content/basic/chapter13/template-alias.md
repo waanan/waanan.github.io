@@ -107,3 +107,9 @@ void print(const Coord& c) // 无法编译, 缺少模板参数
 这与使用Pair\<T\>没有区别。
 
 ***
+
+{{< prevnext prev="/basic/chapter13/class-template-arg-deduct/" next="/basic/chapter13/summary/" >}}
+13.11 类模板参数推导（CTAD）
+<--->
+13.13 第13章总结
+{{< /prevnext >}}

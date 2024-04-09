@@ -265,8 +265,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter13/class-template/" next="/" >}}
+{{< prevnext prev="/basic/chapter13/class-template/" next="/basic/chapter13/template-alias/" >}}
 13.10 类模板
 <--->
-主页
+13.12 模板别名
 {{< /prevnext >}}
