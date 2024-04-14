@@ -30,71 +30,65 @@ c++语言手册中包含C语言与C++语言两部分。由于C++与C共享一些
 {{< /alert >}}
 
 ***
-## 标准：：字符串：：长度
+## std::string::length
 
-我们将从研究上一课中知道的函数std:：string:：length开始，该函数返回字符串的长度。
+我们之前已经了解过std::string::length，该函数返回字符串的长度。
 
-在cppreference的右上角，搜索“string”。这样做会显示一长串类型和函数列表，其中只有顶部与当前相关。
+在cppreference首页，点击字符串库，来查看字符串相关的文档。
 
-我们可以立即搜索“字符串长度”，但为了在本课中显示尽可能多的内容，我们采取了很长的路线。单击“Strings library”将我们带到一个页面，讨论C++支持的各种字符串。
+{{< img src="./str.png" title="字符串库">}}
 
-如果我们查看“std:：basic_string”部分下的内容，我们可以看到typedefs的列表，并且在该列表中是std:：string。
+这里，可以看到，字符串库，根据字符串内存储不同的字符，有多个对应的类型。std::string，其实是std::basic_string\<char\>的别名。\<char\>表示字符串里的每个字符都是char类型，当想在字符串里存储unicode而不是ASCII码时，其它类型可能会比较容易使用点。
 
-单击“std:：string”将进入std:∶basic_string的页面。没有std::string的页面，因为std::string是std:；basic_string<char>的typedef，这也可以在typedef列表中看到：
+{{< img src="./str_char.png" title="字符串库详情">}}
 
-<char>表示字符串的每个字符都是char类型。您会注意到，C++提供了使用不同字符类型的其他字符串。当使用Unicode而不是ASCII时，这些可能很有用。
+点击std::string，可以查看对应的手册。在下面，对应的小节里，可以看到，有一个length成员函数，返回字符串中的字符数。
 
-在同一页面的下方，有一个成员函数列表（类型具有的行为）。如果你想知道你可以用一个类型做什么，这个列表是非常方便的。在这个列表中，您将找到一个长度（和大小）行。
+{{< img src="./str_len.png" title="字符串库详情">}}
 
-下面的链接将为我们带来长度和大小的详细功能描述，这两者都做相同的事情。
+点击进去，可以看到，有length函数对应的功能介绍，参数，返回值以及使用样例。
 
-每个页面的顶部以功能和语法、重载或声明的简短摘要开头：
+{{< img src="./str_len_detail.png" title="str len详情">}}
 
-页面的标题显示类和函数的名称以及所有模板参数。我们可以忽略这一部分。在标题下面，我们看到了所有不同的函数重载（具有相同名称的函数的不同版本）以及它们应用于哪种语言标准。
+因为std::string::length是一个简单的函数，所以该页面上没有太多内容。
 
-下面，我们可以看到函数所采用的参数，以及返回值的含义。
-
-因为std:：string:：length是一个简单的函数，所以该页面上没有太多内容。许多页面都显示了它们正在记录的功能的示例用法，这一个也是如此：
-
-当您还在学习C++时，示例中会有一些您以前没有见过的功能。如果有足够的例子，您可能能够理解足够多的例子，从而了解函数的使用方式和功能。如果示例太复杂，您可以在其他地方搜索示例，或者阅读您不理解的部分的参考（您可以单击示例中的函数和类型来查看它们的功能）。
-
-现在我们知道了std:：string:：length的作用，但我们以前就知道了。让我们看看新的东西！
+当在学习C++时，示例中会有一些您以前没有见过的功能。可以点击对应的连接跳转过去，进行学习。
 
 ***
-## 标准：：cin.ignore
+## std::cin.ignore
 
-在第9.5课——std:：cin和处理无效输入中，我们讨论了std:：cin.ignore，它用于忽略直到换行符的所有内容。该函数的参数之一是一些冗长的值。那又是什么？你不能用一个大数字吗？这个论点到底有什么作用？让我们弄清楚！
+在前面，我们学习了std::cin.ignore，它用于忽略直到换行符的所有内容。该函数的参数之一是一些冗长的值。那又是什么？让我们弄清楚！
 
-在cppreference搜索中键入“std:：cin.ignore”将产生以下结果：
+首先，cin是流式输入，因此，我们点击“基于流的输入/输出”。
 
-1. 标准：：cin，标准：：wcin-我们需要.ignore，而不是普通的标准：：cin。
-2. std:：basic_istream<CharT，Traits>：：ignore-Eew，这是什么？现在让我们跳过。
-3. std:：ignore-不，不是这样。
-4. std:：basic_istream-这也不是。
+{{< img src="./index_iostream.png" title="基于流的输入输出">}}
 
+在对应的页面上，可以找到cin的说明，继续点击查看细节。
 
-它不在那里，现在怎么样？让我们去std:：cin，然后从那里开始工作。在那一页上没有明显的东西。在顶部，我们可以看到std:：cin和std:：wcin的声明，它告诉我们需要包括哪个标头才能使用std:∶cin:
+{{< img src="./iostream.png" title="iostream">}}
 
-我们可以看到，std:：cin是一个类型为std:：istream的对象。让我们访问std:：istream:的链接
+这个页面上，可以看到std::cin和std::wcin的声明，并告诉我们它们所在的头文件。
 
-等等！我们以前在搜索引擎中搜索“std:：cin.ignore”时看到过std::basic_istream。结果是，istream是basic_istream的typedef名称，所以也许我们的搜索毕竟没有那么错。
+{{< img src="./cin.png" title="cin">}}
 
-在该页面上向下滚动，我们会看到熟悉的功能：
+这里并没有ignore相关的讲解，单可以看到，std::cin是一个类型为std::istream的对象。让我们访问std::istream的链接。
 
-我们已经使用了许多这样的函数：operator>>、get、getline、ignore。在该页面上滚动以了解std:：cin中的其他内容。然后单击忽略，因为这是我们感兴趣的。
+哦，在这个页面，我们看到了熟悉的内容，继续点击。
 
-在页面顶部有函数签名和函数及其两个参数的描述。参数后面的=符号表示默认参数（我们在第11.5课——默认参数中介绍了这一点）。如果我们没有为具有默认值的参数提供参数，则使用默认值。
+{{< img src="./istream.png" title="istream">}}、
 
-第一个要点回答了我们所有的问题。我们可以看到，std:：numeric_limits<std::streamsize>：：max（）对std:∶cin.ignore具有特殊意义，因为它禁用了字符计数检查。这意味着std:：cin.ignore将继续忽略字符，直到找到分隔符，或者直到用完要查看的字符。
+在页面顶部有函数签名和其两个参数的描述。参数后面的=符号表示默认参数）。如果没有为具有默认值的参数提供值，则使用默认值。
+
+{{< img src="./ignore.png" title="ignore">}}
+
+这里回到了我们所有的问题。可以看到，std::numeric_limits\<std::streamsize\>::max()对std::cin.ignore具有特殊意义，它禁用了字符计数检查。这意味着std::cin.ignore将继续忽略字符，直到找到分隔符，或者直到用完要查看的字符。
 
 许多时候，如果您已经知道函数的整个描述，但忘记了参数或返回值的含义，则不需要阅读它的整个描述。在这种情况下，读取参数或返回值描述就足够了。
-
-参数描述很简短。它不包含对std:：numeric_limits<std::streamsize>：：max（）或其他停止条件的特殊处理，但可以作为很好的提醒。
 
 ***
 ## 语言语法示例
 
-除了标准库之外，cppreference还记录了语言语法。下面是一个有效的程序：
+除了标准库之外，cppreference还记录了语言语法。下面是一个示例程序：
 
 ```C++
 #include <iostream>
@@ -123,54 +117,36 @@ int main()
 }
 ```
 
-为什么在if语句的条件中有变量定义？让我们使用cppreference通过在我们最喜欢的搜索引擎中搜索“cpprefersionif语句”来确定它的作用。这样做会导致出现if语句。在顶部，有一个语法参考。
+为什么在if语句的条件中有变量定义？让我们使用cppreference查看下if的语法。
 
-查看if语句的语法。如果删除所有可选部分，就会得到一个已经知道的If语句。在条件之前，有一个可选的init语句，它看起来像上面代码中发生的事情。
+{{< img src="./if.png" title="if">}}
 
-在语法参考下面，有语法的每个部分的解释，包括init语句。它表示init语句通常是具有初始值设定项的变量的声明。
+在这里可以看到。在条件之前，有一个可选的初始化语句，它看起来像上面代码中发生的事情。
 
-下面是if语句和简单示例的解释：
+在语法参考下面，有语法的每个部分的解释，包括初始化语句。它表示初始化语句通常是具有初始值设定项的变量的声明。
 
-我们已经知道if语句是如何工作的，并且示例不包括init语句，因此我们向下滚动一点，以找到一个专用于具有初始值设定项的if语句的部分：
-
-首先，展示了如何在不实际使用init语句的情况下编写init语句。现在我们知道所讨论的代码在做什么。这是一个普通的变量声明，刚刚合并到if语句中。
-
-后面的句子很有趣，因为它让我们知道init语句中的名称在这两个语句中都可用（语句true和语句false）。这可能令人惊讶，因为您可能会假设变量仅在语句true中可用。
-
-init语句示例使用我们尚未介绍的功能和类型。您不必理解看到的所有内容，就可以理解init语句的工作方式。让我们跳过所有太令人困惑的内容，直到找到可以处理的内容：
+然后，我们将页面往下滚动一点，就可以看到对应的示例，当然这里的例子有很多我们稍微介绍的功能，但不必理解这些，也可以看明白初始化语句的使用方式:
 
 ```C++
-// Iterators, we don't know them. Skip.
+// 迭代器, 还没学过，跳过
 if (auto it = m.find(10); it != m.end()) { return it->second.size(); }
 
-// [10], what's that? Skip.
+// [10], 啥东西? 跳过.
 if (char buf[10]; std::fgets(buf, 10, stdin)) { m[0] += buf; }
 
-// std::lock_guard, we don't know that, but it's some type. We know what types are!
+// std::lock_guard, 肯定是个类型反正
 if (std::lock_guard lock(mx); shared_flag) { unsafe_ping(); shared_flag = false; }
 
-// This is easy, that's an int!
+// 这个很简单, 定了个 int 变量!
 if (int s; int count = ReadBytesWithSignal(&s)) { publish(count); raise(s); }
 
-// Whew, no thanks!
+// Oh, 似乎有些复杂!
 if (auto keywords = {"if", "for", "while"};
     std::any_of(keywords.begin(), keywords.end(),
                 [&s](const char* kw) { return s == kw; })) {
   std::cerr << "Token must not be a keyword\n";
 }
 ```
-
-最简单的例子似乎是一个带int的例子。然后我们查看分号，这里有另一个定义，奇数……让我们回到std:：lock_guard示例。
-
-```C++
-if (std::lock_guard lock(mx); shared_flag)
-{
-  unsafe_ping();
-  shared_flag = false;
-}
-```
-
-从这里，可以相对容易地看到init语句的工作方式。定义一些变量（锁），然后定义分号，然后定义条件。这正是我们示例中发生的情况。
 
 ***
 ## 关于cppreference准确性的警告
