@@ -31,8 +31,8 @@ struct（structure的缩写）是一种程序定义的数据类型，它允许�
 
 ***
 
-{{< prevnext prev="/basic/chapter13/template-alias/" next="/" >}}
+{{< prevnext prev="/basic/chapter13/template-alias/" next="/basic/chapter13/use-cpp-ref/" >}}
 13.12 模板别名
 <--->
-主页
+13.14 如何使用c++语言手册
 {{< /prevnext >}}

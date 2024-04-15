@@ -40,7 +40,7 @@ c++语言手册中包含C语言与C++语言两部分。由于C++与C共享一些
 
 这里，可以看到，字符串库，根据字符串内存储不同的字符，有多个对应的类型。std::string，其实是std::basic_string\<char\>的别名。\<char\>表示字符串里的每个字符都是char类型，当想在字符串里存储unicode而不是ASCII码时，其它类型可能会比较容易使用点。
 
-{{< img src="./str_char.png" title="字符串库详情">}}
+{{< img src="./str_char.jpg" title="字符串库详情">}}
 
 点击std::string，可以查看对应的手册。在下面，对应的小节里，可以看到，有一个length成员函数，返回字符串中的字符数。
 
@@ -157,3 +157,8 @@ C++的唯一官方来源是官方标准（ https://isocpp.org/std/the-standard �
 
 ***
 
+{{< prevnext prev="/basic/chapter13/summary/" next="/basic/chapter14/intro-oop/" >}}
+13.13 第13章总结
+<--->
+14.0 面向对象编程简介
+{{< /prevnext >}}

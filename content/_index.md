@@ -426,16 +426,15 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter13/summary/<-> 13.13 第13章总结
 <-->
-<->/basic/chapter13/use-cpp-ref/<-> 13.14 第13章总结
+<->/basic/chapter13/use-cpp-ref/<-> 13.14 如何使用c++语言手册
 {{< /chapterlist >}}
-
 
 ***
 
 {{< chapterlist>}}
 第十一章 class介绍
 <--->
-<->/basic/chapter14/intro-oop/<-> 14.0 用户自定义类型简介
+<->/basic/chapter14/intro-oop/<-> 14.0 面向对象编程简介
 {{< /chapterlist >}}
 
 ***
