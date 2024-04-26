@@ -148,8 +148,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter13/use-cpp-ref/" next="/" >}}
+{{< prevnext prev="/basic/chapter13/use-cpp-ref/" next="/basic/chapter14/intro-class/" >}}
 13.14 如何使用c++语言手册
 <--->
-主页
+14.1 面向对象编程简介
 {{< /prevnext >}}

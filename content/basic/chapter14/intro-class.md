@@ -226,3 +226,9 @@ int main()
 类确实是C++的核心和灵魂——它们是如此基础，以至于C++最初被命名为“带类的C”！一旦您熟悉了类，您在C++中的大部分时间都将用于编写、测试和使用它们。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/intro-oop/" next="/basic/chapter14/member_func/" >}}
+14.0 面向对象编程简介
+<--->
+14.2 面向对象编程简介
+{{< /prevnext >}}

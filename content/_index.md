@@ -438,9 +438,9 @@ date: 2022-12-28T16:40:41+08:00
 <--->
 <->/basic/chapter14/intro-oop/<-> 14.0 面向对象编程简介
 <-->
-<->/basic/chapter14/intro-class/<-> 14.1 面向对象编程简介
+<->/basic/chapter14/intro-class/<-> 14.1 class简介
 <-->
-<->/basic/chapter14/member_func/<-> 14.2 面向对象编程简介
+<->/basic/chapter14/member_func/<-> 14.2 成员函数
 {{< /chapterlist >}}
 
 ***
