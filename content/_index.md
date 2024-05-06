@@ -443,6 +443,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter14/member_func/<-> 14.2 成员函数
 <-->
 <->/basic/chapter14/const-obj/<-> 14.3 成员函数
+<-->
+<->/basic/chapter14/public-private/<-> 14.4 成员函数
+<-->
+<->/basic/chapter14/access-func/<-> 14.5 成员函数
 {{< /chapterlist >}}
 
 ***
