@@ -3,36 +3,36 @@ title: "公共和私有成员以及访问说明符"
 date: 2024-04-09T13:02:20+08:00
 ---
 
-假设你在一个秋高气爽的日子走在街上，吃着玉米煎饼。你想找个地方坐，所以你四处看看。在你的左边是一个公园，有修剪过的草地和荫凉的树木，几张不舒服的长椅，附近的操场上有尖叫的孩子。在你的右边是一个陌生人的住所。透过窗户，你可以看到舒适的躺椅和噼啪作响的壁炉。
+假设你在一个秋高气爽的日子走在街上，吃着煎饼。想找个地方坐，所以你四处看看。左边是一个公园，有修剪过的草地和荫凉的树木，几张不舒服的长椅，附近的操场上有尖叫的孩子。右边是一个陌生人的住所。透过窗户，你可以看到舒适的躺椅。
 
 你重重地叹了口气，选择了公园。
 
-您选择的关键决定因素是公园是公共空间，而住宅是私人空间。您（和任何其他人）都可以自由进入公共空间。但只有居住区的成员（或明确允许进入的人）才允许进入私人住宅。
+选择的关键决定因素是公园是公共空间，而住宅是私人空间。您（和任何其他人）都可以自由进入公共空间。但只有居住区的成员（或明确允许进入的人）才允许进入私人住宅。
 
 ***
 ## 成员访问权限
 
 类似的概念适用于类类型的成员。类类型的每个成员都有一个称为访问级别的属性，该属性确定谁可以访问该成员。
 
-C++有三种不同的访问级别：公共、私有和受保护。在本课中，我们将介绍两个常用的访问级别：公共和私有。
+C++有三种不同的访问级别：公共（public）、私有（private）和受保护（protected）。在本课中，将介绍两个常用的访问级别：public和private。
 
-每当访问成员时，编译器都会检查该成员的访问级别是否允许访问该成员。如果不允许访问，编译器将生成编译错误。这种访问级别系统有时非正式地称为访问控制。
+每当访问成员时，编译器都会检查该成员的访问级别，是否允许访问该成员。如果不允许访问，编译器将生成编译错误。
 
 {{< alert success >}}
 **相关内容**
 
-我们在关于继承的一章（第24.5课——继承和访问说明符）中讨论了受保护的访问级别。
+后面会讨论受保护的访问级别。
 
 {{< /alert >}}
 
 ***
-## 默认情况下，结构的成员是公共的
+## 默认情况下，结构体的成员是public的
 
-具有公共访问级别的成员称为公共成员。公共成员是类类型的成员，对如何访问它们没有任何限制。就像我们开放类比中的公园一样，任何人都可以访问公共成员（只要他们在范围内）。
+具有公共访问级别的成员称为公共成员。公共成员，对如何访问它们没有任何限制。就像前面类比中的公园一样，任何人都可以访问公共成员。
 
-公共成员可以被同一类的其他成员访问。值得注意的是，公共成员也可以被公共访问，这就是我们所称的存在于给定类类型的成员之外的代码。public的示例包括非成员函数以及其他类类型的成员。
+公共成员可以被同一类的其他成员访问，也可以被同一类之外的其它地方访问到。
 
-默认情况下，结构的所有成员都是公共成员。
+默认情况下，结构体的所有成员都是公共成员。
 
 考虑以下结构：
 
@@ -41,82 +41,82 @@ C++有三种不同的访问级别：公共、私有和受保护。在本课中�
 
 struct Date
 {
-    // struct members are public by default, can be accessed by anyone
-    int year {};       // public by default
-    int month {};      // public by default
-    int day {};        // public by default
+    // 结构体成员默认都是public，意味着可以被任何人访问
+    int year {};       // public 默认
+    int month {};      // public 默认
+    int day {};        // public 默认
 
-    void print() const // public by default
+    void print() const // public 默认
     {
-        // public members can be accessed in member functions of the class type
+        // public成员可以被同一类中的其它成员函数访问
         std::cout << year << '/' << month << '/' << day;
     }
 };
 
-// non-member function main is part of "the public"
+// 非成员函数 main，也意味着 "public"
 int main()
 {
-    Date today { 2020, 10, 14 }; // aggregate initialize our struct
+    Date today { 2020, 10, 14 }; // 聚合初始化
 
-    // public members can be accessed by the public
-    today.day = 16; // okay: the day member is public
-    today.print();  // okay: the print() member function is public
+    // public成员可以在此访问
+    today.day = 16; // okay: day 是 public
+    today.print();  // okay: print() 是public
 
     return 0;
 }
 ```
 
-在此示例中，可以在三个位置访问成员：
+在此示例中，可以在三个位置访问public成员：
 
-1. 在成员函数print（）中，我们访问隐式对象的年、月和日成员。
-2. 在main（）中，我们直接访问today.day来设置其值。
-3. 在main（）中，我们今天调用成员函数.print（）。
+1. 在成员函数print()中，访问隐式对象的year、month和day成员。
+2. 在main()中，直接访问 today.day 来设置其值。
+3. 在main()中，调用成员函数 today.print()。
 
 
-所有这三种访问都是允许的，因为可以从任何地方访问公共成员。
+所有这三种访问都是允许的，因为可以从任何地方访问pubilc成员。
 
-因为main（）不是Date的成员，所以它被认为是公共的一部分。然而，由于public可以访问public成员，main（）可以直接访问Date的成员（包括对today.print（）的调用）。
+因为main()不是Date的成员，所以它被认为是公共的一部分。然而，由于public中可以访问public成员，main() 可以直接访问Date的成员（包括对today.print()的调用）。
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
-默认情况下，结构的成员是公共的。公共成员可以由类类型的其他成员访问，也可以由公共访问。
+默认情况下，结构体的成员是公共的。公共成员可以由类类型的其他成员访问，也可以由公共访问。
 
-术语“公共”用于指存在于给定类类型的成员之外的代码。这包括非成员函数以及其他类类型的成员。
+术语“public”用于指存在于给定类类型的成员之外的代码。这包括非成员函数以及其他类类型的成员。
 
 {{< /alert >}}
 
 ***
 ## 默认情况下，类的成员是私有的
 
-具有专用访问级别的成员称为专用成员。私有成员是只能由同一类的其他成员访问的类类型的成员。
+私有成员是只能由同一类的其他成员访问的类类型的成员。
 
 考虑下面的示例，它几乎与上面的示例相同：
 
 ```C++
 #include <iostream>
 
-class Date // now a class instead of a struct
+class Date // 现在是 class 而不是 struct
 {
-    // class members are private by default, can only be accessed by other members
-    int m_year {};     // private by default
-    int m_month {};    // private by default
-    int m_day {};      // private by default
+    // class 成员默认是是 private, 只能被其它本类的成员访问
+    int m_year {};     // 默认 private
+    int m_month {};    // 默认 private
+    int m_day {};      // 默认 private
 
-    void print() const // private by default
+    void print() const // 默认 private
     {
-        // private members can be accessed in member functions
+        // 私有成员可以在成员函数中访问到
         std::cout << m_year << '/' << m_month << '/' << m_day;
     }
 };
 
 int main()
 {
-    Date today { 2020, 10, 14 }; // compile error: can no longer use aggregate initialization
+    Date today { 2020, 10, 14 }; // 编译失败: 无法再使用聚合初始化
 
-    // private members can not be accessed by the public
-    today.m_day = 16; // compile error: the m_day member is private
-    today.print();    // compile error: the print() member function is private
+    // 私有成员不能在 public 域内访问
+    today.m_day = 16; // 编译失败: m_day 是 private
+    today.print();    // 编译失败: print() 是 private
 
     return 0;
 }
@@ -124,25 +124,25 @@ int main()
 
 在此示例中，成员在相同的三个位置进行访问：
 
-1. 在成员函数print（）中，我们访问隐式对象的m_year、m_month和m_day成员。
-2. 在main（）中，我们直接访问today.m_day来设置其值。
-3. 在main（）中，我们今天调用成员函数.print（）。
+1. 在成员函数print()中，访问隐式对象的m_year、m_month和m_day成员。
+2. 在main()中，直接访问 today.m_day来设置其值。
+3. 在main()中，调用成员函数 today.print()。
 
 
 然而，如果您编译这个程序，您将注意到生成了三个编译错误。
 
-在main（）中，语句today.m_day=16和today.print（）现在都会生成编译错误。这是因为main（）是公共的一部分，并且不允许公共直接访问私有成员。
+在main() 中，语句 today.m_day = 16 和 today.print() 现在都会生成编译错误。这是因为main() 是公共域的一部分，并且不允许公共域直接访问私有成员。
 
-在print（）中，允许访问成员m_year、m_month和m_day。这是因为print（）是类的成员，并且类的成员可以访问私有成员。
+在print()中，允许访问成员m_year、m_month和m_day。这是因为 print() 是类的成员，并且类的成员可以访问私有成员。
 
-那么，第三个编译错误是从哪里来的呢？也许令人惊讶的是，今天的初始化现在会导致编译错误。在第13.8课——结构聚合初始化中，我们注意到聚合可以“没有私有或受保护的非静态数据成员”。Date类具有私有数据成员（因为默认情况下类的成员是私有的），因此Date类不符合聚合的条件。因此，我们不能再使用聚合初始化来初始化它。
+那么，第三个编译错误是从哪里来的呢？也许令人惊讶的是，today 的初始化现在会导致编译错误。在前面学习结构体聚合初始化中，可以注意到聚合“没有私有或受保护的非静态数据成员”。Date类具有私有数据成员（因为默认情况下类的成员是私有的），因此Date类不符合聚合的条件。因此，不能再使用聚合初始化来初始化它。
 
-在即将到来的第14.9课——构造函数简介中，我们将讨论如何正确初始化类（通常是非聚合的）。
+在即将学习构造函数里，将讨论如何正确初始化类（通常是非聚合的）。
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
-默认情况下，类的成员是私有的。私有成员可以被类的其他成员访问，但不能被公共成员访问。
+默认情况下，类的成员是私有的。私有成员可以被类的其他成员访问，但不能被公共访问。
 
 具有私有成员的类不再是聚合，因此不能再使用聚合初始化。
 
@@ -156,27 +156,27 @@ int main()
 考虑某个类的以下成员函数：
 
 ```C++
-// Some member function that sets private member m_name to the value of the name parameter
+// 某个成员函数，将成员变量 m_name 设置为参数 name
 void setName(std::string_view name)
 {
     m_name = name;
 }
 ```
 
-首先，“m_”前缀允许我们轻松地将数据成员与成员函数中的函数参数或局部变量区分开来。我们可以很容易地看到，“m_name”是成员，而“name”不是。这有助于明确此函数正在更改类的状态。这很重要，因为当我们更改数据成员的值时，它会持续存在于成员函数的范围之外（而对函数参数或局部变量的更改通常不会）。
+首先，“m_”前缀允许轻松地将数据成员与成员函数中的函数参数或局部变量区分开来。可以很容易地看到，“m_name”是成员，而“name”不是。这有助于明确此函数正在更改类的状态。这很重要，因为当更改数据成员的值时，它会持续存在于成员函数的作用域之外（而对函数参数或局部变量的更改通常不会）。
 
-这与我们建议对局部静态变量使用“s_”前缀，对全局变量使用“g_”前缀的原因相同。
+这与建议对局部静态变量使用“s_”前缀，对全局变量使用“g_”前缀的原因相同。
 
 其次，“m_”前缀有助于防止私有成员变量与局部变量、函数参数和成员函数的名称之间的命名冲突。
 
-如果我们命名了私有成员名而不是m_name，则：
+如果私有成员名是name而不是m_name，则：
 
-1. 我们的name函数参数将隐藏名称私有数据成员。
-2. 若我们有一个名为name的成员函数，那个么由于重新定义标识符名称，我们将得到一个编译错误。
+1. name函数参数将隐藏名称私有数据成员。
+2. 若有一个名为name的成员函数，那个么由于重新定义标识符名称，将得到一个编译错误。
 
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 考虑以“m_”前缀开头命名私有成员，以帮助将它们与局部变量、函数参数和成员函数的名称区分开来。
 
@@ -185,93 +185,99 @@ void setName(std::string_view name)
 ***
 ## 通过访问说明符设置访问级别
 
-默认情况下，结构（和联合）的成员是公共的，类的成员是私有的。
+默认情况下，结构体（和联合）的成员是公共的，类的成员是私有的。
 
-然而，我们可以通过使用访问说明符来显式设置成员的访问级别。访问说明符设置说明符之后的所有成员的访问级别。C++提供了三个访问说明符：public:、private:和protected:。
+然而，可以通过使用访问说明符来显式设置成员的访问级别。访问说明符设置说明符之后的所有成员的访问级别。C++提供了三个访问说明符：“public:”、“private:”和“protected:”。
 
-在下面的示例中，我们使用public:access说明符来确保public可以使用print（）成员函数，使用private:access说明符来使数据成员私有。
+在下面的示例中，使用“public:”访问说明符来确保public域可以使用print()成员函数，使用“private:”访问说明符来使数据成员私有。
 
 ```C++
 class Date
 {
-// Any members defined here would default to private
+// 这里定义的所有成员都是 private
 
-public: // here's our public access specifier
+public: // 这里是 public: 访问说明符
 
-    void print() const // public due to above public: specifier
+    void print() const // public
     {
-        // members can access other private members
+        // 可以访问 private 成员
         std::cout << m_year << '/' << m_month << '/' << m_day;
     }
 
-private: // here's our private access specifier 
+private: // 这里是 private: 访问说明符
 
-    int m_year { 2020 };  // private due to above private: specifier
-    int m_month { 14 }; // private due to above private: specifier
-    int m_day { 10 };   // private due to above private: specifier
+    int m_year { 2020 };  // private
+    int m_month { 14 }; // private
+    int m_day { 10 };   // private
 };
 
 int main()
 {
     Date d{};
-    d.print();  // okay, main() allowed to access public members
+    d.print();  // okay, main() 可以访问 public 成员
 
     return 0;
 }
 ```
 
-此示例编译。由于print（）是public:access说明符的公共成员，因此允许main（）（它是public的一部分）访问它。
+此示例编译。由于print() 是“public:”访问说明符的公共成员，因此允许main()（它是public的一部分）访问它。
 
-因为我们有私有成员，所以无法聚合初始化d。对于本例，我们使用默认成员初始化（作为临时解决方案）。
+因为有私有成员，所以无法聚合初始化。对于本例，使用默认成员初始化（作为临时解决方案）。
 
-由于类默认为专用访问，因此可以省略前导的private:access说明符：
-
-```C++
-class Foo
-{
-// private access specifier not required here since classes default to private members
-    int m_something {};  // private by default
-};
-```
-
-然而，由于类和结构具有不同的访问级别默认值，许多开发人员更喜欢显式：
+由于类默认为private访问，因此可以省略前导的“private:”访问说明符：
 
 ```C++
 class Foo
 {
-private: // redundant, but makes it clear that what follows is private
-    int m_something {};  // private by default
+// 默认 private 访问级别
+    int m_something {};  // 默认 private
 };
 ```
 
-尽管这在技术上是多余的，但使用显式private:说明符可以清楚地表明以下成员是私有的，而不必根据Foo是定义为类还是结构来推断默认访问级别。
+然而，由于类和结构体具有不同的访问级别默认值，许多开发人员更喜欢显式声明：
+
+```C++
+class Foo
+{
+private: // 多余, 但是更清晰
+    int m_something {};  // 默认 private
+};
+```
+
+尽管这在技术上是多余的，但使用显式“private:”说明符可以清楚地表明以下成员是私有的，而不必根据Foo是定义为类还是结构体来推断默认访问级别。
 
 ***
 ## 访问级别摘要
 
 下面是不同访问级别的快速摘要表：
 
-允许类类型以任何顺序使用任意数量的访问说明符，并且它们可以重复使用（例如，您可以有一些公共成员，然后有一些私有成员，然后是更多公共成员）。
+| 访问级别 | 访问说明符 |  成员可访问 | 子类可访问 | public可访问 |
+| ---- | ---- | ---- | ---- | ---- |
+| 公共 | public: | 是 | 是 | 是|
+| 受保护 | protected: | 是 | 是 | 否 |
+| 私有 | private: | 是 | 否 | 否 |
 
-大多数类都为各种成员使用私有和公共访问说明符。我们将在下一节中看到这方面的一个例子。
+允许类类型以任何顺序使用任意数量的访问说明符，并且它们可以重复使用（例如，可以有一些公共成员，然后有一些私有成员，然后是更多公共成员）。
+
+大多数类都为各种成员使用私有和公共访问说明符。
 
 ***
-## 结构和类的访问级别最佳实践
+## 结构体和类的访问级别最佳实践
 
-现在我们已经介绍了什么是访问级别，让我们讨论一下应该如何使用它们。
+现在已经介绍了什么是访问级别，讨论一下应该如何使用它们。
 
-结构应该完全避免访问说明符，这意味着默认情况下所有结构成员都是公共的。我们希望结构是聚合，并且聚合只能具有公共成员。使用public:access说明符在默认情况下是多余的，使用private:或protected:将使该结构成为非聚合结构。
+结构体应该完全避免访问说明符，这意味着默认情况下所有结构体成员都是公共的。我们希望结构体是聚合，并且聚合只能具有公共成员。使用“public:”访问说明符在默认情况下是多余的，使用“private:”或“protected:”将使该结构体成为非聚合结构。
 
-类通常应仅具有私有（或受保护）数据成员（通过使用默认的私有访问级别或私有：（或保护）访问说明符）。我们将在下一课14.6——访问函数中讨论其基本原理。
+类通常应仅具有私有（或受保护）数据成员（通过使用默认的“private:”或“protected:”）。
 
-类通常具有公共成员函数（因此这些成员函数可以在创建对象后由公共使用）。然而，如果成员函数不打算供公众使用，则有时会将其设为私有（或受保护）。
+类通常具有公共成员函数（因此这些成员函数可以在创建对象后由公共使用）。如果成员函数不打算供公众使用，则有时会将其设为私有（或受保护）。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 类通常应该使成员变量私有（或受保护），而成员函数公共。
 
-结构通常应避免使用访问说明符（所有成员都将默认为public）。
+结构体通常应避免使用访问说明符（所有成员都将默认为public）。
 
 {{< /alert >}}
 
@@ -280,7 +286,7 @@ private: // redundant, but makes it clear that what follows is private
 
 C++访问级别的一个细微差别是，对成员的访问是在每个类的基础上定义的，而不是在每个对象的基础上。
 
-您已经知道成员函数可以直接访问（隐式对象的）私有成员。然而，由于访问级别是按类的，而不是按对象的，因此成员函数还可以直接访问作用域中同一类类型的任何其他对象的私有成员。
+成员函数可以直接访问（隐式对象的）私有成员。然而，由于访问级别是按类的，而不是按对象的，因此成员函数还可以直接访问作用域中同一类类型的任何其他对象的私有成员。
 
 让我们用一个例子来说明这一点：
 
@@ -322,20 +328,24 @@ int main()
 
 这将打印：
 
+```C++
+Joe kisses Kate
+```
+
 这里有几点需要注意。
 
 首先，m_name被设为私有，因此它只能由Person类的成员（而不是公共）访问。
 
-其次，因为我们的类有私有成员，所以它不是聚合，并且我们不能使用聚合初始化来初始化Person对象。作为一种变通方法（直到我们讨论了这个问题的适当解决方案），我们创建了一个名为setName（）的公共成员函数，该函数允许我们为Person对象分配一个名称。
+其次，因为类有私有成员，所以它不是聚合，并且不能使用聚合初始化来初始化Person对象。作为一种变通方法（直到我们讨论了这个问题的适当解决方案），我们创建了一个名为setName()的公共成员函数，该函数允许为Person对象分配一个名称。
 
-第三，因为kisss（）是一个成员函数，所以它可以直接访问私有成员m_name。然而，您可能会惊讶地看到它也可以直接访问p.m_name！这是有效的，因为p是Person对象，而kisses（）可以访问范围内任何Person对象的私有成员！
+第三，因为kisss()是一个成员函数，所以它可以直接访问私有成员m_name。然而，您可能会惊讶地看到它也可以直接访问p.m_name！这是有效的，因为p是Person对象，而kisses()可以访问范围内任何Person对象的私有成员！
 
 在关于操作符重载的一章中，我们将看到更多的例子来使用它。
 
 ***
-## 结构和类之间的技术和实践差异
+## 结构体和类之间的技术和实践差异
 
-现在我们已经讨论了访问级别，我们终于可以讨论结构和类之间的技术差异了。准备好了吗？
+现在我们已经讨论了访问级别，终于可以讨论结构体和类之间的技术差异了。准备好了吗？
 
 类将其成员默认为private，而结构将其成员缺省为public。
 
@@ -343,25 +353,24 @@ int main()
 
 是的，就是这样。
 
-在实践中，我们以不同的方式使用结构和类。
+在实践中，以不同的方式使用结构体和类。
 
-根据经验法则，在满足以下所有条件时使用结构：
+根据经验法则，在满足以下所有条件时使用结构体：
 
-1. 您有一个简单的数据集合，但不能从限制访问中受益。
+1. 有一个简单的数据集合，不能从限制访问中受益。
 2. 聚合初始化已足够。
-3. 您没有类不变量、设置需要或清理需要。
+3. 没有类不变量、设置限制或清理需要。
 
-
-可以在何处使用结构的几个示例：constexpr全局程序数据、点结构（int成员的简单集合，不能从私有化中受益）、用于从函数返回一组数据的结构。
+可以在何处使用结构体的几个示例：constexpr全局程序数据、简单结构（例如int成员的简单集合，不能从私有化中受益）、用于从函数返回一组数据的结构。
 
 否则使用类。
 
-我们希望我们的结构是聚合。因此，如果您使用任何使结构成为非聚合的功能，那么您可能应该改用类（并遵循类的所有最佳实践）。
+我们希望结构体是聚合。因此，如果您使用任何使结构成为非聚合的功能，那么您可能应该改用类（并遵循类的所有最佳实践）。
 
 {{< alert success >}}
-**作者注释**
+**注**
 
-学究式地讲，还有一个小小的区别——结构公开继承其他类类型，而类私下继承。我们将在关于继承的一章中讨论这意味着什么，但这一点实际上是无关紧要的，因为您无论如何都不应该依赖于继承的默认值。
+学究式地讲，还有一个小小的区别——结构体public继承其他类类型，而类private继承。这一点在讲解继承时进行说明，但这一点实际上是无关紧要的，因为您无论如何都不应该依赖于继承的默认值。
 
 {{< /alert >}}
 
