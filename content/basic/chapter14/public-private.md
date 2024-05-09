@@ -375,3 +375,9 @@ Joe kisses Kate
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter14/const-obj/" next="/basic/chapter14/access-func/" >}}
+14.3 Const类对象和Const成员函数
+<--->
+14.5 访问函数
+{{< /prevnext >}}

@@ -323,3 +323,9 @@ const
 当返回值的const需要不同时，通常会使用const和非const版本重载函数。这是相当罕见的。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/member_func/" next="/basic/chapter14/public-private/" >}}
+14.2 成员函数
+<--->
+14.4 公共和私有成员以及访问说明符
+{{< /prevnext >}}

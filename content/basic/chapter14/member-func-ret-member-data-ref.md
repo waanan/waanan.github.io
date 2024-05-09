@@ -283,3 +283,9 @@ int main()
 如果允许const成员函数返回对成员的非常量引用，则它将为调用方提供一种直接修改该成员的方法。这违反了const成员函数的意图。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/access-func/" next="/" >}}
+14.5 访问函数
+<--->
+主页
+{{< /prevnext >}}

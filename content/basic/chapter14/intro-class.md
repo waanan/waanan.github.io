@@ -230,5 +230,5 @@ int main()
 {{< prevnext prev="/basic/chapter14/intro-oop/" next="/basic/chapter14/member_func/" >}}
 14.0 面向对象编程简介
 <--->
-14.2 面向对象编程简介
+14.2 成员函数
 {{< /prevnext >}}

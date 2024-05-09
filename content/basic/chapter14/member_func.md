@@ -415,8 +415,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter14/intro-class/" next="/" >}}
-14.1 面向对象编程简介
+{{< prevnext prev="/basic/chapter14/intro-class/" next="/basic/chapter14/const-obj/" >}}
+14.1 class简介
 <--->
-主页
+14.3 Const类对象和Const成员函数
 {{< /prevnext >}}

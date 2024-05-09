@@ -442,13 +442,13 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter14/member_func/<-> 14.2 成员函数
 <-->
-<->/basic/chapter14/const-obj/<-> 14.3 成员函数
+<->/basic/chapter14/const-obj/<-> 14.3 Const类对象和Const成员函数
 <-->
-<->/basic/chapter14/public-private/<-> 14.4 成员函数
+<->/basic/chapter14/public-private/<-> 14.4 公共和私有成员以及访问说明符
 <-->
-<->/basic/chapter14/access-func/<-> 14.5 成员函数
+<->/basic/chapter14/access-func/<-> 14.5 访问函数
 <-->
-<->/basic/chapter14/member-func-ret-member-data-ref/<-> 14.6 成员函数
+<->/basic/chapter14/member-func-ret-member-data-ref/<-> 14.6 成员函数返回对数据成员的引用
 {{< /chapterlist >}}
 
 ***

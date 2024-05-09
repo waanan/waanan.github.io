@@ -169,3 +169,9 @@ Getter应提供对数据的“只读”访问。因此，最佳实践是，它�
 这是一个很好的问题。将在后续讲解数据隐藏（封装）的好处时进行讲解。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/public-private/" next="/basic/chapter14/member-func-ret-member-data-ref/" >}}
+14.4 公共和私有成员以及访问说明符
+<--->
+14.6 成员函数返回对数据成员的引用
+{{< /prevnext >}}
