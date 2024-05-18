@@ -451,6 +451,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter14/access-func/<-> 14.5 访问函数
 <-->
 <->/basic/chapter14/member-func-ret-member-data-ref/<-> 14.6 成员函数返回对数据成员的引用
+<-->
+<->/basic/chapter14/data-hide/<-> 14.7 成员函数返回对数据成员的引用
 {{< /chapterlist >}}
 
 ***
