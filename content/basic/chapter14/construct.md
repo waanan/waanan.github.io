@@ -213,3 +213,9 @@ int main()
 构造函数被设计为在实例化点初始化整个对象。Setter访问函数旨在将值分配给现有对象的单个成员。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/data-hide/" next="/basic/chapter14/construct-member-init-list/" >}}
+14.7 数据隐藏（封装）的好处
+<--->
+14.9 构造函数成员初始化列表
+{{< /prevnext >}}

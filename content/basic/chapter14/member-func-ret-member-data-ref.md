@@ -284,8 +284,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter14/access-func/" next="/" >}}
+{{< prevnext prev="/basic/chapter14/access-func/" next="/basic/chapter14/data-hide/" >}}
 14.5 访问函数
 <--->
-主页
+14.7 数据隐藏（封装）的好处
 {{< /prevnext >}}

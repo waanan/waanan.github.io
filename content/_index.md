@@ -452,11 +452,11 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter14/member-func-ret-member-data-ref/<-> 14.6 成员函数返回对数据成员的引用
 <-->
-<->/basic/chapter14/data-hide/<-> 14.7 成员函数返回对数据成员的引用
+<->/basic/chapter14/data-hide/<-> 14.7 数据隐藏（封装）的好处
 <-->
-<->/basic/chapter14/construct/<-> 14.8 成员函数返回对数据成员的引用
+<->/basic/chapter14/construct/<-> 14.8 构造函数简介
 <-->
-<->/basic/chapter14/construct-member-init-list/<-> 14.9 成员函数返回对数据成员的引用
+<->/basic/chapter14/construct-member-init-list/<-> 14.9 构造函数成员初始化列表
 {{< /chapterlist >}}
 
 ***

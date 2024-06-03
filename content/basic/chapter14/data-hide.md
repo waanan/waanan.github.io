@@ -516,3 +516,9 @@ Google C++风格指南推荐以下顺序：
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter14/member-func-ret-member-data-ref/" next="/basic/chapter14/construct/" >}}
+14.6 成员函数返回对数据成员的引用
+<--->
+14.8 构造函数简介
+{{< /prevnext >}}

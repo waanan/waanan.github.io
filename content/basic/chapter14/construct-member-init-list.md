@@ -274,3 +274,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter14/construct/" next="/" >}}
+14.8 构造函数简介
+<--->
+主页
+{{< /prevnext >}}
