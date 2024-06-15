@@ -457,6 +457,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter14/construct/<-> 14.8 构造函数简介
 <-->
 <->/basic/chapter14/construct-member-init-list/<-> 14.9 构造函数成员初始化列表
+<-->
+<->/basic/chapter14/default_construct/<-> 14.10 构造函数成员初始化列表
 {{< /chapterlist >}}
 
 ***
