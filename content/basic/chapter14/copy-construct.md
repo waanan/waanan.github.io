@@ -350,3 +350,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter14/tmp_obj/" next="/" >}}
+14.12 临时类对象
+<--->
+主页
+{{< /prevnext >}}

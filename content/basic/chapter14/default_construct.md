@@ -398,3 +398,9 @@ int main()
 对于表示雇员的类，允许创建没有名字的雇员是没有意义的。因此，这样的类不应该具有默认构造函数，因此如果类的用户尝试这样做，将出现编译错误。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/construct-member-init-list/" next="/basic/chapter14/delegate_construct/" >}}
+14.9 构造函数成员初始化列表
+<--->
+14.11 委托构造函数
+{{< /prevnext >}}

@@ -356,3 +356,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter14/default_construct/" next="/basic/chapter14/tmp_obj/" >}}
+14.10 默认构造函数和默认参数
+<--->
+14.12 临时类对象
+{{< /prevnext >}}

@@ -275,8 +275,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter14/construct/" next="/" >}}
+{{< prevnext prev="/basic/chapter14/construct/" next="/basic/chapter14/default_construct/" >}}
 14.8 构造函数简介
 <--->
-主页
+14.10 默认构造函数和默认参数
 {{< /prevnext >}}

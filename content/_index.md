@@ -458,13 +458,13 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter14/construct-member-init-list/<-> 14.9 构造函数成员初始化列表
 <-->
-<->/basic/chapter14/default_construct/<-> 14.10 构造函数成员初始化列表
+<->/basic/chapter14/default_construct/<-> 14.10 默认构造函数和默认参数
 <-->
-<->/basic/chapter14/delegate_construct/<-> 14.11 构造函数成员初始化列表
+<->/basic/chapter14/delegate_construct/<-> 14.11 委托构造函数
 <-->
-<->/basic/chapter14/tmp_obj/<-> 14.12 构造函数成员初始化列表
+<->/basic/chapter14/tmp_obj/<-> 14.12 临时类对象
 <-->
-<->/basic/chapter14/copy-construct/<-> 14.13 构造函数成员初始化列表
+<->/basic/chapter14/copy-construct/<-> 14.13 拷贝构造函数简介
 {{< /chapterlist >}}
 
 ***

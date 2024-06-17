@@ -274,3 +274,9 @@ int main()
 其次，会在定义点创建临时对象，并在定义它们的完整表达式的末尾销毁它们。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/delegate_construct/" next="/basic/chapter14/copy-construct/" >}}
+14.11 委托构造函数
+<--->
+14.13 拷贝构造函数简介
+{{< /prevnext >}}
