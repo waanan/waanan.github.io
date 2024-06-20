@@ -71,7 +71,7 @@ int main()
 }
 ```
 
-这个看似正常的程序无法编译！下面是所发生的事情。首先，main.cpp包含square.h，它将函数getSquareSides的定义复制到main.cpp中。然后，main.copp包含wave.h，间接包含square.h。这会将square.h的内容（包括函数getSquareSides的定义）复制到wave.h中，然后将其复制到main.cpp中。
+这个看似正常的程序无法编译！下面是所发生的事情。首先，main.cpp包含square.h，它将函数getSquareSides的定义复制到main.cpp中。然后，main.cpp包含wave.h，间接包含square.h。这会将square.h的内容（包括函数getSquareSides的定义）复制到wave.h中，然后将其复制到main.cpp中。
 
 因此，在解析所有#include之后，main.cpp最终如下所示：
 
