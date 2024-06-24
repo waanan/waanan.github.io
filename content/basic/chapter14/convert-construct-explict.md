@@ -367,3 +367,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter14/class-init-copy-elision/" next="/basic/chapter14/summary/" >}}
+14.14 类初始化和拷贝省略
+<--->
+14.16 第14章总结
+{{< /prevnext >}}

@@ -221,4 +221,10 @@ int main()
 
 在强制省略情况下，可访问的拷贝构造函数不需要存在（换句话说，即使删除了拷贝构造函数，也可能发生强制省略）。
 
-*** 
+***
+
+{{< prevnext prev="/basic/chapter14/copy-construct/" next="/basic/chapter14/convert-construct-explict/" >}}
+14.13 拷贝构造函数简介
+<--->
+14.15 转换构造函数和explicit关键字
+{{< /prevnext >}}

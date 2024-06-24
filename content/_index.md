@@ -466,11 +466,11 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter14/copy-construct/<-> 14.13 拷贝构造函数简介
 <-->
-<->/basic/chapter14/class-init-copy-elision/<-> 14.14 拷贝构造函数简介
+<->/basic/chapter14/class-init-copy-elision/<-> 14.14 类初始化和拷贝省略
 <-->
-<->/basic/chapter14/convert-construct-explict/<-> 14.15 拷贝构造函数简介
+<->/basic/chapter14/convert-construct-explict/<-> 14.15 转换构造函数和explicit关键字
 <-->
-<->/basic/chapter14/summary/<-> 14.16 拷贝构造函数简介
+<->/basic/chapter14/summary/<-> 14.16 第14章总结
 {{< /chapterlist >}}
 
 ***

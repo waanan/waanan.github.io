@@ -351,8 +351,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter14/tmp_obj/" next="/" >}}
+{{< prevnext prev="/basic/chapter14/tmp_obj/" next="/basic/chapter14/class-init-copy-elision/" >}}
 14.12 临时类对象
 <--->
-主页
+14.14 类初始化和拷贝省略
 {{< /prevnext >}}

@@ -65,3 +65,9 @@ public成员是类类型的成员，对如何访问它们没有任何限制。�
 默认情况下，使任何接受单个参数的构造函数explict。如果类型之间的隐式转换在语义上是等效的，并且是性能优化的（例如从std::string到std:∶string_view的转换），则可以考虑使构造函数成为非explict的。不要使拷贝或移动构造函数explict，因为它们不执行转换。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/convert-construct-explict/" next="/" >}}
+14.15 转换构造函数和explicit关键字
+<--->
+主页
+{{< /prevnext >}}
