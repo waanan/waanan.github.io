@@ -3,7 +3,6 @@ title: "多代码文件程序"
 date: 2023-10-09T20:06:10+08:00
 ---
 
-***
 ## 将文件添加到项目中
 
 随着程序越来越大，为了代码组织或可重用，通常拆分为多个文件。使用IDE的优点是，处理多个文件更容易。之前已讲解创建和编译单文件项目。将新文件添加到现有项目非常容易。
@@ -128,9 +127,9 @@ int add(int x, int y)
 {{< alert success >}}
 **提示**
 
-由于编译器单独编译每个代码文件（然后忘记它看到的内容），因此使用std::cout或std:∶cin的每个代码文件都需要 #include<iostream>。
+由于编译器单独编译每个代码文件（然后忘记它看到的内容），因此使用std::cout或std:∶cin的每个代码文件都需要 #include \<iostream\>。
 
-上面示例中，如果add.cpp使用了std::cout或std:∶cin，则需要 #include<iostream>。
+上面示例中，如果add.cpp使用了std::cout或std:∶cin，则需要 #include \<iostream\>。
 
 {{< /alert >}}
 
