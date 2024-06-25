@@ -1,11 +1,11 @@
 ---
-title: "隐藏的“this”指针和成员函数链接"
+title: "隐藏的“this”指针和成员函数调用"
 date: 2024-06-24T18:56:16+08:00
 ---
 
-新程序员经常问的关于类的问题之一是，“当调用成员函数时，C++如何跟踪它被调用的对象？”。
+新程序员经常问的关于类的问题之一是，“当调用成员函数时，C++如何知道被调用的对象？”。
 
-首先，让我们定义一个要使用的简单类。此类封装整数值，并提供一些访问函数来获取和设置该值：
+首先，定义一个要使用的简单类。此类封装整数值，并提供一些访问函数来获取和设置该值：
 
 ```C++
 #include <iostream>
@@ -40,16 +40,20 @@ int main()
 
 如您所料，该程序会产生以下结果：
 
-不知怎的，当我们调用simple.setID（2）；时；，C++知道函数setID（）应该在对象simple上操作，并且m_id实际上是指simple.m_id。
+```C++
+2
+```
 
-答案是C++使用了一个名为this的隐藏指针！在本课中，我们将更详细地了解这一点。
+当调用 simple.setID(2); 时，C++知道函数 setID() 应该在对象simple上操作，并且m_id实际上是指simple.m_id。
+
+C++使用了一个名为this的隐藏指针！在本课中，将更详细地了解这一点。
 
 ***
-## 隐藏的此指针
+## 隐藏的this指针
 
-在每个成员函数内部，关键字this是保存当前隐式对象地址的常量指针。
+在每个成员函数内部，关键字this是保存当前隐式对象地址的const指针。
 
-大多数时候，我们没有明确提到这一点，但只是为了证明我们可以：
+大多数时候，没有明确提到这一点，下面是一个说明示例：
 
 ```C++
 #include <iostream>
@@ -68,7 +72,7 @@ public:
     int getID() const { return m_id; }
     void setID(int id) { m_id = id; }
 
-    void print() const { std::cout << this->m_id; } // use `this` pointer to access the implicit object and operator-> to select member m_id
+    void print() const { std::cout << this->m_id; } // 使用 `this` 访问隐式对象 使用 操作符-> 访问成员 m_id
 };
 
 int main()
@@ -84,21 +88,25 @@ int main()
 
 这与前面的示例相同，并打印：
 
-请注意，前两个示例中的print（）成员函数执行的操作完全相同：
-
 ```C++
-    void print() const { std::cout << m_id; }       // implicit use of this
-    void print() const { std::cout << this->m_id; } // explicit use of this
+2
 ```
 
-原来，前者是后者的简写。当我们编译程序时，编译器将使用this->隐式地为引用隐式对象的任何成员添加前缀。这有助于保持代码更简洁，并防止冗余必须反复显式地编写此->。
+请注意上述两个示例中的print()成员函数执行的操作完全相同：
+
+```C++
+    void print() const { std::cout << m_id; }       // 隐式使用 this
+    void print() const { std::cout << this->m_id; } // 显示使用 this
+```
+
+原来，前者是后者的简写。当编译程序时，编译器将使用this->隐式地为引用隐式对象的任何成员添加前缀。前一种写法有助于保持代码更简洁，并防止冗余的必须反复显式地编写此->。
 
 {{< alert success >}}
-**一个提醒**
+**提醒**
 
-我们使用->从指向对象的指针中选择成员。this->mid相当于（*this）.mid。
+使用->从指向对象的指针中选择成员。this->mid 相当于 (*this).mid。
 
-我们在第13.12课——用指针和引用选择成员中介绍了操作符->。
+在前面介绍指针和引用选择成员中介绍了 操作符->。
 
 {{< /alert >}}
 

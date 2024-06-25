@@ -476,9 +476,12 @@ date: 2022-12-28T16:40:41+08:00
 ***
 
 {{< chapterlist>}}
-第十二章 class第二部分
+第十五章 class第二部分
 <--->
+<->/basic/chapter15/hide-this/<-> 15.0 面向对象编程简介
 {{< /chapterlist >}}
+
+***
 
 {{< chapterlist>}}
 第十三章 动态数组：std::vector
