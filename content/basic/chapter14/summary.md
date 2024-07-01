@@ -66,8 +66,8 @@ public成员是类类型的成员，对如何访问它们没有任何限制。�
 
 ***
 
-{{< prevnext prev="/basic/chapter14/convert-construct-explict/" next="/" >}}
+{{< prevnext prev="/basic/chapter14/convert-construct-explict/" next="/basic/chapter15/hide-this/" >}}
 14.15 转换构造函数和explicit关键字
 <--->
-主页
+15.0 隐藏的“this”指针和成员函数调用
 {{< /prevnext >}}

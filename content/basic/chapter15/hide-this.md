@@ -394,3 +394,9 @@ error: passing 'const Something' as 'this' argument discards qualifiers [-fpermi
 如果今天将 this 添加到C++语言中，它无疑将是引用而不是指针。在其他更现代的类C++语言（如Java和C#）中，this 被实现为引用。
 
 ***
+
+{{< prevnext prev="/basic/chapter14/summary/" next="/basic/chapter15/class-header-file/" >}}
+14.16 第14章总结
+<--->
+15.1 类和头文件
+{{< /prevnext >}}

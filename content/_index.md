@@ -478,9 +478,9 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第十五章 class第二部分
 <--->
-<->/basic/chapter15/hide-this/<-> 15.0 面向对象编程简介
+<->/basic/chapter15/hide-this/<-> 15.0 隐藏的“this”指针和成员函数调用
 <-->
-<->/basic/chapter15/class-header-file/<-> 15.1 第14章总结
+<->/basic/chapter15/class-header-file/<-> 15.1 类和头文件
 {{< /chapterlist >}}
 
 ***
