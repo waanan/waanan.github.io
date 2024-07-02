@@ -481,6 +481,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter15/hide-this/<-> 15.0 隐藏的“this”指针和成员函数调用
 <-->
 <->/basic/chapter15/class-header-file/<-> 15.1 类和头文件
+<-->
+<->/basic/chapter15/nest-type/<-> 15.2 类和头文件
 {{< /chapterlist >}}
 
 ***

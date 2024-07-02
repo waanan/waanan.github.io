@@ -3,7 +3,7 @@ title: "嵌套类型（成员类型）"
 date: 2024-06-24T18:56:16+08:00
 ---
 
-考虑以下简短计划：
+考虑以下简短的程序：
 
 ```C++
 #include <iostream>
@@ -47,12 +47,12 @@ int main()
 }
 ```
 
-这个程序没有问题。但由于枚举类FruitType旨在与Fruit类一起使用，因此让它独立于类存在让我们推断它们是如何连接的。
+这个程序没有问题。但由于枚举类FruitType旨在与Fruit类一起使用，但它独立于类存在，这让我们不得不记住他们的关联。
 
 ***
 ## 嵌套类型（成员类型）
 
-到目前为止，我们已经看到了具有两种不同类型的成员的类类型：数据成员和成员函数。在上面的例子中，我们的Fruit类同时具有这两个特性。
+到目前为止，我们已经看到了类类型的两种不同成员：数据成员和成员函数。在上面的例子中，Fruit类同时具有这两个特性。
 
 类类型支持另一种类型的成员：嵌套类型（也称为成员类型）。要创建嵌套类型，只需在类内的适当访问说明符下定义类型。
 
@@ -64,8 +64,8 @@ int main()
 class Fruit
 {
 public:
-	// FruitType has been moved inside the class, under the public access specifier
-        // We've also renamed it Type and made it an enum rather than an enum class
+	// FruitType 移动到了 Fruit 内部, 在 public 下面
+    // 同时重命名为Type，并定义为 enum 而不是 enum class
 	enum Type
 	{
 		apple,
@@ -86,12 +86,12 @@ public:
 	Type getType() { return m_type;  }
 	int getPercentageEaten() { return m_percentageEaten;  }
 
-	bool isCherry() { return m_type == cherry; } // Inside members of Fruit, we no longer need to prefix enumerators with FruitType::
+	bool isCherry() { return m_type == cherry; } // 在 Fruit 内, 不需要使用 FruitType:: 前缀
 };
 
 int main()
 {
-	// Note: Outside the class, we access the enumerators via the Fruit:: prefix now
+	// 注: 在 class 外部, 使用 Fruit:: 前缀访问
 	Fruit apple { Fruit::apple };
 	
 	if (apple.getType() == Fruit::apple)
@@ -105,22 +105,22 @@ int main()
 
 这里有几点值得指出。
 
-首先，请注意，FruitType现在在类中定义，由于我们稍后将讨论的原因，它已被重命名为Type。
+首先，请注意，FruitType现在在类中定义，由于稍后将讨论的原因，它已被重命名为Type。
 
-其次，在类的顶部定义了嵌套类型type。嵌套类型名称在使用之前必须完全定义，因此通常首先定义它们。
+其次，在类的顶部定义了嵌套类型Type。嵌套类型名称在使用之前必须完全定义，因此通常首先定义它们。
 
-第三，嵌套类型遵循正常的访问规则。类型是在公共访问说明符下定义的，因此类型名称和枚举数可以由公共直接访问。
+第三，嵌套类型遵循正常的访问规则。类型是在public访问说明符下定义的，因此类型名称和枚举元素可以由外部直接访问。
 
-第四，类类型充当中声明的名称的作用域区域，就像命名空间一样。因此，Type的完全限定名为Fruit:：Type，而apple枚举器的完全限定名称为Fruit：：apple。
+第四，类类型充当中声明的名称的作用域，就像命名空间一样。因此，Type的完全限定名为Fruit::Type，而apple枚举元素的完全限定名称为Fruit::apple。
 
-在类的成员中，我们不需要使用完全限定名。例如，在成员函数isCherry（）中，我们在没有Fruit:：scope限定符的情况下访问樱桃枚举器。
+在类的成员中，不需要使用完全限定名。例如，在成员函数 isCherry() 中，在没有Fruit:: 作用域限定符的情况下访问cherry枚举元素。
 
-在类之外，我们必须使用完全限定的名称（例如，水果：：苹果）。我们将FruitType重命名为Type，以便可以将其访问为Fruit:：Type（而不是更冗余的Fruit：：FruitType.）。
+在类之外，必须使用完全限定的名称（例如，Fruit::apple ）。我们将FruitType重命名为Type，以便可以使用 Fruit::Type（而不是更冗余的 Fruit::FruitType ）。
 
-最后，我们将枚举类型从作用域更改为非作用域。由于类本身现在充当作用域区域，因此也使用作用域枚举器有点多余。更改为未限定范围的枚举意味着我们可以以Fruit:：apple的形式访问枚举器，而不是在枚举器被限定范围时必须使用的较长的Fruit：：Type:：apple。
+最后，将枚举类型从 enum class 更改为 enum。由于类本身现在充当作用域，因此使用 enum class 有些多余。更改为未限定作用域的枚举意味着可以用Fruit::apple的形式访问枚举元素，而不是必须使用的较长的 Fruit::Type::apple 。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 在类类型的顶部定义任何嵌套类型。
 
@@ -243,3 +243,4 @@ int main()
 
 嵌套类型还有一个值得一提的限制——嵌套类型不能被前向声明。在C++的未来版本中，可以取消此限制。
 
+***
