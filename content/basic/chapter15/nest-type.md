@@ -155,13 +155,13 @@ public:
     }
 
     const std::string& getName() { return m_name; }
-    IDType getId() { return m_id; } // can use unqualified name within class
+    IDType getId() { return m_id; } // 类内部可以使用不带限定名的类型
 };
 
 int main()
 {
     Employee john { "John", 1, 45000 };
-    Employee::IDType id { john.getId() }; // must use fully qualified name outside class
+    Employee::IDType id { john.getId() }; // 类外部必须使用完全限定名
 
     std::cout << john.getName() << " has id: " << id << '\n';
 
@@ -171,18 +171,22 @@ int main()
 
 这将打印：
 
-请注意，在类内部，我们只能使用IDType，但在类外部，我们必须使用完全限定名Employee:：IDType。
+```C++
+John has id: 1
+```
 
-我们在第10.7课中讨论了类型别名的好处——Typedef和类型别名，它们在这里的作用是相同的。C++标准库中的类通常使用嵌套的typedef。截至编写时，std:：string定义了十个嵌套的typedef！
+请注意，在类内部，可以直接使用IDType，但在类外部，必须使用完全限定名Employee::IDType。
+
+我们之前讨论过Typedef和类型别名，它们在这里的作用是相同的。C++标准库中的类通常使用嵌套的typedef。截至编写时，std::string定义了十个嵌套的typedef！
 
 ***
 ## 嵌套类和对外部类成员的访问
 
-类将其他类作为嵌套类型是相当少见的，但这是可能的。在C++中，嵌套类不能访问外部（包含）类的该指针，因此嵌套类不能直接访问外部类的成员。这是因为嵌套类可以独立于外部类进行实例化（在这种情况下，将没有可访问的外部类成员！）
+类将其他类作为嵌套类型是相当少见的，但这是可行的。在C++中，嵌套类不能访问外部类的this指针，嵌套类也不能直接访问外部类的成员。这是因为嵌套类可以独立于外部类进行实例化（在这种情况下，将没有可访问的外部类实例和成员！）
 
-然而，由于嵌套类是外部类的成员，因此它们可以访问范围内外部类的任何私有成员。
+然而，由于嵌套类是外部类的成员，因此它们可以访问外部类的任何私有成员。
 
-让我们用一个例子来说明：
+用一个例子来说明：
 
 ```C++
 #include <iostream>
@@ -199,11 +203,11 @@ public:
     public:
         void print(const Employee& e) const
         {
-            // Printer can't access Employee's `this` pointer
-            // so we can't print m_name and m_id directly
-            // Instead, we have to pass in an Employee object to use
-            // Because Printer is a member of Employee,
-            // we can access private members e.m_name and e.m_id directly
+            // Printer 不能使用 Employee 的 `this` 指针
+            // 所以不能直接使用 m_name 和 m_id
+            // 代替的方案是, 可以传入一个 Employee 对象
+            // 因为 Printer 是 Employee 的成员,
+            // 所以可以直接访问私有成员 e.m_name 和 e.m_id
             std::cout << e.m_name << " has id: " << e.m_id << '\n';
         }
     };
@@ -221,13 +225,13 @@ public:
     {
     }
 
-    // removed the access functions in this example (since they aren't used)
+    // 这个例子中不提供访问函数
 };
 
 int main()
 {
     const Employee john{ "John", 1, 45000 };
-    const Employee::Printer p{}; // instantiate an object of the inner class
+    const Employee::Printer p{}; // 实例化嵌套类的实例
     p.print(john);
 
     return 0;
@@ -236,11 +240,15 @@ int main()
 
 这将打印：
 
-有一种情况下，嵌套类更常用。在标准库中，大多数迭代器类都被实现为容器的嵌套类，它们被设计为在容器上迭代。例如，std:：string:：iterator被实现为std:∶string的嵌套类。我们将在未来的一章中介绍迭代器。
+```C++
+John has id: 1
+```
+
+有一种情况下，嵌套类更常用。在标准库中，大多数迭代器类都被实现为容器的嵌套类，它们被设计为在容器上迭代。例如，std::string::iterator被实现为std:∶string的嵌套类。我们将在未来的一章中介绍迭代器。
 
 ***
-## 嵌套类型不能向前声明
+## 嵌套类型不能前向声明
 
-嵌套类型还有一个值得一提的限制——嵌套类型不能被前向声明。在C++的未来版本中，可以取消此限制。
+嵌套类型还有一个值得一提的限制——嵌套类型不能被前向声明。在C++的未来版本中，可能取消此限制。
 
 ***
