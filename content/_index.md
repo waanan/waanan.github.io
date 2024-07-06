@@ -485,6 +485,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter15/nest-type/<-> 15.2 类和头文件
 <-->
 <->/basic/chapter15/destruct-intro/<-> 15.3 类和头文件
+<-->
+<->/basic/chapter15/class-tmplate-with-member-func/<-> 15.4 类和头文件
 {{< /chapterlist >}}
 
 ***
