@@ -491,6 +491,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter15/static-member-var/<-> 15.5 类和头文件
 <-->
 <->/basic/chapter15/static-member-func/<-> 15.6 类和头文件
+<-->
+<->/basic/chapter15/friend-no-member-func/<-> 15.7 类和头文件
 {{< /chapterlist >}}
 
 ***
