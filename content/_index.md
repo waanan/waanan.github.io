@@ -495,6 +495,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter15/friend-no-member-func/<-> 15.7 类和头文件
 <-->
 <->/basic/chapter15/friend-class/<-> 15.8 类和头文件
+<-->
+<->/basic/chapter15/ref-qulify/<-> 15.9 类和头文件
+<-->
+<->/basic/chapter15/summary/<-> 15.10 类和头文件
 {{< /chapterlist >}}
 
 ***
