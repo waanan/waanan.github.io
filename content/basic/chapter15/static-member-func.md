@@ -236,3 +236,9 @@ lambda也可以用于此。
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter15/static-member-var/" next="/basic/chapter15/friend-no-member-func/" >}}
+15.5 静态成员变量
+<--->
+15.7 友元非成员函数
+{{< /prevnext >}}

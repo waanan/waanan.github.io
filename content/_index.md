@@ -482,23 +482,23 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter15/class-header-file/<-> 15.1 类和头文件
 <-->
-<->/basic/chapter15/nest-type/<-> 15.2 类和头文件
+<->/basic/chapter15/nest-type/<-> 15.2 嵌套类型（成员类型）
 <-->
-<->/basic/chapter15/destruct-intro/<-> 15.3 类和头文件
+<->/basic/chapter15/destruct-intro/<-> 15.3 析构函数简介
 <-->
-<->/basic/chapter15/class-tmplate-with-member-func/<-> 15.4 类和头文件
+<->/basic/chapter15/class-tmplate-with-member-func/<-> 15.4 具有成员函数的类模板
 <-->
-<->/basic/chapter15/static-member-var/<-> 15.5 类和头文件
+<->/basic/chapter15/static-member-var/<-> 15.5 静态成员变量
 <-->
-<->/basic/chapter15/static-member-func/<-> 15.6 类和头文件
+<->/basic/chapter15/static-member-func/<-> 15.6 静态成员函数
 <-->
-<->/basic/chapter15/friend-no-member-func/<-> 15.7 类和头文件
+<->/basic/chapter15/friend-no-member-func/<-> 15.7 友元非成员函数
 <-->
-<->/basic/chapter15/friend-class/<-> 15.8 类和头文件
+<->/basic/chapter15/friend-class/<-> 15.8 友元类和友元成员函数
 <-->
-<->/basic/chapter15/ref-qulify/<-> 15.9 类和头文件
+<->/basic/chapter15/ref-qulify/<-> 15.9 引用限定符
 <-->
-<->/basic/chapter15/summary/<-> 15.10 类和头文件
+<->/basic/chapter15/summary/<-> 15.10 第15章总结
 {{< /chapterlist >}}
 
 ***

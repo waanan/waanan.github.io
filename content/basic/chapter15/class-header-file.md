@@ -290,8 +290,8 @@ inline void Date::print() const // 标记为 inline
 
 ***
 
-{{< prevnext prev="/basic/chapter15/hide-this/" next="/" >}}
+{{< prevnext prev="/basic/chapter15/hide-this/" next="/basic/chapter15/nest-type/" >}}
 15.0 隐藏的“this”指针和成员函数调用
 <--->
-主页
+15.2 嵌套类型（成员类型）
 {{< /prevnext >}}

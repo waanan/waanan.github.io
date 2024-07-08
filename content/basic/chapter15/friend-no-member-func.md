@@ -324,3 +324,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter15/static-member-func/" next="/basic/chapter15/friend-class/" >}}
+15.6 静态成员函数
+<--->
+15.8 友元类和友元成员函数
+{{< /prevnext >}}

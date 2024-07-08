@@ -161,3 +161,9 @@ std:∶move将在之后的课程介绍。
 基于以上所有内容，不建议将引用限定符用作最佳实践。相反，建议始终立即使用访问函数的结果，而不要保存返回的引用以供以后使用。
 
 ***
+
+{{< prevnext prev="/basic/chapter15/friend-class/" next="/basic/chapter15/summary/" >}}
+15.8 友元类和友元成员函数
+<--->
+15.10 第15章总结
+{{< /prevnext >}}

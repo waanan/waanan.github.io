@@ -147,3 +147,9 @@ bool Pair<T>::isEqual(const Pair<T>& pair)
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter15/destruct-intro/" next="/basic/chapter15/static-member-var/" >}}
+15.3 析构函数简介
+<--->
+15.5 静态成员变量
+{{< /prevnext >}}

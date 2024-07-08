@@ -212,3 +212,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter15/nest-type/" next="/basic/chapter15/class-tmplate-with-member-func/" >}}
+15.2 嵌套类型（成员类型）
+<--->
+15.4 具有成员函数的类模板
+{{< /prevnext >}}

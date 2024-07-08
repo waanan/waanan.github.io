@@ -298,3 +298,9 @@ int main()
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter15/class-tmplate-with-member-func/" next="/basic/chapter15/static-member-func/" >}}
+15.4 具有成员函数的类模板
+<--->
+15.6 静态成员函数
+{{< /prevnext >}}

@@ -252,3 +252,9 @@ John has id: 1
 嵌套类型还有一个值得一提的限制——嵌套类型不能被前向声明。在C++的未来版本中，可能取消此限制。
 
 ***
+
+{{< prevnext prev="/basic/chapter15/class-header-file/" next="/basic/chapter15/destruct-intro/" >}}
+15.1 类和头文件
+<--->
+15.3 析构函数简介
+{{< /prevnext >}}
