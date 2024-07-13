@@ -506,6 +506,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第十三章 动态数组：std::vector
 <--->
+<->/basic/chapter16/intro-container-array/<-> 16.0 隐藏的“this”指针和成员函数调用
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
