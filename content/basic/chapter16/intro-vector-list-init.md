@@ -339,3 +339,9 @@ Alexander Stepanov在《从数学到泛型编程》（From Mathematics to Generi
 因此，基本上，std::vector的名称是错误的，但现在更改它太晚了。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/intro-container-array/" next="/basic/chapter16/vec-len/" >}}
+16.0 容器和数组简介
+<--->
+16.2 vector与无符号长度和下标问题
+{{< /prevnext >}}

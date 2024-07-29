@@ -25,8 +25,8 @@ date: 2024-06-24T18:56:16+08:00
 
 ***
 
-{{< prevnext prev="/basic/chapter15/ref-qulify/" next="/" >}}
+{{< prevnext prev="/basic/chapter15/ref-qulify/" next="/basic/chapter16/intro-container-array/" >}}
 15.9 引用限定符
 <--->
-主页
+16.0 容器和数组简介
 {{< /prevnext >}}

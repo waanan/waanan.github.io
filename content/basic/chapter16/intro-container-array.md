@@ -227,3 +227,9 @@ vector同时含有这两部分，因此即使使用不同的术语，它仍然�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter15/summary/" next="/basic/chapter16/intro-vector-list-init/" >}}
+15.10 第15章总结
+<--->
+16.1 std::vector和列表构造函数简介
+{{< /prevnext >}}
