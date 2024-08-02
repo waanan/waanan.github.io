@@ -1,5 +1,5 @@
 ---
-title: "返回std:：vector，并介绍移动语义"
+title: "返回std::vector，移动语义简介"
 date: 2024-07-08T11:10:28+08:00
 ---
 
