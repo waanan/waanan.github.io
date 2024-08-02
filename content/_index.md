@@ -506,11 +506,11 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第十三章 动态数组：std::vector
 <--->
-<->/basic/chapter16/intro-container-array/<-> 16.0 隐藏的“this”指针和成员函数调用
+<->/basic/chapter16/intro-container-array/<-> 16.0 容器和数组简介
 <-->
-<->/basic/chapter16/intro-vector-list-init/<-> 16.1 隐藏的“this”指针和成员函数调用
+<->/basic/chapter16/intro-vector-list-init/<-> 16.1 std::vector和列表构造函数简介
 <-->
-<->/basic/chapter16/vec-len/<-> 16.2 隐藏的“this”指针和成员函数调用
+<->/basic/chapter16/vec-len/<-> 16.2 vector与无符号长度和下标问题
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

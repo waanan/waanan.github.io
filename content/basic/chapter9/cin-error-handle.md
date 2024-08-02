@@ -220,7 +220,7 @@ Enter one of the following: +, -, *, or /: Enter a decimal number: 5 * 7 is 35
 std::cin.ignore(100, '\n');  // 清空缓存中的100个字符, 或者直到一个 '\n' 被清除
 ```
 
-这个调用将删除多达100个字符，但如果用户输入的字符超过100个，我们将再次得到混乱的输出。要忽略下一个“\n”之前的所有字符，可以将std::numeric_limits<std::streamsize>::max()传递给std::cin.ignore()。std::numeric_limits<std::streamsize>::max() 返回可以存储在类型为std::streamsize的变量中的最大值。将该值传递给std::cin.ignore()会导致std::cin清空所有缓存。
+这个调用将删除多达100个字符，但如果用户输入的字符超过100个，我们将再次得到混乱的输出。要忽略下一个“\n”之前的所有字符，可以将std::numeric_limits\<std::streamsize\>::max()传递给std::cin.ignore()。std::numeric_limits\<std::streamsize\>::max() 返回可以存储在类型为std::streamsize的变量中的最大值。将该值传递给std::cin.ignore()会导致std::cin清空所有缓存。使用之前需要先 “#include \<limits\>”。 
 
 要忽略直到并包括下一个“\n”字符的所有内容，调用
 

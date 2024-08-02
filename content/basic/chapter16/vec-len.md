@@ -342,3 +342,9 @@ int main()
 在这种情况下，要做的最简单的事情是使用类型为std::size_t的变量作为索引，并且除了索引之外，不要将该变量用于其他任何事情。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/intro-vector-list-init/" next="/" >}}
+16.1 std::vector和列表构造函数简介
+<--->
+主页
+{{< /prevnext >}}
