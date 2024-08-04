@@ -515,6 +515,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter16/vec-pass/<-> 16.3 隐藏的“this”指针和成员函数调用
 <-->
 <->/basic/chapter16/vec-ret-move/<-> 16.4 隐藏的“this”指针和成员函数调用
+<-->
+<->/basic/chapter16/vec-loop/<-> 16.5 隐藏的“this”指针和成员函数调用
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
