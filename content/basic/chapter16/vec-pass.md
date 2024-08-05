@@ -215,3 +215,9 @@ int main()
 最好的选择是避免对传入的数组长度进行假设。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/vec-len/" next="/basic/chapter16/vec-ret-move/" >}}
+16.2 vector与无符号长度和下标问题
+<--->
+16.4 返回std::vector，移动语义简介
+{{< /prevnext >}}

@@ -343,8 +343,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter16/intro-vector-list-init/" next="/" >}}
+{{< prevnext prev="/basic/chapter16/intro-vector-list-init/" next="/basic/chapter16/vec-pass/" >}}
 16.1 std::vector和列表构造函数简介
 <--->
-主页
+16.3 传递std::vector
 {{< /prevnext >}}

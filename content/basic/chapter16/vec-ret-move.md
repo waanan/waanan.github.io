@@ -184,3 +184,9 @@ int main()
 总之，对于支持移动的类型，优先通过常量引用传递，并通过值返回。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/vec-pass/" next="/basic/chapter16/vec-loop/" >}}
+16.3 传递std::vector
+<--->
+16.5 数组和循环
+{{< /prevnext >}}

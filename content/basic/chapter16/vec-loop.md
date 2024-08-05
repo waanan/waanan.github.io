@@ -179,3 +179,9 @@ calculateAverage() 将适用于支持函数内使用的运算符（ operator+=(T
 新程序员有时会意外地将索引<=长度用作循环条件。这将导致在索引==长度时执行循环，这将导致越界下标和未定义的行为。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/vec-ret-move/" next="/" >}}
+16.4 返回std::vector，移动语义简介
+<--->
+主页
+{{< /prevnext >}}
