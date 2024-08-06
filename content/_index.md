@@ -517,6 +517,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter16/vec-ret-move/<-> 16.4 返回std::vector，移动语义简介
 <-->
 <->/basic/chapter16/vec-loop/<-> 16.5 数组和循环
+<-->
+<->/basic/chapter16/vec-loop-sign-index/<-> 16.6 数组和循环
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
