@@ -519,6 +519,12 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter16/vec-loop/<-> 16.5 数组和循环
 <-->
 <->/basic/chapter16/vec-loop-sign-index/<-> 16.6 数组和循环
+<-->
+<->/basic/chapter16/range-for/<-> 16.7 数组和循环
+<-->
+<->/basic/chapter16/enum-as-index/<-> 16.8 数组和循环
+<-->
+<->/basic/chapter16/vec-size-capacity/<-> 16.9 数组和循环
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
