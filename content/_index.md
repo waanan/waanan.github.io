@@ -528,7 +528,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter16/vec-stack/<-> 16.10 std::vector和栈行为
 <-->
-<->/basic/chapter16/vec-bool/<-> 16.11 std::vector\<bool\>
+<->/basic/chapter16/vec-bool/<-> 16.11 std::vector<bool>
 <-->
 <->/basic/chapter16/summary/<-> 16.12 第16章总结
 {{< /chapterlist >}}

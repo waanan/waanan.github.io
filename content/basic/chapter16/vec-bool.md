@@ -1,5 +1,5 @@
 ---
-title: "std::vector\<bool\>"
+title: "std::vector<bool>"
 date: 2024-07-08T11:10:28+08:00
 ---
 
