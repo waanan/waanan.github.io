@@ -94,3 +94,10 @@ void foo( std::vector<T>& v )
 
 {{< /alert >}}
 
+***
+
+{{< prevnext prev="/basic/chapter16/vec-stack/" next="/basic/chapter16/summary/" >}}
+16.10 std::vector和栈行为
+<--->
+16.12 第16章总结
+{{< /prevnext >}}

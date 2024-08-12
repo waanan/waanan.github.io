@@ -316,3 +316,9 @@ Capacity: 0  Length: 0
 可以看到，当调用v.shrink_to_fit()时，vector将其容量重新分配为0，从而为1000个元素释放内存。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/enum-as-index/" next="/basic/chapter16/vec-stack/" >}}
+16.8 使用枚举值来作为数组索引
+<--->
+16.10 std::vector和栈行为
+{{< /prevnext >}}

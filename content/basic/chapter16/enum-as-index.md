@@ -339,3 +339,9 @@ int main()
 然而，如果您要进行大量枚举元素到整数的转换，那么最好只在名称空间（或类）中使用标准枚举。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/range-for/" next="/basic/chapter16/vec-size-capacity/" >}}
+16.7 基于范围的for循环（range for / for each）
+<--->
+16.9 std::vector大小调整和容量
+{{< /prevnext >}}

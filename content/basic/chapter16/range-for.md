@@ -293,3 +293,9 @@ Alex
 我们还没有介绍range库，所以现在认为这是一个有用的魔术。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/vec-loop-sign-index/" next="/basic/chapter16/enum-as-index/" >}}
+16.6 数组、循环和有符号下标
+<--->
+16.8 使用枚举值来作为数组索引
+{{< /prevnext >}}

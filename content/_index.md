@@ -518,19 +518,19 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter16/vec-loop/<-> 16.5 数组和循环
 <-->
-<->/basic/chapter16/vec-loop-sign-index/<-> 16.6 数组和循环
+<->/basic/chapter16/vec-loop-sign-index/<-> 16.6 数组、循环和有符号下标
 <-->
-<->/basic/chapter16/range-for/<-> 16.7 数组和循环
+<->/basic/chapter16/range-for/<-> 16.7 基于范围的for循环（range for / for each）
 <-->
-<->/basic/chapter16/enum-as-index/<-> 16.8 数组和循环
+<->/basic/chapter16/enum-as-index/<-> 16.8 使用枚举值来作为数组索引
 <-->
-<->/basic/chapter16/vec-size-capacity/<-> 16.9 数组和循环
+<->/basic/chapter16/vec-size-capacity/<-> 16.9 std::vector大小调整和容量
 <-->
-<->/basic/chapter16/vec-stack/<-> 16.10 数组和循环
+<->/basic/chapter16/vec-stack/<-> 16.10 std::vector和栈行为
 <-->
-<->/basic/chapter16/vec-bool/<-> 16.11 数组和循环
+<->/basic/chapter16/vec-bool/<-> 16.11 std::vector\<bool\>
 <-->
-<->/basic/chapter16/summary/<-> 16.12 数组和循环
+<->/basic/chapter16/summary/<-> 16.12 第16章总结
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

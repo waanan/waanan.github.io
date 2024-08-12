@@ -448,3 +448,9 @@ C++提供了其他几种方法来遍历数组,根本不使用索引。如果不�
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter16/vec-loop/" next="/basic/chapter16/range-for/" >}}
+16.5 数组和循环
+<--->
+16.7 基于范围的for循环（range for / for each）
+{{< /prevnext >}}

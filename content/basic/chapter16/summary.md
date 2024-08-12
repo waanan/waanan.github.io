@@ -110,3 +110,9 @@ std::vector\<bool\>有一个特殊的实现，通过类似地将8个布尔值压
 std::vector\<bool\>不是vector（它在内存中不需要是连续的），也不包含bool值（它包含一组bit），它也不满足C++对容器的定义。尽管在大多数情况下，std::vector\<bool\>的行为类似于vector，但它与标准库的其余部分并不完全兼容。与其他元素类型一起使用的代码可能无法与std::vector\<bool\>一起使用。因此，通常应避免使用std::vector\<bool\>。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/vec-bool/" next="/" >}}
+16.11 std::vector\<bool\>
+<--->
+主页
+{{< /prevnext >}}

@@ -395,3 +395,9 @@ int main()
 请注意，在这个程序中，我们根本不需要进行任何计数、索引或处理数组长度！可以只关注我们希望程序做什么的逻辑，并让vector处理所有的存储问题！
 
 ***
+
+{{< prevnext prev="/basic/chapter16/vec-size-capacity/" next="/basic/chapter16/vec-bool/" >}}
+16.9 std::vector大小调整和容量
+<--->
+16.11 std::vector\<bool\>
+{{< /prevnext >}}

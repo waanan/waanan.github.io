@@ -180,8 +180,8 @@ calculateAverage() 将适用于支持函数内使用的运算符（ operator+=(T
 
 ***
 
-{{< prevnext prev="/basic/chapter16/vec-ret-move/" next="/" >}}
+{{< prevnext prev="/basic/chapter16/vec-ret-move/" next="/basic/chapter16/vec-loop-sign-index/" >}}
 16.4 返回std::vector，移动语义简介
 <--->
-主页
+16.6 数组、循环和有符号下标
 {{< /prevnext >}}
