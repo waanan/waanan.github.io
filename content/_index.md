@@ -436,7 +436,7 @@ date: 2022-12-28T16:40:41+08:00
 ***
 
 {{< chapterlist>}}
-第十一章 class介绍
+第十四章 class介绍
 <--->
 <->/basic/chapter14/intro-oop/<-> 14.0 面向对象编程简介
 <-->
@@ -504,7 +504,7 @@ date: 2022-12-28T16:40:41+08:00
 ***
 
 {{< chapterlist>}}
-第十三章 动态数组：std::vector
+第十六章 动态数组：std::vector
 <--->
 <->/basic/chapter16/intro-container-array/<-> 16.0 容器和数组简介
 <-->
@@ -534,8 +534,9 @@ date: 2022-12-28T16:40:41+08:00
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
-第十四章 固定长度数组：std::array与c样式数组
+第十七章 固定长度数组：std::array与c样式数组
 <--->
+<->/basic/chapter17/arr-intro/<-> 17.0 容器和数组简介
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
