@@ -536,7 +536,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第十七章 固定长度数组：std::array与c样式数组
 <--->
-<->/basic/chapter17/arr-intro/<-> 17.0 容器和数组简介
+<->/basic/chapter17/arr-intro/<-> 17.0 std::array简介
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

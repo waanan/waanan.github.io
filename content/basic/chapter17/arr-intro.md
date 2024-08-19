@@ -325,3 +325,9 @@ int main()
 在下一课中，将讨论其他几种索引std::array的方法。
 
 ***
+
+{{< prevnext prev="/basic/chapter16/summary/" next="/" >}}
+16.12 第16章总结
+<--->
+主页
+{{< /prevnext >}}

@@ -399,5 +399,5 @@ int main()
 {{< prevnext prev="/basic/chapter16/vec-size-capacity/" next="/basic/chapter16/vec-bool/" >}}
 16.9 std::vector大小调整和容量
 <--->
-16.11 std::vector\<bool\>
+16.11 std::vector<bool>
 {{< /prevnext >}}

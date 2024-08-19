@@ -111,8 +111,8 @@ std::vector\<bool\>不是vector（它在内存中不需要是连续的），也�
 
 ***
 
-{{< prevnext prev="/basic/chapter16/vec-bool/" next="/" >}}
-16.11 std::vector\<bool\>
+{{< prevnext prev="/basic/chapter16/vec-bool/" next="/basic/chapter17/arr-intro/" >}}
+16.11 std::vector<bool>
 <--->
-主页
+17.0 std::array简介
 {{< /prevnext >}}
