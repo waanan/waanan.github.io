@@ -537,6 +537,10 @@ date: 2022-12-28T16:40:41+08:00
 第十七章 固定长度数组：std::array与c样式数组
 <--->
 <->/basic/chapter17/arr-intro/<-> 17.0 std::array简介
+<-->
+<->/basic/chapter17/arr-len-index/<-> 17.1 std
+<-->
+<->/basic/chapter17/arr-pass-ret/<-> 17.2 std
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
