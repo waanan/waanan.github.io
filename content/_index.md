@@ -538,13 +538,13 @@ date: 2022-12-28T16:40:41+08:00
 <--->
 <->/basic/chapter17/arr-intro/<-> 17.0 std::array简介
 <-->
-<->/basic/chapter17/arr-len-index/<-> 17.1 std
+<->/basic/chapter17/arr-len-index/<-> 17.1 std::array长度和索引
 <-->
-<->/basic/chapter17/arr-pass-ret/<-> 17.2 std
+<->/basic/chapter17/arr-pass-ret/<-> 17.2 std::array作为函数参数或返回值
 <-->
-<->/basic/chapter17/arr-of-class/<-> 17.3 std
+<->/basic/chapter17/arr-of-class/<-> 17.3 std::array与类类型元素
 <-->
-<->/basic/chapter17/arr-ref/<-> 17.4 std
+<->/basic/chapter17/arr-ref/<-> 17.4 通过std::reference_wrapper创建引用的数组
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

@@ -326,8 +326,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter16/summary/" next="/" >}}
+{{< prevnext prev="/basic/chapter16/summary/" next="/basic/chapter17/arr-len-index/" >}}
 16.12 第16章总结
 <--->
-主页
+17.1 std::array长度和索引
 {{< /prevnext >}}

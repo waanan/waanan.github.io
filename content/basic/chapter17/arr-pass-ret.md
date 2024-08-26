@@ -384,3 +384,8 @@ vector支持移动，并且可以按值返回，而无需制作昂贵的副本�
 
 ***
 
+{{< prevnext prev="/basic/chapter17/arr-len-index/" next="/basic/chapter17/arr-of-class/" >}}
+17.1 std::array长度和索引
+<--->
+17.3 std::array与类类型元素
+{{< /prevnext >}}

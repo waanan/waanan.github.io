@@ -329,3 +329,9 @@ You found: nobody
 注意，由于std::array students是constexpr，因此findStudentById()函数必须返回常量指针，这意味着main()中的Student指针也必须是const。
 
 ***
+
+{{< prevnext prev="/basic/chapter17/arr-pass-ret/" next="/basic/chapter17/arr-ref/" >}}
+17.2 std::array作为函数参数或返回值
+<--->
+17.4 通过std::reference_wrapper创建引用的数组
+{{< /prevnext >}}

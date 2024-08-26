@@ -151,3 +151,9 @@ int main()
 由于模板参数必须是constexpr，因此只能使用constexpr索引调用std::get()。
 
 ***
+
+{{< prevnext prev="/basic/chapter17/arr-intro/" next="/basic/chapter17/arr-pass-ret/" >}}
+17.0 std::array简介
+<--->
+17.2 std::array作为函数参数或返回值
+{{< /prevnext >}}

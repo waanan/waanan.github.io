@@ -124,3 +124,9 @@ int main()
 但由于std::ref()和std::cref()的拼写较短，因此它们仍然广泛用于创建std::reference_wrapper对象。
 
 ***
+
+{{< prevnext prev="/basic/chapter17/arr-of-class/" next="/" >}}
+17.3 std::array与类类型元素
+<--->
+主页
+{{< /prevnext >}}
