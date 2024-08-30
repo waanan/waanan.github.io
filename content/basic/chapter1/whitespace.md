@@ -262,7 +262,7 @@ C++提供了最舒适的风格或认为最好的风格的能力。然而，强�
 {{< alert success >}}
 **对于Visual Studio用户**
 
-在Visual Studio中，可以在 编辑>高级 下找到自动格式化的选项。
+在Visual Studio中，可以在 编辑>高级 下找到自动格式化的选项（设置文档的格式）。
 
 {{< /alert >}}
 
