@@ -545,6 +545,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter17/arr-of-class/<-> 17.3 std::array与类类型元素
 <-->
 <->/basic/chapter17/arr-ref/<-> 17.4 通过std::reference_wrapper创建引用的数组
+<-->
+<->/basic/chapter17/arr-enum/<-> 17.5 通过std::reference_wrapper创建引用的数组
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

@@ -1,18 +1,18 @@
 ---
-title: "std:：数组和枚举"
+title: "std::array和枚举"
 date: 2024-08-13T13:06:02+08:00
 ---
 
-在第16.9课——使用枚举器的数组索引和长度中，我们讨论了数组和枚举。
+在之前，我们讨论过，可以使用枚举作为数组的长度和索引。
 
-既然在我们的工具包中已经有了constexpr-std:：array，我们将继续讨论并展示一些额外的技巧。
+既然已经了解过constexpr std::array，接下来继续讨论并展示一些额外的技巧。
 
 ***
 ## 使用静态断言确保适当数量的数组初始值设定项
 
-当使用CTAD初始化constexpr std:：数组时，编译器将根据初始值设定项的数量推断数组的长度。如果提供的初始值设定项少于应有的数量，则数组将比预期的短，并且索引它可能导致未定义的行为。
+当使用CTAD初始化constexpr std::array时，编译器将根据初始值设定项的数量推断数组的长度。如果提供的初始值设定项少于应有的数量，则数组将比预期的短，并且访问它可能导致未定义的行为。
 
-例如：
+例如:
 
 ```C++
 #include <array>
@@ -30,15 +30,15 @@ enum StudentNames
 
 int main()
 {
-    constexpr std::array testScores { 78, 94, 66, 77 }; // oops, only 4 values
+    constexpr std::array testScores { 78, 94, 66, 77 }; // oops, 只有 4 个元素
 
-    std::cout << "Cartman got a score of " << testScores[StudentNames::cartman] << '\n'; // undefined behavior due to invalid index
+    std::cout << "Cartman got a score of " << testScores[StudentNames::cartman] << '\n'; // 无效的索引，导致未定义的行为
 
     return 0;
 }
 ```
 
-每当可以合理地检查constexpr std:：数组中的初始值设定项数量时，您可以使用静态断言执行此操作：
+如果需要检查constexpr std::array中的初始值设定项数量时，可以使用静态断言执行此操作:
 
 ```C++
 #include <array>
@@ -58,8 +58,8 @@ int main()
 {
     constexpr std::array testScores { 78, 94, 66, 77 };
 
-    // Ensure the number of test scores is the same as the number of students
-    static_assert(std::size(testScores) == max_students); // compile error: static_assert condition failed
+    // 确保学生都有一个分数
+    static_assert(std::size(testScores) == max_students); // 编译失败: static_assert 不满足条件
 
     std::cout << "Cartman got a score of " << testScores[StudentNames::cartman] << '\n';
 
@@ -69,12 +69,12 @@ int main()
 
 这样，如果稍后添加新的枚举器，但忘记向testScores添加相应的初始值设定项，则程序将无法编译。
 
-您还可以使用静态断言来确保两个不同的constexpr std:：数组具有相同的长度。
+您还可以使用静态断言来确保两个不同的constexpr std::array具有相同的长度。
 
 ***
 ## 使用constexpr数组实现更好的枚举输入和输出
 
-在第13.5课——I/O操作符重载简介中，我们介绍了输入和输出枚举器名称的几种方法。为了帮助完成这项任务，我们有了将枚举数转换为字符串的助手函数，反之亦然。这些函数都有自己（重复）的字符串文本集，我们必须专门编码逻辑来检查每个函数：
+在之前的I/O操作符重载简介中，我们介绍了输入和输出枚举器名称的几种方法。为了帮助完成这项任务，有了将枚举转换为字符串的辅助函数，反之亦然。这些函数都有自己的字符串文本集合，必须专门编码逻辑来检查每个函数:
 
 ```C++
 constexpr std::string_view getPetName(Pet pet)
@@ -100,11 +100,11 @@ constexpr std::optional<Pet> getPetFromString(std::string_view sv)
 }
 ```
 
-这意味着如果我们要添加新的枚举器，我们必须记住更新这些函数。
+这意味着如果要添加新的枚举元素，必须记住更新这些函数。
 
-让我们稍微改进一下这些函数。在枚举器的值从0开始并按顺序继续的情况下（这对于大多数枚举都是正确的），我们可以使用数组来保存每个枚举器的名称。
+让我们稍微改进一下这些函数。在枚举器的值从0开始并按顺序继续的情况下（这对于大多数枚举都是正确的），可以使用array来保存每个枚举器的名称。
 
-这允许我们做两件事：
+这允许我们做两件事:
 
 ```C++
 #include <array>
@@ -122,52 +122,52 @@ namespace Color
         max_colors
     };
 
-    // use sv suffix so std::array will infer type as std::string_view
-    using namespace std::string_view_literals; // for sv suffix
+    // 使用 sv 后缀， 这样 std::array 中保存的元素类型为 std::string_view
+    using namespace std::string_view_literals; // 引入 sv 后缀
     constexpr std::array colorName { "black"sv, "red"sv, "blue"sv };
 
-    // Make sure we've defined strings for all our colors
+    // 确保每个枚举值，都有对应的字符串
     static_assert(std::size(colorName) == max_colors);
 };
 
 constexpr std::string_view getColorName(Color::Type color)
 {
-    // We can index the array using the enumerator to get the name of the enumerator
+    // 可以使用枚举元素获取到对应的字符串
     return Color::colorName[color];
 }
 
-// Teach operator<< how to print a Color
-// std::ostream is the type of std::cout
-// The return type and parameter type are references (to prevent copies from being made)!
+// 设置 operator<< 如何输出 Color
+// std::ostream 是 std::cout 的类型
+// 返回值和参数都是引用 (避免制作额外的副本)!
 std::ostream& operator<<(std::ostream& out, Color::Type color)
 {
     return out << getColorName(color);
 }
 
-// Teach operator>> how to input a Color by name
-// We pass color by non-const reference so we can have the function modify its value
+// 设置 operator>> 如何输入 Color
+// 传递 non-const 引用，以便修改 color的值
 std::istream& operator>> (std::istream& in, Color::Type& color)
 {
     std::string input {};
     std::getline(in >> std::ws, input);
 
-    // Iterate through the list of names to see if we can find a matching name
+    // 遍历名称列表，看能否找到匹配的
     for (std::size_t index=0; index < Color::colorName.size(); ++index)
     {
         if (input == Color::colorName[index])
         {
-            // If we found a matching name, we can get the enumerator value based on its index
+            // 如果找到，可以根据下标，获取到对应的枚举值
             color = static_cast<Color::Type>(index);
             return in;
         }
     }
 
-    // We didn't find a match, so input must have been invalid
-    // so we will set input stream to fail state
+    // 如果没找到，已经是输入不对
+    // 将输入 stream 设置成 fail 状态
     in.setstate(std::ios_base::failbit);
 
-    // On an extraction failure, operator>> zero-initializes fundamental types
-    // Uncomment the following line to make this operator do the same thing
+    // 提取失败, operator>> 对于基础类型，会返回0初始化的数据
+    // 注释掉下面一行，对于 color 会执行同样的逻辑
     // color = {};
     return in;
 }
@@ -188,12 +188,18 @@ int main()
 }
 ```
 
-这将打印：
+这将打印:
+
+```C++
+Your shirt is blue
+Enter a new color: red
+Your shirt is now red
+```
 
 ***
-## 循环和枚举的基于范围
+## 基于范围的循环和枚举
 
-有时，我们会遇到这样的情况，即迭代枚举的枚举器是有用的。虽然我们可以使用具有整数索引的for循环来实现这一点，但这可能需要将整数索引静态强制转换为枚举类型。
+有时，我们会遇到这样的情况，即迭代枚举元素是有用的。虽然可以使用具有整数索引的for循环来实现这一点，但这可能需要将整数索引静态强制转换为枚举类型。
 
 ```C++
 #include <array>
@@ -210,11 +216,11 @@ namespace Color
         max_colors
     };
 
-    // use sv suffix so std::array will infer type as std::string_view
+    // 使用 sv 后缀， 这样 std::array 中保存的元素类型为 std::string_view
     using namespace std::string_view_literals; // for sv suffix
     constexpr std::array colorName { "black"sv, "red"sv, "blue"sv };
 
-    // Make sure we've defined strings for all our colors
+    // 确保每个枚举值，都有对应的字符串
     static_assert(std::size(colorName) == max_colors);
 };
 
@@ -223,9 +229,9 @@ constexpr std::string_view getColorName(Color::Type color)
     return Color::colorName[color];
 }
 
-// Teach operator<< how to print a Color
-// std::ostream is the type of std::cout
-// The return type and parameter type are references (to prevent copies from being made)!
+// 设置 operator<< 如何输出 Color
+// std::ostream 是 std::cout 的类型
+// 返回值和参数都是引用 (避免制作额外的副本)!
 std::ostream& operator<<(std::ostream& out, Color::Type color)
 {
     return out << getColorName(color);
@@ -233,7 +239,7 @@ std::ostream& operator<<(std::ostream& out, Color::Type color)
 
 int main()
 {
-    // Use a for loop to iterate through all our colors
+    // 使用for 循环去遍历所有的color
     for (int i=0; i < Color::max_colors; ++i )
         std::cout << static_cast<Color::Type>(i) << '\n';
 
@@ -241,7 +247,7 @@ int main()
 }
 ```
 
-不幸的是，基于范围的for循环不允许迭代枚举的枚举器：
+不幸的是，基于范围的for循环不允许迭代枚举的枚举元素:
 
 ```C++
 #include <array>
@@ -258,11 +264,11 @@ namespace Color
         max_colors
     };
 
-    // use sv suffix so std::array will infer type as std::string_view
+    // 使用 sv 后缀， 这样 std::array 中保存的元素类型为 std::string_view
     using namespace std::string_view_literals; // for sv suffix
     constexpr std::array colorName { "black"sv, "red"sv, "blue"sv };
 
-    // Make sure we've defined strings for all our colors
+    // 确保每个枚举值，都有对应的字符串
     static_assert(std::size(colorName) == max_colors);
 };
 
@@ -271,9 +277,9 @@ constexpr std::string_view getColorName(Color::Type color)
     return Color::colorName[color];
 }
 
-// Teach operator<< how to print a Color
-// std::ostream is the type of std::cout
-// The return type and parameter type are references (to prevent copies from being made)!
+// 设置 operator<< 如何输出 Color
+// std::ostream 是 std::cout 的类型
+// 返回值和参数都是引用 (避免制作额外的副本)!
 std::ostream& operator<<(std::ostream& out, Color::Type color)
 {
     return out << getColorName(color);
@@ -281,14 +287,14 @@ std::ostream& operator<<(std::ostream& out, Color::Type color)
 
 int main()
 {
-    for (auto c: Color::Type) // compile error: can't traverse enumeration
+    for (auto c: Color::Type) // 编译失败: 不能遍历枚举
         std::cout << c < '\n';
 
     return 0;
 }
 ```
 
-有许多创造性的解决方案。由于我们可以在数组上使用基于范围的for循环，因此最简单的解决方案之一是创建一个包含每个枚举器的constexpr std:：数组，然后对其进行迭代。此方法仅在枚举器具有唯一值时有效。
+有许多创造性的解决方案。由于我们可以在数组上使用基于范围的for循环，因此最简单的解决方案之一是创建一个包含每个枚举元素的constexpr std::array，然后对其进行迭代。此方法仅在枚举元素具有唯一值时有效。
 
 ```C++
 #include <array>
@@ -309,7 +315,7 @@ namespace Color
     constexpr std::array colorName { "black"sv, "red"sv, "blue"sv };
     static_assert(std::size(colorName) == max_colors);
 
-    constexpr std::array types { black, red, blue }; // A std::array containing all our enumerators
+    constexpr std::array types { black, red, blue }; // 一个 std::array 包含所有的枚举元素
     static_assert(std::size(types) == max_colors);
 };
 
@@ -318,9 +324,9 @@ constexpr std::string_view getColorName(Color::Type color)
     return Color::colorName[color];
 }
 
-// Teach operator<< how to print a Color
-// std::ostream is the type of std::cout
-// The return type and parameter type are references (to prevent copies from being made)!
+// 设置 operator<< 如何输出 Color
+// std::ostream 是 std::cout 的类型
+// 返回值和参数都是引用 (避免制作额外的副本)!
 std::ostream& operator<<(std::ostream& out, Color::Type color)
 {
     return out << getColorName(color);
@@ -328,15 +334,21 @@ std::ostream& operator<<(std::ostream& out, Color::Type color)
 
 int main()
 {
-    for (auto c: Color::types) // ok: we can do a range-based for on a std::array
+    for (auto c: Color::types) // ok: 可以在 std::array 使用基于范围的 for 循环
         std::cout << c << '\n';
 
     return 0;
 }
 ```
 
-在上面的示例中，由于Color:：types的元素类型是Color:∶type，因此变量c将被推导为Color::type，这正是我们想要的！
+在上面的示例中，由于Color::types的元素类型是Color::type，因此变量c将被推导为Color::type，这正是我们想要的！
 
-这将打印：
+这将打印:
+
+```C++
+black
+red
+blue
+```
 
 ***
