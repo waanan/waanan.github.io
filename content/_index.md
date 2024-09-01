@@ -553,6 +553,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter17/c-arr-decay/<-> 17.7 通过std::reference_wrapper创建引用的数组
 <-->
 <->/basic/chapter17/pointer-arithmetic/<-> 17.8 通过std::reference_wrapper创建引用的数组
+<-->
+<->/basic/chapter17/c-str/<-> 17.9 通过std::reference_wrapper创建引用的数组
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
