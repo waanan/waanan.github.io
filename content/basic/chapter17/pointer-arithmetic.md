@@ -376,3 +376,9 @@ int main()
 请注意，这与我们在上一节中编写的示例非常相似！唯一的区别是我们将\*__begin分配给e并使用e，而不是直接使用\*__begin！
 
 ***
+
+{{< prevnext prev="/basic/chapter17/c-arr-decay/" next="/basic/chapter17/c-str/" >}}
+17.7 C样式数组退化
+<--->
+17.9 C样式字符串
+{{< /prevnext >}}

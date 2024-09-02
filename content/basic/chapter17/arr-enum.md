@@ -352,3 +352,9 @@ blue
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter17/arr-ref/" next="/basic/chapter17/c-arr/" >}}
+17.4 通过std::reference_wrapper创建引用的数组
+<--->
+17.6 C样式数组简介
+{{< /prevnext >}}

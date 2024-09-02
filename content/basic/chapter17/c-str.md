@@ -223,3 +223,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter17/pointer-arithmetic/" next="/" >}}
+17.8 指针运算和下标
+<--->
+主页
+{{< /prevnext >}}

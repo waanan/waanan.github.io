@@ -125,8 +125,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter17/arr-of-class/" next="/" >}}
+{{< prevnext prev="/basic/chapter17/arr-of-class/" next="/basic/chapter17/arr-enum/" >}}
 17.3 std::array与类类型元素
 <--->
-主页
+17.5 std::array和枚举
 {{< /prevnext >}}

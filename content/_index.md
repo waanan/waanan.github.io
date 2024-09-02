@@ -546,15 +546,15 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter17/arr-ref/<-> 17.4 通过std::reference_wrapper创建引用的数组
 <-->
-<->/basic/chapter17/arr-enum/<-> 17.5 通过std::reference_wrapper创建引用的数组
+<->/basic/chapter17/arr-enum/<-> 17.5 std::array和枚举
 <-->
-<->/basic/chapter17/c-arr/<-> 17.6 通过std::reference_wrapper创建引用的数组
+<->/basic/chapter17/c-arr/<-> 17.6 C样式数组简介
 <-->
-<->/basic/chapter17/c-arr-decay/<-> 17.7 通过std::reference_wrapper创建引用的数组
+<->/basic/chapter17/c-arr-decay/<-> 17.7 C样式数组退化
 <-->
-<->/basic/chapter17/pointer-arithmetic/<-> 17.8 通过std::reference_wrapper创建引用的数组
+<->/basic/chapter17/pointer-arithmetic/<-> 17.8 指针运算和下标
 <-->
-<->/basic/chapter17/c-str/<-> 17.9 通过std::reference_wrapper创建引用的数组
+<->/basic/chapter17/c-str/<-> 17.9 C样式字符串
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

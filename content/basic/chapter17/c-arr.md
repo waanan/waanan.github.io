@@ -359,3 +359,8 @@ int main()
 
 ***
 
+{{< prevnext prev="/basic/chapter17/arr-enum/" next="/basic/chapter17/c-arr-decay/" >}}
+17.5 std::array和枚举
+<--->
+17.7 C样式数组退化
+{{< /prevnext >}}
