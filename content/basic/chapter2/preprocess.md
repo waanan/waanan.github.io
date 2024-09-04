@@ -44,7 +44,7 @@ using namespace（在命名冲突和名称空间简介一节）不是预处理�
 ***
 ## include
 
-了解了#include指令作用（通常是#incluse<iostream>）。当#include文件时，预处理器将#include指令替换为所包含文件的内容。然后对包含内容进行预处理（可能导致递归地预处理其他的#include文件），然后处理文件的其余部分。
+了解了#include指令作用（一个常见的例子是#include \<iostream\>）。当#include文件时，预处理器将#include指令替换为所包含文件的内容。然后对包含内容进行预处理（可能导致递归地预处理其他的#include文件），然后处理文件的其余部分。
 
 如下程序：
 
