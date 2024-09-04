@@ -555,6 +555,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter17/pointer-arithmetic/<-> 17.8 指针运算和下标
 <-->
 <->/basic/chapter17/c-str/<-> 17.9 C样式字符串
+<-->
+<->/basic/chapter17/c-const-str/<-> 17.10 C样式字符串
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
