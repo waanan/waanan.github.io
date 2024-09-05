@@ -156,3 +156,9 @@ int main()
 在现代C++中，几乎没有理由使用C样式的字符串常量。相反，应该优先使用constexpr std::string_view对象，它们往往同样快，并且行为更一致。
 
 ***
+
+{{< prevnext prev="/basic/chapter17/c-str/" next="/" >}}
+17.9 C样式字符串
+<--->
+主页
+{{< /prevnext >}}

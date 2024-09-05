@@ -224,8 +224,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter17/pointer-arithmetic/" next="/" >}}
+{{< prevnext prev="/basic/chapter17/pointer-arithmetic/" next="/basic/chapter17/c-const-str/" >}}
 17.8 指针运算和下标
 <--->
-主页
+17.10 常量C样式字符串
 {{< /prevnext >}}
