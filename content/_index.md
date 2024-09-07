@@ -533,6 +533,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter16/summary/<-> 16.12 第16章总结
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
 第十七章 固定长度数组：std::array与c样式数组
 <--->
@@ -557,12 +559,22 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter17/c-str/<-> 17.9 C样式字符串
 <-->
 <->/basic/chapter17/c-const-str/<-> 17.10 常量C样式字符串
+<-->
+<->/basic/chapter17/c-multi-arr/<-> 17.11 常量C样式字符串
+<-->
+<->/basic/chapter17/std-multi-arr/<-> 17.12 常量C样式字符串
+<-->
+<->/basic/chapter17/summary/<-> 17.13 常量C样式字符串
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
-第十五章 迭代器与算法
+第十八章 迭代器与算法
 <--->
 {{< /chapterlist >}}
+
+***
 
 {{< chapterlist>}}
 第十六章 动态内存分配
