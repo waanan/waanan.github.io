@@ -1,5 +1,5 @@
 ---
-title: "多维std::array
+title: "多维std::array"
 date: 2024-08-13T13:06:02+08:00
 ---
 
