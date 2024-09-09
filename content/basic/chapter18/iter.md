@@ -339,3 +339,9 @@ int main()
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter18/sort-arr/" next="/" >}}
+18.0 对数组进行排序
+<--->
+主页
+{{< /prevnext >}}

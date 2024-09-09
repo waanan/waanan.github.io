@@ -574,7 +574,7 @@ date: 2022-12-28T16:40:41+08:00
 <--->
 <->/basic/chapter18/sort-arr/<-> 18.0 对数组进行排序
 <-->
-<->/basic/chapter18/iter/<-> 18.1 第17章总结
+<->/basic/chapter18/iter/<-> 18.1 迭代器简介
 {{< /chapterlist >}}
 
 ***

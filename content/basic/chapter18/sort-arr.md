@@ -191,8 +191,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter17/summary/" next="/" >}}
+{{< prevnext prev="/basic/chapter17/summary/" next="/basic/chapter18/iter/" >}}
 17.13 第17章总结
 <--->
-主页
+18.1 迭代器简介
 {{< /prevnext >}}
