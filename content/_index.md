@@ -560,11 +560,11 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter17/c-const-str/<-> 17.10 常量C样式字符串
 <-->
-<->/basic/chapter17/c-multi-arr/<-> 17.11 常量C样式字符串
+<->/basic/chapter17/c-multi-arr/<-> 17.11 多维C样式数组
 <-->
-<->/basic/chapter17/std-multi-arr/<-> 17.12 常量C样式字符串
+<->/basic/chapter17/std-multi-arr/<-> 17.12 多维std::array
 <-->
-<->/basic/chapter17/summary/<-> 17.13 常量C样式字符串
+<->/basic/chapter17/summary/<-> 17.13 第17章总结
 {{< /chapterlist >}}
 
 ***

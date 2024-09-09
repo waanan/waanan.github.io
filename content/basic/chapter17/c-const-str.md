@@ -157,8 +157,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter17/c-str/" next="/" >}}
+{{< prevnext prev="/basic/chapter17/c-str/" next="/basic/chapter17/c-multi-arr/" >}}
 17.9 C样式字符串
 <--->
-主页
+17.11 多维C样式数组
 {{< /prevnext >}}

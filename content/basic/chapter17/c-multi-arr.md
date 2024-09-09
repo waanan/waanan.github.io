@@ -307,3 +307,9 @@ int main()
 注意，在这种情况下，我们将数组索引为\[y\]\[x\]，这可能与您期望的字母顺序相反。
 
 ***
+
+{{< prevnext prev="/basic/chapter17/c-const-str/" next="/basic/chapter17/std-multi-arr/" >}}
+17.10 常量C样式字符串
+<--->
+17.12 多维std::array
+{{< /prevnext >}}

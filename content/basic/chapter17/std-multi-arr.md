@@ -405,3 +405,9 @@ int main()
 C++26将引入std::mdarray，它本质上是将std:∶array和std::mdspan结合到一个多维数组中！
 
 ***
+
+{{< prevnext prev="/basic/chapter17/c-multi-arr/" next="/basic/chapter17/summary/" >}}
+17.11 多维C样式数组
+<--->
+17.13 第17章总结
+{{< /prevnext >}}
