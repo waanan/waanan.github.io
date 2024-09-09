@@ -90,8 +90,8 @@ C样式字符串只是C样式数组，其元素类型为char或const char。因�
 
 ***
 
-{{< prevnext prev="/basic/chapter17/std-multi-arr/" next="/" >}}
+{{< prevnext prev="/basic/chapter17/std-multi-arr/" next="/basic/chapter18/sort-arr/" >}}
 17.12 多维std::array
 <--->
-主页
+18.0 对数组进行排序
 {{< /prevnext >}}

@@ -190,3 +190,9 @@ int main()
 我们将在以后的一章中讨论更多关于std::sort的内容。
 
 ***
+
+{{< prevnext prev="/basic/chapter17/summary/" next="/" >}}
+17.13 第17章总结
+<--->
+主页
+{{< /prevnext >}}
