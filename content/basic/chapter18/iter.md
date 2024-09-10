@@ -340,8 +340,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter18/sort-arr/" next="/" >}}
+{{< prevnext prev="/basic/chapter18/sort-arr/" next="/basic/chapter18/std-algorithm/" >}}
 18.0 对数组进行排序
 <--->
-主页
+18.2 算法标准库简介
 {{< /prevnext >}}

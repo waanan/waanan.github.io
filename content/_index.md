@@ -575,6 +575,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter18/sort-arr/<-> 18.0 对数组进行排序
 <-->
 <->/basic/chapter18/iter/<-> 18.1 迭代器简介
+<-->
+<->/basic/chapter18/std-algorithm/<-> 18.2 算法标准库简介
+<-->
+<->/basic/chapter18/time-code/<-> 18.3 为代码计时
 {{< /chapterlist >}}
 
 ***
