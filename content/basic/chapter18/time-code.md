@@ -214,8 +214,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter18/std-algorithm/" next="/" >}}
+{{< prevnext prev="/basic/chapter18/std-algorithm/" next="/basic/chapter19/new-delete/" >}}
 18.2 算法标准库简介
 <--->
-主页
+19.0 使用new和delete进行动态分配内存
 {{< /prevnext >}}
