@@ -587,6 +587,8 @@ date: 2022-12-28T16:40:41+08:00
 第十九章 动态内存分配
 <--->
 <->/basic/chapter19/new-delete/<-> 19.0 使用new和delete进行动态分配内存
+<-->
+<->/basic/chapter19/new-delete-arr/<-> 19.1 使用new和delete进行动态分配内存
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
