@@ -112,3 +112,9 @@ char fixedArray[]{ "Hello, world!" }; // C++11 中初始化固定数组
 因此，我们建议避免自己这样做。请改用std::vector。
 
 ***
+
+{{< prevnext prev="/basic/chapter19/new-delete/" next="/basic/chapter19/destructor/" >}}
+19.0 使用new和delete进行动态分配内存
+<--->
+19.2 再谈析构函数
+{{< /prevnext >}}

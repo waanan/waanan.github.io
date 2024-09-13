@@ -167,3 +167,9 @@ RAII（Resource Acquisition Is Initialization，资源获取即初始化）是�
 正如您所看到的，当构造函数和析构函数一起使用时，您的类可以来辅助做初始化和清理，而使用类程序员不必做任何特殊的工作！这降低了出错的概率，并使类更易于使用。
 
 ***
+
+{{< prevnext prev="/basic/chapter19/new-delete-arr/" next="/basic/chapter19/ptr-to-ptr/" >}}
+19.1 动态分配数组
+<--->
+19.3 指向指针和动态多维数组的指针
+{{< /prevnext >}}

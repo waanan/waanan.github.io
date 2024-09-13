@@ -588,11 +588,11 @@ date: 2022-12-28T16:40:41+08:00
 <--->
 <->/basic/chapter19/new-delete/<-> 19.0 使用new和delete进行动态分配内存
 <-->
-<->/basic/chapter19/new-delete-arr/<-> 19.1 使用new和delete进行动态分配内存
+<->/basic/chapter19/new-delete-arr/<-> 19.1 动态分配数组
 <-->
-<->/basic/chapter19/destructor/<-> 19.2 使用new和delete进行动态分配内存
+<->/basic/chapter19/destructor/<-> 19.2 再谈析构函数
 <-->
-<->/basic/chapter19/ptr-to-ptr/<-> 19.3 使用new和delete进行动态分配内存
+<->/basic/chapter19/ptr-to-ptr/<-> 19.3 指向指针和动态多维数组的指针
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

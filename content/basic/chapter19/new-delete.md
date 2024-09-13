@@ -311,8 +311,8 @@ ptr = new int{}; // 老的地址丢失, 导致内存泄漏
 
 ***
 
-{{< prevnext prev="/basic/chapter18/time-code/" next="/" >}}
+{{< prevnext prev="/basic/chapter18/time-code/" next="/basic/chapter19/new-delete-arr/" >}}
 18.3 为代码计时
 <--->
-主页
+19.1 动态分配数组
 {{< /prevnext >}}
