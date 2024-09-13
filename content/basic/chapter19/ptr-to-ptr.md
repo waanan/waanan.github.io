@@ -7,42 +7,48 @@ date: 2024-08-19T20:25:40+08:00
 
 指向指针的指针正是您所期望的：一个保存另一个指针地址的指针。
 
-指向指针的指针
+***
+## 指向指针的指针
 
 使用单个星号声明int的普通指针：
 
 ```C++
-int* ptr; // pointer to an int, one asterisk
+int* ptr; // 一个星号，指向int的指针
 ```
 
-指向指向int的指针的指针使用两个星号声明
+指向“指向int的指针”的指针使用两个星号声明
 
 ```C++
-int** ptrptr; // pointer to a pointer to an int, two asterisks
+int** ptrptr; // 两个int，指向“指向int的指针”的指针
 ```
 
-指向指针的指针就像普通指针一样工作-您可以取消引用它来检索所指向的值。由于该值本身是指针，因此您可以再次取消引用它以获得底层值。这些取消引用可以连续进行：
+指向指针的指针就像普通指针一样工作-您可以解引用它来检索所指向的值。由于该值本身是指针，因此您可以再次解引用它以获得底层值。这些解引用可以连续进行：
 
 ```C++
 int value { 5 };
 
 int* ptr { &value };
-std::cout << *ptr << '\n'; // Dereference pointer to int to get int value
+std::cout << *ptr << '\n'; // 解引用，获取int值
 
 int** ptrptr { &ptr };
-std::cout << **ptrptr << '\n'; // dereference to get pointer to int, dereference again to get int value
+std::cout << **ptrptr << '\n'; // 解引用两次，获取int值
 ```
 
 上述程序打印：
 
-请注意，不能将指向指针的指针直接设置为指向值：
+```C++
+5
+5
+```
+
+请注意，不能将指向指针的指针直接设置为原始对象的两次连续取地址操作的结果：
 
 ```C++
 int value { 5 };
-int** ptrptr { &&value }; // not valid
+int** ptrptr { &&value }; // 无效
 ```
 
-这是因为运算符（operator&）的地址需要左值，但&value是右值。
+这是因为运算符（operator&）的参数需要左值，但&value的结果是右值。&value 已经是一个地址的值，而不是一个可以取地址的对象。
 
 然而，指向指针的指针可以设置为空：
 
@@ -50,19 +56,21 @@ int** ptrptr { &&value }; // not valid
 int** ptrptr { nullptr };
 ```
 
-指针数组
+***
+## 指针数组
 
 指向指针的指针有一些用途。最常见的用法是动态分配指针数组：
 
 ```C++
-int** array { new int*[10] }; // allocate an array of 10 int pointers
+int** array { new int*[10] }; // 分配包含10个int指针的数组
 ```
 
-这就像标准的动态分配数组一样工作，只是数组元素的类型是“指针到整数”而不是整数。
+这就像标准的动态分配数组一样工作，只是数组元素的类型是“指向数组的指针”而不是整数。
 
-二维动态分配阵列
+***
+## 动态分配二维数组
 
-指针到指针的另一个常见用法是促进动态分配的多维数组（有关多维数组的审查，请参见17.12——多维C样式数组）。
+指针到指针的另一个常见用法是进行动态分配多维数组。
 
 与二维固定数组不同，它可以很容易地声明为：
 
@@ -73,7 +81,7 @@ int array[10][5];
 动态分配二维数组更具挑战性。您可能会尝试这样的操作：
 
 ```C++
-int** array { new int[10][5] }; // won’t work!
+int** array { new int[10][5] }; // 无法工作!
 ```
 
 但它不会工作。
@@ -82,60 +90,60 @@ int** array { new int[10][5] }; // won’t work!
 
 ```C++
 int x { 7 }; // non-constant
-int (*array)[5] { new int[x][5] }; // rightmost dimension must be constexpr
+int (*array)[5] { new int[x][5] }; // 最右边的数组一定得是constexpr
 ```
 
-此处需要括号，以确保正确的优先级。这是一个使用自动类型扣除的好地方：
+此处需要括号，以确保正确的优先级。这也是一个使用自动类型推导的好地方：
 
 ```C++
 int x { 7 }; // non-constant
-auto array { new int[x][5] }; // so much simpler!
+auto array { new int[x][5] }; // 如此简单!
 ```
 
-不幸的是，如果最右边的数组维度不是编译时常量，则这个相对简单的解决方案不起作用。在这种情况下，我们必须变得更复杂一些。首先，我们分配一个指针数组（如上所述）。然后，我们迭代指针数组，并为每个数组元素分配一个动态数组。我们的动态二维阵列是动态一维阵列的动态一维阵列！
+不幸的是，如果最右边的数组维度不是编译时常量，则这个相对简单的解决方案不起作用。在这种情况下，必须变得更复杂一些。首先，我们分配一个指针数组（如上所述）。然后，我们迭代指针数组，并为每个数组元素分配一个动态数组。我们的动态二维数组是动态一维数组的动态一维数组！
 
 ```C++
-int** array { new int*[10] }; // allocate an array of 10 int pointers — these are our rows
+int** array { new int*[10] }; // 动态分配包含10个int指针的一位数组，来作为行
 for (int count { 0 }; count < 10; ++count)
-    array[count] = new int[5]; // these are our columns
+    array[count] = new int[5]; // 这里是分配的列
 ```
 
-然后，我们可以像往常一样访问阵列：
+然后，我们可以像往常一样访问数组：
 
 ```C++
-array[9][4] = 3; // This is the same as (array[9])[4] = 3;
+array[9][4] = 3; // 等价于 (array[9])[4] = 3;
 ```
 
-使用这种方法，因为每个数组列都是独立动态分配的，所以可以生成动态分配的非矩形二维数组。例如，我们可以制作三角形阵列：
+使用这种方法，因为每个数组列都是独立动态分配的，所以可以生成动态分配的非长方形的二维数组。例如，我们可以制作三角形数组：
 
 ```C++
-int** array { new int*[10] }; // allocate an array of 10 int pointers — these are our rows
+int** array { new int*[10] }; // 动态分配包含10个int指针的一位数组，来作为行
 for (int count { 0 }; count < 10; ++count)
-    array[count] = new int[count+1]; // these are our columns
+    array[count] = new int[count+1]; // 这里是列
 ```
 
-在上面的示例中，请注意，数组[0]是长度为1的数组，数组[1]是长度为2的数组，等等…
+在上面的示例中，请注意，数组\[0\]是长度为1的数组，数组\[1\]是长度为2的数组，等等…
 
-使用此方法取消分配动态分配的二维数组也需要循环：
+使用此方法删除动态分配的二维数组也需要循环：
 
 ```C++
 for (int count { 0 }; count < 10; ++count)
     delete[] array[count];
-delete[] array; // this needs to be done last
+delete[] array; // 这里需要最后清理
 ```
 
 请注意，我们以创建数组的相反顺序删除数组（先删除元素，然后删除数组本身）。如果在数组列之前删除数组，则必须访问已释放的内存才能删除数组列。这将导致未定义的行为。
 
-由于分配和释放二维数组是复杂的，并且很容易搞乱，因此通常更容易将二维数组（大小为x x y）“展平”为大小为x*y的一维数组：
+由于分配和释放二维数组是复杂的，并且很容易搞乱，因此通常更容易将二维数组（大小为x y）“展平”为大小为x*y的一维数组：
 
 ```C++
-// Instead of this:
-int** array { new int*[10] }; // allocate an array of 10 int pointers — these are our rows
+// 不这么做:
+int** array { new int*[10] }; // 动态分配包含10个int指针的一位数组，来作为行
 for (int count { 0 }; count < 10; ++count)
-    array[count] = new int[5]; // these are our columns
+    array[count] = new int[5]; // 这里是列
 
-// Do this
-int *array { new int[50] }; // a 10x5 array flattened into a single array
+// 而是
+int *array { new int[50] }; // 分配 10x5 的一维数组
 ```
 
 然后，可以使用简单的数学将矩形二维数组的行和列索引转换为一维数组的单个索引：
@@ -146,38 +154,41 @@ int getSingleIndex(int row, int col, int numberOfColumnsInArray)
      return (row * numberOfColumnsInArray) + col;
 }
 
-// set array[9,4] to 3 using our flattened array
+// 将 array[9,4] 设置为 3
 array[getSingleIndex(9, 4, 5)] = 3;
 ```
 
-按地址传递指针
+***
+## 按地址传递指针
 
-就像我们可以使用指针参数来更改传入的底层参数的实际值一样，我们可以传递指向函数指针的指针的指针，并使用该指针来更改它所指向的指针的值（还不清楚吗？）。
+就像我们可以使用指针参数来更改传入的参数的实际值一样，我们可以传递指向指针的指针，并使用该指针来更改它所指向的指针的值（很令人困惑吧？）。
 
-然而，如果我们希望函数能够修改指针参数所指向的内容，通常最好改为使用对指针的引用。这在第12.11课——传递地址（第2部分）中介绍。
+然而，如果我们希望函数能够修改指针参数所指向的内容，通常最好改为使用对指针的引用。
 
-指向指向…的指针的指针…
+***
+## 指向指向的指针的指针
 
-还可以声明指向指向指针的指针：
+还可以声明指向指针的指针的指针：
 
 ```C++
 int*** ptrx3;
 ```
 
-这可以用于动态分配三维阵列。然而，这样做需要在循环中包含一个循环，并且要获得正确的结果是极其复杂的。
+这可以用于动态分配三维数组。然而，这样做需要在循环中包含一个循环，并且要获得正确的结果是极其复杂的。
 
-甚至可以声明指向指针的指针指向指向指针的指示器：
+甚至可以声明指向指针的指针的指针的指针：
 
 ```C++
 int**** ptrx4;
 ```
 
-或者更高，如果你愿意。
+或者更多，如果你愿意的话。
 
-然而，在现实中，这些没有太多的用处，因为您并不经常需要这么多级别的间接。
+然而，在现实中，这些没有太多的用处，因为您并不经常需要这么多级别的间接访问。
 
-结论
+***
+## 结论
 
-我们建议避免使用指针到指针的指针，除非没有其他选项可用，因为它们使用起来很复杂，并且可能很危险。用普通指针取消引用空指针或悬空指针非常容易——使用指向指针的指针更容易，因为您必须执行双重取消引用才能获得底层值！
+我们建议避免使用指针到指针的指针，除非没有其他选项可用，因为它们使用起来很复杂，并且可能很危险。用普通指针解引用空指针或悬空指针非常容易——使用指向指针的指针更容易发生这样的问题，因为您必须执行双重解引用才能获得底层值！
 
 ***
