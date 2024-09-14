@@ -593,20 +593,24 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter19/destructor/<-> 19.2 再谈析构函数
 <-->
 <->/basic/chapter19/ptr-to-ptr/<-> 19.3 指向指针和动态多维数组的指针
+<-->
+<->/basic/chapter19/void-ptr/<-> 19.4 指向指针和动态多维数组的指针
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
-第十七章 函数
+第二十章 函数
 <--->
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
-第十八章 操作符重载
+第二十一章 操作符重载
 <--->
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
-第十九章 移动语义与智能指针
+第二十二章 移动语义与智能指针
 <--->
 {{< /chapterlist >}}
 
