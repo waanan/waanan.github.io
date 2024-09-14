@@ -594,7 +594,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter19/ptr-to-ptr/<-> 19.3 指向指针和动态多维数组的指针
 <-->
-<->/basic/chapter19/void-ptr/<-> 19.4 指向指针和动态多维数组的指针
+<->/basic/chapter19/void-ptr/<-> 19.4 void指针
 {{< /chapterlist >}}
 
 ***

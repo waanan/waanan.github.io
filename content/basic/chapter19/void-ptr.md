@@ -139,3 +139,9 @@ void* ptr{ nullptr }; // ptr 是void指针，现在是nullptr
 然而，偶尔您可能仍然会发现void指针的合理用法。但需确保没有更好（更安全）的方法来使用其它语言机制做相同的事情！
 
 ***
+
+{{< prevnext prev="/basic/chapter19/ptr-to-ptr/" next="/" >}}
+19.3 指向指针和动态多维数组的指针
+<--->
+主页
+{{< /prevnext >}}

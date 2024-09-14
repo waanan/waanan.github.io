@@ -193,8 +193,8 @@ int**** ptrx4;
 
 ***
 
-{{< prevnext prev="/basic/chapter19/destructor/" next="/" >}}
+{{< prevnext prev="/basic/chapter19/destructor/" next="/basic/chapter19/void-ptr/" >}}
 19.2 再谈析构函数
 <--->
-主页
+19.4 void指针
 {{< /prevnext >}}
