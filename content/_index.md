@@ -605,6 +605,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter20/func-ptr/<-> 20.0 使用new和delete进行动态分配内存
 <-->
 <->/basic/chapter20/heap-stack/<-> 20.1 使用new和delete进行动态分配内存
+<-->
+<->/basic/chapter20/recursion/<-> 20.2 使用new和delete进行动态分配内存
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
