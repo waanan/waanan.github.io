@@ -1,5 +1,5 @@
 ---
-title: "堆和堆"
+title: "堆和栈"
 date: 2024-08-20T10:49:32+08:00
 ---
 
@@ -243,3 +243,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter20/func-ptr/" next="/basic/chapter20/recursion/" >}}
+20.0 函数指针
+<--->
+20.2 递归
+{{< /prevnext >}}

@@ -140,8 +140,8 @@ void* ptr{ nullptr }; // ptr 是void指针，现在是nullptr
 
 ***
 
-{{< prevnext prev="/basic/chapter19/ptr-to-ptr/" next="/" >}}
+{{< prevnext prev="/basic/chapter19/ptr-to-ptr/" next="/basic/chapter20/func-ptr/" >}}
 19.3 指向指针和动态多维数组的指针
 <--->
-主页
+20.0 函数指针
 {{< /prevnext >}}

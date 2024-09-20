@@ -613,3 +613,9 @@ int main()
 函数指针主要在希望将函数存储在数组（或其他结构）中，或者需要将函数传递给另一个函数时有用。由于声明函数指针的原始语法难看且容易出错，因此建议使用std::function。在函数指针类型仅使用一次的地方（例如，单个参数或返回值），可以直接使用std::function。在多次使用函数指针类型的地方，最好选择std::function的类型别名（以防止重复输入）。
 
 ***
+
+{{< prevnext prev="/basic/chapter19/void-ptr/" next="/basic/chapter20/heap-stack/" >}}
+19.4 void指针
+<--->
+20.1 堆和栈
+{{< /prevnext >}}

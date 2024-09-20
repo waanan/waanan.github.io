@@ -254,3 +254,9 @@ int main()
 如果递归算法更易于实现，则以递归方式先实现，有需要再以后优化为迭代算法。
 
 ***
+
+{{< prevnext prev="/basic/chapter20/heap-stack/" next="/" >}}
+20.1 堆和栈
+<--->
+主页
+{{< /prevnext >}}
