@@ -192,7 +192,7 @@ int main()
 {{< alert success >}}
 **警告**
 
-避免在程序顶部或头文件中使用using指令（例如使用命名空间std）。它们违反了最初添加名称空间的目的。
+避免在程序顶部或头文件中使用using指令（例如 “using namespace std;”）。它们违反了最初添加名称空间的目的。
 
 {{< /alert >}}
 
