@@ -292,15 +292,15 @@ int main()
 {{< /alert >}}
 
 ***
-## 通用lambda
+## 泛型lambda
 
 在大多数情况下，lambda参数的工作规则与常规函数参数相同。
 
-一个值得注意的例外是，自从C++14以来，我们被允许对参数使用auto（注意:在C++20中，正则函数也可以对参数使用auto）。当lambda具有一个或多个自动参数时，编译器将从对lambda的调用中推断需要哪些参数类型。
+一个值得注意的例外是，自从C++14以来，我们被允许对参数使用auto（注意:在C++20中，普通函数也可以对参数使用auto）。当lambda具有一个或多个auto参数时，编译器将自动推导lambda调用时需要的参数类型。
 
-由于具有一个或多个自动参数的lambdas可以潜在地与各种类型一起工作，因此它们被称为泛型lambdas。
+由于具有一个或多个auto参数的lambda可以潜在地与各种类型一起工作，因此它们被称为泛型lambdas。
 
-让我们看一看通用lambda:
+让我们看一看泛型lambda:
 
 ```C++
 #include <algorithm>
@@ -310,7 +310,7 @@ int main()
 
 int main()
 {
-  constexpr std::array months{ // pre-C++17 use std::array<const char*, 12>
+  constexpr std::array months{ // C++17 之前使用 std::array<const char*, 12>
     "January",
     "February",
     "March",
@@ -325,16 +325,16 @@ int main()
     "December"
   };
 
-  // Search for two consecutive months that start with the same letter.
+  // 寻找开头字母一样的相邻月份
   const auto sameLetter{ std::adjacent_find(months.begin(), months.end(),
                                       [](const auto& a, const auto& b) {
                                         return a[0] == b[0];
                                       }) };
 
-  // Make sure that two months were found.
+  // 检查是否存在
   if (sameLetter != months.end())
   {
-    // std::next returns the next iterator after sameLetter
+    // std::next 返回 下一个迭代器
     std::cout << *sameLetter << " and " << *std::next(sameLetter)
               << " start with the same letter\n";
   }
@@ -345,9 +345,13 @@ int main()
 
 输出:
 
-在上面的示例中，我们使用自动参数通过常量引用捕获字符串。由于所有字符串类型都允许通过操作符[]访问其单个字符，因此我们不需要关心用户是在传递std::string、C样式字符串还是其他内容。这允许我们编写一个可以接受其中任何一个的lambda，这意味着如果我们在几个月后更改类型，就不必重写lambda。
+```C++
+June and July start with the same letter
+```
 
-然而，汽车并不总是最好的选择。考虑:
+在上面的示例中，我们使用auto参数通过常量引用捕获字符串。由于所有字符串类型都允许通过操作符[]访问其单个字符，因此我们不需要关心用户是在传递std::string、C样式字符串还是其他内容。这允许我们编写一个可以接受其中任何一个的lambda，这意味着如果我们在几个月后更改类型，就不必重写lambda。
+
+然而，auto并不总是最好的选择。考虑:
 
 ```C++
 #include <algorithm>
@@ -357,7 +361,7 @@ int main()
 
 int main()
 {
-  constexpr std::array months{ // pre-C++17 use std::array<const char*, 12>
+  constexpr std::array months{ // C++17 之前使用 std::array<const char*, 12>
     "January",
     "February",
     "March",
@@ -372,7 +376,7 @@ int main()
     "December"
   };
 
-  // Count how many months consist of 5 letters
+  // 判断多少个月份的字母长度为5
   const auto fiveLetterMonths{ std::count_if(months.begin(), months.end(),
                                        [](std::string_view str) {
                                          return str.length() == 5;
@@ -386,7 +390,11 @@ int main()
 
 输出:
 
-在本例中，使用auto将推断const char*的类型。C样式的字符串不容易使用（除了使用操作符[]）。在这种情况下，我们更喜欢将参数显式定义为std::string_view，这允许我们更容易地处理底层数据（例如，我们可以询问字符串视图的长度，即使用户传入了C样式数组）。
+```C++
+There are 2 months with 5 letters
+```
+
+在本例中，使用auto将str推导const char*的类型。C样式的字符串不容易使用（除了使用操作符[]）。在这种情况下，我们更喜欢将参数显式定义为std::string_view，这允许我们更容易地处理底层数据（例如，我们可以查看string_view的长度，即使用户传入了C样式数组）。
 
 {{< alert success >}}
 **对于高级读者**
@@ -396,15 +404,15 @@ int main()
 {{< /alert >}}
 
 ***
-## Constexpr lambdas公司
+## Constexpr lambda
 
-从C++17开始，如果结果满足常量表达式的要求，则lambdas是隐式constexpr。这通常需要两件事:
+从C++17开始，如果计算结果满足常量表达式的要求，则lambda是隐式constexpr。这通常需要两件事:
 
 1. lambda必须没有捕获，或者所有捕获都必须是constexpr。
 2. lambda调用的函数必须是constexpr。注意，许多标准库算法和数学函数直到C++20或C++23才成为constexpr。
 
 
-在上面的示例中，我们的lambda在C++17中不会隐式为constexpr，但在C++20中会是（因为在C++20中将std::count_if设置为consterpr）。这意味着在C++20中，我们可以制作五个LetterMonths constexpr:
+在上面的示例中，我们的lambda在C++17中不会隐式为constexpr，但在C++20中会是（因为在C++20中将std::count_if设置为consterpr）。这意味着在C++20中，我们可以制作constexpr fiveLetterMonths:
 
 ```C++
   constexpr auto fiveLetterMonths{ std::count_if(months.begin(), months.end(),
@@ -414,13 +422,13 @@ int main()
 ```
 
 ***
-## 泛型lambdas和静态变量
+## 泛型lambda和静态变量
 
-在第11.7课——函数模板实例化中，我们讨论了当函数模板包含静态局部变量时，从该模板实例ized的每个函数将接收自己的独立静态局部变量。如果这不是预期的，则可能会导致问题。
+在前面函数模板实例化中，我们讨论了当函数模板包含静态局部变量时，从该模板实例的每个函数将拥有自己的独立静态局部变量。如果这不是您预期的行为，则可能会导致问题。
 
-泛型lambda的工作方式相同:将为自动解析为的每个不同类型生成唯一的lambda。
+泛型lambda的工作方式相同:将为auto解析为的每个不同类型生成唯一的lambda。
 
-以下示例显示了一个通用lambda如何转变为两个不同的lambda:
+以下示例显示了一个泛型lambda如何转变为两个不同的lambda:
 
 ```C++
 #include <algorithm>
@@ -430,7 +438,7 @@ int main()
 
 int main()
 {
-  // Print a value and count how many times @print has been called.
+  // 打印的同时，并记录打印了多少次
   auto print{
     [](auto value) {
       static int callCount{ 0 };
@@ -452,16 +460,24 @@ int main()
 
 输出
 
-在上面的示例中，我们定义了一个lambda，然后用两个不同的参数（字符串文本参数和整数参数）调用它。这将生成lambda的两个不同版本（一个具有字符串文本参数，另一个具有整数参数）。
+```C++
+0: hello
+1: world
+0: 1
+1: 2
+2: ding dong
+```
 
-大多数时候，这是无关紧要的。然而，请注意，如果泛型lambda使用静态持续时间变量，则这些变量不会在生成的lambda之间共享。
+在上面的示例中，我们定义了一个lambda，然后用两个不同的参数（字符串和整数）调用它。这将生成lambda的两个不同版本（一个具有字符串参数，另一个具有整数参数）。
 
-我们可以在上面的示例中看到这一点，其中每个类型（字符串文本和整数）都有自己的唯一计数！尽管我们只编写了一次lambda，但生成了两个lambda——每个lambda都有自己的callCount版本。要在两个生成的lambda之间具有共享计数器，我们必须在lambda之外定义全局变量或静态局部变量。正如您在前面的课程中所知道的，全局和静态局部变量都可能导致问题，并使代码更难理解。在下一课中讨论lambda捕获后，我们将能够避免这些变量。
+大多数时候，这是无关紧要的。然而，请注意，如果泛型lambda使用静态变量，则这些变量不会在生成的lambda之间共享。
+
+我们可以在上面的示例中看到这一点，其中每个类型（字符串和整数）都有自己的唯一计数！尽管我们只编写了一次lambda，但生成了两个lambda——每个lambda都有自己的callCount版本。要在两个生成的lambda之间共享计数器，我们必须在lambda之外定义全局变量或静态局部变量。正如您在前面的课程中所知道的，全局和静态局部变量都可能导致问题，并使代码更难理解。在下一课中讨论lambda捕获后，我们可以优化这类的写法。
 
 ***
-## 返回类型演绎和尾部返回类型
+## 返回类型推导和尾部返回类型
 
-如果使用返回类型演绎，则从lambda内的返回语句中推导出lambda的返回类型，并且lambda中的所有返回语句都必须返回相同的类型（否则编译器将不知道更喜欢哪个类型）。
+如果使用返回类型推导，则从lambda内的return语句中推导出lambda的返回类型，并且lambda中的所有返回语句都必须返回相同的类型（否则编译器将不知道使用哪个）。
 
 例如:
 
@@ -470,11 +486,11 @@ int main()
 
 int main()
 {
-  auto divide{ [](int x, int y, bool intDivision) { // note: no specified return type
+  auto divide{ [](int x, int y, bool intDivision) { // 注: 未声明返回类型
     if (intDivision)
-      return x / y; // return type is int
+      return x / y; // return 的类型是 int
     else
-      return static_cast<double>(x) / y; // ERROR: return type doesn't match previous return type
+      return static_cast<double>(x) / y; // 错误: return 的类型与上一个return的类型不同
   } };
 
   std::cout << divide(3, 2, true) << '\n';
@@ -488,6 +504,9 @@ int main()
 
 在返回不同类型的情况下，我们有两个选项:
 
+1. 显示的转换return语句的返回值类型
+2. 显式的声明lambda函数的返回值类型，让编译器隐式的转换return的结果
+
 第二种情况通常是更好的选择:
 
 ```C++
@@ -495,10 +514,10 @@ int main()
 
 int main()
 {
-  // note: explicitly specifying this returns a double
+  // 注: 显示声明返回值类型为double
   auto divide{ [](int x, int y, bool intDivision) -> double {
     if (intDivision)
-      return x / y; // will do an implicit conversion of result to double
+      return x / y; // 计算结果会隐式的转换为double
     else
       return static_cast<double>(x) / y;
   } };
@@ -510,12 +529,12 @@ int main()
 }
 ```
 
-这样，如果您决定更改返回类型，您（通常）只需要更改lambda的返回类型，而不需要触摸lambda主体。
+这样，如果您决定更改返回类型，（通常）只需要更改lambda的返回类型，而不需要修改lambda函数主体。
 
 ***
 ## 标准库函数对象
 
-对于常见的操作（例如加法、求反或比较），您不需要编写自己的lambdas，因为标准库附带了许多可以替代的基本可调用对象。这些在<functional>标题中定义。
+对于常见的操作（例如加法、求反或比较），您不需要编写自己的lambda，因为标准库附带了许多可以替代的基本可调用对象。这些在\<functional\>头文件中定义。
 
 在以下示例中:
 
@@ -526,7 +545,7 @@ int main()
 
 bool greater(int a, int b)
 {
-  // Order @a before @b if @a is greater than @b.
+  // 如果a大于b，那么a排在b前面
   return a > b;
 }
 
@@ -534,7 +553,7 @@ int main()
 {
   std::array arr{ 13, 90, 99, 5, 40, 80 };
 
-  // Pass greater to std::sort
+  // 传递 greater 给 std::sort
   std::sort(arr.begin(), arr.end(), greater);
 
   for (int i : arr)
@@ -550,6 +569,10 @@ int main()
 
 输出
 
+```C++
+99 90 80 40 13 5
+```
+
 我们可以使用std::greater:
 
 ```C++
@@ -562,8 +585,8 @@ int main()
 {
   std::array arr{ 13, 90, 99, 5, 40, 80 };
 
-  // Pass std::greater to std::sort
-  std::sort(arr.begin(), arr.end(), std::greater{}); // note: need curly braces to instantiate object
+  // 传递 std::greater 给 std::sort
+  std::sort(arr.begin(), arr.end(), std::greater{}); // 注: 需要加括号，来传递一个对象
 
   for (int i : arr)
   {
@@ -578,12 +601,16 @@ int main()
 
 输出
 
+```C++
+99 90 80 40 13 5
+```
+
 ***
 ## 结论
 
-与使用循环的解决方案相比，Lambdas和算法库似乎不必要地复杂。然而，这种组合可以在短短几行代码中实现一些非常强大的操作，并且比编写自己的循环更具可读性。此外，算法库还具有强大且易于使用的并行性，这是循环无法实现的。升级使用库函数的源代码比升级使用循环的代码容易。
+与使用循环的解决方案相比，Lambda和算法库似乎有些复杂。然而，这种组合可以在短短几行代码中实现一些非常强大的操作，并且比编写自己的循环更具可读性。此外，算法库还具有强大且易于使用的并行计算能力，这是循环无法实现的。升级使用库函数的源代码比升级使用循环的代码容易。
 
-Lambdas非常棒，但它们并不能在所有情况下取代常规函数。对于不平凡的和可重用的情况，首选常规函数。
+Lambda非常棒，但它们并不能在所有情况下取代常规函数。对于复杂或者需要可重用的情况，首选常规函数。
 
 ***
 

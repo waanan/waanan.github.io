@@ -3,14 +3,9 @@ title: "Lambda捕获"
 date: 2024-08-20T10:49:32+08:00
 ---
 
-
-
-***
 ## 捕获子句和按值捕获
 
-
-
-在上一课（20.6--lambdas（匿名函数）简介）中，我们介绍了以下示例：
+在上一课，我们介绍了以下示例：
 
 ```C++
 #include <algorithm>
@@ -54,15 +49,15 @@ int main()
 {
   std::array<std::string_view, 4> arr{ "apple", "banana", "walnut", "lemon" };
 
-  // Ask the user what to search for.
+  // 询问用户需要搜索的字符串.
   std::cout << "search for: ";
 
   std::string search{};
   std::cin >> search;
 
   auto found{ std::find_if(arr.begin(), arr.end(), [](std::string_view str) {
-    // Search for @search rather than "nut".
-    return str.find(search) != std::string_view::npos; // Error: search not accessible in this scope
+    // 搜索 @search 而不是 "nut".
+    return str.find(search) != std::string_view::npos; // 错误: search 无法在此作用域内使用
   }) };
 
   if (found == arr.end())
@@ -80,25 +75,17 @@ int main()
 
 此代码无法编译。与嵌套块不同，在嵌套块中可以访问外部块中的任何标识符，而lambda只能访问在lambda外部定义的某些类型的对象。这包括：
 
-1. 具有静态（或线程局部）存储持续时间的对象（这包括全局变量和静态局部变量）
+1. 具有静态（或线程局部）存储期的对象（这包括全局变量和静态局部变量）
 2. constexpr对象（显式或隐式）
 
+由于search不满足这些要求，所以lambda无法看到它。
 
-由于搜索不满足这些要求，所以lambda无法看到它。
-
-要从lambda中访问搜索，我们需要使用capture子句。
-
-{{< alert success >}}
-**提示**
-
-Lambdas只能访问在lambda外部定义的某些类型的对象，包括具有静态存储持续时间的对象（例如，全局变量和静态局部变量）和constexpr对象。
-
-{{< /alert >}}
+要从lambda中访问search，我们需要使用捕获子句。
 
 ***
 ## 捕获子句
 
-capture子句用于（间接）为lambda提供对周围范围中可用的变量的访问，而它通常无权访问这些变量。我们所需要做的只是将要从lambda中访问的实体列为捕获子句的一部分。在这种情况下，我们希望让lambda访问变量搜索的值，因此我们将其添加到capture子句中：
+捕获子句用于（间接）为lambda提供对外层作用域中可用的变量的访问，而lambda通常无权访问这些变量。我们所需要做的只是将要从lambda中访问的实体列为捕获子句的一部分。在这种情况下，我们希望让lambda访问变量search的值，因此将其添加到捕获子句中：
 
 ```C++
 #include <algorithm>
@@ -116,7 +103,7 @@ int main()
   std::string search{};
   std::cin >> search;
 
-  // Capture @search                                vvvvvv
+  // 捕获 @search                                   vvvvvv
   auto found{ std::find_if(arr.begin(), arr.end(), [search](std::string_view str) {
     return str.find(search) != std::string_view::npos;
   }) };
@@ -137,6 +124,11 @@ int main()
 用户现在可以搜索数组的元素。
 
 输出
+
+```C++
+search for: nana
+Found banana
+```
 
 ***
 ## 那么捕获实际上是如何工作的呢？
@@ -654,12 +646,10 @@ int main()
 {{< /alert >}}
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 尽量避免可变lambdas。不可变的lambdas更容易理解，并且不会受到上述问题的影响，以及在添加并行执行时出现的更危险的问题。
 
 {{< /alert >}}
 
 ***
-## 测验时间
-
