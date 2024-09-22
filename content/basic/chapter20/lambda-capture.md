@@ -133,18 +133,18 @@ Found banana
 ***
 ## 那么捕获实际上是如何工作的呢？
 
-虽然上面示例中的lambda看起来像是直接访问main的搜索变量的值，但情况并非如此。Lambdas可能看起来像嵌套块，但它们的工作方式略有不同（并且区别很重要）。
+虽然上面示例中的lambda看起来像是直接访问main的search变量的值，但情况并非如此。Lambda可能看起来像嵌套块，但它们的工作方式略有不同。
 
-当执行lambda定义时，对于lambda捕获的每个变量，在lambda中创建该变量的克隆（具有相同的名称）。此时，这些克隆的变量从同名的外部范围变量初始化。
+当执行lambda定义时，对于lambda捕获的每个变量，在lambda中创建该变量的克隆变量（具有相同的名称）。此时，这些克隆的变量从同名的外部作用域的变量初始化。
 
-因此，在上面的示例中，当创建lambda对象时，lambda获得自己的克隆变量search。这个克隆的搜索与main的搜索具有相同的值，因此它的行为就像我们访问main的查询一样，但我们不是。
+因此，在上面的示例中，当创建lambda对象时，lambda获得自己的克隆变量search。这个克隆的search与main的search具有相同的值，因此它的行为就像访问main的search一样。
 
 虽然这些克隆的变量具有相同的名称，但它们不一定具有与原始变量相同的类型。我们将在本课接下来的部分中探索这一点。
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
-lambda的捕获变量是外部范围变量的副本，而不是实际变量。
+lambda的捕获变量是外部作用域变量的副本，而不是实际变量。
 
 {{< /alert >}}
 
@@ -162,9 +162,9 @@ lambda的捕获变量是外部范围变量的副本，而不是实际变量。
 ***
 ## 默认情况下，捕获被视为常量
 
-调用lambda时，调用operator（）。默认情况下，此运算符（）将捕获视为常量，这意味着不允许lambda修改这些捕获。
+调用lambda时，调用lambda对象operator()。默认情况下，此运算符()将捕获视为常量，这意味着不允许lambda修改这些捕获。
 
-在下面的例子中，我们捕获可变弹药并尝试减少它。
+在下面的例子中，我们捕获可变ammo并尝试减少它。
 
 ```C++
 #include <iostream>
@@ -173,17 +173,17 @@ int main()
 {
   int ammo{ 10 };
 
-  // Define a lambda and store it in a variable called "shoot".
+  // 定义 lambda 捕获 ammo.
   auto shoot{
     [ammo]() {
-      // Illegal, ammo cannot be modified.
+      // 非法, ammo 不能被修改.
       --ammo;
 
       std::cout << "Pew! " << ammo << " shot(s) left.\n";
     }
   };
 
-  // Call the lambda
+  // 调用lambda
   shoot();
 
   std::cout << ammo << " shot(s) left\n";
@@ -195,9 +195,9 @@ int main()
 上面的代码不会编译，因为ammo在lambda中被视为const。
 
 ***
-## 可变捕获
+## 可修改的捕获
 
-为了允许修改捕获的变量，我们可以将lambda标记为可变：
+为了允许修改捕获的变量，我们可以将lambda标记为mutable：
 
 ```C++
 #include <iostream>
@@ -207,8 +207,8 @@ int main()
   int ammo{ 10 };
 
   auto shoot{
-    [ammo]() mutable { // now mutable
-      // We're allowed to modify ammo now
+    [ammo]() mutable { // 现在是 mutable
+      // 允许修改 ammo 
       --ammo;
 
       std::cout << "Pew! " << ammo << " shot(s) left.\n";
@@ -226,9 +226,15 @@ int main()
 
 输出：
 
-虽然现在可以编译，但仍然存在逻辑错误。发生了什么事？当羔羊被召唤时，它捕获了一个弹药副本。当lambda将弹药从10减少到9到8时，它会减少自己的副本，而不是main（）中的原始弹药值。
+```C++
+Pew! 9 shot(s) left.
+Pew! 8 shot(s) left.
+10 shot(s) left
+```
 
-请注意，在对lambda的调用之间保留ammon的值！
+虽然现在可以编译，但仍然存在逻辑错误。发生了什么事？当shoot被创建时，它捕获了一个ammo的副本。当lambda将ammo从10减少到9到8时，它会减少自己的副本，而不是main()中的原始ammo值。
+
+请注意，在对lambda的调用之间，保存着它内部ammo的值！
 
 {{< alert success >}}
 **警告**
@@ -242,9 +248,9 @@ int main()
 
 就像函数可以更改通过引用传递的参数的值一样，我们也可以通过引用捕获变量，以允许lambda影响参数的值。
 
-为了通过引用捕获变量，我们在捕获中的变量名前面加上一个与号（&）。与通过值捕获的变量不同，通过引用捕获的变量是非常量，除非它们捕获的变量为常量。每当您通常希望通过引用将参数传递给函数时（例如，对于非基本类型），应首选通过引用捕获而不是通过值捕获。
+为了通过引用捕获变量，我们在捕获中的变量名前面加上一个与号（&）。与通过值捕获的变量不同，通过引用捕获的变量是非常量，除非它们捕获的变量为常量。每当您希望通过引用将参数传递给函数时（例如，对于非基本类型），应首选通过引用捕获而不是通过值捕获。
 
-下面是上面的代码，其中包含通过引用捕获的弹药：
+下面是上面的代码，其中包含通过引用捕获的ammo：
 
 ```C++
 #include <iostream>
@@ -254,9 +260,9 @@ int main()
   int ammo{ 10 };
 
   auto shoot{
-    // We don't need mutable anymore
-    [&ammo]() { // &ammo means ammo is captured by reference
-      // Changes to ammo will affect main's ammo
+    // 不需要标记为 mutable
+    [&ammo]() { // &ammo 因为着 ammo 按引用捕获
+      // 修改 ammo 会影响 main 中的 ammo
       --ammo;
 
       std::cout << "Pew! " << ammo << " shot(s) left.\n";
@@ -273,7 +279,12 @@ int main()
 
 这会产生预期的答案：
 
-现在，让我们使用引用捕获来计算std:：sort在对数组进行排序时进行了多少比较。
+```C++
+Pew! 9 shot(s) left.
+9 shot(s) left
+```
+
+现在，让我们使用引用捕获来计算std::sort在对数组进行排序时进行了多少比较。
 
 ```C++
 #include <algorithm>
@@ -296,9 +307,9 @@ int main()
   int comparisons{ 0 };
 
   std::sort(cars.begin(), cars.end(),
-    // Capture @comparisons by reference.
+    // 按引用捕获 @comparisons
     [&comparisons](const auto& a, const auto& b) {
-      // We captured comparisons by reference. We can modify it without "mutable".
+      // 可以修改main函数中的comparisons
       ++comparisons;
 
       // Sort the cars by their make.
@@ -318,6 +329,13 @@ int main()
 
 可能的输出
 
+```C++
+Comparisons: 2
+Honda Civic
+Toyota Corolla
+Volkswagen Golf
+```
+
 ***
 ## 捕获多个变量
 
@@ -328,20 +346,20 @@ int health{ 33 };
 int armor{ 100 };
 std::vector<CEnemy> enemies{};
 
-// Capture health and armor by value, and enemies by reference.
+// 按值捕获 health 和 armor, 按引用捕获 enemies.
 [health, armor, &enemies](){};
 ```
 
 ***
-## 默认捕获数
+## 默认捕获
 
 必须显式列出要捕获的变量可能会很麻烦。如果修改lambda，可能会忘记添加或删除捕获的变量。幸运的是，我们可以利用编译器的帮助来自动生成需要捕获的变量列表。
 
-默认捕获（也称为捕获默认）捕获lambda中提到的所有变量。如果使用默认捕获，则不会捕获lambda中未提及的变量。
+默认捕获会自动捕获lambda中用到的所有变量。
 
-要按值捕获所有使用的变量，请使用=的捕获值。要通过引用捕获所有使用的变量，请使用捕获值&。
+要按值捕获所有使用的变量，请使用“=”。要通过引用捕获所有使用的变量，请使用“&”。
 
-下面是使用默认值捕获的示例：
+下面是使用默认按值捕获的示例：
 
 ```C++
 #include <algorithm>
@@ -359,8 +377,8 @@ int main()
   std::cin >> width >> height;
 
   auto found{ std::find_if(areas.begin(), areas.end(),
-                           [=](int knownArea) { // will default capture width and height by value
-                             return width * height == knownArea; // because they're mentioned here
+                           [=](int knownArea) { // 按值捕获 width 和 height 
+                             return width * height == knownArea; // 因为他们在这里被使用了
                            }) };
 
   if (found == areas.end())
@@ -383,25 +401,25 @@ int health{ 33 };
 int armor{ 100 };
 std::vector<CEnemy> enemies{};
 
-// Capture health and armor by value, and enemies by reference.
+// health 与 armor 按值捕获, enemies 按引用捕获.
 [health, armor, &enemies](){};
 
-// Capture enemies by reference and everything else by value.
+// enemies 按引用捕获，其余全按值捕获
 [=, &enemies](){};
 
-// Capture armor by value and everything else by reference.
+// armor 按值捕获，其余全按引用捕获
 [&, armor](){};
 
-// Illegal, we already said we want to capture everything by reference.
+// 非法, armor被按引用捕获了两次
 [&, &armor](){};
 
-// Illegal, we already said we want to capture everything by value.
+// 非法, armor被按值捕获了两次
 [=, armor](){};
 
-// Illegal, armor appears twice.
+// 非法, armor 出现了两次
 [armor, &health, &armor](){};
 
-// Illegal, the default capture has to be the first element in the capture group.
+// 非法, 默认捕获需要时捕获列表中的第一位
 [armor, &](){};
 ```
 
@@ -425,11 +443,10 @@ int main()
   std::cout << "Enter width and height: ";
   std::cin >> width >> height;
 
-  // We store areas, but the user entered width and height.
-  // We need to calculate the area before we can search for it.
+  // 使用userArea，从捕获的width和height计算
   auto found{ std::find_if(areas.begin(), areas.end(),
-                           // Declare a new variable that's visible only to the lambda.
-                           // The type of userArea is automatically deduced to int.
+                           // 新声明的变量userArea只在lambda内可见
+                           // userArea 的类型被自动推导为 int.
                            [userArea{ width * height }](int knownArea) {
                              return userArea == knownArea;
                            }) };
@@ -450,7 +467,7 @@ int main()
 定义lambda时，userArea将仅计算一次。计算的面积存储在lambda对象中，并且对于每个调用都是相同的。如果lambda是可变的，并且修改了捕获中定义的变量，则原始值将被覆盖。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 仅当变量的值较短且类型明显时，才在捕获中初始化变量。否则，最好在lambda之外定义变量并捕获它。
 
@@ -467,43 +484,43 @@ int main()
 #include <iostream>
 #include <string>
 
-// returns a lambda
+// 返回一个lambda
 auto makeWalrus(const std::string& name)
 {
-  // Capture name by reference and return the lambda.
+  // 按引用捕获name并返回lambda
   return [&]() {
-    std::cout << "I am a walrus, my name is " << name << '\n'; // Undefined behavior
+    std::cout << "I am a walrus, my name is " << name << '\n'; // 未定义的行为
   };
 }
 
 int main()
 {
-  // Create a new walrus whose name is Roofus.
-  // sayName is the lambda returned by makeWalrus.
+  // 创建一个新的 walrus， name 是 Roofus.
+  // sayName 是 makeWalrus 返回的lambda
   auto sayName{ makeWalrus("Roofus") };
 
-  // Call the lambda function that makeWalrus returned.
+  // 调用 makeWalrus 返回的lambda.
   sayName();
 
   return 0;
 }
 ```
 
-对makeWalrus的调用从字符串文本“Roofus.”创建临时std:：string。makeWalrus中的lambda通过引用捕获临时字符串。当makeWalrus返回时，临时字符串死亡，但lambda仍然引用它。然后，当我们调用sayName时，将访问悬挂引用，导致未定义的行为。
+对makeWalrus的调用从字符串字面值“Roofus”创建临时std::string。makeWalrus中的lambda通过引用捕获临时字符串。当makeWalrus返回时，临时字符串死亡，但lambda仍然引用它。然后，当我们调用sayName时，将访问悬挂引用，导致未定义的行为。
 
-请注意，如果名称通过值传递给makeWalrus，也会发生这种情况。变量名仍然在makeWalrus的末尾死亡，lambda保留了一个悬空的引用。
+请注意，如果name通过值传递给makeWalrus，也会发生这种情况。变量name仍然在makeWalrus的末尾死亡，lambda保留了一个悬空的引用。
 
 如果希望在使用lambda时捕获的名称有效，则需要改为按值捕获它（显式或使用默认的按值捕获）。
 
 {{< alert success >}}
 **警告**
 
-通过引用捕获变量时要格外小心，特别是使用默认引用捕获时。捕获的变量必须比λ寿命长。
+通过引用捕获变量时要格外小心，特别是使用默认按引用捕获时。捕获的变量必须比lamdba寿命长。
 
 {{< /alert >}}
 
 ***
-## 可变lambdas的意外副本
+## 可变lambda的意外副本
 
 因为lambda是对象，所以可以复制它们。在某些情况下，这可能会导致问题。考虑以下代码：
 
@@ -514,16 +531,16 @@ int main()
 {
   int i{ 0 };
 
-  // Create a new lambda named count
+  // 创建一个新的 lambda 名称为 count
   auto count{ [i]() mutable {
     std::cout << ++i << '\n';
   } };
 
-  count(); // invoke count
+  count(); // 调用 count
 
-  auto otherCount{ count }; // create a copy of count
+  auto otherCount{ count }; // 创建 count 的副本
 
-  // invoke both count and the copy
+  // 调用 count 和 副本
   count();
   otherCount();
 
@@ -533,7 +550,13 @@ int main()
 
 输出
 
-代码不是打印1、2、3，而是打印2两次。当我们创建otherCount作为count的副本时，我们创建了count当前状态的副本。计数的i是1，所以其他计数的i也是1。由于otherCount是count的副本，因此它们每个都有自己的i。
+```C++
+1
+2
+2
+```
+
+代码不是打印1、2、3，而是打印2两次。当我们创建otherCount作为count的副本时，我们创建了count当前状态的副本。count的i是1，所以otherCount的i也是1。由于otherCount是count的副本，因此它们每个都有自己的i。
 
 现在，让我们看一个稍微不太明显的例子：
 
@@ -550,7 +573,7 @@ int main()
 {
     int i{ 0 };
 
-    // Increments and prints its local copy of @i.
+    // 递增并打印存储的 @i.
     auto count{ [i]() mutable {
       std::cout << ++i << '\n';
     } };
@@ -565,13 +588,19 @@ int main()
 
 输出：
 
+```C++
+1
+1
+1
+```
+
 这以更模糊的形式展示了与前面示例相同的问题。
 
-当我们调用myInvoke（count）时，编译器将看到count（具有lambda类型）与引用参数类型（std:：function<void（）>）的类型不匹配。它将把lambda转换为临时std:：函数，以便引用参数可以绑定到它，这将制作lambda的副本。因此，对fn（）的调用实际上是在lambda的副本上执行的，该副本作为临时std:：函数的一部分存在，而不是实际的lambda。
+当我们调用myInvoke(count)时，编译器将看到count（具有lambda类型）与引用参数类型（std::function\<void()\>）的类型不匹配。它将把lambda转换为临时std::function，以便引用参数可以绑定到它，这将制作lambda的副本。因此，对fn()的调用实际上是在lambda的副本上执行的，该副本作为临时std::function的一部分存在，而不是实际的lambda。
 
-如果我们需要传递可变的lambda，并希望避免无意中复制的可能性，则有两种选择。一种选择是改用非捕获lambda——在上面的例子中，我们可以删除捕获并改用静态局部变量来跟踪状态。但静态局部变量可能很难跟踪，并使代码的可读性降低。一个更好的选择是首先防止复制我们的lambda。但由于我们不能影响std:：function（或其他标准库函数或对象）的实现方式，我们如何才能做到这一点？
+如果我们需要传递可变的lambda，并希望避免无意中复制的可能性，则有两种选择。一种选择是改用非捕获lambda——在上面的例子中，我们可以删除捕获并改用静态局部变量来跟踪状态。但静态局部变量可能很难跟踪，并使代码的可读性降低。一个更好的选择是首先防止复制我们的lambda。但由于我们不能影响std::function（或其他标准库函数或对象）的实现方式，我们如何才能做到这一点？
 
-一个选项（读卡器Dck的h/t）是立即将lambda放入std:：函数中。这样，当我们调用myInvoke（）时，引用参数fn可以绑定到我们的std:：函数，并且不会生成临时副本：
+一个选项是立即将lambda放入std::function中。这样，当我们调用myInvoke()时，引用参数fn可以绑定到我们的std::function，并且不会生成临时副本：
 
 ```C++
 #include <iostream>
@@ -586,28 +615,34 @@ int main()
 {
     int i{ 0 };
 
-    // Increments and prints its local copy of @i.
-    std::function count{ [i]() mutable { // lambda object stored in a std::function
+    // 递增并打印存储的 @i.
+    std::function count{ [i]() mutable { // lambda 存储在 std::function
       std::cout << ++i << '\n';
     } };
 
-    myInvoke(count); // doesn't create copy when called
-    myInvoke(count); // doesn't create copy when called
-    myInvoke(count); // doesn't create copy when called
+    myInvoke(count); // 调用时不会创建副本
+    myInvoke(count); // 调用时不会创建副本
+    myInvoke(count); // 调用时不会创建副本
 
     return 0;
 }
 ```
 
-我们的产量现在如预期：
+产出现在如预期：
 
-另一种解决方案是使用引用包装器。C++提供了一种方便的类型（作为<functional>头的一部分），称为std:：reference_wrapper，它允许我们像传递引用一样传递普通类型。为了更方便，可以使用std:：ref（）函数创建std:∶reference_wrapper。通过将lambda包装在std:：reference_wrapper中，每当任何人试图复制我们的lambda时，他们都会复制reference_ wrapper（避免复制lambda）。
+```C++
+1
+2
+3
+```
+
+另一种解决方案是使用引用包装器。C++提供了一种方便的类型（作为\<functional\>头文件的一部分），称为std::reference_wrapper，它允许我们像传递引用一样传递普通类型。为了更方便，可以使用std::ref()函数创建std::reference_wrapper。通过将lambda包装在std::reference_wrapper中，每当任何人试图复制我们的lambda时，他们都会复制reference_ wrapper（避免复制lambda）。
 
 下面是我们使用std:：ref更新的代码：
 
 ```C++
 #include <iostream>
-#include <functional> // includes std::reference_wrapper and std::ref
+#include <functional> // 引入 std::reference_wrapper 和 std::ref
 
 void myInvoke(const std::function<void()>& fn)
 {
@@ -618,14 +653,14 @@ int main()
 {
     int i{ 0 };
 
-    // Increments and prints its local copy of @i.
+    // 递增并打印存储的 @i.
     auto count{ [i]() mutable {
       std::cout << ++i << '\n';
     } };
 
-    // std::ref(count) ensures count is treated like a reference
-    // thus, anything that tries to copy count will actually copy the reference
-    // ensuring that only one count exists
+    // std::ref(count) 确保count行为象引用一样
+    // 任何拷贝count的行为，就像是拷贝了count的引用
+    // 这样只会有一个count存在
     myInvoke(std::ref(count));
     myInvoke(std::ref(count));
     myInvoke(std::ref(count));
@@ -634,21 +669,27 @@ int main()
 }
 ```
 
-我们的产量现在如预期：
+产出现在如预期：
+
+```C++
+1
+2
+3
+```
 
 该方法的有趣之处在于，即使myInvoke按值（而不是按引用）获取fn，它也可以工作！
 
 {{< alert success >}}
 **规则**
 
-标准库函数可以复制函数对象（提示：lambdas是函数对象）。如果要为lambdas提供可变的捕获变量，请使用std:：ref通过引用传递它们。
+标准库函数可能会复制函数对象（提示：lambda是函数对象）。如果要为lambda提供可变的捕获变量，请使用std::ref通过引用传递它们。
 
 {{< /alert >}}
 
 {{< alert success >}}
 **最佳实践**
 
-尽量避免可变lambdas。不可变的lambdas更容易理解，并且不会受到上述问题的影响，以及在添加并行执行时出现的更危险的问题。
+尽量避免可变lambdas。不可变的lambdas更容易理解，并且不会受到上述问题的影响，可变lambda以及在添加并行执行时出现的更危险的问题。
 
 {{< /alert >}}
 
