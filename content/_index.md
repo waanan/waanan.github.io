@@ -608,15 +608,15 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter20/recursion/<-> 20.2 递归
 <-->
-<->/basic/chapter20/cmd-args/<-> 20.3 递归
+<->/basic/chapter20/cmd-args/<-> 20.3 命令行参数
 <-->
-<->/basic/chapter20/ellipsis/<-> 20.4 递归
+<->/basic/chapter20/ellipsis/<-> 20.4 省略号与可变参数（以及为什么要避免它们）
 <-->
-<->/basic/chapter20/lambda/<-> 20.5 递归
+<->/basic/chapter20/lambda/<-> 20.5 lambda（匿名函数）简介
 <-->
-<->/basic/chapter20/lambda-capture/<-> 20.6 递归
+<->/basic/chapter20/lambda-capture/<-> 20.6 Lambda捕获
 <-->
-<->/basic/chapter20/summary/<-> 20.7 第17章总结
+<->/basic/chapter20/summary/<-> 20.7 第20章总结
 {{< /chapterlist >}}
 
 ***
@@ -624,7 +624,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十一章 操作符重载
 <--->
-<->/basic/chapter21/op-overload-intro/<-> 21.0 函数指针
+<->/basic/chapter21/op-overload-intro/<-> 21.0 操作符重载简介
 {{< /chapterlist >}}
 
 ***

@@ -26,3 +26,8 @@ Lambda函数是可以嵌套在其他函数中的函数。它们不需要名称�
 
 ***
 
+{{< prevnext prev="/basic/chapter20/lambda-capture/" next="/basic/chapter21/op-overload-intro/" >}}
+20.6 Lambda捕获
+<--->
+21.0 操作符重载简介
+{{< /prevnext >}}

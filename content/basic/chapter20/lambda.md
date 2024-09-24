@@ -614,3 +614,8 @@ Lambda非常棒，但它们并不能在所有情况下取代常规函数。对�
 
 ***
 
+{{< prevnext prev="/basic/chapter20/ellipsis/" next="/basic/chapter20/lambda-capture/" >}}
+20.4 省略号与可变参数（以及为什么要避免它们）
+<--->
+20.6 Lambda捕获
+{{< /prevnext >}}

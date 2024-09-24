@@ -255,8 +255,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter20/heap-stack/" next="/" >}}
+{{< prevnext prev="/basic/chapter20/heap-stack/" next="/basic/chapter20/cmd-args/" >}}
 20.1 堆和栈
 <--->
-主页
+20.3 命令行参数
 {{< /prevnext >}}

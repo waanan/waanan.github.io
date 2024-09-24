@@ -299,3 +299,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter20/cmd-args/" next="/basic/chapter20/lambda/" >}}
+20.3 命令行参数
+<--->
+20.5 lambda（匿名函数）简介
+{{< /prevnext >}}

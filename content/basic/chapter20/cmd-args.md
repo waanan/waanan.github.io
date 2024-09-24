@@ -235,3 +235,9 @@ There are 3 arguments:
 命令行参数为用户提供了一种很好的方法，可以让程序在启动时将输入数据传递到程序中。当然在程序中，也需要对传入的参数的有效性进行判定。
 
 ***
+
+{{< prevnext prev="/basic/chapter20/recursion/" next="/basic/chapter20/ellipsis/" >}}
+20.2 递归
+<--->
+20.4 省略号与可变参数（以及为什么要避免它们）
+{{< /prevnext >}}

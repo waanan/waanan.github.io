@@ -92,3 +92,9 @@ std::cout << string1 + string2 << '\n';
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter20/summary/" next="/" >}}
+20.7 第20章总结
+<--->
+主页
+{{< /prevnext >}}

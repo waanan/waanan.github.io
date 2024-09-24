@@ -694,3 +694,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter20/lambda/" next="/basic/chapter20/summary/" >}}
+20.5 lambda（匿名函数）简介
+<--->
+20.7 第20章总结
+{{< /prevnext >}}
