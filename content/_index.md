@@ -625,6 +625,8 @@ date: 2022-12-28T16:40:41+08:00
 第二十一章 操作符重载
 <--->
 <->/basic/chapter21/op-overload-intro/<-> 21.0 操作符重载简介
+<-->
+<->/basic/chapter21/friend-op-overload/<-> 21.1 操作符重载简介
 {{< /chapterlist >}}
 
 ***
