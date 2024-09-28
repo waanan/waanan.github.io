@@ -629,6 +629,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter21/friend-op-overload/<-> 21.1 操作符重载简介
 <-->
 <->/basic/chapter21/normal-op-overload/<-> 21.2 操作符重载简介
+<-->
+<->/basic/chapter21/overload-io/<-> 21.3 操作符重载简介
 {{< /chapterlist >}}
 
 ***
