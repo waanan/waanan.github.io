@@ -148,3 +148,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter21/friend-op-overload/" next="/basic/chapter21/overload-io/" >}}
+21.1 使用友元函数重载算术运算符
+<--->
+21.3 重载I/O运算符
+{{< /prevnext >}}

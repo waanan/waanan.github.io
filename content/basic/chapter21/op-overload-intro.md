@@ -93,8 +93,8 @@ std::cout << string1 + string2 << '\n';
 
 ***
 
-{{< prevnext prev="/basic/chapter20/summary/" next="/" >}}
+{{< prevnext prev="/basic/chapter20/summary/" next="/basic/chapter21/friend-op-overload/" >}}
 20.7 第20章总结
 <--->
-主页
+21.1 使用友元函数重载算术运算符
 {{< /prevnext >}}

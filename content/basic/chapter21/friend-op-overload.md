@@ -314,3 +314,9 @@ Result: (3, 16)
 通常可以通过调用其他重载运算符来定义重载运算符。如果这样做会产生更简单的代码，则应该这样做。
 
 ***
+
+{{< prevnext prev="/basic/chapter21/op-overload-intro/" next="/basic/chapter21/normal-op-overload/" >}}
+21.0 操作符重载简介
+<--->
+21.2 使用普通函数重载运算符
+{{< /prevnext >}}
