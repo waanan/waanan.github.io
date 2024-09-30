@@ -639,6 +639,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter21/compare-op-overload/<-> 21.6 重载I/O运算符
 <-->
 <->/basic/chapter21/incr-decre-overload/<-> 21.7 重载I/O运算符
+<-->
+<->/basic/chapter21/subscript-overload/<-> 21.8 重载I/O运算符
 {{< /chapterlist >}}
 
 ***
