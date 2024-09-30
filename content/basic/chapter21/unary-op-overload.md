@@ -117,3 +117,9 @@ point is set at the origin.
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter21/member-op-overload/" next="/basic/chapter21/compare-op-overload/" >}}
+21.4 使用成员函数重载运算符
+<--->
+21.6 重载比较运算符
+{{< /prevnext >}}

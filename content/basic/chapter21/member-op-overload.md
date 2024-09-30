@@ -178,3 +178,9 @@ int main()
 5. 如果重载修改其左操作数的二元运算符（例如，运算符+=），并且可以修改左操作数的定义，请作为成员函数进行修改。
 
 ***
+
+{{< prevnext prev="/basic/chapter21/overload-io/" next="/basic/chapter21/unary-op-overload/" >}}
+21.3 重载I/O运算符
+<--->
+21.5 重载一元运算符+、-和！
+{{< /prevnext >}}

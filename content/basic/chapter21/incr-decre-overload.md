@@ -205,3 +205,9 @@ int main()
 最后，请注意，我们编写了后缀版本，它调用前缀版本来完成大部分工作。这减少了重复代码，并使类在将来更容易修改。
 
 ***
+
+{{< prevnext prev="/basic/chapter21/compare-op-overload/" next="/basic/chapter21/subscript-overload/" >}}
+21.6 重载比较运算符
+<--->
+21.8 重载下标运算符
+{{< /prevnext >}}

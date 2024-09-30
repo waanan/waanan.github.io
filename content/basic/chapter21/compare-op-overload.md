@@ -220,3 +220,9 @@ int main()
 C++20引入了太空船运算符（operator\<=\>），它允许我们将需要写的比较函数的数量减少到最多2个，有时仅1个，我们将在后续的某一课中进行讨论！
 
 ***
+
+{{< prevnext prev="/basic/chapter21/unary-op-overload/" next="/basic/chapter21/incr-decre-overload/" >}}
+21.5 重载一元运算符+、-和！
+<--->
+21.7 重载递增和递减运算符
+{{< /prevnext >}}

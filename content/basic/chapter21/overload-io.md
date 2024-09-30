@@ -296,8 +296,8 @@ std::istream& operator>> (std::istream& in, Point& point)
 
 ***
 
-{{< prevnext prev="/basic/chapter21/normal-op-overload/" next="/" >}}
+{{< prevnext prev="/basic/chapter21/normal-op-overload/" next="/basic/chapter21/member-op-overload/" >}}
 21.2 使用普通函数重载运算符
 <--->
-主页
+21.4 使用成员函数重载运算符
 {{< /prevnext >}}

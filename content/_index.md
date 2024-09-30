@@ -632,15 +632,15 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter21/overload-io/<-> 21.3 重载I/O运算符
 <-->
-<->/basic/chapter21/member-op-overload/<-> 21.4 重载I/O运算符
+<->/basic/chapter21/member-op-overload/<-> 21.4 使用成员函数重载运算符
 <-->
-<->/basic/chapter21/unary-op-overload/<-> 21.5 重载I/O运算符
+<->/basic/chapter21/unary-op-overload/<-> 21.5 重载一元运算符+、-和！
 <-->
-<->/basic/chapter21/compare-op-overload/<-> 21.6 重载I/O运算符
+<->/basic/chapter21/compare-op-overload/<-> 21.6 重载比较运算符
 <-->
-<->/basic/chapter21/incr-decre-overload/<-> 21.7 重载I/O运算符
+<->/basic/chapter21/incr-decre-overload/<-> 21.7 重载递增和递减运算符
 <-->
-<->/basic/chapter21/subscript-overload/<-> 21.8 重载I/O运算符
+<->/basic/chapter21/subscript-overload/<-> 21.8 重载下标运算符
 {{< /chapterlist >}}
 
 ***

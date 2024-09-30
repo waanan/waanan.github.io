@@ -432,3 +432,9 @@ Hello, world!
 在编写某些类型的类（如使用单词作为索引的类）时，重载 运算符[] 将std::string作为参数可能很有用。
 
 ***
+
+{{< prevnext prev="/basic/chapter21/incr-decre-overload/" next="/" >}}
+21.7 重载递增和递减运算符
+<--->
+主页
+{{< /prevnext >}}
