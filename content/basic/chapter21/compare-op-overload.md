@@ -3,11 +3,11 @@ title: "重载比较运算符"
 date: 2024-08-20T12:01:51+08:00
 ---
 
-在第6.6课——关系运算符和浮点比较中，我们讨论了六个比较运算符。重载这些比较运算符相对简单（看到我在那里做了什么吗？），因为它们遵循与重载其他运算符相同的模式。
+一共有六个比较运算符。重载这些比较运算符相对简单，因为它们遵循与重载其他运算符相同的模式。
 
-由于比较运算符都是不修改其左操作数的二元运算符，因此我们将使重载的比较运算符成为函数的朋友。
+由于比较运算符都是不修改其左操作数的二元运算符，因此我们重载比较运算符为友元函数。
 
-下面是一个具有重载运算符==和运算符！=的Car类的示例。
+下面是一个具有重载 运算符== 和 运算符!= 的Car类的示例。
 
 ```C++
 #include <iostream>
@@ -59,11 +59,11 @@ int main()
 
 这里的代码应该很简单。
 
-操作符<和操作符>如何？一辆车比另一辆车大或小意味着什么？我们通常不会这样考虑汽车。由于运算符<和运算符>的结果不会立即直观，因此最好不定义这些运算符。
+操作符\< 和 操作符\> 呢？一辆车比另一辆车大或小意味着什么？通常没有这样的关系。由于 运算符\< 和 运算符\> 的结果不是很直观，因此这里最好不定义这些运算符。
 
-然而，上述建议有一个共同的例外。如果我们想对汽车列表进行排序，该怎么办？在这种情况下，我们可能希望重载比较运算符，以返回您最可能希望排序的成员。例如，重载运算符<For Cars可以根据品牌和型号按字母顺序排序。
+然而，上述建议有一个例外。如果我们想对汽车列表进行排序，该怎么办？在这种情况下，我们可能希望重载比较运算符，以返回您最可能希望排序的方式。例如，重载 运算符\< , 汽车可以根据品牌和型号按字母顺序排序。
 
-标准库中的一些容器类（保存其他类集的类）需要重载运算符<，因此它们可以对元素进行排序。
+标准库中的一些容器类（保存其他类的类）需要元素重载运算符<，以便它们可以对元素进行排序。
 
 下面是另一个重载所有6个逻辑比较运算符的示例：
 
@@ -145,7 +145,7 @@ int main()
 这也是相当简单的。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 只定义对类有直观意义的重载运算符。
 
@@ -154,14 +154,14 @@ int main()
 ***
 ## 最大限度地减少相对冗余
 
-在上面的示例中，请注意每个重载比较运算符的实现是多么相似。过载的比较运算符往往具有高度冗余，实现越复杂，冗余就越多。
+在上面的示例中，请注意每个重载比较运算符的实现是多么相似。重载的比较运算符往往具有高度冗余，实现越复杂，冗余就越多。
 
 幸运的是，许多比较运算符可以使用其他比较运算符来实现：
 
-1. 运算符！=可以实现为！（运算符==）
-2. 操作符>可以实现为操作符<，参数的顺序翻转
-3. 运算符>=可以实现为！（运算符<）
-4. 运算符<=可以实现为！（运算符>）
+1. 运算符!= 可以实现为 !（运算符==）
+2. 运算符> 可以实现为 运算符<，只要参数的顺序翻转
+3. 运算符>= 可以实现为  !（运算符<）
+4. 运算符<= 可以实现为  !（运算符>）
 
 
 这意味着我们只需要实现运算符==和运算符<的逻辑，然后可以根据这两个定义其他四个比较运算符！下面是一个更新的Cents示例，说明了这一点：
@@ -215,111 +215,8 @@ int main()
 这样，如果我们需要更改某些内容，我们只需要更新operator==和operator<，而不是所有六个比较运算符！
 
 ***
-## 宇宙飞船操作员<=>C++20
+## 太空船 运算符<=>  （C++20）
 
-C++20引入了太空船操作符（操作符<=>），它允许我们将需要写的比较函数的数量减少到最多2个，有时仅1个！
+C++20引入了太空船运算符（operator\<=\>），它允许我们将需要写的比较函数的数量减少到最多2个，有时仅1个，我们将在后续的某一课中进行讨论！
 
-测验时间
-
-```C++
-#include <iostream>
-#include <numeric> // for std::gcd
-
-class Fraction
-{
-private:
-	int m_numerator{};
-	int m_denominator{};
-
-public:
-	Fraction(int numerator = 0, int denominator = 1) :
-		m_numerator{ numerator }, m_denominator{ denominator }
-	{
-		// We put reduce() in the constructor to ensure any new fractions we make get reduced!
-		// Any fractions that are overwritten will need to be re-reduced
-		reduce();
-	}
-
-	void reduce()
-	{
-		int gcd{ std::gcd(m_numerator, m_denominator) };
-		if (gcd)
-		{
-			m_numerator /= gcd;
-			m_denominator /= gcd;
-		}
-	}
-
-	friend std::ostream& operator<<(std::ostream& out, const Fraction& f1);
-};
-
-std::ostream& operator<<(std::ostream& out, const Fraction& f1)
-{
-	out << f1.m_numerator << '/' << f1.m_denominator;
-	return out;
-}
-
-int main()
-{
-	Fraction f1{ 3, 2 };
-	Fraction f2{ 5, 8 };
-
-	std::cout << f1 << ((f1 == f2) ? " == " : " not == ") << f2 << '\n';
-	std::cout << f1 << ((f1 != f2) ? " != " : " not != ") << f2 << '\n';
-	std::cout << f1 << ((f1 < f2) ? " < " : " not < ") << f2 << '\n';
-	std::cout << f1 << ((f1 > f2) ? " > " : " not > ") << f2 << '\n';
-	std::cout << f1 << ((f1 <= f2) ? " <= " : " not <= ") << f2 << '\n';
-	std::cout << f1 << ((f1 >= f2) ? " >= " : " not >= ") << f2 << '\n';
-	return 0;
-}
-```
-
-如果使用的是C++17之前的编译器，则可以将std:：gcd替换为以下函数：
-
-```C++
-#include <cmath>
- 
-int gcd(int a, int b) {
-    return (b == 0) ? std::abs(a) : gcd(b, a % b);
-}
-```
-
-显示解决方案
-
-```C++
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <vector>
-
-int main()
-{
-  std::vector<Car> cars{
-    { "Toyota", "Corolla" },
-    { "Honda", "Accord" },
-    { "Toyota", "Camry" },
-    { "Honda", "Civic" }
-  };
-
-  std::sort(cars.begin(), cars.end()); // requires an overloaded operator<
-
-  for (const auto& car : cars)
-    std::cout << car << '\n'; // requires an overloaded operator<<
-
-  return 0;
-}
-```
-
-该程序应产生以下输出：
-
-如果您需要更新std:：sort，我们将在第18.1课中讨论它——使用选择排序对数组进行排序。
-
-显示解决方案
-
-{{< alert success >}}
-**作者注释**
-
-我们打算很快就这一主题增加一节新课。在那之前，考虑一下这件事来激发你的兴趣——但你必须离开现场去发现更多。
-
-{{< /alert >}}
-
+***
