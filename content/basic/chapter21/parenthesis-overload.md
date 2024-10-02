@@ -192,3 +192,9 @@ int main()
 「operator()」也经常重载以创建函子。尽管简单的函子（如上面的示例）相当容易理解，但函子通常用于更高级的编程主题，有需要再学习即可。
 
 ***
+
+{{< prevnext prev="/basic/chapter21/subscript-overload/" next="/" >}}
+21.8 重载下标运算符
+<--->
+主页
+{{< /prevnext >}}
