@@ -277,3 +277,9 @@ MyString& MyString::operator=(const MyString& source)
 3. 与自己进行内存管理相比，优先使用标准库中的类。
 
 ***
+
+{{< prevnext prev="/basic/chapter21/assign-op-overload/" next="/basic/chapter21/op-overload-template/" >}}
+21.11 重载赋值运算符
+<--->
+21.13 重载运算符和函数模板
+{{< /prevnext >}}

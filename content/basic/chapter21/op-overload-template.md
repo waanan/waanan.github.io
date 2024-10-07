@@ -360,3 +360,9 @@ int main()
 请注意，我们根本不需要修改average（）来使其与Cents类型的对象一起工作。我们只需定义用于实现Cents类的average（）的需要的操作符，其余的由编译器处理！
 
 ***
+
+{{< prevnext prev="/basic/chapter21/shadow-deep-copy/" next="/basic/chapter21/summary/" >}}
+21.12 浅拷贝与深拷贝
+<--->
+21.14 第21章总结
+{{< /prevnext >}}

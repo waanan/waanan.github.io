@@ -341,4 +341,10 @@ int main()
 
 如果希望具有常量成员的类是可赋值的（对于非常量成员进行赋值），则需要显式重载“operator=”，并手动赋值每个非常量成员。
 
-*** 
+***
+
+{{< prevnext prev="/basic/chapter21/type-cast-overload/" next="/basic/chapter21/shadow-deep-copy/" >}}
+21.10 重载类型转换
+<--->
+21.12 浅拷贝与深拷贝
+{{< /prevnext >}}

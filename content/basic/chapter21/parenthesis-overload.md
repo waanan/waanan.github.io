@@ -193,8 +193,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter21/subscript-overload/" next="/" >}}
+{{< prevnext prev="/basic/chapter21/subscript-overload/" next="/basic/chapter21/type-cast-overload/" >}}
 21.8 重载下标运算符
 <--->
-主页
+21.10 重载类型转换
 {{< /prevnext >}}
