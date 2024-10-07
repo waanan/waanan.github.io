@@ -647,6 +647,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter21/type-cast-overload/<-> 21.10 重载括号运算符
 <-->
 <->/basic/chapter21/assign-op-overload/<-> 21.11 重载括号运算符
+<-->
+<->/basic/chapter21/shadow-deep-copy/<-> 21.12 重载括号运算符
 {{< /chapterlist >}}
 
 ***
