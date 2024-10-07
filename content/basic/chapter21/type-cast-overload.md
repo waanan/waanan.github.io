@@ -3,16 +3,16 @@ title: "重载类型转换"
 date: 2024-08-20T12:01:51+08:00
 ---
 
-在第10.6课——显式类型转换（casting）和static_cast中，您了解了C++允许您将一种数据类型转换为另一种。下面的示例显示了将int转换为double的过程：
+C++允许您将一种数据类型转换为另一种。下面的示例显示了将int转换为double的过程：
 
 ```C++
 int n{ 5 };
-auto d{ static_cast<double>(n) }; // int cast to a double
+auto d{ static_cast<double>(n) }; // int 转换为 double
 ```
 
-C++已经知道如何在内置数据类型之间进行转换。然而，它不知道如何转换任何用户定义的类。这就是重载类型转换操作符的作用。
+C++知道如何在内置数据类型之间进行转换。然而，它不知道如何转换其它任何用户定义的类。这就是重载类型转换操作符可以发挥的作用。
 
-用户定义的转换允许我们将类转换为另一种数据类型。请看一下以下类：
+用户定义的转换允许将类转换为另一种数据类型。请看以下示例：
 
 ```C++
 class Cents
@@ -30,11 +30,11 @@ public:
 };
 ```
 
-这个类相当简单：它将一些分作为整数保存，并提供访问函数来获取和设置分的数量。它还提供了一个构造函数，用于将int转换为Cents。
+这个类相当简单：它将一些Cents作为int保存，并提供访问函数来获取和设置m_cents的数量。它还提供了一个构造函数，用于将int转换为Cents。
 
-如果我们可以将int转换为Cents（通过构造函数），那么我们是否也可以将Cents转换回int？在某些情况下，这可能不是真的，但在这种情况下，它确实有意义。
+如果我们可以将int转换为Cents（通过构造函数），那么我们是否也可以将Cents转换回int？
 
-在下面的示例中，我们必须使用getCents（）将Cents变量转换回整数，以便可以使用printInt（）打印它：
+在下面的示例中，必须使用getCents() 将Cents变量转换回int，以便可以使用 printInt() 打印它：
 
 ```C++
 #include <iostream>
@@ -47,7 +47,7 @@ void printInt(int value)
 int main()
 {
     Cents cents{ 7 };
-    printInt(cents.getCents()); // print 7
+    printInt(cents.getCents()); // 打印 7
 
     std::cout << '\n';
 
@@ -55,9 +55,9 @@ int main()
 }
 ```
 
-如果我们已经编写了许多以整数作为参数的函数，那么我们的代码将被对getCents（）的调用弄得乱七八糟，这使得它比需要的更混乱。
+如果我们已经编写了许多以int作为参数的函数，那么我们的代码将被对 getCents() 的调用弄得乱七八糟。
 
-为了简化操作，我们可以通过重载int类型转换来提供用户定义的转换。这将允许我们将Cents类直接转换为int。下面的示例显示了如何完成此操作：
+为了简化操作，可以通过重载int类型转换来提供用户定义的转换。这将允许将Cents类直接转换为int。下面的示例显示了如何完成此操作：
 
 ```C++
 class Cents
@@ -70,7 +70,7 @@ public:
     {
     }
 
-    // Overloaded int cast
+    // 重载int转换
     operator int() const { return m_cents; }
 
     int getCents() const { return m_cents; }
@@ -80,7 +80,9 @@ public:
 
 需要注意三点：
 
-现在，在我们的示例中，可以这样调用printInt（）：
+
+
+现在，在我们的示例中，可以这样调用printInt()：
 
 ```C++
 #include <iostream>
@@ -88,7 +90,7 @@ public:
 int main()
 {
     Cents cents{ 7 };
-    printInt(cents); // print 7
+    printInt(cents); // 打印 7
 
     std::cout << '\n';
 
