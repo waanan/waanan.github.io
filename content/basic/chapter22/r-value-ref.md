@@ -39,7 +39,19 @@ int&& rref{ 5 }; // 使用右值 5 初始化右值引用
 
 右值引用不能用左值初始化。
 
-R值引用有两个有用的属性。首先，r值引用将其初始化对象的寿命延长到r值引用的寿命（对常量对象的l值引用也可以这样做）。其次，非常量r值引用允许您修改r值！
+|  右值引用  |  可以被初始化  |  可以被赋值 |
+|  ----  | ----  | ----  |
+| 可修改的左值 | 否 | 否 |
+| 不可修改的左值 | 否 | 否 |
+| 右值 | 是 | 是 |
+
+|  const右值引用  |  可以被初始化  |  可以被赋值 |
+|  ----  | ----  | ----  |
+| 可修改的左值 | 否 | 否 |
+| 不可修改的左值 | 否 | 否 |
+| 右值 | 是 | 否 |
+
+右值引用有两个有用的属性。首先，右值引用将其被初始化对象的寿命延长到右值引用的寿命（对常量对象的左值引用也可以这样做）。其次，非常量右值引用允许您修改右值！
 
 让我们看一些例子：
 
@@ -67,18 +79,22 @@ public:
  
 int main()
 {
-	auto&& rref{ Fraction{ 3, 5 } }; // r-value reference to temporary Fraction
+	auto&& rref{ Fraction{ 3, 5 } }; // 对 临时Fraction对象的右值引用
 	
-	// f1 of operator<< binds to the temporary, no copies are created.
+	// f1 的 operator<< 绑定在右值引用上，无需创建临时对象
 	std::cout << rref << '\n';
  
 	return 0;
-} // rref (and the temporary Fraction) goes out of scope here
+} // rref (和临时的 Fraction 对象) 在这里超出作用域
 ```
 
 该程序打印：
 
-作为匿名对象，Fraction（3，5）通常会在定义它的表达式末尾超出范围。然而，由于我们用它初始化r值引用，因此它的持续时间被延长到块的末尾。然后，我们可以使用该r-value引用来打印Fraction的值。
+```C++
+3/5
+```
+
+作为匿名对象，Fraction（3，5）通常会在定义它的表达式末尾超出作用域。然而，由于我们用它初始化右值引用，因此它的持续时间被延长到代码块的末尾。然后，我们可以使用该右值引用来打印Fraction的值。
 
 现在，让我们看一个不太直观的示例：
 
@@ -87,7 +103,7 @@ int main()
 
 int main()
 {
-    int&& rref{ 5 }; // because we're initializing an r-value reference with a literal, a temporary with value 5 is created here
+    int&& rref{ 5 }; // 使用字面值来创建右值引用
     rref = 10;
     std::cout << rref << '\n';
 
@@ -97,24 +113,28 @@ int main()
 
 该程序打印：
 
-虽然用文本值初始化r-value引用，然后能够更改该值似乎很奇怪，但当用文本初始化r-value引用时，临时对象是从文本构造的，因此引用引用的是临时对象，而不是文本值。
+```C++
+10
+```
 
-R值引用并不经常以上述任何一种方式使用。
+虽然用字面值初始化右值引用，然后能够更改该值似乎很奇怪，但当用字面值初始化右值引用时，临时对象是从字面值构造的，因此引用的是临时对象，而不是字面值。
+
+当然，右值引用通常不以上述的任何一种方式来使用。
 
 ***
-## R值引用作为功能参数
+## 右值引用作为函数参数
 
-R值引用通常用作函数参数。当您希望l值和r值参数具有不同的行为时，这对于函数重载最有用。
+右值引用通常用作函数参数。当您希望左值和右值参数具有不同的行为时，这对于函数重载最有用。
 
 ```C++
 #include <iostream>
 
-void fun(const int& lref) // l-value arguments will select this function
+void fun(const int& lref) // 左值会调用这个函数
 {
 	std::cout << "l-value reference to const: " << lref << '\n';
 }
 
-void fun(int&& rref) // r-value arguments will select this function
+void fun(int&& rref) // 右值会调用这个函数
 {
 	std::cout << "r-value reference: " << rref << '\n';
 }
@@ -122,8 +142,8 @@ void fun(int&& rref) // r-value arguments will select this function
 int main()
 {
 	int x{ 5 };
-	fun(x); // l-value argument calls l-value version of function
-	fun(5); // r-value argument calls r-value version of function
+	fun(x); // 调用左值版本
+	fun(5); // 调用右值版本
 
 	return 0;
 }
@@ -131,33 +151,38 @@ int main()
 
 这将打印：
 
-可以看到，当传递l值时，重载函数解析为具有l值引用的版本。当传递r-value时，重载函数解析为具有r-value引用的版本（这被认为比l-value引用与const更好的匹配）。
+```C++
+l-value reference to const: 5
+r-value reference: 5
+```
 
-你为什么要这么做？我们将在下一课中更详细地讨论这一点。不用说，它是移动语义的重要组成部分。
+可以看到，当传递左值时，重载函数解析为具有左值引用的版本。当传递右值时，重载函数解析为具有右值引用的版本。
+
+为什么要这么做？我们将在下一课中更详细地讨论这一点。不用说，它是移动语义的重要组成部分。
 
 ***
-## R值引用变量是左值
+## 右值引用变量是左值
 
-请考虑以下片段：
+请考虑以下代码：
 
 ```C++
 	int&& ref{ 5 };
 	fun(ref);
 ```
 
-您希望上面的函数称为哪个版本的fun：fun（const int&）或fun（int&&）？
+您希望上面的函数调用哪个版本的fun：  fun（const int&）或 fun（int&&） ？
 
-答案可能会让你吃惊。这称为fun（const int&）。
+答案可能会让你吃惊。它调用 fun（const int&）。
 
 尽管变量ref的类型为int&&，但在表达式中使用时，它是一个左值（与所有命名变量一样）。对象的类型及其值类别是独立的。
 
-您已经知道，literal 5是int类型的右值，而int x是int类型中的左值。类似地，int&&ref是int&&类型中的左值。
+您已经知道，字面值 5 是int类型的右值，而 int x； 是int类型的左值。类似地，int&& ref；是 int&& 类型的左值。
 
-因此，fun（ref）不仅调用fun（constint&），它甚至不匹配fun（int&&），因为rvalue引用不能绑定到左值。
+因此，fun（ref）不仅调用fun（const int&），它甚至不匹配 fun（int&&） ，因为右值引用不能绑定到左值。
 
 ***
-## 返回r值引用
+## 返回右值引用
 
-您几乎不应该返回r-value引用，因为同样的原因，您几乎不应返回l-value引用。在大多数情况下，当被引用对象在函数末尾超出范围时，您将最终返回挂起引用。
+您几乎不应该返回右值引用，因为同样的原因，您几乎不应返回左值引用。在大多数情况下，当被引用对象在函数末尾超出作用域时，会得到悬空引用。
 
 ***
