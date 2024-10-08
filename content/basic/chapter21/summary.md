@@ -37,8 +37,8 @@ date: 2024-08-20T12:01:51+08:00
 
 ***
 
-{{< prevnext prev="/basic/chapter21/op-overload-template/" next="/" >}}
+{{< prevnext prev="/basic/chapter21/op-overload-template/" next="/basic/chapter22/move-smart-pointer-intro/" >}}
 21.13 重载运算符和函数模板
 <--->
-主页
+22.0 智能指针和移动语义简介
 {{< /prevnext >}}

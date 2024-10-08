@@ -436,3 +436,9 @@ delete nullptr是可以的，因为它什么也不做。
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter21/summary/" next="/basic/chapter22/r-value-ref/" >}}
+21.14 第21章总结
+<--->
+22.1 右值引用
+{{< /prevnext >}}

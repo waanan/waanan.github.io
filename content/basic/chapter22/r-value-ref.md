@@ -186,3 +186,9 @@ r-value reference: 5
 您几乎不应该返回右值引用，因为同样的原因，您几乎不应返回左值引用。在大多数情况下，当被引用对象在函数末尾超出作用域时，会得到悬空引用。
 
 ***
+
+{{< prevnext prev="/basic/chapter22/move-smart-pointer-intro/" next="/" >}}
+22.0 智能指针和移动语义简介
+<--->
+主页
+{{< /prevnext >}}
