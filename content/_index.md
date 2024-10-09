@@ -665,6 +665,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter22/r-value-ref/<-> 22.1 右值引用
 <-->
 <->/basic/chapter22/move-construct-assign/<-> 22.2 右值引用
+<-->
+<->/basic/chapter22/std-move/<-> 22.3 右值引用
 {{< /chapterlist >}}
 
 ***
