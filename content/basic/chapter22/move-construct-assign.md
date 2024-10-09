@@ -272,21 +272,26 @@ main()中的流程与之前完全相同。然而，该程序不是调用拷贝�
 2. 没有用户声明的移动构造函数或移动赋值运算符。
 3. 没有用户声明的析构函数。
 
-隐式移动构造函数和隐式移动赋值运算符都执行成员级移动。也就是说，从移动对象的每个成员都被移动到移动到对象。
+这两个默认的函数都执行成员级移动，规则如下：
+
+1. 如果成员变量有移动构造或者移动赋值函数，则会调用对应的函数
+2. 否则，进行拷贝
+
+这意味着，如果成员变量是指针，则默认进行浅拷贝。
 
 ***
-## 移动语义背后的关键洞察力
+## 移动语义背后的关键点
 
-现在您有了足够的上下文来理解移动语义背后的关键洞察力。
+现在您有了足够的上下文来理解移动语义背后的关键点。
 
-如果我们构造一个对象或进行赋值，其中参数是l值，那么我们唯一可以合理地做的事情就是复制l值。我们不能假设更改l值是安全的，因为它可能会在以后的程序中再次使用。如果我们有一个表达式“a=b”（其中b是左值），我们就不会合理地期望b以任何方式改变。
+如果我们构造一个对象或进行赋值，其中参数是左值，那么唯一可以合理地做的事情就是复制左值。我们不能假设更改左值是安全的，因为它可能会在以后的程序中再次使用。如果我们有一个表达式“a=b”（其中b是左值），不应该期望b以任何方式改变。
 
-然而，如果我们构造一个对象或进行赋值，其中参数是r-value，则我们知道r-value只是某种临时对象。我们可以简单地将其资源（这很便宜）转移到我们正在构建或分配的对象，而不是复制它（这可能很昂贵）。这样做是安全的，因为临时变量无论如何都将在表达式末尾被销毁，所以我们知道它将永远不会被再次使用！
+然而，如果我们构造一个对象或进行赋值，其中参数是右值，则我们知道右值只是某种临时对象。可以简单地将其资源（代价很低）转移到我们正在构造或赋值的对象，而不是复制它（这可能很昂贵）。这样做是安全的，因为临时变量无论如何都将在表达式末尾被销毁，所以我们知道它将永远不会被再次使用！
 
-C++11通过r-value引用，使我们能够在参数为r-value和l-value时提供不同的行为，使我们可以就对象的行为方式做出更聪明、更有效的决策。
+C++11通过右值引用，使我们能够在参数为右值和左值时提供不同的行为，使我们可以按对象的行为方式做出更聪明、更有效的决策。
 
 {{< alert success >}}
-**关键洞察力**
+**关键点**
 
 移动语义是一个优化机会。
 
@@ -295,23 +300,23 @@ C++11通过r-value引用，使我们能够在参数为r-value和l-value时提供
 ***
 ## 移动函数应始终使两个对象都处于有效状态
 
-在上面的示例中，移动构造函数和移动赋值函数都将a.m_ptr设置为nullptr。这似乎是无关的——毕竟，如果a是一个临时的r-value，那么如果参数a无论如何都要被销毁，为什么还要费心进行“清理”呢？
+在上面的示例中，移动构造函数和移动赋值函数都将a.m_ptr设置为nullptr。这似乎是无需做的的——毕竟，如果a是一个临时的右值，那么如果a无论如何都要被销毁，为什么还要费心进行“清理”呢？
 
-答案很简单：当a超出范围时，将调用a的析构函数，并删除.m_ptr。如果在该点上，a.m_ptr仍然指向与m_ptr相同的对象，则m_ptr将保留为悬空指针。当包含m_ptr的对象最终被使用（或销毁）时，我们将得到未定义的行为。
+答案很简单：当a超出作用域时，将调用a的析构函数，并删除a.m_ptr。如果在这时，a.m_ptr仍然指向与m_ptr相同的对象，则m_ptr将变为悬空指针。当包含m_ptr的对象最终被使用（或销毁）时，将得到未定义的行为。
 
-在实现移动语义时，重要的是确保从对象移出的对象处于有效状态，以便它将正确地破坏（而不会创建未定义的行为）。
-
-***
-## 可以移动而不是复制值返回的自动l值
-
-在上面的Auto_ptr4示例的generateResource（）函数中，当变量res按值返回时，它将被移动而不是复制，即使res是l值。C++规范有一个特殊的规则，表示即使是l值，也可以按值移动从函数返回的自动对象。这是有意义的，因为res无论如何都会在函数的末尾被销毁！我们不妨窃取它的资源，而不是制作昂贵和不必要的副本。
-
-尽管编译器可以移动l值返回值，但在某些情况下，它甚至可以通过完全删除副本来做得更好（这避免了制作副本或根本不做移动）。在这种情况下，既不会调用拷贝构造函数，也不会调用移动构造函数。
+在实现移动语义时，重要的是确保资源移出的对象处于有效状态，以便它将正确地销毁（而不会导致未定义的行为）。
 
 ***
-## 正在禁用复制
+## 函数按值返回可以触发移动而不是拷贝
 
-在上面的Auto_ptr4类中，为了进行比较，我们保留了拷贝构造函数和赋值运算符。但在支持移动的类中，有时需要删除拷贝构造函数和复制分配函数，以确保不进行复制。在Auto_ptr类的情况下，我们不想复制模板化的对象t——这两个原因都是因为它很昂贵，而且无论是什么类t都可能不支持复制！
+在上面的Auto_ptr4示例的generateResource（）函数中，当变量res按值返回时，它将被移动而不是复制，即使res是左值。C++规范有一个特殊的规则，即使是左值，也可以移动按值从函数返回的对象。这是有意义的，因为res无论如何都会在函数的末尾被销毁！不妨窃取它的资源，而不是制作昂贵和不必要的副本。
+
+尽管编译器可以移动左值返回值，但在某些情况下，它甚至可以通过完全避免创建返回值来做得更好（这避免了制作副本而且根本不做移动）。在这种情况下，既不会调用拷贝构造函数，也不会调用移动构造函数。
+
+***
+## 禁用复制
+
+在上面的Auto_ptr4类中，为了进行比较，我们保留了拷贝构造函数和赋值运算符。但在支持移动的类中，有时需要删除拷贝构造函数和拷贝赋值函数，以确保不进行复制。在Auto_ptr类的情况下，我们不想复制模板化的对象T—— 一个原因是因为它可能很昂贵，而且类T可能也不支持复制！
 
 下面是支持移动语义但不支持复制语义的Auto_ptr版本：
 
@@ -333,32 +338,32 @@ public:
 		delete m_ptr;
 	}
 
-	// Copy constructor -- no copying allowed!
+	// 拷贝构造 -- 不允许拷贝!
 	Auto_ptr5(const Auto_ptr5& a) = delete;
 
-	// Move constructor
-	// Transfer ownership of a.m_ptr to m_ptr
+	// 移动构造函数
+	// a.m_ptr 的所有权转移至 m_ptr
 	Auto_ptr5(Auto_ptr5&& a) noexcept
 		: m_ptr(a.m_ptr)
 	{
 		a.m_ptr = nullptr;
 	}
 
-	// Copy assignment -- no copying allowed!
+	// 拷贝赋值 -- 不允许拷贝!
 	Auto_ptr5& operator=(const Auto_ptr5& a) = delete;
 
-	// Move assignment
-	// Transfer ownership of a.m_ptr to m_ptr
+	// 移动赋值函数
+	// a.m_ptr 的所有权转移至 m_ptr
 	Auto_ptr5& operator=(Auto_ptr5&& a) noexcept
 	{
-		// Self-assignment detection
+		// 自我赋值检查
 		if (&a == this)
 			return *this;
 
-		// Release any resource we're holding
+		// 释放已经持有的资源
 		delete m_ptr;
 
-		// Transfer ownership of a.m_ptr to m_ptr
+		// a.m_ptr 的所有权转移至 m_ptr
 		m_ptr = a.m_ptr;
 		a.m_ptr = nullptr;
 
@@ -371,14 +376,14 @@ public:
 };
 ```
 
-如果试图逐值将Auto_ptr5 l值传递给函数，编译器将抱怨初始化函数参数所需的拷贝构造函数已被删除。这很好，因为无论如何，我们可能应该通过常量l值引用传递Auto_ptr5！
+如果试图按值将Auto_ptr5 左值传递给函数，编译器将报错，提示初始化函数参数所需的拷贝构造函数已被删除。这很好，因为无论如何，大概率应该通过常量左值引用传递Auto_ptr5！
 
-Auto_ptr5（最后）是一个很好的智能指针类。而且，事实上，标准库包含一个与此非常相似的类（您应该使用它），名为std:：unique_ptr。我们将在本章后面讨论更多关于std:：unique_ptr的内容。
+Auto_ptr5是一个很好的智能指针类。而且，事实上，标准库包含一个与此非常相似的类（您应该使用它），名为std::unique_ptr。我们将在本章后面讨论更多关于std::unique_ptr的内容。
 
 ***
 ## 另一个例子
 
-让我们看一看另一个使用动态内存的类：一个简单的动态模板化数组。此类包含深度复制拷贝构造函数和拷贝赋值函数。
+让我们看一看另一个使用动态内存的类：一个简单的动态模板化数组。此类包含深拷贝构造函数和拷贝赋值函数。
 
 ```C++
 #include <algorithm> // for std::copy_n
@@ -402,15 +407,15 @@ public:
 		delete[] m_array;
 	}
 
-	// Copy constructor
+	// 拷贝构造
 	DynamicArray(const DynamicArray &arr)
 		: m_length { arr.m_length }
 	{
 		m_array = new T[m_length];
-		std::copy_n(arr.m_array, m_length, m_array); // copy m_length elements from arr to m_array
+		std::copy_n(arr.m_array, m_length, m_array); // 复制 m_length 个元素，从 arr 到 m_array
 	}
 
-	// Copy assignment
+	// 拷贝赋值
 	DynamicArray& operator=(const DynamicArray &arr)
 	{
 		if (&arr == this)
@@ -421,7 +426,7 @@ public:
 		m_length = arr.m_length;
 		m_array = new T[m_length];
 
-		std::copy_n(arr.m_array, m_length, m_array); // copy m_length elements from arr to m_array
+		std::copy_n(arr.m_array, m_length, m_array); // 复制 m_length 个元素，从 arr 到 m_array
 
 		return *this;
 	}
@@ -433,19 +438,19 @@ public:
 };
 ```
 
-现在让我们在程序中使用这个类。为了向您展示当我们在堆上分配一百万个整数时，这个类是如何执行的，我们将利用我们在第18.4课中开发的Timer类——为代码计时。我们将使用Timer类来计时代码的运行速度，并向您展示复制和移动之间的性能差异。
+现在让我们在程序中使用这个类。现在向您展示当我们在堆上分配一百万个整数时，这个类是如何执行的，我们将利用之前开发的Timer类为代码计时。将使用Timer类来计时代码的运行速度，并向您展示复制和移动之间的性能差异。
 
 ```C++
 #include <algorithm> // for std::copy_n
 #include <chrono> // for std::chrono functions
 #include <iostream>
 
-// Uses the above DynamicArray class
+// 使用上面的 DynamicArray 类
 
 class Timer
 {
 private:
-	// Type aliases to make accessing nested type easier
+	// 类型别名，简化代码
 	using Clock = std::chrono::high_resolution_clock;
 	using Second = std::chrono::duration<double, std::ratio<1> >;
 	
@@ -463,7 +468,7 @@ public:
 	}
 };
 
-// Return a copy of arr with all of the values doubled
+// 返回一个所有元素都是输入双倍的数组
 DynamicArray<int> cloneArrayAndDouble(const DynamicArray<int> &arr)
 {
 	DynamicArray<int> dbl(arr.getLength());
@@ -490,7 +495,7 @@ int main()
 
 在作者的一台机器上，在发布模式下，该程序在0.00825559秒内执行。
 
-现在，让我们再次运行相同的程序，将拷贝构造函数和复制赋值替换为移动构造函数和移动赋值。
+现在，让我们再次运行相同的程序，将拷贝构造函数和拷贝赋值替换为移动构造函数和移动赋值。
 
 ```C++
 template <typename T>
@@ -511,13 +516,13 @@ public:
 		delete[] m_array;
 	}
 
-	// Copy constructor
+	// 拷贝构造
 	DynamicArray(const DynamicArray &arr) = delete;
 
-	// Copy assignment
+	// 拷贝赋值
 	DynamicArray& operator=(const DynamicArray &arr) = delete;
 
-	// Move constructor
+	// 移动构造
 	DynamicArray(DynamicArray &&arr) noexcept
 		:  m_array(arr.m_array), m_length(arr.m_length)
 	{
@@ -525,7 +530,7 @@ public:
 		arr.m_array = nullptr;
 	}
 
-	// Move assignment
+	// 移动赋值
 	DynamicArray& operator=(DynamicArray &&arr) noexcept
 	{
 		if (&arr == this)
@@ -553,7 +558,7 @@ public:
 class Timer
 {
 private:
-	// Type aliases to make accessing nested type easier
+	// 类型别名，简化代码
 	using Clock = std::chrono::high_resolution_clock;
 	using Second = std::chrono::duration<double, std::ratio<1> >;
 	
@@ -571,7 +576,7 @@ public:
 	}
 };
 
-// Return a copy of arr with all of the values doubled
+// 返回一个所有元素都是输入双倍的数组
 DynamicArray<int> cloneArrayAndDouble(const DynamicArray<int> &arr)
 {
 	DynamicArray<int> dbl(arr.getLength());
@@ -598,12 +603,12 @@ int main()
 
 在同一台机器上，该程序在0.0056秒内执行。
 
-比较两个程序的运行时，（0.00825559-0.0056）/0.00825559*100=32.1%更快！
+比较两个程序的运行时间，（0.00825559-0.0056）/ 0.00825559 * 100=32.1%，性能提升 32.1% ！
 
 ***
-## 删除移动构造函数和移动赋值
+## 删除移动构造函数和移动赋值函数
 
-可以使用=delete语法删除移动构造函数和移动赋值，就像删除拷贝构造函数和复制赋值一样。
+可以使用=delete语法删除移动构造函数和移动赋值，就像删除拷贝构造函数和拷贝赋值一样。
 
 ```C++
 #include <iostream>
@@ -631,7 +636,7 @@ public:
 int main()
 {
     Name n1{ "Alex" };
-    n1 = Name{ "Joe" }; // error: move assignment deleted
+    n1 = Name{ "Joe" }; // 错误: 移动赋值被删除
 
     std::cout << n1.get() << '\n';
 
@@ -639,9 +644,9 @@ int main()
 }
 ```
 
-如果删除拷贝构造函数，编译器将不会生成隐式移动构造函数（使对象既不可复制也不可移动）。因此，在删除拷贝构造函数时，明确需要移动构造函数的行为是有用的。要么显式删除它们（明确这是所需的行为），要么默认它们（仅使类移动）。
+如果删除拷贝构造函数，编译器将不会生成隐式移动构造函数（使对象既不可复制也不可移动）。因此，在删除拷贝构造函数时，明确需要移动构造函数的行为是有用的。要么设置它们为delete（明确这是所需的行为），要么设置它们为default（仅使类移动）。
 
-虽然如果您想要可复制但不可移动的对象，那么仅删除移动构造函数和移动赋值似乎是一个好主意，但这会导致在强制复制省略不适用的情况下，类不能按值返回。发生这种情况是因为仍然声明了已删除的移动构造函数，因此可以进行重载解析。并且按值返回将优先于已删除的移动构造函数，而不是未删除的拷贝构造函数。下面的程序对此进行了说明：
+如果您想要可复制但不可移动的对象，那么仅删除移动构造函数和移动赋值似乎是一个好主意，但这会导致在复制省略不生效的情况下，类不能按值返回。发生这种情况是因为虽然声明删除了移动构造函数，但仍可进行进行重载解析。并且函数按值返回将优先匹配已删除的移动构造函数，而不是未删除的拷贝构造函数。下面的程序对此进行了说明：
 
 ```C++
 #include <iostream>
@@ -670,7 +675,7 @@ public:
 Name getJoe()
 {
     Name joe{ "Joe" };
-    return joe; // error: Move constructor was deleted
+    return joe; // 错误: 移动构造函数被删除
 }
 
 int main()
@@ -686,22 +691,22 @@ int main()
 {{< alert success >}}
 **关键洞察力**
 
-五的规则是，如果定义或删除了拷贝构造函数、复制赋值、移动构造函数、移动赋值或析构函数，那么应该定义或删除其中的每个函数。
+如果定义或删除了拷贝构造函数、拷贝赋值、移动构造函数、移动赋值或析构函数，那么应该定义或删除其中的每个函数。
 
 {{< /alert >}}
 
 ***
-## 移动语义和std:：swap高级的问题
+## 移动语义和std::swap的问题(进阶)
 
-在第21.12课——重载赋值运算符中，我们提到了复制和交换习惯用法。复制和交换也适用于移动语义，这意味着我们可以通过将资源与将被销毁的对象交换来实现移动构造函数和移动赋值。
+交换也适用于移动语义，这意味着我们可以通过将资源与将被销毁的对象交换来实现移动构造函数和移动赋值。
 
 这有两个好处：
 
 1. 持久化对象现在控制以前属于濒死对象所有权的资源（这是我们的主要目标）。
-2. 垂死对象现在控制以前属于持久对象所有权的资源。当死亡对象实际死亡时，它可以对这些资源进行任何类型的清理。
+2. 垂死对象现在控制以前属于持久对象所有权的资源。当对象实际死亡时，它可以对这些资源进行清理。
 
 
-当您考虑交换时，首先想到的通常是std:：swap（）。然而，使用std:：swap（）实现移动构造函数和移动赋值是有问题的，因为std:：swap。这将导致无限递归问题。
+当您考虑交换时，首先想到的通常是std::swap（）。然而，使用std::swap（）实现移动构造函数和移动赋值是有问题的，因为std::swap将导致无限递归问题。
 
 您可以在以下示例中看到这种情况：
 
@@ -713,7 +718,7 @@ int main()
 class Name
 {
 private:
-    std::string m_name {}; // std::string is move capable
+    std::string m_name {}; // std::string 是可移动的
 
 public:
     Name(std::string_view name) : m_name{ name }
@@ -727,14 +732,14 @@ public:
     {
         std::cout << "Move ctor\n";
 
-        std::swap(*this, name); // bad!
+        std::swap(*this, name); // 有问题!
     }
 
     Name& operator=(Name&& name) noexcept
     {
         std::cout << "Move assign\n";
 
-        std::swap(*this, name); // bad!
+        std::swap(*this, name); // 有问题!
 
         return *this;
     }
@@ -745,7 +750,7 @@ public:
 int main()
 {
     Name n1{ "Alex" };   
-    n1 = Name{"Joe"}; // invokes move assignment
+    n1 = Name{"Joe"}; // 触发移动赋值
 
     std::cout << n1.get() << '\n';
     
@@ -755,9 +760,17 @@ int main()
 
 这将打印：
 
-依此类推……直到堆栈溢出。
+```C++
+Move assign
+Move ctor
+Move ctor
+Move ctor
+Move ctor
+```
 
-只要交换成员函数不调用移动构造函数或移动赋值，就可以使用自己的交换函数实现移动构造函数和移动赋值。下面是一个如何做到这一点的示例：
+无线打印……直到堆栈溢出。
+
+而通过交换成员，就可以简单的实现移动语义，下面是一个示例：
 
 ```C++
 #include <iostream>
@@ -777,11 +790,11 @@ public:
     Name(const Name& name) = delete;
     Name& operator=(const Name& name) = delete;
     
-    // Create our own swap friend function to swap the members of Name
+    // 交换函数，交换Name的成员
     friend void swap(Name& a, Name& b) noexcept
     {
-        // We avoid recursive calls by invoking std::swap on the std::string member,
-        // not on Name
+        // 通过 std::swap 交换成员, 而不是整个对象,
+        // 避免无限循环
         std::swap(a.m_name, b.m_name);
     }
 
@@ -789,14 +802,14 @@ public:
     {
         std::cout << "Move ctor\n";
 
-        swap(*this, name); // Now calling our swap, not std::swap
+        swap(*this, name); // 调用我们自己的 swap, 而不是 std::swap
     }
 
     Name& operator=(Name&& name) noexcept
     {
         std::cout << "Move assign\n";
 
-        swap(*this, name); // Now calling our swap, not std::swap
+        swap(*this, name); // 调用我们自己的 swap, 而不是 std::swap
 
         return *this;
     }
@@ -807,7 +820,7 @@ public:
 int main()
 {
     Name n1{ "Alex" };   
-    n1 = Name{"Joe"}; // invokes move assignment
+    n1 = Name{"Joe"}; // 触发移动赋值
 
     std::cout << n1.get() << '\n';
 
@@ -817,3 +830,9 @@ int main()
 
 这按预期工作，并打印：
 
+```C++
+Move assign
+Joe
+```
+
+***
