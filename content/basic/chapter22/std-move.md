@@ -196,3 +196,9 @@ std::move（）的一个有用的变体称为std::move_if_noexcept（），如�
 每当我们希望将左值视为右值时，可以使用std::move，以调用移动语义而不是复制语义。
 
 ***
+
+{{< prevnext prev="/basic/chapter22/move-construct-assign/" next="/" >}}
+22.2 移动构造函数和移动赋值函数
+<--->
+主页
+{{< /prevnext >}}

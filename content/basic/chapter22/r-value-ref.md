@@ -187,8 +187,8 @@ r-value reference: 5
 
 ***
 
-{{< prevnext prev="/basic/chapter22/move-smart-pointer-intro/" next="/" >}}
+{{< prevnext prev="/basic/chapter22/move-smart-pointer-intro/" next="/basic/chapter22/move-construct-assign/" >}}
 22.0 智能指针和移动语义简介
 <--->
-主页
+22.2 移动构造函数和移动赋值函数
 {{< /prevnext >}}
