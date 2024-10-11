@@ -180,7 +180,7 @@ int main()
     int num{ };
     std::cin >> num;
 
-    int doublenum{ num * 2 }; // 将 num * 2 赋值给新的变咯昂
+    int doublenum{ num * 2 }; // 将 num * 2 赋值给新的变量
     std::cout << "Double that number is: " << doublenum << '\n';
 
     return 0;
@@ -197,7 +197,7 @@ int main()
 ```C++
 #include <iostream>
 
-// preferred version
+// 推荐版本
 int main()
 {
     std::cout << "Enter an integer: ";
