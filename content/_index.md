@@ -669,6 +669,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter22/std-move/<-> 22.3 std::move
 <-->
 <->/basic/chapter22/unique-ptr/<-> 22.4 std::unique_ptr
+<-->
+<->/basic/chapter22/shared-ptr/<-> 22.5 std::unique_ptr
 {{< /chapterlist >}}
 
 ***
