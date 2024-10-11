@@ -197,8 +197,8 @@ std::move（）的一个有用的变体称为std::move_if_noexcept（），如�
 
 ***
 
-{{< prevnext prev="/basic/chapter22/move-construct-assign/" next="/" >}}
+{{< prevnext prev="/basic/chapter22/move-construct-assign/" next="/basic/chapter22/unique-ptr/" >}}
 22.2 移动构造函数和移动赋值函数
 <--->
-主页
+22.4 std::unique_ptr
 {{< /prevnext >}}

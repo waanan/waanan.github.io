@@ -404,3 +404,9 @@ delete res;
 请注意，std::make_unique()有助于防止上述两种情况意外发生。
 
 ***
+
+{{< prevnext prev="/basic/chapter22/std-move/" next="/" >}}
+22.3 std::move
+<--->
+主页
+{{< /prevnext >}}
