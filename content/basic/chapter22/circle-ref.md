@@ -326,3 +326,9 @@ Our weak ptr is: expired
 当您需要多个可以共同拥有资源的智能指针时，可以使用std::sharedptr。当最后一个std::shared_ptr超出作用域时，将释放资源。当您希望智能指针可以查看和使用共享资源，但不参与该资源的所有权时，可以使用std::weakptr。
 
 ***
+
+{{< prevnext prev="/basic/chapter22/shared-ptr/" next="/" >}}
+22.5 std::shared_ptr
+<--->
+主页
+{{< /prevnext >}}

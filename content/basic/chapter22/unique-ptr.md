@@ -405,8 +405,8 @@ delete res;
 
 ***
 
-{{< prevnext prev="/basic/chapter22/std-move/" next="/" >}}
+{{< prevnext prev="/basic/chapter22/std-move/" next="/basic/chapter22/shared-ptr/" >}}
 22.3 std::move
 <--->
-主页
+22.5 std::shared_ptr
 {{< /prevnext >}}

@@ -163,3 +163,9 @@ std::shared_ptr具有与std::unique_ptr相同的一些挑战——如果未正�
 std::shared_ptr是为多个智能指针共同管理同一资源的情况而设计的。当管理资源的最后一个std::shared_ptr被销毁时，将释放该资源。
 
 ***
+
+{{< prevnext prev="/basic/chapter22/unique-ptr/" next="/basic/chapter22/circle-ref/" >}}
+22.4 std::unique_ptr
+<--->
+22.6 std::shared_ptr的循环依赖性问题和std::weak_ptr
+{{< /prevnext >}}
