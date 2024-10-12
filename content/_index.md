@@ -682,6 +682,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十三章 对象关系
 <--->
+<->/basic/chapter23/object-relation/<-> 23.0 智能指针和移动语义简介
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
