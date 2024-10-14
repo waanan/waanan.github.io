@@ -327,8 +327,8 @@ Our weak ptr is: expired
 
 ***
 
-{{< prevnext prev="/basic/chapter22/shared-ptr/" next="/" >}}
+{{< prevnext prev="/basic/chapter22/shared-ptr/" next="/basic/chapter22/summary/" >}}
 22.5 std::shared_ptr
 <--->
-主页
+22.7 第22章总结
 {{< /prevnext >}}

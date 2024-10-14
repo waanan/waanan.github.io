@@ -255,3 +255,9 @@ Enter new X location for creature (-1 to quit): -1
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter23/object-relation/" next="/" >}}
+23.0 对象关系
+<--->
+主页
+{{< /prevnext >}}

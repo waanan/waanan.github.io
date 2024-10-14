@@ -674,7 +674,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter22/circle-ref/<-> 22.6 std::shared_ptr的循环依赖性问题和std::weak_ptr
 <-->
-<->/basic/chapter22/summary/<-> 22.7 std::shared_ptr的循环依赖性问题和std::weak_ptr
+<->/basic/chapter22/summary/<-> 22.7 第22章总结
 {{< /chapterlist >}}
 
 ***
@@ -682,9 +682,9 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十三章 对象关系
 <--->
-<->/basic/chapter23/object-relation/<-> 23.0 智能指针和移动语义简介
+<->/basic/chapter23/object-relation/<-> 23.0 对象关系
 <-->
-<->/basic/chapter23/composition/<-> 23.1 智能指针和移动语义简介
+<->/basic/chapter23/composition/<-> 23.1 对象组合
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

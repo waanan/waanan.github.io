@@ -31,3 +31,9 @@ date: 2024-10-08T17:40:35+08:00
 好的，足够的背景。让我们开始吧。
 
 ***
+
+{{< prevnext prev="/basic/chapter22/summary/" next="/basic/chapter23/composition/" >}}
+22.7 第22章总结
+<--->
+23.1 对象组合
+{{< /prevnext >}}
