@@ -685,6 +685,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter23/object-relation/<-> 23.0 对象关系
 <-->
 <->/basic/chapter23/composition/<-> 23.1 对象组合
+<-->
+<->/basic/chapter23/aggregation/<-> 23.2 对象组合
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
