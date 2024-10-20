@@ -167,6 +167,123 @@ Betsy is seeing doctors: Scott
 ***
 ## 自反关联
 
-有时对象可能与相同类型的其他对象有关系。这被称为自反联想。自反关联的一个很好的例子是大学课程与其先决条件（也是大学课程）之间的关系。考虑一个简化的情况，一门课程只能有一个先决条件。我们可以这样做：#include<string>#incl包括<string_view>classCourse{private:std:：stringm_name{}；常量课程*m_先决条件{}；公共：课程（std:：string_view名称，const课程*先决条件=nullptr）：m_name{name}，m_prequirement{prequirement}{}}；这可能导致一系列关联（课程有一个前提，它有一个先决条件，等等……）关联可以是间接的。在前面的所有情况下，我们都使用了指针或引用来直接将对象链接在一起。然而，在协会中，这并不是严格要求的。允许您将两个对象链接在一起的任何类型的数据就足够了。在下面的示例中，我们展示了Driver类如何与Car具有单向关联，而不实际包括Car指针或引用成员：#include<iostream>#incluse<string>#In包括<string_view>class Car{private:std:：string m_name{}；整数mid{}；公共：汽车（std:：string_view名称，int id）：m_name{name}，m_id{id}{}常量std::string&getName（）const{return m_name；}int getId（）const{returns m_id；}}；//我们的CarLot本质上只是一个静态Cars数组和一个检索它们的查找函数。//因为它是静态的，我们不需要分配CarLot类型的对象来使用它的名称空间CarLot{CarCarLot[4]{{“Prius”，4}，{“花冠”，17}，}“雅阁”，84}，“矩阵”，62}}；Car*getCar（int id）{for（auto&Car:carLot）{if（Car.getId（）==id）{return&Car；}}return nullptr；}}；类驱动程序{private:std:：string m_name{}；整数m_carId{}；//我们与Car by ID关联，而不是指针public:Driver（std:：string_view name，int carId）：m_name{name}，m_carId{carId}{}const std::string&getName（）const{return m_name；}int getCarId（）const{return-m_carId；}}；int main（）{驱动程序d{“Franz”，17}；//Franz正在驾驶ID为17的汽车car*car{CarLot:：getCar（d.getCarId（））}；//如果（car）std:：cout<<d.getName（）<<“正在驾驶”<<car->getName（）<<'\n'；else std:：cout<<d.getName（）<<“找不到他的车\n”；返回0；}在上面的例子中，我们有一个CarLot存放我们的汽车。需要汽车的驾驶员没有指向他的汽车的指针——相反，他有汽车的ID，当我们需要时，我们可以使用它从CarLot中获取汽车。在这个特定的例子中，这样做有点傻，因为将汽车从CarLot中取出需要低效的查找（连接两者的指针要快得多）。然而，通过唯一的ID而不是指针引用事物是有好处的。例如，您可以引用当前不在内存中的内容（可能它们在文件或数据库中，并且可以按需加载）。此外，指针可以占用4或8个字节——如果空间很高，并且唯一对象的数量相当低，则通过8位或16位整数引用它们可以节省大量内存。组合vs聚合vs关联摘要这里有一个摘要表，帮助您记住组合、聚合和关联之间的区别：PropertyCompositionAggregationAssociationRelationship typeWhole/partWhole/Part否则未发布成员可以属于多个类NoYesYesMembers的存在由类YesNoDirectionalUnidirectionalUnidirection单向或双向关系verbPart of使用
+有时对象可能与相同类型的其它对象有关系。这被称为自反关联。自反关联的一个很好的例子是大学课程与先修课程之间的关系。
+
+考虑一个简化的情况，一门课程只能有一个先修课程。可以这样做：
+
+```C++
+#include <string>
+#include <string_view>
+
+class Course
+{
+private:
+    std::string m_name{};
+    const Course* m_prerequisite{};
+
+public:
+    Course(std::string_view name, const Course* prerequisite = nullptr):
+        m_name{ name }, m_prerequisite{ prerequisite }
+    {
+    }
+
+};
+```
+
+这可能导致一系列关联（A课程有一个先修课程B，B课程有一个先修课程C，等等……）
+
+***
+## 间接关联
+
+关联可以是间接的。在前面的所有情况下，我们都使用了指针或引用来直接将对象链接在一起。然而，在关联中，这并不是严格要求的。允许您将两个对象链接在一起的任何类型的数据都是足够的。在下面的示例中，展示了Driver类如何与Car具有单向关联，而不实际包括Car指针或引用：
+
+```C++
+#include <iostream>
+#include <string>
+#include <string_view>
+
+class Car
+{
+private:
+	std::string m_name{};
+	int m_id{};
+
+public:
+	Car(std::string_view name, int id)
+		: m_name{ name }, m_id{ id }
+	{
+	}
+
+	const std::string& getName() const { return m_name; }
+	int getId() const { return m_id; }
+};
+
+// carLot 是一个静态数组，装载了Car和查找的id
+// 因为它是静态的，所以不需要分配一个CarLot对象
+namespace CarLot
+{
+    Car carLot[4] { { "Prius", 4 }, { "Corolla", 17 }, { "Accord", 84 }, { "Matrix", 62 } };
+
+	Car* getCar(int id)
+	{
+		for (auto& car : carLot)
+        {
+			if (car.getId() == id)
+			{
+				return &car;
+			}
+		}
+
+		return nullptr;
+	}
+};
+
+class Driver
+{
+private:
+	std::string m_name{};
+	int m_carId{}; // 通过 ID 而不是指针来进行关联
+
+public:
+	Driver(std::string_view name, int carId)
+		: m_name{ name }, m_carId{ carId }
+	{
+	}
+
+	const std::string& getName() const { return m_name; }
+	int getCarId() const { return m_carId; }
+};
+
+int main()
+{
+	Driver d{ "Franz", 17 }; // Franz 车的 ID 是 17
+
+	Car* car{ CarLot::getCar(d.getCarId()) }; // 从 car lot 中提车
+
+	if (car)
+		std::cout << d.getName() << " is driving a " << car->getName() << '\n';
+	else
+		std::cout << d.getName() << " couldn't find his car\n";
+
+	return 0;
+}
+```
+
+在上面的例子中，有一个carLot存放所有的汽车。需要汽车的驾驶员没有指向他的汽车的指针——相反，他有汽车的ID，当需要时，可以使用它从carLot中获取汽车。
+
+在这个特定的例子中，这样做有点傻，因为将汽车从carLot中取出需要低效的查找（连接两者的指针要快得多）。然而，通过唯一的ID而不是指针引用事物是有好处的。例如，您可以引用当前不在内存中的内容（可能它们在文件或数据库中，并且可以按需加载）。此外，指针会占用4或8个字节——如果内存空间很少，并且唯一对象的数量相当低，则通过8位或16位整数引用它们可以节省大量内存。
+
+***
+## 组合vs聚合vs关联摘要
+
+这里有一个摘要表，帮助您记住组合、聚合和关联之间的区别：
+
+|  属性 |  组合  |  聚合 |  关联 |
+|  ----  | ----  |  ----  |  ----  |
+| 关系类型 | 部分-整体 | 部分-整体 | 相互关联 |
+| 成员可以属于多个类 | 否 | 是 | 是 |
+| 成员声明周期由类管理 | 是 | 否 | 否 |
+| 关系指向 | 单向 | 单向 | 单向或双向 |
+| 关系术语 | 一部分 | 有一个 | 使用一个 |
 
 ***
