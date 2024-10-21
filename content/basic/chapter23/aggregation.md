@@ -191,3 +191,9 @@ std::vector<std::reference_wrapper<const std::string>> names{ tom, berta };
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter23/composition/" next="/basic/chapter23/association/" >}}
+23.1 对象组合
+<--->
+23.3 关联
+{{< /prevnext >}}

@@ -686,11 +686,11 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter23/composition/<-> 23.1 对象组合
 <-->
-<->/basic/chapter23/aggregation/<-> 23.2 对象组合
+<->/basic/chapter23/aggregation/<-> 23.2 聚合
 <-->
-<->/basic/chapter23/association/<-> 23.3 对象组合
+<->/basic/chapter23/association/<-> 23.3 关联
 <-->
-<->/basic/chapter23/dependencies/<-> 23.4 对象组合
+<->/basic/chapter23/dependencies/<-> 23.4 依赖关系
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

@@ -61,3 +61,9 @@ int main()
 依赖项通常不是成员。相反，所依赖的对象通常根据需要实例化（如打开要向其写入数据的文件），或作为参数传递到函数中（如上面重载 operator<< 中的std::ostream）。
 
 ***
+
+{{< prevnext prev="/basic/chapter23/association/" next="/" >}}
+23.3 关联
+<--->
+主页
+{{< /prevnext >}}

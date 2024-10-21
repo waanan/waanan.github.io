@@ -256,8 +256,8 @@ Enter new X location for creature (-1 to quit): -1
 
 ***
 
-{{< prevnext prev="/basic/chapter23/object-relation/" next="/" >}}
+{{< prevnext prev="/basic/chapter23/object-relation/" next="/basic/chapter23/aggregation/" >}}
 23.0 对象关系
 <--->
-主页
+23.2 聚合
 {{< /prevnext >}}

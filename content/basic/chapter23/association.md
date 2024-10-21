@@ -287,3 +287,9 @@ int main()
 | 关系术语 | 一部分 | 有一个 | 使用一个 |
 
 ***
+
+{{< prevnext prev="/basic/chapter23/aggregation/" next="/basic/chapter23/dependencies/" >}}
+23.2 聚合
+<--->
+23.4 依赖关系
+{{< /prevnext >}}
