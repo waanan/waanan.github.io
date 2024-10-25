@@ -290,7 +290,7 @@ void something(int) // 编译失败，返回值类型不一致
 
 
 {{< alert success >}}
-**最佳时间**
+**最佳实践**
 
 避免#include .cpp文件。
 
