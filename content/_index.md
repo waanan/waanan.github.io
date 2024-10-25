@@ -692,7 +692,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter23/dependencies/<-> 23.4 依赖关系
 <-->
-<->/basic/chapter23/container-class/<-> 23.5 依赖关系
+<->/basic/chapter23/container-class/<-> 23.5 容器类
 {{< /chapterlist >}}
 
 {{< chapterlist>}}

@@ -571,3 +571,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter23/dependencies/" next="/" >}}
+23.4 依赖关系
+<--->
+主页
+{{< /prevnext >}}

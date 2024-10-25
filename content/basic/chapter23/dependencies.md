@@ -62,8 +62,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter23/association/" next="/" >}}
+{{< prevnext prev="/basic/chapter23/association/" next="/basic/chapter23/container-class/" >}}
 23.3 关联
 <--->
-主页
+23.5 容器类
 {{< /prevnext >}}
