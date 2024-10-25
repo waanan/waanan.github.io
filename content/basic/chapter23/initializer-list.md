@@ -286,24 +286,165 @@ std::vector<int> array{ 5 }; // 调用 std::vector::vector(std::initializer_list
 
 {{< /alert >}}
 
+***
+## 向现有类中添加列表构造函数是危险的
 
+因为列表初始化优先匹配列表构造函数，因此将列表构造函数添加现有类中可能会导致现有程序以静默方式更改行为。考虑以下程序：
 
-向现有类中添加列表构造函数是危险的
+```C++
+#include <initializer_list> // for std::initializer_list
+#include <iostream>
 
-因为列表初始化倾向于列表构造函数，因此将列表构造函数添加到以前没有的现有类中可能会导致现有程序以静默方式更改行为。考虑以下程序：
+class Foo
+{
+public:
+	Foo(int, int)
+	{
+		std::cout << "Foo(int, int)" << '\n';
+	}
+};
 
-#include<initializer_list>//for std:：initialize_list#incluse<iostream>class Foo{public:Foo（int，int）{std::cout<<“Foo（in，int）”<<'\n'；}}；int main（）{Foo f1{1，2}；//调用Foo（int，int）返回0；}这会打印：Foo（int，int）
+int main()
+{
+	Foo f1{ 1, 2 }; // 调用 Foo(int, int)
+
+	return 0;
+}
+```
+
+这会打印：
+
+```C++
+Foo(int, int)
+```
 
 现在，让我们向该类添加一个列表构造函数：
 
-#include<initializer_list>//for std:：initialize_list#incluse<iostream>class Foo{public:Foo（int，int）{std:∶cout<<“Foo（in，int）”<<'\n'；}//我们已经添加了一个列表构造器Foo（std:；int main（）{//注意，下面的语句没有更改Foo f1{1，2}；//现在调用Foo（std:：initializer_list<int>）返回0；}尽管我们没有对程序进行其他更改，但该程序现在打印：Foo（std:：initializer_list<int>）
+```C++
+#include <initializer_list> // for std::initializer_list
+#include <iostream>
 
-Warning将列表构造函数添加到没有列表构造函数的现有类中可能会破坏现有程序。
+class Foo
+{
+public:
+	Foo(int, int)
+	{
+		std::cout << "Foo(int, int)" << '\n';
+	}
+
+	// 添加一个列表构造函数
+	Foo(std::initializer_list<int>)
+	{
+		std::cout << "Foo(std::initializer_list<int>)" << '\n';
+	}
+
+};
+
+int main()
+{
+	// 注意下面的程序未改动
+	Foo f1{ 1, 2 }; // 现在调用 Foo(std::initializer_list<int>)
+
+	return 0;
+}
+```
 
 
-使用std:：initializer_list进行类赋值
+尽管我们没有对main函数进行其他更改，但该程序现在打印：
 
+```C++
+Foo(std::initializer_list<int>)
+```
 
-您还可以使用std::initialize_list通过重载赋值运算符来获取std::initializer _list参数，从而将新值分配给类。这与上面的工作类似。我们将在下面的测试解决方案中展示如何做到这一点的示例。请注意，如果实现采用std:：initializer_list的构造函数，则应确保至少执行以下操作之一：提供重载的列表赋值运算符提供适当的深度复制复制赋值运算符删除复制赋值操作符原因如下：考虑以下类（它没有任何这些内容），以及列表赋值语句：#include<algorithm>//for std::copy（）#incluse<cassert>//for assert；整数*m_data{}；public:IntArray（）=默认值；IntArray（int length）：m_length{length}，m_data{new int[static_cast<std:：size_t>（length数组（const IntArray&）=删除；//以避免浅层复制//IntArray&operator=（const IntArrary&list）=delete；//为了避免浅层复制，int&operator[]（int索引）{assert（index>=0&&index<m_length）；return m_data[index]；}int getLength（）const{return m_length；}}；int main（）{IntArray数组{}；数组={1,3,5,7,9,11}；//下面是（intcount{0}；count<array.getLength（）；的列表赋值语句++count）标准：：cout<<array[count]<<''；//未定义的行为返回0；}首先，编译器将注意到采用std:：initializer_list的赋值函数不存在。接下来，它将查找它可以使用的其他赋值函数，并发现隐式提供的复制赋值运算符。然而，此函数只能在它可以将初始值设定项列表转换为IntArray时使用。由于{1,3,5,7,9,11}是std:：initializer_list，编译器将使用列表构造函数将初始值设定项列表转换为临时IntArray。然后它将调用隐式赋值操作符，该操作符将临时IntArray浅层复制到数组对象中。此时，临时IntArray的m_data和array->m_data都指向相同的地址（由于浅拷贝）。你已经知道这是怎么回事了。在赋值语句的末尾，临时IntArray被销毁。它调用析构函数，该析构函数删除临时IntArray的m_data。这将使array->m_data成为悬空指针。当您尝试将array->m_data用于任何目的时（包括当数组超出范围并且析构函数删除m_data.），您将得到未定义的行为。最佳实践如果您提供列表构造，最好也提供列表分配。Summary实现接受std:：initializer_list参数的构造函数允许我们对自定义类使用列表初始化。我们还可以使用std:：initializer_list实现需要使用初始值设定项列表的其他函数，如赋值运算符。测验timeQuestion#1使用上面的IntArray类，实现接受初始值设定项列表的重载赋值运算符。应该运行以下代码：intmain（）{IntArray数组{5，4，3，2，1}；//（int count{0}；count<array.getLength（）；的初始值设定项列表++count）标准：：cout<<array[count]<<''；标准：：cout<<'\n'；数组={1,3,5,7,9,11}；for（整数计数{0}；计数<array.getLength（）++count）标准：：cout<<array[count]<<''；标准：：cout<<'\n'；返回0；}这应该会打印：5 4 3 2 1 1 3 5 7 9 11显示解决方案#include<algorithm>//对于std:：copy（）#incluse<cassert>//对于assert（）#include<initializer_list>//对于std:：initializer _list#incl包括<iostream>class IntArray{private:int m_length{}；整数*m_data{}；public:IntArray（）=默认值；IntArray（int length）：m_length{length}，m_data{new int[static_cast<std:：size_t>（length这里需要将m_data设置为null或将m_length设置为0，因为对象将在该函数之后立即销毁}IntArray（const IntArray&）=delete；//以避免浅层复制IntArray&operator=（const IntArrary&list）=delete；//为了避免浅层复制，IntArray&operator=（std:：initializer_list<int>list）{//如果新列表的大小不同，请将其重新分配为int length{static_cast<int>（list.size（））}；if（长度！=m_length）{delete[]m_data；m_lendth=length；m_data=new int[list.size（）]{}；}//现在从列表std:：copy（list.begin（），list.end（），m_data）初始化数组；返回*this；}int&operator[]（int索引）{assert（索引>=0&&索引<m_length）；返回m_data[index]；}int getLength（）const{return m_length；}}；int main（）{IntArray数组{5，4，3，2，1}；//（int count{0}；count<array.getLength（）；的初始值设定项列表++count）标准：：cout<<array[count]<<''；标准：：cout<<'\n'；数组={1,3,5,7,9,11}；for（整数计数{0}；计数<array.getLength（）++count）标准：：cout<<array[count]<<''；标准：：cout<<'\n'；返回0；}下一课23.x第23章总结和测验返回目录上一课23.6容器类
+将列表构造函数添加到没有列表构造函数的现有类中可能会破坏现有程序。
+
+***
+## 使用std::initializer_list进行类赋值
+
+您还可以通过重载赋值运算符，使用std::initializer_list参数将新值分配给类。这与上面的工作类似。下面进行演示。
+
+请注意，如果实现采用std::initializer_list的构造函数，则应确保至少执行以下操作之一：
+
+1. 提供重载的列表赋值运算符
+2. 提供适当的深拷贝语义的拷贝赋值运算符
+3. 删除拷贝赋值运算符
+
+原因如下：考虑以下类（它没有上面提到的三点逻辑），以及列表赋值语句：
+
+```C++
+#include <algorithm> // for std::copy()
+#include <cassert>   // for assert()
+#include <initializer_list> // for std::initializer_list
+#include <iostream>
+
+class IntArray
+{
+private:
+	int m_length{};
+	int* m_data{};
+
+public:
+	IntArray() = default;
+
+	IntArray(int length)
+		: m_length{ length }
+		, m_data{ new int[static_cast<std::size_t>(length)] {} }
+	{
+
+	}
+
+	IntArray(std::initializer_list<int> list) // 允许IntArray使用列表初始化
+		: IntArray(static_cast<int>(list.size())) // 使用代理构造函数进行初始化
+	{
+		// 现在从列表中初始化我们的数组
+		std::copy(list.begin(), list.end(), m_data);
+	}
+
+	~IntArray()
+	{
+		delete[] m_data;
+	}
+
+//	IntArray(const IntArray&) = delete; // 避免浅拷贝
+//	IntArray& operator=(const IntArray& list) = delete; // 避免浅拷贝
+
+	int& operator[](int index)
+	{
+		assert(index >= 0 && index < m_length);
+		return m_data[index];
+	}
+
+	int getLength() const { return m_length; }
+};
+
+int main()
+{
+	IntArray array{};
+	array = { 1, 3, 5, 7, 9, 11 }; // 列表赋值语句
+
+	for (int count{ 0 }; count < array.getLength(); ++count)
+		std::cout << array[count] << ' '; // 未定义的行为
+
+	return 0;
+}
+```
+
+首先，编译器将注意到采用std::initializer_list的赋值函数不存在。接下来，它将查找它可以使用的其他赋值函数，并发现隐式提供的拷贝赋值运算符。然而，此函数只能在它可以将初始值设定项列表转换为IntArray时使用。由于{1,3,5,7,9,11}是std::initializer_list，编译器将使用列表构造函数将初始值设定项列表转换为临时IntArray。然后它将调用隐式赋值操作符，该操作符将临时IntArray浅拷贝到数组对象中。
+
+此时，临时IntArray的m_data和array->m_data都指向相同的地址（由于浅拷贝）。
+
+在赋值语句的末尾，临时IntArray被销毁。它调用析构函数，该析构函数删除临时IntArray的m_data。这将使array->m_data成为悬空指针。当您尝试将array->m_data用于任何目的时（包括析构函数删除m_data），您将得到未定义的行为。
+
+{{< alert success >}}
+**最佳实践**
+
+如果提供了列表构造函数，最好也提供列表赋值函数。
+
+{{< /alert >}}
+
+***
+## 总结
+
+实现接受std::initializer_list参数的构造函数允许我们对自定义类使用列表初始化。还可以使用std::initializer_list实现需要使用初始值设定项列表的其他函数，如赋值运算符。
 
 ***
