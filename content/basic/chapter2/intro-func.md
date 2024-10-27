@@ -164,7 +164,7 @@ Ending main()
 
 int main()
 {
-    void foo() // 不合法，不允许再函数中定义函数
+    void foo() // 不合法，不允许在函数中定义函数
     {
         std::cout << "foo!\n";
     }
