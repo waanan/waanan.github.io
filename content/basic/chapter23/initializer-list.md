@@ -448,3 +448,9 @@ int main()
 实现接受std::initializer_list参数的构造函数允许我们对自定义类使用列表初始化。还可以使用std::initializer_list实现需要使用初始值设定项列表的其他函数，如赋值运算符。
 
 ***
+
+{{< prevnext prev="/basic/chapter23/container-class/" next="/basic/chapter23/summary/" >}}
+23.5 容器类
+<--->
+23.7 第23章总结
+{{< /prevnext >}}

@@ -572,8 +572,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter23/dependencies/" next="/" >}}
+{{< prevnext prev="/basic/chapter23/dependencies/" next="/basic/chapter23/initializer-list/" >}}
 23.4 依赖关系
 <--->
-主页
+23.6 std::initializer_list
 {{< /prevnext >}}

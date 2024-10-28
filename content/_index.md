@@ -694,9 +694,9 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter23/container-class/<-> 23.5 容器类
 <-->
-<->/basic/chapter23/initializer-list/<-> 23.6 容器类
+<->/basic/chapter23/initializer-list/<-> 23.6 std::initializer_list
 <-->
-<->/basic/chapter23/summary/<-> 23.7 容器类
+<->/basic/chapter23/summary/<-> 23.7 第23章总结
 {{< /chapterlist >}}
 
 {{< chapterlist>}}
