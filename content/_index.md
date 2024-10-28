@@ -704,7 +704,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十四章 继承
 <--->
-<->/basic/chapter24/inherit-intro/<-> 24.0 对象关系
+<->/basic/chapter24/inherit-intro/<-> 24.0 继承简介
 {{< /chapterlist >}}
 
 ***

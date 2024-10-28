@@ -50,8 +50,8 @@ std::initializer_list 被用来实现构造函数, 赋值运算符, 以及其它
 
 ***
 
-{{< prevnext prev="/basic/chapter23/initializer-list/" next="/" >}}
+{{< prevnext prev="/basic/chapter23/initializer-list/" next="/basic/chapter24/inherit-intro/" >}}
 23.6 std::initializer_list
 <--->
-主页
+24.0 继承简介
 {{< /prevnext >}}
