@@ -705,6 +705,8 @@ date: 2022-12-28T16:40:41+08:00
 第二十四章 继承
 <--->
 <->/basic/chapter24/inherit-intro/<-> 24.0 继承简介
+<-->
+<->/basic/chapter24/inherit-basic/<-> 24.1 继承简介
 {{< /chapterlist >}}
 
 ***
