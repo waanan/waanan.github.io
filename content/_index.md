@@ -699,25 +699,36 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter23/summary/<-> 23.7 第23章总结
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
 第二十四章 继承
 <--->
+<->/basic/chapter24/inherit-intro/<-> 24.0 对象关系
 {{< /chapterlist >}}
+
+***
 
 {{< chapterlist>}}
 第二十五章 虚函数
 <--->
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
 第二十六章 模板
 <--->
 {{< /chapterlist >}}
 
+***
+
 {{< chapterlist>}}
 第二十七章 异常
 <--->
 {{< /chapterlist >}}
+
+***
 
 {{< chapterlist>}}
 第二十八章 输入输出（I/O）
