@@ -37,8 +37,8 @@ date: 2024-10-08T17:45:57+08:00
 
 ***
 
-{{< prevnext prev="/basic/chapter23/summary/" next="/" >}}
+{{< prevnext prev="/basic/chapter23/summary/" next="/basic/chapter24/inherit-basic/" >}}
 23.7 第23章总结
 <--->
-主页
+24.1 基本继承
 {{< /prevnext >}}

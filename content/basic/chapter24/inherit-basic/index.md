@@ -293,3 +293,9 @@ public:
 继承允许我们通过让其他类继承其成员来重用类。在以后的课程中，我们将继续探索这是如何工作的。
 
 ***
+
+{{< prevnext prev="/basic/chapter24/inherit-intro/" next="/basic/chapter24/derived-class-cons-order/" >}}
+24.0 继承简介
+<--->
+24.2 派生类的构造顺序
+{{< /prevnext >}}
