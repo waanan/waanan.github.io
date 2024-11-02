@@ -709,6 +709,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter24/inherit-basic/<-> 24.1 基本继承
 <-->
 <->/basic/chapter24/derived-class-cons-order/<-> 24.2 派生类的构造顺序
+<-->
+<->/basic/chapter24/derived-class-cons-init/<-> 24.3 派生类的构造顺序
 {{< /chapterlist >}}
 
 ***
