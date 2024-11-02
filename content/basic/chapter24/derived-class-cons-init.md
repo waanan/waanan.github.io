@@ -163,30 +163,46 @@ int main()
 }
 ```
 
-基类构造函数base（int）用于将m_id初始化为5，派生类构造函数用于将m_cost初始化为1.3！
+基类构造函数 Base(int) 用于将m_id初始化为5，派生类构造函数用于将m_cost初始化为1.3！
 
 因此，程序将打印：
 
+```C++
+Id: 5
+Cost: 1.3
+```
+
 更详细地说，下面是发生的情况：
 
-这看起来有点复杂，但实际上非常简单。所发生的一切是，Derived构造函数正在调用特定的Base构造函数来初始化对象的Base部分。由于m_id位于对象的Base部分，因此Base构造函数是唯一可以初始化该值的构造函数。
+1. 分配derived的内存
+2. Derived(double, int) 构造函数被调用，cost = 1.3, id = 5.
+3. 编译器看到，这里调用基类的构造函数 Base(int)，id = 5
+4. 基类构造函数执行成员初始化列表，将 m_id 设置为 5
+5. 基类构造函数的函数体执行，这里为空，不发生任何事情
+6. 从基类构造函数返回
+7. 派生类构造函数执行成员初始化列表，将 m_cost 设置为 1.3
+8. 派生类构造函数的函数体执行，这里为空，不发生任何事情
+9. 派生类构造函数返回
 
-注意，在Derived构造函数成员初始值设定项列表中的何处调用Base构造函数并不重要——它总是首先执行。
+这看起来有点复杂，但实际上非常简单。所发生的一切是，Derived构造函数正在调用特定的Base构造函数来初始化对象的Base部分。由于m_id位于对象的Base部分，因此Base构造函数是唯一可以且应该初始化该值的构造函数。
 
-现在我们可以让我们的成员隐私
+注意，在Derived构造函数成员设定项列表中的何处调用Base构造函数并不重要——它总是首先执行。
 
-既然您知道了如何初始化基类成员，就没有必要将成员变量保持为公共的。我们再次将成员变量设置为私有的，这是应该的。
+***
+## 将成员变量设置为private
 
-作为一个快速刷新程序，任何人都可以访问公共成员。私有成员只能由同一类的成员函数访问。注意，这意味着派生类不能直接访问基类的私有成员！派生类将需要使用访问函数来访问基类的私有成员。
+我们已经知道了如何初始化基类成员，现在没有必要将成员变量保持为public的。我们再次将成员变量设置为private的，这是应该的。
 
-考虑：
+任何人都可以访问public成员。private成员只能由同一类的成员函数访问。注意，这意味着派生类不能直接访问基类的private成员！派生类将需要使用访问函数来访问基类的私有成员。
+
+参考以下示例：
 
 ```C++
 #include <iostream>
 
 class Base
 {
-private: // our member is now private
+private: // 成员现在设置为 private
     int m_id {};
  
 public:
@@ -200,12 +216,12 @@ public:
 
 class Derived: public Base
 {
-private: // our member is now private
+private: // 成员现在是 private
     double m_cost;
 
 public:
     Derived(double cost=0.0, int id=0)
-        : Base{ id } // Call Base(int) constructor with value id!
+        : Base{ id } // 使用 id 调用 Base(int) 构造函数
         , m_cost{ cost }
     {
     }
@@ -215,7 +231,7 @@ public:
 
 int main()
 {
-    Derived derived{ 1.3, 5 }; // use Derived(double, int) constructor
+    Derived derived{ 1.3, 5 }; // 使用 Derived(double, int) 构造函数
     std::cout << "Id: " << derived.getId() << '\n';
     std::cout << "Cost: " << derived.getCost() << '\n';
 
@@ -223,15 +239,21 @@ int main()
 }
 ```
 
-在上面的代码中，我们将m_id和m_cost设置为私有。这很好，因为我们使用相关的构造函数来初始化它们，并使用公共访问器来获取值。
+在上面的代码中，我们将m_id和m_cost设置为private。这很好，因为我们使用相关的构造函数来初始化它们，并使用public访问函数来获取值。
 
 按预期打印：
 
+```C++
+Id: 5
+Cost: 1.3
+```
+
 在下一课中，我们将详细讨论访问说明符。
 
-另一个例子
+***
+## 另一个例子
 
-让我们看一看我们以前使用过的另一对类：
+让我们看一看以前使用过的另一个类：
 
 ```C++
 #include <string>
@@ -252,7 +274,7 @@ public:
     int getAge() const { return m_age; }
 };
 
-// BaseballPlayer publicly inheriting Person
+// BaseballPlayer public 继承 Person
 class BaseballPlayer : public Person
 {
 public:
@@ -267,9 +289,9 @@ public:
 };
 ```
 
-正如我们之前所写的，BaseballPlayer仅初始化其自己的成员，而不指定要使用的Person构造函数。这意味着我们创建的每个棒球运动员都将使用默认的Person构造函数，该构造函数将名称初始化为空白，年龄初始化为0。因为在创建棒球运动员时为其指定名称和年龄是有意义的，所以我们应该修改此构造函数以添加这些参数。
+正如之前所写的，BaseballPlayer仅初始化其自己的成员，而不指定要使用的Person构造函数。这意味着我们创建的每个BaseballPlayer都将使用默认的Person构造函数，该构造函数将m_age初始化为空，m_age初始化为0。因为在创建棒球运动员时为其指定名称和年龄是有意义的，所以我们应该修改此构造函数以添加这些参数。
 
-下面是使用私有成员的更新类，其中BaseballPlayer类调用适当的Person构造函数来初始化继承的Person成员变量：
+下面是使用私有成员更新的类，其中BaseballPlayer类调用适当的Person构造函数来初始化继承的Person成员变量：
 
 ```C++
 #include <iostream>
@@ -292,7 +314,7 @@ public:
     int getAge() const { return m_age; }
 
 };
-// BaseballPlayer publicly inheriting Person
+// BaseballPlayer public 继承 Person
 class BaseballPlayer : public Person
 {
 private:
@@ -302,7 +324,7 @@ private:
 public:
     BaseballPlayer(std::string_view name = "", int age = 0,
         double battingAverage = 0.0, int homeRuns = 0)
-        : Person{ name, age } // call Person(std::string_view, int) to initialize these fields
+        : Person{ name, age } // 调用 Person(std::string_view, int) 来初始化对应的成员
         , m_battingAverage{ battingAverage }, m_homeRuns{ homeRuns }
     {
     }
@@ -312,7 +334,7 @@ public:
 };
 ```
 
-现在我们可以创建这样的棒球运动员：
+现在我们可以创建这样的BaseballPlayer：
 
 ```C++
 #include <iostream>
@@ -330,11 +352,19 @@ int main()
 }
 ```
 
-该输出：
+输出：
 
-正如您可以看到的，基类的名称和年龄已经正确初始化，派生类的本垒打次数和击球平均数也是如此。
+```C++
+Pedro Cerrano
+32
+0.342
+42
+```
 
-继承链
+正如您可以看到的，基类的名称和年龄已经正确初始化，派生类的m_battingAverage和m_homeRuns也是如此。
+
+***
+## 继承链
 
 继承链中的类的工作方式完全相同。
 
@@ -380,51 +410,35 @@ int main()
 
 在这个例子中，类C是从类B派生的，类B是从类A派生的。那么，当我们实例化类C的对象时会发生什么呢？
 
-首先，main（）调用C（int，double，char）。C构造函数调用B（int，double）。B构造函数调用A（int）。因为A不从任何人继承，这是我们要构造的第一个类。构造A，打印值5，并将控件返回给B.构造B，打印值4.3，并将控制返回给C.构造C，打印值“R”，然后将控制返回到main（）。我们完了！
+首先，main()调用C(int，double，char)。C构造函数调用B(int，double)。B构造函数调用A(int)。因为A不从任何人继承，这是我们要构造的第一个类。构造A，打印值5，并返回给B。构造B，打印值4.3，并将控制返回给C。构造C，打印值“R”，然后将控制返回到main()。就此结束！
 
 因此，该程序打印：
 
-值得一提的是，构造函数只能从其直接父类/基类调用构造函数。因此，C构造函数不能直接调用或传递参数给A构造函数。C构造函数只能调用B构造函数（它负责调用A构造函数）。
-
-析构函数
-
-当派生类被销毁时，每个析构函数都以与构造相反的顺序调用。在上面的例子中，当c被销毁时，首先调用c析构函数，然后调用B析构函数和A析构函数。
-
-总结
-
-构造派生类时，派生类构造函数负责确定调用哪个基类构造函数。如果未指定基类构造函数，则将使用默认基类构造函数。在这种情况下，如果找不到默认基类构造函数（或在默认情况下创建），编译器将显示错误。然后，按照从最基本到最派生的顺序构造类。
-
-此时，您已经足够了解C++继承，可以创建自己的继承类了！
-
-测验时间到了！
-
-应运行以下程序：
-
 ```C++
-#include <iostream>
-
-int main()
-{
-	const Apple a{ "Red delicious", "red", 4.2 };
-	std::cout << a << '\n';
-
-	const Banana b{ "Cavendish", "yellow" };
-	std::cout << b << '\n';
-
-	return 0;
-}
+A: 5
+B: 4.3
+C: R
 ```
 
-并打印以下内容：
+值得一提的是，构造函数只能调用其直接父类的构造函数。因此，C构造函数不能直接调用或传递参数给A构造函数。C构造函数只能调用B构造函数（B来负责调用A构造函数）。
 
-提示：因为a和b是常量，你需要注意你的常量。确保您的参数和函数是适当的常量。
+***
+## 析构函数
 
-显示解决方案
+当派生类被销毁时，每个析构函数都以与构造相反的顺序调用。在上面的例子中，当c被销毁时，首先调用c析构函数，然后调用B析构函数和A析构函数。
 
 {{< alert success >}}
 **警告**
 
-如果基类具有虚函数，则析构函数也应该是虚的，否则在某些情况下，未定义的行为将导致。我们在第25.4课中讨论了这个例子——虚拟析构函数、虚拟赋值和重写虚拟化。
+如果基类具有虚函数，则析构函数也应该是虚函数的，否则在某些情况下，将导致未定义的行为。
 
 {{< /alert >}}
 
+***
+## 总结
+
+构造派生类时，派生类构造函数负责确定调用哪个基类构造函数。如果未指定基类构造函数，则将使用默认的基类构造函数。在这种情况下，如果找不到默认基类构造函数，编译器将提示错误。然后，按照从最初的基类到最终的派生类执行构造。
+
+现在，您已经足够了解C++继承，可以创建自己的继承类了！
+
+***
