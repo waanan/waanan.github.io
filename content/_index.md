@@ -715,6 +715,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter24/inherit-access-spec/<-> 24.4 派生类的构造顺序
 <-->
 <->/basic/chapter24/add-new-func-to-derived-class/<-> 24.5 派生类的构造顺序
+<-->
+<->/basic/chapter24/call-inherit-func-and-overload/<-> 24.6 派生类的构造顺序
 {{< /chapterlist >}}
 
 ***
