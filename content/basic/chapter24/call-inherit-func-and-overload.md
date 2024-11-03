@@ -3,11 +3,11 @@ title: "调用继承的函数与重写行为"
 date: 2024-10-08T17:45:57+08:00
 ---
 
-默认情况下，派生类继承基类中定义的所有行为。在本课中，我们将更详细地检查如何选择成员函数，以及如何利用它来更改派生类中的行为。
+默认情况下，派生类继承基类中定义的所有行为。在本课中，我们将更详细地检查如何选择成员函数，以及如何来更改派生类中的行为。
 
-在派生类对象上调用成员函数时，编译器首先查看派生类中是否存在具有该名称的函数。如果是，则考虑具有该名称的所有重载函数，并使用函数重载解析过程来确定是否存在最佳匹配。如果不是，编译器将遍历继承链，以相同的方式依次检查每个父类。
+在派生类对象上调用成员函数时，编译器首先查看派生类中是否存在具有该名称的函数。如果是，则考虑具有该名称的所有重载函数，并使用函数重载解析过程来确定是否存在最佳匹配。如果不是，编译器将遍历继承链，以相同的方式依次检查每个层级中的父类。
 
-换句话说，编译器将从具有至少一个同名函数的最派生类中选择最佳匹配的函数。
+换句话说，编译器将选择最匹配的继承链最下层的函数。
 
 ***
 ## 调用基类函数
@@ -45,20 +45,25 @@ int main()
 
 这将打印：
 
-当调用base.identify（）时，编译器会查看名为identify（.）的函数是否已在类base中定义。它有，因此编译器会查看它是否匹配。是的，所以它被称为
+```C++
+Base::identify()
+Base::identify()
+```
 
-当调用derived.identify（）时，编译器会查看是否在derived类中定义了名为identify（.）的函数。它没有。因此它移动到父类（在本例中为Base），并在那里重试。Base定义了identify（）函数，因此它使用该函数。换句话说，使用Base:：identity（）是因为Derived:：identify（）不存在。
+当调用base.identify()时，编译器会查看名为identify()的函数是否已在类base中定义。有，因此编译器会查看它是否匹配。是的，所以它被调用。
 
-这意味着，如果基类提供的行为足够，我们可以简单地使用基类行为。
+当调用derived.identify()时，编译器会查看是否在derived类中定义了名为identify()的函数。没有。因此移动到父类（在本例中为Base），并在那里重新查找。Base定义了identify()函数，因此它使用该函数。换句话说，使用Base::identity()是因为Derived::identify()不存在。
+
+这意味着，如果基类提供的行为足够，可以简单地直接使用基类行为。
 
 ***
 ## 重新定义行为
 
-然而，如果我们在Derived类中定义了Derived:：identify（），则会改用它。
+然而，如果我们在Derived类中定义了Derived::identify（），则会改用它。
 
 这意味着，通过在派生类中重新定义函数，我们可以使函数以不同的方式与派生类一起工作！
 
-例如，假设我们希望derived.identify（）打印derived:：identify（。我们可以简单地在Derived类中添加函数identify（），以便在使用DerivedObject调用函数identity（）时返回正确的响应。
+例如，假设我们希望derived.identify()打印derived::identify（可以简单地在Derived类中添加函数identify()，以便在使用Derived对象调用函数identity()时返回正确的响应。
 
 要修改基类中定义的函数在派生类中的工作方式，只需在派生类内重新定义该函数。
 
@@ -95,7 +100,12 @@ int main()
 
 这将打印：
 
-请注意，在派生类中重新定义函数时，派生函数不会继承基类中同名函数的访问说明符。它使用在派生类中定义的任何访问说明符。因此，在基类中定义为私有的函数可以在派生类中重新定义为公共的，反之亦然！
+```C++
+Base::identify()
+Derived::identify()
+```
+
+请注意，在派生类中重新定义函数时，派生函数不会继承基类中同名函数的访问说明符。它使用在派生类中定义的新的访问说明符。因此，在基类中定义为私有的函数可以在派生类中重新定义为public的，反之亦然！
 
 ```C++
 #include <iostream>
@@ -122,17 +132,17 @@ public:
 int main()
 {
 	Derived derived {};
-	derived.print(); // calls derived::print(), which is public
+	derived.print(); // 调用 derived::print(), 它是 public
 	return 0;
 }
 ```
 
 ***
-## 添加到现有功能
+## 使用部分现有功能
 
-有时，我们不想完全替换基类函数，而是希望在用派生对象调用时向其添加额外的功能。在上面的示例中，请注意Derived:：identity（）完全隐藏Base:：identify（）！这可能不是我们想要的。可以让我们的派生函数调用同名函数的基本版本（为了重用代码），然后向其添加其他功能。
+有时，我们不想完全替换基类函数，而是希望在用派生对象调用时向其添加额外的功能。在上面的示例中，请注意Derived::identity()完全覆盖了Base::identify()！这可能不是我们想要的。可以让派生函数调用基类函数的版本（为了重用代码），然后添加其他功能。
 
-要让派生函数调用同名的基函数，只需执行普通函数调用，但在函数前面加上基类的范围限定符。例如：
+要让派生函数调用同名的基类函数，只需执行普通函数调用，但在函数前面加上基类的作用域限定符。例如：
 
 ```C++
 #include <iostream>
@@ -153,7 +163,7 @@ public:
     void identify() const
     {
         std::cout << "Derived::identify()\n";
-        Base::identify(); // note call to Base::identify() here
+        Base::identify(); // 注 这里调用 Base::identify()
     }
 };
 
@@ -171,9 +181,15 @@ int main()
 
 这将打印：
 
-当执行derived.identity（）时，它解析为derived:：identify（）。在打印Derived:：identify（）之后，它调用Base:：identity（），后者打印Base:：identify（。
+```C++
+Base::identify()
+Derived::identify()
+Base::identify()
+```
 
-这应该是相当简单的。为什么需要使用范围分辨率操作符（：：）？如果我们这样定义了Derived:：identify（）：
+当执行derived.identity()时，它解析为Derived::identify()。在打印“Derived::identify()”之后，调用Base::identity（），后者打印“Base::identify()”。
+
+这应该是相当简单的。为什么需要使用作用域限定符（::）？如果我们这样定义了Derived::identify()：
 
 ```C++
 #include <iostream>
@@ -194,7 +210,7 @@ public:
     void identify() const
     {
         std::cout << "Derived::identify()\n";
-        identify(); // no scope resolution results in self-call and infinite recursion
+        identify(); // 不使用作用域限定符，会调用Derived的identify()，会无限循环调用自身
     }
 };
 
