@@ -121,21 +121,203 @@ class Def: Base // 默认是 private 继承
 
 public继承是迄今为止最常用的继承类型。事实上，您很少会看到或使用其他类型的继承，因此您的主要关注点应该是理解这一部分。幸运的是，public继承也是最容易理解的。当public继承基类时，继承的public成员保持public，而继承的protected成员保持protected。继承的private成员保持不可访问，因为它们在基类中是私有的。
 
-|  属性 |  组合  |
+|  基类中的访问说明符 |  public继承时对应的派生类的访问说明符  |
 |  ----  | ----  |
-| 关系类型 | 部分-整体 |
-| 成员可以属于多个类 | 否 |
-| 成员生命周期由类管理 | 是 |
+| Public | Public |
+| Protected | Protected |
+| Private | 不可访问 |
 
-下面是一个演示如何工作的示例：
-类base{public:intm_public{}；受保护：int m_protected{}；私有：int m_private{}；}；类Pub:public Base//注意：public inheritation{//公共继承意味着：//公共继承成员保持公共（因此m_public被视为公共）//受保护的继承成员保持受保护（因此m_Protected被视为由受保护）//私有继承成员保持不可访问（因此m.Private不可访问）public:Pub（）{m_public=1；//okay:m_Publica被继承为public m_Protected=2；//oky:m_producted被继承为由受保护的m_Private=3；//not okay:m_Private无法从派生类}}访问；int main（）{//外部访问使用被访问类的访问说明符。Base Base；Base.m_public=1；//okay:m_public在Base.m_protected=2；//不正常：m_protective在Base.m_private=3中受保护；//不好：m_private在Base-Pub Pub Pub中是私有的；Pub.m_publica=1；//好：m_publica在Pub Pub.m_protected=2中是公共的；//不正确：m_Protectived在Pub Pub.m_private=3中
+下面是一个示例：
 
-受保护与上面的例子相同，我们引入了受保护的访问说明符，只是我们也实例化了派生类，只是为了说明使用公共继承，在基类和派生类中的工作是相同的。
+```C++
+class Base
+{
+public:
+    int m_public {};
+protected:
+    int m_protected {};
+private:
+    int m_private {};
+};
 
-公共继承是您应该使用的，除非您有特定的理由不这样做。
+class Pub: public Base // 注: public 继承
+{
+    // Public 继承意味着:
+    // 基类 Public 仍然保持 public (所以 m_public 是 public)
+    // 基类 Protected 继承来的成员保持 protected (所以 m_protected 是 protected)
+    // 基类 Private 继承来的成员 是不可访问的 (所以 m_private 不可访问)
+public:
+    Pub()
+    {
+        m_public = 1; // okay: m_public 是 public
+        m_protected = 2; // okay: m_protected 是 protected
+        m_private = 3; // 不 okay: 派生类中 m_private 不可访问
+    }
+};
 
-保护继承
+int main()
+{
+    // 类外部进行访问
+    Base base;
+    base.m_public = 1; // okay: m_public 在 Base 中是 public
+    base.m_protected = 2; // 不 okay: m_protected 在 Base 中是 protected
+    base.m_private = 3; // 不 okay: m_private 在 Base 中是 private 
 
-保护继承是最不常用的继承方法。它几乎从未使用过，除非在非常特殊的情况下。通过受保护的继承，公共成员和受保护成员将受到保护，私有成员将无法访问。由于这种形式的继承非常罕见，因此我们将跳过该示例，并仅用一个表进行总结：基类中的Access说明符继承时访问说明符protectedlyPublicProtectedProtectedPrivateInaccessiblePrivate继承通过私有继承，基类的所有成员都作为私有继承。这意味着私有成员不可访问，受保护成员和公共成员变为私有成员。请注意，这不会影响派生类访问从其父类继承的成员的方式！它只影响试图通过派生类访问这些成员的代码。class Base{public:int m_public{}；受保护：int m_protected{}；私有：int m_private{}；}；类Pri:private Base//注意：private inheritation{//私有继承意味着：//公共继承的成员变为私有（因此m_Public被视为私有）//受保护的继承成员变为专用（因此m_Protected被视为由私有）//私有继承的成员保持不可访问（因此m.private不可访问）Public:Pri（）{m_Public=1；//okay:m_publical现在在Pri m_Protected=2中是私有的；//okay:m_producted现在在Pri m_private=3中是专用的；//不正常：派生类不能访问基类}中的私有成员；int main（）{//外部访问使用被访问类的访问说明符。//在这种情况下，base.base base；base.m_public=1；//okay:m_public在base.m_protected=2；//不正常：m_protectived在base.m_private=3中受保护；//不好：m_private在base Pri中为私有；Pri.m_publica=1；//不行：m_public现在在Pri中是私有的。mprotected=2；//不oky:m_Protective现在在Pri.m_private=2中是专用的。//不好：m_private在Pri中不可访问返回0；}以表格形式总结：基类中的访问说明符继承privatelPublicPrivateProtectedPrivatePrivateInaccessiblePrivate时访问说明器当派生类与基类没有明显的关系，但在内部使用基类实现时，private继承可能很有用。在这种情况下，我们可能不希望基类的公共接口通过派生类的对象公开（就像我们公开继承的那样）。在实践中，很少使用私有继承。最后一个示例类Base{public:intm_public{}；受保护：int m_protected{}；私有：int m_private{}；}；Base可以无限制地访问其自己的成员。public只能访问m_public。派生类可以访问m_public和m_protected.class D2:private Base//注意：private inheritation{//私有继承意味着：//公共继承的成员成为私有的//受保护的继承的成员变成私有的//私有继承的成员保持不可访问的public:int m_public2{}；受保护：int m_protected2{}；私有：int m_private2{}；}；D2可以无限制地访问其自己的成员。D2可以访问Base的m_public和m_protected成员，但不能访问m_private。由于D2私有继承了Base，因此当通过D2访问时，m_public和m_protected现在被认为是私有的。这意味着当使用D2对象时，公共不能访问这些变量，也不能访问从D2派生的任何类。类D3:public D2{//公共继承意味着：//公共继承成员保持公共//受保护的继承成员保持受保护//私有继承成员保持不可访问public:int m_public3{}；受保护：int m_protected3{}；私有：int m_private3{}；}；D3可以无限制地访问自己的成员。D3可以访问D2的m_public2和m_protected2成员，但不能访问m_private2。由于D3公开继承了D2，因此当通过D3访问时，m_public2和m_protected2保留其访问说明符。D3无法访问Base的m_private，它在Base中已经是私有的。它也没有访问Base的m_protected或m_public的权限，当D2继承它们时，它们都成为私有的。摘要访问说明符、继承类型和派生类的交互方式导致了许多混淆。尽可能地尝试和澄清事情：首先，类（和朋友）总是可以访问其自己的非继承成员。访问说明符仅影响外部人员和派生类是否可以访问这些成员。其次，当派生类继承成员时，这些成员可以更改派生类中的访问说明符。这不会影响派生类自己的（非继承的）成员（它们有自己的访问说明符）。它仅影响外部人员和从派生类派生的类是否可以访问这些继承成员。下面是所有访问说明符和继承类型组合的表：基类中的访问说明词继承时为publiclyAccess说明符继承时为privatelAccess说明文继承时为protectedlyPublicPublicPrivateProtectedProtectedPrivateInaccessibleInaccessableInaccessableInaccess作为最后一点，尽管在上面的示例中，我们只显示了使用成员变量的示例，但这些访问规则对所有成员（例如，在类中声明的成员函数和类型）都有效。
+    Pub pub;
+    pub.m_public = 1; // okay: m_public 在 Pub 中是 public
+    pub.m_protected = 2; // 不 okay: m_protected 在 Pub 中是 protected
+    pub.m_private = 3; // 不 okay: m_private 在 Pub 中是不可访问的
+
+    return 0;
+}
+```
+
+除非有特定的理由，否则您应该使用public继承。
+
+***
+## protected继承
+
+protected继承是最不常用的继承方法。除非在非常特殊的情况下，它几乎从未被使用过。通过protected继承，pulbic成员和protected成员变为protected，private成员将无法访问。
+
+由于这种形式的继承非常罕见，因此我们将跳过该示例，并仅用一个表进行总结：
+
+|  基类中的访问说明符 |  protected继承时对应的派生类的访问说明符  |
+|  ----  | ----  |
+| Public | Protected |
+| Protected | Protected |
+| Private | 不可访问 |
+
+***
+## private继承
+
+通过private继承，基类的所有成员都作为private继承。这意味着私有成员不可访问，protected成员和public成员变为私有成员。
+
+```C++
+class Base
+{
+public:
+    int m_public {};
+protected:
+    int m_protected {};
+private:
+    int m_private {};
+};
+
+class Pri: private Base // 注: 私有继承
+{
+    // Private 继承意味着:
+    // 基类 Public 继承来的成员变为 private (所以 m_public 是 private)
+    // 基类 Protected 继承来的成员变为 private (所以 m_protected 是 private)
+    // 基类 Private 继承来的成员 是不可访问的 (所以 m_private 是不可访问)
+public:
+    Pri()
+    {
+        m_public = 1; // okay: m_public 在 Pri 中是private
+        m_protected = 2; // okay: m_protected 在 Pri 中是 private
+        m_private = 3; // 不 okay: 派生类不能访问基类的私有成员
+    }
+};
+
+int main()
+{
+    // 在类外部进行访问
+    Base base;
+    base.m_public = 1; // okay: m_public 在 Base 中是 public
+    base.m_protected = 2; // 不 okay: m_protected 在 Base 中是 protected
+    base.m_private = 3; // 不 okay: m_private 在 Base 中是 private
+
+    Pri pri;
+    pri.m_public = 1; // 不 okay: m_public 在 Pri 中是 private
+    pri.m_protected = 2; // 不 okay: m_protected 在 Pri 中是 private
+    pri.m_private = 3; // 不 okay: m_private 在 Pri 中是不可访问的
+
+    return 0;
+}
+```
+
+以表格形式总结：
+
+|  基类中的访问说明符 |  private继承时对应的派生类的访问说明符  |
+|  ----  | ----  |
+| Public | Private |
+| Protected | Private |
+| Private | 不可访问 |
+
+
+当派生类与基类没有明显的关系，但在内部使用基类实现时，private继承可能很有用。在这种情况下，我们可能不希望基类的public接口通过派生类的对象公开。
+
+在实践中，很少使用private继承。
+
+***
+## 最后一个示例
+
+```C++
+class Base
+{
+public:
+	int m_public {};
+protected:
+	int m_protected {};
+private:
+	int m_private {};
+};
+```
+
+Base可以无限制地访问其自己的成员。在外部只能访问m_public。派生类可以访问m_public和m_protected。
+
+```C++
+class D2 : private Base // 注: private 继承
+{
+	// private 继承意味着:
+    // 基类 Public 继承来的成员变为 private
+    // 基类 Protected 继承来的成员变为 private
+    // 基类 Private 继承来的成员 是不可访问的
+public:
+	int m_public2 {};
+protected:
+	int m_protected2 {};
+private:
+	int m_private2 {};
+};
+```
+
+D2可以无限制地访问其自己的成员。D2可以访问Base的m_public和m_protected成员，但不能访问m_private。由于D2私有继承了Base，因此当通过D2访问时，m_public和m_protected现在被认为是私有的。这意味着当使用D2对象时，外部不能访问这些变量。
+
+```C++
+class D3 : public D2
+{
+    // Public 继承意味着:
+    // 基类 Public 仍然保持 public
+    // 基类 Protected 继承来的成员保持 protected
+    // 基类 Private 继承来的成员 是不可访问的
+public:
+	int m_public3 {};
+protected:
+	int m_protected3 {};
+private:
+	int m_private3 {};
+};
+```
+
+D3可以无限制地访问自己的成员。D3可以访问D2的m_public2和m_protected2成员，但不能访问m_private2。由于D3 public继承了D2，因此当通过D3访问时，m_public2和m_protected2保留其访问说明符。D3无法访问Base的m_private，它在Base中已经是私有的。它也无法访问Base的m_protected或m_public的权限，当D2继承它们时，它们都成为私有的。
+
+***
+## 总结
+
+访问说明符、继承类型和派生类的交互方式导致了许多混淆。这里尽可能地尝试和澄清事情：
+
+首先，类（和友元）总是可以访问其自己的非继承来的成员。访问说明符仅影响外部和派生类是否可以访问这些成员。
+
+其次，当派生类继承成员时，对应的访问说明符可以在派生类中被更改。这不会影响派生类自己的（非继承的）成员（它们有自己的访问说明符）。它仅影响从外部和从派生类是否可以访问这些继承来的成员。
+
+下面是所有访问说明符和继承类型组合的表：
+
+|  基类中的访问说明符 |  public继承时对应的派生类的访问说明符  |  private继承时对应的派生类的访问说明符  |  protected继承时对应的派生类的访问说明符  |
+|  ----  | ----  | ----  | ----  |
+| Public | Public | Private | Protected |
+| Protected | Protected | Private | Protected |
+| Private | 不可访问 | 不可访问 | 不可访问 |
+
+作为最后一点，尽管在上面的示例中，我们只显示了使用成员变量的示例，但这些访问规则对所有成员（例如，在类中声明的成员函数和类型）都有效。
 
 ***
