@@ -99,3 +99,9 @@ int main()
 这是因为Base中没有getValue()函数。函数getValue()属于Derived。因为Derived是Base，所以Derived可以访问Base中的内容。然而，Base无权访问Derived中的任何内容。
 
 ***
+
+{{< prevnext prev="/basic/chapter24/inherit-access-spec/" next="/basic/chapter24/call-inherit-func-and-overload/" >}}
+24.4 继承和访问说明符
+<--->
+24.6 调用继承的函数与重写行为
+{{< /prevnext >}}

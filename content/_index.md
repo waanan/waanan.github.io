@@ -710,13 +710,13 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter24/derived-class-cons-order/<-> 24.2 派生类的构造顺序
 <-->
-<->/basic/chapter24/derived-class-cons-init/<-> 24.3 派生类的构造顺序
+<->/basic/chapter24/derived-class-cons-init/<-> 24.3 派生类的构造函数与初始化
 <-->
-<->/basic/chapter24/inherit-access-spec/<-> 24.4 派生类的构造顺序
+<->/basic/chapter24/inherit-access-spec/<-> 24.4 继承和访问说明符
 <-->
-<->/basic/chapter24/add-new-func-to-derived-class/<-> 24.5 派生类的构造顺序
+<->/basic/chapter24/add-new-func-to-derived-class/<-> 24.5 向派生类添加新功能
 <-->
-<->/basic/chapter24/call-inherit-func-and-overload/<-> 24.6 派生类的构造顺序
+<->/basic/chapter24/call-inherit-func-and-overload/<-> 24.6 调用继承的函数与重写行为
 {{< /chapterlist >}}
 
 ***

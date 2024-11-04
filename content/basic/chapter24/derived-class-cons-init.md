@@ -442,3 +442,9 @@ C: R
 现在，您已经足够了解C++继承，可以创建自己的继承类了！
 
 ***
+
+{{< prevnext prev="/basic/chapter24/derived-class-cons-order/" next="/basic/chapter24/inherit-access-spec/" >}}
+24.2 派生类的构造顺序
+<--->
+24.4 继承和访问说明符
+{{< /prevnext >}}

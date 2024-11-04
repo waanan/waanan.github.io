@@ -321,3 +321,9 @@ D3可以无限制地访问自己的成员。D3可以访问D2的m_public2和m_pro
 作为最后一点，尽管在上面的示例中，我们只显示了使用成员变量的示例，但这些访问规则对所有成员（例如，在类中声明的成员函数和类型）都有效。
 
 ***
+
+{{< prevnext prev="/basic/chapter24/derived-class-cons-init/" next="/basic/chapter24/add-new-func-to-derived-class/" >}}
+24.3 派生类的构造函数与初始化
+<--->
+24.5 向派生类添加新功能
+{{< /prevnext >}}

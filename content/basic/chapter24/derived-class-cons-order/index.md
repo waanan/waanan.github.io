@@ -220,8 +220,8 @@ C++分阶段构造派生类，从最基本的类开始（位于继承树顶部�
 
 ***
 
-{{< prevnext prev="/basic/chapter24/inherit-basic/" next="/" >}}
+{{< prevnext prev="/basic/chapter24/inherit-basic/" next="/basic/chapter24/derived-class-cons-init/" >}}
 24.1 基本继承
 <--->
-主页
+24.3 派生类的构造函数与初始化
 {{< /prevnext >}}

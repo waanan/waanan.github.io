@@ -408,3 +408,9 @@ int main()
 通过放置using声明Base::print；在Derived中，我们告诉编译器，所有名为print的基类函数都应该在Derived中可见，这将导致它们符合重载解析的条件。因此，Base::print(int) 被选中，而不是 Derived::print(double)。
 
 ***
+
+{{< prevnext prev="/basic/chapter24/add-new-func-to-derived-class/" next="/" >}}
+24.5 向派生类添加新功能
+<--->
+主页
+{{< /prevnext >}}
