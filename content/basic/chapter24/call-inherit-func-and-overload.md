@@ -12,7 +12,7 @@ date: 2024-10-08T17:45:57+08:00
 ***
 ## 调用基类函数
 
-首先，让我们研究当派生类没有匹配函数，但基类有匹配函数时会发生什么：
+首先，让我们研究当派生类没有匹配函数，但基类有匹配函数时会发生什么:
 
 ```C++
 #include <iostream>
@@ -43,7 +43,7 @@ int main()
 }
 ```
 
-这将打印：
+这将打印:
 
 ```C++
 Base::identify()
@@ -98,7 +98,7 @@ int main()
 }
 ```
 
-这将打印：
+这将打印:
 
 ```C++
 Base::identify()
@@ -142,7 +142,7 @@ int main()
 
 有时，我们不想完全替换基类函数，而是希望在用派生对象调用时向其添加额外的功能。在上面的示例中，请注意Derived::identity()完全覆盖了Base::identify()！这可能不是我们想要的。可以让派生函数调用基类函数的版本（为了重用代码），然后添加其他功能。
 
-要让派生函数调用同名的基类函数，只需执行普通函数调用，但在函数前面加上基类的作用域限定符。例如：
+要让派生函数调用同名的基类函数，只需执行普通函数调用，但在函数前面加上基类的作用域限定符。例如:
 
 ```C++
 #include <iostream>
@@ -179,7 +179,7 @@ int main()
 }
 ```
 
-这将打印：
+这将打印:
 
 ```C++
 Base::identify()
@@ -189,7 +189,7 @@ Base::identify()
 
 当执行derived.identity()时，它解析为Derived::identify()。在打印“Derived::identify()”之后，调用Base::identity（），后者打印“Base::identify()”。
 
-这应该是相当简单的。为什么需要使用作用域限定符（::）？如果我们这样定义了Derived::identify()：
+这应该是相当简单的。为什么需要使用作用域限定符（::）？如果我们这样定义了Derived::identify():
 
 ```C++
 #include <iostream>
@@ -226,11 +226,11 @@ int main()
 }
 ```
 
-在没有范围解析限定符的情况下调用函数identity（）将默认为当前类中的identify（），它将是Derived:：identify（）。这将导致Derived:：identify（）调用自身，这将导致无限递归！
+在没有范围解析限定符的情况下调用函数identity（）将默认为当前类中的identify（），它将是Derived::identify（）。这将导致Derived::identify（）调用自身，这将导致无限递归！
 
-在试图调用基类中的友元函数（如操作符<<）时，可能会遇到一点小技巧。由于基类的友元函数实际上不是基类的一部分，因此使用范围解析限定符将不起作用。相反，我们需要一种方法，使Derived类暂时看起来像基类，以便可以调用函数的正确版本。
+在试图调用基类的友元函数（如 操作符<<）时，可能会需要一点小技巧。由于基类的友元函数实际上不是基类的一部分，因此使用域解析限定符将不起作用。相反，需要一种方法，使Derived类暂时看起来像基类，以便可以调用函数的正确版本。
 
-幸运的是，使用static_cast很容易做到这一点。下面是一个示例：
+幸运的是，使用static_cast很容易做到这一点。下面是一个示例:
 
 ```C++
 #include <iostream>
@@ -255,7 +255,7 @@ public:
  	friend std::ostream& operator<< (std::ostream& out, const Derived& d)
 	{
 		out << "In Derived\n";
-		// static_cast Derived to a Base object, so we call the right version of operator<<
+		// static_cast 将 Derived 转换为 Base 对象, 所以可以调用正确的 operator<< 版本
 		out << static_cast<const Base&>(d); 
 		return out;
     }
@@ -271,16 +271,21 @@ int main()
 }
 ```
 
-因为Derived是Base，所以我们可以将Deriveed对象static_cast到Base引用中，以便调用使用Base的适当版本的运算符<<。
+因为Derived是一个Base，所以我们可以将Derived对象static_cast为Base的引用，以便调用使用Base的适当版本的 operator<<。
 
-这将打印：
+这将打印:
+
+```C++
+In Derived
+In Base
+```
 
 ***
 ## 派生类中的重载解析
 
-如课程顶部所述，编译器将从具有至少一个同名函数的最派生类中选择最佳匹配函数。
+如课程顶部所述，编译器将选择最匹配的继承链最下层的函数。
 
-首先，让我们看一个简单的例子，其中我们有重载的成员函数：
+首先，让我们看一个简单的例子，其中有重载的成员函数:
 
 ```C++
 #include <iostream>
@@ -301,15 +306,15 @@ public:
 int main()
 {
     Derived d{};
-    d.print(5); // calls Base::print(int)
+    d.print(5); // 调用 Base::print(int)
 
     return 0;
 }
 ```
 
-对于调用d.print（5），编译器在Derived中找不到名为print（）的函数，因此它检查Base，其中找到两个同名函数。它使用函数重载解析过程来确定Base:：print（int）比Base:：print（double）更好的匹配。因此，Base:：print（int）被调用，就像我们预期的那样。
+对于调用d.print(5)，编译器在Derived中找不到名为print()的函数，因此它检查Base，其中找到两个同名函数。它使用函数重载解析过程来确定Base::print(int)比Base::print(double)更好的匹配。因此，Base::print(int)被调用，就像我们预期的那样。
 
-现在，让我们来看一个行为不像我们预期的情况：
+现在，让我们来看一个行为不像我们预期的情况:
 
 ```C++
 #include <iostream>
@@ -324,24 +329,24 @@ public:
 class Derived: public Base
 {
 public:
-    void print(double) { std::cout << "Derived::print(double)"; } // this function added
+    void print(double) { std::cout << "Derived::print(double)"; } // 新增的函数
 };
 
 
 int main()
 {
     Derived d{};
-    d.print(5); // calls Derived::print(double), not Base::print(int)
+    d.print(5); // 调用 Derived::print(double), 而不是 Base::print(int)
 
     return 0;
 }
 ```
 
-对于调用d.print（5），编译器在Derived中找到一个名为print（）的函数，因此在尝试确定要解析到的函数时，它将仅考虑Deriveed中的函数。对于此函数调用，此函数也是Derived.中的最佳匹配函数。因此，这将调用Derived:：print（double）。
+对于调用d.print(5)，编译器在Derived中找到一个名为print()的函数，因此在尝试确定要解析到的函数时，它将先仅考虑Deriveed中的函数。对于此函数调用，也是Derived中的最佳匹配函数。因此，这将调用Derived::print(double)。
 
-由于Base:：print（int）的一个参数与int参数5的匹配程度高于Derived:：print（double），因此您可能期望此函数调用解析为Base:：print。但由于d是Derived，因此Deriveed中至少有一个print（）函数，并且Derived比Base派生得多，因此甚至不考虑Base中的函数。
+由于Base::print(int)的一个参数与int参数5的匹配程度高于Derived::print(double) ，因此您可能期望此函数调用解析为Base::print。但由于d是Derived，Deriveed中至少有一个print()函数，并且Derived在Base的继承链的更下层，因此甚至不考虑Base中的函数。
 
-那么，如果我们确实希望d.print（5）解析为Base:：print（int），该怎么办？一种不太好的方法是定义Derived:：print（int）：
+那么，如果我们确实希望d.print(5)解析为Base::print(int)，该怎么办？一种不太好的方法是定义Derived::print(int):
 
 ```C++
 #include <iostream>
@@ -356,22 +361,22 @@ public:
 class Derived: public Base
 {
 public:
-    void print(int n) { Base::print(n); } // works but not great, as we have to define 
+    void print(int n) { Base::print(n); } // 可以，但不是最优方式
     void print(double) { std::cout << "Derived::print(double)"; }
 };
 
 int main()
 {
     Derived d{};
-    d.print(5); // calls Derived::print(int), which calls Base::print(int)
+    d.print(5); // 调用 Derived::print(int), 其中调用 Base::print(int)
 
     return 0;
 }
 ```
 
-虽然这是可行的，但并不太好，因为我们必须为希望落入Base的每个重载添加一个函数到Derived。这可能是许多额外的函数，本质上只是将调用路由到Base。
+虽然这是可行的，但并不太好，因为我们必须为希望落入Base的每个函数重载添加一个函数到Derived。这可能是许多额外的函数，本质上只是将调用路由到Base。
 
-更好的选择是在Derived:
+更好的选择是在Derived声明需要使用的Base函数:
 
 ```C++
 #include <iostream>
@@ -386,7 +391,7 @@ public:
 class Derived: public Base
 {
 public:
-    using Base::print; // make all Base::print() functions eligible for overload resolution
+    using Base::print; // 让 Base::print() 函数可以在Derived被重载解析
     void print(double) { std::cout << "Derived::print(double)"; }
 };
 
@@ -394,11 +399,12 @@ public:
 int main()
 {
     Derived d{};
-    d.print(5); // calls Base::print(int), which is the best matching function visible in Derived
+    d.print(5); // 调用 Base::print(int), 这是 Derived 中可以看到的最优匹配
 
     return 0;
 }
 ```
 
-通过使用Base:：print放置using声明；在Derived中，我们告诉编译器，所有名为print的基函数都应该在Derive中可见，这将导致它们符合重载解析的条件。因此，Base:：print（int）被选中，而不是Derived:：print（double）。
+通过放置using声明Base::print；在Derived中，我们告诉编译器，所有名为print的基类函数都应该在Derived中可见，这将导致它们符合重载解析的条件。因此，Base::print(int) 被选中，而不是 Derived::print(double)。
 
+***
