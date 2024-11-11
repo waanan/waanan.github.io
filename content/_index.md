@@ -719,6 +719,10 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter24/call-inherit-func-and-overload/<-> 24.6 调用继承的函数与重写行为
 <-->
 <->/basic/chapter24/hide-inherit-func/<-> 24.7 调用继承的函数与重写行为
+<-->
+<->/basic/chapter24/multiple-inherit/<-> 24.8 调用继承的函数与重写行为
+<-->
+<->/basic/chapter24/summary/<-> 24.9 调用继承的函数与重写行为
 {{< /chapterlist >}}
 
 ***
