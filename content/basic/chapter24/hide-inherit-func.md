@@ -3,21 +3,54 @@ title: "隐藏继承的功能"
 date: 2024-10-08T17:45:57+08:00
 ---
 
-更改继承成员的访问级别
+## 更改继承来成员的访问级别
 
-C++使我们能够更改派生类中继承成员的存取说明符。这是通过使用using声明来标识在新的访问说明符下的派生类中其访问被更改的（作用域）基类成员来完成的。
+可以更改派生类中继承来成员的访问说明符。在派生类的对应的访问说明符下，使用「using」来声明基类的对应成员即可。
 
-例如，考虑以下
+考虑以下程序：
 
-Base:#include<iostream>ClassBase{private:intm_value{}；public:Base（int值）：m_value{value}{}protected:void printValue（）const{std:：cout<<m_value；}}；
+```C++
+#include <iostream>
 
-由于Base:：printValue（）已声明为受保护，因此只能由Base或其派生类调用它。公共无法访问它。
+class Base
+{
+private:
+    int m_value {};
 
-让我们定义一个Derived类，该类将printValue（）的访问说明符更改为public:
+public:
+    Base(int value)
+        : m_value { value }
+    {
+    }
 
-class Derived:public Base{public:Deriveed（int value）:Base{value}{}//Base:：printValue被继承为受保护的，因此公共没有访问权限//但我们正在使用Base:：printValue；//通过using声明将其更改为public注：此处没有括号}；
+protected:
+    void printValue() const { std::cout << m_value; }
+};
+```
 
-这意味着该代码现在可以工作了：
+由于Base::printValue()已声明为protected，因此只能由Base或其派生类调用它。外部无法访问它。
+
+让我们定义一个Derived类，该类将printValue()的访问说明符更改为public:
+
+```C++
+class Derived: public Base
+{
+public:
+    Derived(int value)
+        : Base { value }
+    {
+    }
+
+    // Base::printValue 继承而来是 protected, 所以外部无法调用该函数
+    // 通过使用using，我们将其修改为 public
+    using Base::printValue; // 注: 这里没有括号
+};
+```
+
+
+这意味着下面的代码现在可以工作了：
+
+
 
 intmain（）{Derived-Derived{7}；//printValue在Derived中是公共的，因此这是正常的Derived.printValue（）；//打印7返回0；}
 
