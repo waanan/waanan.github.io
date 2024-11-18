@@ -50,42 +50,192 @@ public:
 
 这意味着下面的代码现在可以工作了：
 
+```C++
+int main()
+{
+    Derived derived { 7 };
 
+    // 在Derived中 printValue 是 public，所以下面写法ok
+    derived.printValue(); // 打印 7
+    return 0;
+}
+```
 
-intmain（）{Derived-Derived{7}；//printValue在Derived中是公共的，因此这是正常的Derived.printValue（）；//打印7返回0；}
+只能更改派生类能够访问到的基类成员的访问说明符。因此，如果基类成员的访问说明符是private，则派生类不能将其改为protected或public，因为派生类不能访问基类的私有成员。
 
-您只能更改派生类通常能够访问的基成员的访问说明符。因此，您永远不能将基成员的访问说明符从private更改为protected或public，因为派生类不能访问基类的私有成员。
-
-隐藏功能
+***
+## 隐藏功能
 
 在C++中，除了修改源代码外，无法从基类中删除或限制功能。然而，在派生类中，可以隐藏基类中存在的功能，以便不能通过派生类访问它。这可以通过简单地更改相关的访问说明符来完成。
 
-例如，我们可以将公共成员设置为私有：
+例如，我们可以将public成员设置为private：
 
-#include<iostream>ClassBase{public:intm_value{}；}；派生类：public Base{private:使用Base:：m_value；public:Derived（int value）：Base{value}{}}；int main（）{派生派生{7}；标准：：cout<<派生.m_value；//错误：m_value在派生基&Base{Derived}中是私有的；标准：：cout<<base.m_value；//好：m_value在Base中是public，返回0；}
+```C++
+#include <iostream>
 
-这允许我们采用一个设计糟糕的基类，并将其数据封装在派生类中。或者，我们可以私下继承Base，而不是公开继承Base的成员，并通过重写其访问说明符使m_value私有，这将导致Base的所有成员首先被私下继承。
+class Base
+{
+public:
+	int m_value{};
+};
 
-然而，值得注意的是，虽然m_value在Derived类中是私有的，但它在基类中仍然是公共的。因此，通过强制转换为Base&并直接访问成员，仍然可以破坏Derived中m_value的封装。
+class Derived : public Base
+{
+private:
+	using Base::m_value;
 
-对于高级读取器
+public:
+	Derived(int value) : Base { value }
+	{
+	}
+};
 
-出于相同的原因，如果基类具有公共虚拟函数，而派生类将访问说明符更改为私有，则公共仍然可以通过将派生对象强制转换为Base&并调用虚拟函数来访问私有派生函数。编译器将允许这样做，因为该函数在Base中是公共的。然而，由于对象实际上是派生的，因此虚拟函数解析将解析（并调用）函数的（私有）派生版本。在运行时不强制执行访问控制
+int main()
+{
+	Derived derived{ 7 };
+	std::cout << derived.m_value; // 错误: m_value 在 Derived 中是 private
 
-#include<iostream>class A{public:virtual void fun（）{std:：cout<<“public A:：fun（）\n”；}}；类B:public A{private:virtual void fun（）{std:：cout<<“private B:：fun（）\n”；}}；整数main（）{B B{}；b.函数（）；//编译错误：不允许，因为B:：fun（）是私有static_cast<A&>（B）.fun（；//好：A:：fun（）是公共的，在运行时解析为私有B:：fun（）返回0；}
+	Base& base{ derived };
+	std::cout << base.m_value; // okay: m_value 在 Base 中是 public
+
+	return 0;
+}
+```
+
+这允许我们使用一个设计糟糕的基类，并将其封装在派生类中。可以public继承Base的成员，然后修改其访问说明符。又或者，可以private继承Base，这将导致Base的所有成员首先被private继承。
+
+然而，值得注意的是，虽然m_value在Derived类中是私有的，但它在基类中仍然是public的。因此，通过强制转换为Base&并直接访问成员，仍然可以破坏Derived中m_value的封装。
+
+出于相同的原因，如果基类具有public virtual函数，而派生类将访问说明符更改为private，则外部仍然可以通过将派生对象强制转换为Base&并调用虚函数来访问private的派生函数。编译器允许这样做，因为该函数在Base中是公共的。然而，由于对象实际上是派生的，因此虚函数解析将解析（并调用）函数的（私有）派生版本。在运行时不强制执行访问控制。
+
+```C++
+#include <iostream>
+
+class A
+{
+public:
+    virtual void fun()
+    {
+        std::cout << "public A::fun()\n";
+    }
+};
+
+class B : public A
+{
+private:
+    virtual void fun()
+    {
+         std::cout << "private B::fun()\n";
+   }
+};
+
+int main()
+{
+    B b {};
+    b.fun();                  // 编译失败: B::fun() 是 private
+    static_cast<A&>(b).fun(); // okay: A::fun() 是 public, 但在运行时会解析为 private B::fun()
+
+    return 0;
+}
+```
 
 也许令人惊讶的是，给定基类中的一组重载函数，没有办法更改单个重载的访问说明符。只能全部更改：
 
-#include<iostream>ClassBase{public:intm_value{}；int getValue（）const{return m_value；}int getValue（int）const}返回m_value；}}；派生类：public Base{private:using Base:：getValue；//使所有getValue函数私有public:Derived（int value）：Base{value}{}}；int main（）{派生派生{7}；标准：：cout<<derived.getValue（）；//错误：getValue（）在Derived std:：cout<<Derived.getValue（5）；//中是私有的错误：getValue（int）在派生返回0中是私有的；}
+```C++
+#include <iostream>
 
-删除派生类中的函数
+class Base
+{
+public:
+    int m_value{};
 
-您还可以将成员函数标记为派生类中已删除的函数，这确保它们根本不能通过派生对象调用：
+    int getValue() const { return m_value; }
+    int getValue(int) const { return m_value; }
+};
 
-#include<iostream>class Base{private:int m_value{}；public:Base（int value）：m_value{value}{}int getValue（）const{return m_value；}}；派生类：public Base{public:Derived（int value）：Base{value}{}int getValue（）const=delete；//将该函数标记为不可访问}；int main（）{派生派生{7}；//以下操作将不起作用，因为getValue（）已被删除！标准：：cout<<derived.getValue（）；返回0；}
+class Derived : public Base
+{
+private:
+	using Base::getValue; // 让所有的 getValue 函数变为 private
 
-在上面的示例中，我们将getValue（）函数标记为删除。这意味着当我们试图调用函数的派生版本时，编译器将发出抱怨。请注意，getValue（）的基本版本仍然可以访问。我们可以用两种方法之一调用Base:：
+public:
+	Derived(int value) : Base { value }
+	{
+	}
+};
 
-getValue（）：intmain（）{Derive-Derived{7}；//我们可以直接调用Base:：getValue（）函数std:：cout<<derived。基数：：getValue（）；//或者我们可以将Derived向上转换为Base引用，getValue（）将解析为Base:：getValue；返回0；}
+int main()
+{
+	Derived derived{ 7 };
+	std::cout << derived.getValue();  // 错误: getValue() 在 Derived 中是 private
+	std::cout << derived.getValue(5); // 错误: getValue(int) 在 Derived 中是 private
 
-如果使用转换方法，则将转换为Base&而不是Base，以避免复制派生的Base部分。
+	return 0;
+}
+```
+
+***
+## 删除派生类中的函数
+
+您还可以将派生类中成员函数标记为删除，这确保它们不能通过派生对象调用：
+
+```C++
+#include <iostream>
+class Base
+{
+private:
+	int m_value {};
+
+public:
+	Base(int value)
+		: m_value { value }
+	{
+	}
+
+	int getValue() const { return m_value; }
+};
+
+class Derived : public Base
+{
+public:
+	Derived(int value)
+		: Base { value }
+	{
+	}
+
+
+	int getValue() const = delete; // 将这个函数标记为外部不可访问
+};
+
+int main()
+{
+	Derived derived { 7 };
+
+	// 因为 getValue() 被删除了，所以下面这一行不会编译通过!
+	std::cout << derived.getValue();
+
+	return 0;
+}
+```
+
+在上面的示例中，我们将getValue()函数标记为删除。这意味着当我们试图调用函数的派生类版本时，编译器将报错。请注意，getValue()的基类版本仍然可以访问。我们可以用下面两种方法之一调用Base:：
+
+
+```C++
+int main()
+{
+	Derived derived { 7 };
+
+	// 可以通过 Base::getValue() 函数直接访问
+	std::cout << derived.Base::getValue();
+
+	// 可以将 Derived 转换为 Base 引用， 那么 getValue() 会被解析为 Base::getValue()
+	std::cout << static_cast<Base&>(derived).getValue();
+
+	return 0;
+}
+```
+
+如果使用转换方法，则推荐转换为Base&而不是Base，以避免发生实际的复制。
+
+***
