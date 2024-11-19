@@ -730,6 +730,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十五章 虚函数
 <--->
+<->/basic/chapter24/base-pointer-ref-to-derived/<-> 25.0 继承简介
 {{< /chapterlist >}}
 
 ***
