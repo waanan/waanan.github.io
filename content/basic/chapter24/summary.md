@@ -34,3 +34,9 @@ C++有3个访问说明符：public、private和protected。protected允许成员
 多重继承使派生类能够从多个父类继承成员。你通常应该避免多重继承，除非替代方案会导致更复杂的情况。
 
 ***
+
+{{< prevnext prev="/basic/chapter24/multiple-inherit/" next="/" >}}
+24.8 多重继承
+<--->
+主页
+{{< /prevnext >}}

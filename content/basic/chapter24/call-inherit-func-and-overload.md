@@ -409,8 +409,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter24/add-new-func-to-derived-class/" next="/" >}}
+{{< prevnext prev="/basic/chapter24/add-new-func-to-derived-class/" next="/basic/chapter24/hide-inherit-func/" >}}
 24.5 向派生类添加新功能
 <--->
-主页
+24.7 隐藏继承的功能
 {{< /prevnext >}}

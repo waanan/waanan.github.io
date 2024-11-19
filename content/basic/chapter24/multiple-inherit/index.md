@@ -257,3 +257,8 @@ Scanner和Printer都是供电设备，因此它们继承PoweredDevice。然而�
 
 ***
 
+{{< prevnext prev="/basic/chapter24/hide-inherit-func/" next="/basic/chapter24/summary/" >}}
+24.7 隐藏继承的功能
+<--->
+24.9 第24章总结和测验
+{{< /prevnext >}}

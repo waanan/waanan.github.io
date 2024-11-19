@@ -239,3 +239,9 @@ int main()
 如果使用转换方法，则推荐转换为Base&而不是Base，以避免发生实际的复制。
 
 ***
+
+{{< prevnext prev="/basic/chapter24/call-inherit-func-and-overload/" next="/basic/chapter24/multiple-inherit/" >}}
+24.6 调用继承的函数与重写行为
+<--->
+24.8 多重继承
+{{< /prevnext >}}
