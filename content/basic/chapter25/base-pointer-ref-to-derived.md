@@ -3,41 +3,112 @@ title: "指向派生对象的基类指针和引用"
 date: 2024-11-04T13:14:53+08:00
 ---
 
-在前一章中，您学习了如何使用继承从现有类派生新类的所有内容。在本章中，我们将关注继承最重要和最强大的方面之一——虚拟函数。
+在前一章中，我们学习了如何使用继承从现有类去派生新类。在本章中，我们将关注继承最重要和最强大的方面之一——虚函数。
 
-但在我们讨论什么是虚函数之前，让我们首先为为什么需要它们设置一个表。
+但在讨论什么是虚函数之前，让我们首先看下为什么需要虚函数。
 
-在关于派生类的构造的一章中，您了解到创建派生类时，它由多个部分组成：每个继承类一个部分，自身一个部分。
+在创建派生类时，它由多个部分组成：继承来基类的部分，自身的部分。
 
 例如，这里有一个简单的例子：
 
-#include<string_view>ClassBase{protected:intm_value{}；public:Base（int value）：m_value{value}{}标准：：string_view getName（）常量{return“Base”；}int getValue（）常量}return m_value；}}；派生类：public Base{public:Derived（int value）：Base{value}{}std:：string_view getName（）const{return“Deriveed”；}int getValueDoubled（）const{returnm_value*2；}}；
+```C++
+#include <string_view>
 
-当我们创建衍生对象时，它包含基础零件（首先构造）和衍生零件（其次构造）。记住，继承意味着两个类之间的is-a关系。由于衍生是基础，因此衍生包含基础零件是适当的。
+class Base
+{
+protected:
+    int m_value {};
 
-指针、引用和派生类
+public:
+    Base(int value)
+        : m_value{ value }
+    {
+    }
 
-应该很直观，我们可以设置派生指针和对派生对象的引用：
+    std::string_view getName() const { return "Base"; }
+    int getValue() const { return m_value; }
+};
 
-#include<iostream>intmain（）{derived-derived{5}；std:：cout<<“derived是”<<derived.getName（）<<“并且具有值”<<derived.getValue（）<<'\n'；派生的&r派生的{派生}；std:：cout<<“rDerived是一个”<<rDerivered.getName（）<<“并且具有值”<<r Derived.getValue（）<<'\n'；派生*p派生{&Derived}；std:：cout<<“pDerived是一个”<<pDerivered->getName（）<<“并且具有值”<<pDerived->getValue（）<<'\n'；返回0；}
+class Derived: public Base
+{
+public:
+    Derived(int value)
+        : Base{ value }
+    {
+    }
+
+    std::string_view getName() const { return "Derived"; }
+    int getValueDoubled() const { return m_value * 2; }
+};
+```
+
+当我们创建Derived对象时，它包含Base部分（首先构造）和Derived部分（其次构造）。记住，继承意味着两个类之间的is-a关系。由于Base是基础，因此Derived包含Base部分是适当的。
+
+***
+## 指针、引用和派生类
+
+应该很直观，我们可以设置对派生对象的指针和引用：
+
+```C++
+#include <iostream>
+
+int main()
+{
+    Derived derived{ 5 };
+    std::cout << "derived is a " << derived.getName() << " and has value " << derived.getValue() << '\n';
+
+    Derived& rDerived{ derived };
+    std::cout << "rDerived is a " << rDerived.getName() << " and has value " << rDerived.getValue() << '\n';
+
+    Derived* pDerived{ &derived };
+    std::cout << "pDerived is a " << pDerived->getName() << " and has value " << pDerived->getValue() << '\n';
+
+    return 0;
+}
+```
 
 这会产生以下输出：
 
-derived是derived，值为5 rDeriveed是Derive，值为5pDeriveD是Derivated，值为5.
+```C++
+derived is a Derived and has value 5
+rDerived is a Derived and has value 5
+pDerived is a Derived and has value 5
+```
 
-然而，由于derived.有一个Base部分，一个更有趣的问题是C++是否允许我们设置对DerivedObject的Base指针或引用。事实证明，我们可以
+然而，由于Derived有一个Base部分，一个更有趣的问题是，C++是否允许我们设置对Derived对象的Base指针或引用。事实证明，是可以的。
 
-#include<iostream>intmain（）{派生派生{5}；//这些都是合法的！基&rBase{派生}；//rBase是左值引用（不是右值引用）Base*pBase{&derived}；std:：cout<<“derived是”<<derived.getName（）<<“并且具有值”<<derived.getValue（）<<'\n'；std:：cout<<“rBase是一个”<<rBase.getName（）<<“并且具有值”<<r Base.getValue（）<<'\n'；std:：cout<<“pBase是”<<pBase->getName（）<<“并且具有值”<<pBase->getValue（）<<'\n'；返回0；}
+```C++
+#include <iostream>
+
+int main()
+{
+    Derived derived{ 5 };
+
+    // 下面都是合法的!
+    Base& rBase{ derived }; // rBase 是 左值引用
+    Base* pBase{ &derived };
+
+    std::cout << "derived is a " << derived.getName() << " and has value " << derived.getValue() << '\n';
+    std::cout << "rBase is a " << rBase.getName() << " and has value " << rBase.getValue() << '\n';
+    std::cout << "pBase is a " << pBase->getName() << " and has value " << pBase->getValue() << '\n';
+
+    return 0;
+}
+```
 
 这会产生结果：
 
-derived是一个derived，值为5 rBase是一个Base，值为5pBase是Base，并且值为5。
+```C++
+derived is a Derived and has value 5
+rBase is a Base and has value 5
+pBase is a Base and has value 5
+```
 
 这个结果可能不是您最初期望的那样！
 
-结果是，由于rBase和pBase是Base引用和指针，因此它们只能看到Base的成员（或Base继承的任何类）。因此，即使派生对象的Derived:：getName（）阴影（隐藏）Base:：getName。因此，它们调用Base:：getName（），这就是rBase和pBase报告它们是Base而不是Derived的原因。
+由于rBase和pBase是Base引用和指针，因此它们只能看到Base的成员（或Base继承的基类，即使派生对象的Derived::getName() 覆盖了Base::getName()。因此，它们调用Base::getName()，这就是rBase和pBase它们是Base而不是Derived的原因。
 
-请注意，这也意味着不能使用rBase或pBase调用Derived:：getValueDoubled（）。他们在Derived中看不到任何内容。
+请注意，这也意味着不能使用rBase或pBase调用Derived::getValueDoubled()。他们看不到任何Derived中的内容。
 
 这里是另一个稍微复杂一些的示例，我们将在下一课中构建：
 
