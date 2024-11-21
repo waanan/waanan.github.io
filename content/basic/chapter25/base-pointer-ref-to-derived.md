@@ -305,3 +305,9 @@ Zeke says ???
 现在，想猜一猜虚函数是用于什么目的？
 
 ***
+
+{{< prevnext prev="/basic/chapter24/summary/" next="/" >}}
+24.9 第24章总结
+<--->
+主页
+{{< /prevnext >}}

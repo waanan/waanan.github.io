@@ -722,7 +722,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter24/multiple-inherit/<-> 24.8 多重继承
 <-->
-<->/basic/chapter24/summary/<-> 24.9 第24章总结和测验
+<->/basic/chapter24/summary/<-> 24.9 第24章总结
 {{< /chapterlist >}}
 
 ***
@@ -730,7 +730,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十五章 虚函数
 <--->
-<->/basic/chapter24/base-pointer-ref-to-derived/<-> 25.0 继承简介
+<->/basic/chapter25/base-pointer-ref-to-derived/<-> 25.0 指向派生对象的基类指针和引用
 {{< /chapterlist >}}
 
 ***

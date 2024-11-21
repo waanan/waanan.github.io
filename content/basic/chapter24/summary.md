@@ -35,8 +35,8 @@ C++有3个访问说明符：public、private和protected。protected允许成员
 
 ***
 
-{{< prevnext prev="/basic/chapter24/multiple-inherit/" next="/" >}}
+{{< prevnext prev="/basic/chapter24/multiple-inherit/" next="/basic/chapter25/base-pointer-ref-to-derived/" >}}
 24.8 多重继承
 <--->
-主页
+25.0 指向派生对象的基类指针和引用
 {{< /prevnext >}}
