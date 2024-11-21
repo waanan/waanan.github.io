@@ -110,48 +110,198 @@ pBase is a Base and has value 5
 
 请注意，这也意味着不能使用rBase或pBase调用Derived::getValueDoubled()。他们看不到任何Derived中的内容。
 
-这里是另一个稍微复杂一些的示例，我们将在下一课中构建：
+这里是另一个稍微复杂一些的示例，我们将在下一课中继续使用：
 
-#include<iostream>#incluse<string_view>#inclassAnimal{protected:std:：string m_name；//我们将此构造函数设置为受保护的，因为//我们不希望人们直接创建Animal对象，//但我们仍然希望派生类能够使用它。Animal；Animal&operator=（const Animal&）=删除；public:std:：string_view getName（）const{return m_name；}标准：：string_view speak（）const{返回“？？”；}}；类Cat:public Animal{public:Cat（std:：string_view-name）：动物{name}{}标准：：string-view-speak（）常量{return“喵”；}}；类Dog:public Animal{public:Dog（std:：string_view-name）：动物{name}{}标准：：string-view-speak（）常量{return“Woof”；}}；int main（）{常量猫{“Fred”}；std:：cout<<“cat被命名为”<<cat.getName（）<<“，它说“<<cat.speak（）<<'\n'；常数狗{“嘉宝”}；std:：cout<<“dog被命名为”<<dog.getName（）<<“，它说：”<<dog.speak（）<<'\n'；常量动物*pAnimal{&cat}；std:：cout<<“pAnimal被命名为”<<pAnimal->getName（）<<“，它说：”<<pAnimal->speak（）<<'\n'；p动物=&dog；std:：cout<<“pAnimal被命名为”<<pAnimal->getName（）<<“，它说：”<<pAnimal->speak（）<<'\n'；返回0；}
+```C++
+#include <iostream>
+#include <string_view>
+#include <string>
 
-这就产生了结果：
+class Animal
+{
+protected:
+    std::string m_name;
 
-猫叫弗雷德，它说喵喵的狗叫嘉宝，它说Woof pAnimal叫弗雷德。它说？？？pAnimal被命名为Garbo，它说？？？
+    // 将构造函数设置为 protected
+    // 因为我们不想Animal被直接构造
+    // 但是派生类仍然可以使用
+    Animal(std::string_view name)
+        : m_name{ name }
+    {
+    }
 
-我们在这里看到了相同的问题。因为pAnimal是一个Animal指针，所以它只能看到类的Animal部分。因此，pAnimal->speak（）调用Animal:：speak。
+    Animal(const Animal&) = delete;
+    Animal& operator=(const Animal&) = delete;
 
-用于指向基类的指针和引用
+public:
+    std::string_view getName() const { return m_name; }
+    std::string_view speak() const { return "???"; }
+};
 
-现在您可能会说，“上面的示例似乎有点傻。当我可以只使用派生对象时，为什么要设置指向派生对象基类的指示器或引用？”事实证明，有许多很好的原因。
+class Cat: public Animal
+{
+public:
+    Cat(std::string_view name)
+        : Animal{ name }
+    {
+    }
+
+    std::string_view speak() const { return "Meow"; }
+};
+
+class Dog: public Animal
+{
+public:
+    Dog(std::string_view name)
+        : Animal{ name }
+    {
+    }
+
+    std::string_view speak() const { return "Woof"; }
+};
+
+int main()
+{
+    const Cat cat{ "Fred" };
+    std::cout << "cat is named " << cat.getName() << ", and it says " << cat.speak() << '\n';
+
+    const Dog dog{ "Garbo" };
+    std::cout << "dog is named " << dog.getName() << ", and it says " << dog.speak() << '\n';
+
+    const Animal* pAnimal{ &cat };
+    std::cout << "pAnimal is named " << pAnimal->getName() << ", and it says " << pAnimal->speak() << '\n';
+
+    pAnimal = &dog;
+    std::cout << "pAnimal is named " << pAnimal->getName() << ", and it says " << pAnimal->speak() << '\n';
+
+    return 0;
+}
+```
+
+这产生结果：
+
+```C++
+cat is named Fred, and it says Meow
+dog is named Garbo, and it says Woof
+pAnimal is named Fred, and it says ???
+pAnimal is named Garbo, and it says ???
+```
+
+我们在这里看到了相同的问题。因为pAnimal是一个Animal指针，所以它只能看到类的Animal部分。因此，pAnimal->speak()调用Animal::speak。
+
+***
+## 使用指向基类的指针和引用
+
+现在您可能会说，“上面的示例似乎有点傻。当使用派生对象时，为什么要设置指向派生对象基类的指针或引用？”事实证明，有许多很好的原因。
 
 首先，假设您想编写一个打印动物名称和声音的函数。如果不使用指向基类的指针，则必须使用重载函数来编写它，例如：
 
-void report（const Cat&Cat）{std:：cout<<Cat.getName（）<<“says”<<Cat.speak（）<<'\n'；}void report[const Dog&Dog）{std:：cout<<Dog.getName（）<<“saws”<Dog.speak（。
+```C++
+void report(const Cat& cat)
+{
+    std::cout << cat.getName() << " says " << cat.speak() << '\n';
+}
 
-您必须编写30个几乎相同的函数！此外，如果你添加了一种新的动物类型，你也必须为它编写一个新的函数。考虑到唯一的实际差异是参数的类型，这是一个巨大的时间浪费。然而，由于猫和狗是从动物衍生而来的，猫和狗有一个动物部分。因此，我们应该能够这样做是有意义的：
+void report(const Dog& dog)
+{
+    std::cout << dog.getName() << " says " << dog.speak() << '\n';
+}
+```
 
-void report（const Animal&rAnimal）{std:：cout<<rAnimal.getName（）<<“says”<<r动物.speak（）<<'\n'；}
+看起来很简单，但是如果有30种不同的动物，会发生什么？必须编写30个几乎相同的函数！另外，如果你添加了一种新的动物，你也必须为它编写一个新函数。考虑到唯一真正的区别是参数的类型，这是一种巨大的时间浪费。
+
+而且，由于猫和狗是从动物中衍生出来的，猫和狗都有动物的部分。因此，我们应该能够做这样的事情：
+
+```C++
+void report(const Animal& rAnimal)
+{
+    std::cout << rAnimal.getName() << " says " << rAnimal.speak() << '\n';
+}
+```
 
 这将允许我们传入从Animal派生的任何类，甚至是我们在编写函数后创建的类！不是每个派生类一个函数，而是得到一个可以与从Animal派生的所有类一起工作的函数！
 
-当然，问题是，由于rAnimal是一个Animal引用，因此rAnimal.speak（）将调用Animal:：speak。
+当然，问题是，由于rAnimal是一个Animal引用，因此rAnimal.speak()将调用Animal::speak。
 
-其次，假设您有3只猫和3只狗，您希望将它们放在一个数组中以便于访问。由于数组只能保存一种类型的对象，没有指向基类的指针或引用，因此您必须为每个派生类型创建不同的数组，如下所示：
+其次，假设您有3只猫和3只狗，您希望将它们放在一个数组中以便于访问。由于数组只能保存一种类型的对象，如果没有指向基类的指针或引用，因此您必须为每个派生类型创建不同的数组，如下所示：
 
-上面的intmain（）{constauto&cats{std:：to_array<Cat>（{{“Fred”}，{“Misty”}、{“Zeke”}}）}；常量自动狗（&D）{std:：to_array<Dog>（{{“Garbo”}，{“Pooky”}、{“Truffle”}}）}；//在C++20//const std:：array<Cat之前，3>cats{{{“Fred”}，{“Misty”}、{“Zeke”}}；//const std:：array<狗，3>狗{{“Garbo”}，{“Pooky”}、{“块菌”}}}；for（const auto&cat:cats）{std:：cout<<cat.getName（）<<“says”<<cat.speak（）<<'\n'；}for（const-auto&dog:dogs）{std:：cout<<dog.getName（）<<“saws”<<dog.speak（
+```C++
+#include <array>
+#include <iostream>
 
-现在，考虑一下如果你有30种不同类型的动物会发生什么。你需要30个阵列，每种动物一个！然而，由于猫和狗都是从Animal派生而来的，因此我们应该能够这样做：
+// 上面例子中的 Cat 和 Dog 
 
-#include<array>#incluse<iostream>//上面例子中的猫和狗int main（）{const Cat fred{“fred”}；常量猫薄雾{“薄雾”}；常数Cat zeke{“zeke”}；const Dog garbo{“garbo”}；const小狗{“pooky”}；const狗松露{“松露”}；//设置一个指向动物的指针数组，并将这些指针设置为我们的猫和狗对象const auto animals{std:：to_array<const Animal*>（{&fred，&garbo，&misty，&pooky，&truffle，&zeke}）}；//在C++20之前，显式指定数组大小//const std:：array<const Animal*，6>animals{&fred，&garbo，&misty，&pooky，&truffle，&zeke}；for（const-auto-animal:animals）{std:：cout<<animal->getName（）<<“says”<<animal->speak（）<<'\n'；}返回0；}
+int main()
+{
+    const auto& cats{ std::to_array<Cat>({{ "Fred" }, { "Misty" }, { "Zeke" }}) };
+    const auto& dogs{ std::to_array<Dog>({{ "Garbo" }, { "Pooky" }, { "Truffle" }}) };
 
-在编译和执行时，不幸的是，数组“animals”的每个元素都是指向Animal的指针，这意味着Animal->speak（）将调用Animal:：speak。
+    // 在 C++20 以前
+    // const std::array<Cat, 3> cats{{ { "Fred" }, { "Misty" }, { "Zeke" } }};
+    // const std::array<Dog, 3> dogs{{ { "Garbo" }, { "Pooky" }, { "Truffle" } }};
 
-输出是
+    for (const auto& cat : cats)
+    {
+        std::cout << cat.getName() << " says " << cat.speak() << '\n';
+    }
 
-弗雷德说的？？？嘉宝说？？？米丝蒂说？？？普奇说？？？松露说？？？Zeke说？？？
+    for (const auto& dog : dogs)
+    {
+        std::cout << dog.getName() << " says " << dog.speak() << '\n';
+    }
 
-尽管这两种技术都可以为我们节省大量的时间和精力，但它们有相同的问题。基类的指针或引用调用函数的基版本，而不是派生版本。如果有某种方法可以使这些基指针调用函数的派生版本而不是基版本……
+    return 0;
+}
+```
 
-想猜一猜虚拟函数是用于什么的吗？
+现在，考虑一下如果你有30种不同类型的动物会发生什么。你需要30个数组，每种动物一个！然而，由于猫和狗都是从Animal派生而来的，因此我们应该能够这样做：
+
+```C++
+#include <array>
+#include <iostream>
+
+// 上面例子中的 Cat 和 Dog 
+
+int main()
+{
+    const Cat fred{ "Fred" };
+    const Cat misty{ "Misty" };
+    const Cat zeke{ "Zeke" };
+
+    const Dog garbo{ "Garbo" };
+    const Dog pooky{ "Pooky" };
+    const Dog truffle{ "Truffle" };
+
+    // 存储指向动物的数组，里面装着指向Cat和Dog的指针
+    const auto animals{ std::to_array<const Animal*>({&fred, &garbo, &misty, &pooky, &truffle, &zeke }) };
+
+    // 在 C++20 前, 数组大小需要显示指定
+    // const std::array<const Animal*, 6> animals{ &fred, &garbo, &misty, &pooky, &truffle, &zeke };
+
+    for (const auto animal : animals)
+    {
+        std::cout << animal->getName() << " says " << animal->speak() << '\n';
+    }
+
+    return 0;
+}
+```
+
+在编译和执行时，不幸的是，数组“animals”的每个元素都是指向Animal的指针，这意味着Animal->speak()将调用Animal::speak。
+
+输出是:
+
+```C++
+Fred says ???
+Garbo says ???
+Misty says ???
+Pooky says ???
+Truffle says ???
+Zeke says ???
+```
+
+这两种技术都可以为我们节省大量的时间和精力，但它们有相同的问题。基类的指针或引用调用函数的基类版本，而不是派生类版本。需要有某种方法可以使这些基类指针调用函数的派生类版本而不是基类版本。
+
+现在，想猜一猜虚函数是用于什么目的？
 
 ***
