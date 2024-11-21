@@ -731,6 +731,8 @@ date: 2022-12-28T16:40:41+08:00
 第二十五章 虚函数
 <--->
 <->/basic/chapter25/base-pointer-ref-to-derived/<-> 25.0 指向派生对象的基类指针和引用
+<-->
+<->/basic/chapter25/virtual-func/<-> 25.1 第24章总结
 {{< /chapterlist >}}
 
 ***
