@@ -306,8 +306,8 @@ Zeke says ???
 
 ***
 
-{{< prevnext prev="/basic/chapter24/summary/" next="/" >}}
+{{< prevnext prev="/basic/chapter24/summary/" next="/basic/chapter25/virtual-func/" >}}
 24.9 第24章总结
 <--->
-主页
+25.1 虚函数和多态
 {{< /prevnext >}}
