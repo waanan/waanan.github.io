@@ -733,6 +733,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter25/base-pointer-ref-to-derived/<-> 25.0 指向派生对象的基类指针和引用
 <-->
 <->/basic/chapter25/virtual-func/<-> 25.1 虚函数和多态
+<-->
+<->/basic/chapter25/override-final/<-> 25.2 虚函数和多态
 {{< /chapterlist >}}
 
 ***
