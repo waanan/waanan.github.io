@@ -94,7 +94,7 @@ true
 false
 ```
 
-可以使用std::nopoolalpha关闭。
+可以使用std::noboolalpha关闭。
 
 ***
 ## 整数到布尔转换
