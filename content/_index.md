@@ -737,6 +737,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter25/override-final/<-> 25.2 override和final说明符
 <-->
 <->/basic/chapter25/virtual-destructor-assign-override/<-> 25.3 虚析构函数、虚赋值函数以及虚函数重写
+<-->
+<->/basic/chapter25/early-bind-late-bind/<-> 25.4 虚析构函数、虚赋值函数以及虚函数重写
 {{< /chapterlist >}}
 
 ***
