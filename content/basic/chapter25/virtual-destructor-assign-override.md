@@ -179,3 +179,9 @@ public:
 2. 如果您不想任何人继承您的类，请将您的类标记为final。这将首先防止其他类从中继承，而不会对类本身施加任何其他使用限制。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/override-final/" next="/" >}}
+25.2 override和final说明符
+<--->
+主页
+{{< /prevnext >}}

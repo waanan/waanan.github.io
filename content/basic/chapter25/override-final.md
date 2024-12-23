@@ -214,3 +214,9 @@ returned a Base
 协变返回类型通常用于虚成员函数返回指向本类的指针或引用的情况（例如，Base::getThis()返回Base*，Derive::getThiss()返回Derive*）。然而，这并不是绝对必要的。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/virtual-func/" next="/basic/chapter25/virtual-destructor-assign-override/" >}}
+25.1 虚函数和多态
+<--->
+25.3 虚析构函数、虚赋值函数以及虚函数重写
+{{< /prevnext >}}

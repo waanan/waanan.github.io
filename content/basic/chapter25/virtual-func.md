@@ -397,8 +397,8 @@ public:
 
 ***
 
-{{< prevnext prev="/basic/chapter25/base-pointer-ref-to-derived/" next="/" >}}
+{{< prevnext prev="/basic/chapter25/base-pointer-ref-to-derived/" next="/basic/chapter25/override-final/" >}}
 25.0 指向派生对象的基类指针和引用
 <--->
-主页
+25.2 override和final说明符
 {{< /prevnext >}}
