@@ -238,3 +238,9 @@ int main()
 在下一课中，我们将了解如何使用动态绑定来实现虚拟函数。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/virtual-destructor-assign-override/" next="/basic/chapter25/virtual-table/" >}}
+25.3 虚析构函数、虚赋值函数以及虚函数重写
+<--->
+25.5 虚函数表
+{{< /prevnext >}}

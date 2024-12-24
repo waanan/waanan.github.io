@@ -180,8 +180,8 @@ public:
 
 ***
 
-{{< prevnext prev="/basic/chapter25/override-final/" next="/" >}}
+{{< prevnext prev="/basic/chapter25/override-final/" next="/basic/chapter25/early-bind-late-bind/" >}}
 25.2 override和final说明符
 <--->
-主页
+25.4 静态绑定和动态绑定
 {{< /prevnext >}}

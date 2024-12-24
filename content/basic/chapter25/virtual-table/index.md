@@ -184,3 +184,9 @@ int main()
 另外，作为提醒，任何使用虚函数的类都有一个\*__vptr，因此该类的每个对象都将大一个指针。虚函数功能很强大，但它们确实有性能成本。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/early-bind-late-bind/" next="/" >}}
+25.4 静态绑定和动态绑定
+<--->
+主页
+{{< /prevnext >}}
