@@ -741,6 +741,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter25/early-bind-late-bind/<-> 25.4 静态绑定和动态绑定
 <-->
 <->/basic/chapter25/virtual-table/<-> 25.5 虚函数表
+<-->
+<->/basic/chapter25/abstract-class/<-> 25.6 虚函数表
 {{< /chapterlist >}}
 
 ***
