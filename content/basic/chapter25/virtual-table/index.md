@@ -185,8 +185,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter25/early-bind-late-bind/" next="/" >}}
+{{< prevnext prev="/basic/chapter25/early-bind-late-bind/" next="/basic/chapter25/abstract-class/" >}}
 25.4 静态绑定和动态绑定
 <--->
-主页
+25.6 纯虚函数、抽象基类和接口类
 {{< /prevnext >}}

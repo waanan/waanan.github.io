@@ -468,3 +468,9 @@ double mySqrt(double value, IErrorLog& log)
 只有纯虚函数的类的虚函数表条目通常要么包含空指针，要么指向打印错误的函数（有时该函数名为__purecall）。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/virtual-table/" next="/" >}}
+25.5 虚函数表
+<--->
+主页
+{{< /prevnext >}}
