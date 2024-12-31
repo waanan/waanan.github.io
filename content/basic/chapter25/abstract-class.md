@@ -469,8 +469,8 @@ double mySqrt(double value, IErrorLog& log)
 
 ***
 
-{{< prevnext prev="/basic/chapter25/virtual-table/" next="/" >}}
+{{< prevnext prev="/basic/chapter25/virtual-table/" next="/basic/chapter25/virtual-base-class/" >}}
 25.5 虚函数表
 <--->
-主页
+25.7 虚基类
 {{< /prevnext >}}

@@ -190,3 +190,9 @@ Printer: 2
 因为Scanner和Printer实际上是从PoweredDevice派生的，而Copier将仅构造一个PoweredDevice子对象。Scanner和Printer都需要知道如何找到PoweredDevice子对象，以便它们可以访问其成员（因为它们毕竟是从中派生的）。这通常通过一些虚函数表魔术来完成（它本质上存储从每个子类到PoweredDevice子对象的偏移量）。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/abstract-class/" next="/basic/chapter25/object-slice/" >}}
+25.6 纯虚函数、抽象基类和接口类
+<--->
+25.8 对象切片（Object slicing）
+{{< /prevnext >}}

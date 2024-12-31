@@ -744,9 +744,9 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter25/abstract-class/<-> 25.6 纯虚函数、抽象基类和接口类
 <-->
-<->/basic/chapter25/virtual-base-class/<-> 25.7 纯虚函数、抽象基类和接口类
+<->/basic/chapter25/virtual-base-class/<-> 25.7 虚基类
 <-->
-<->/basic/chapter25/object-slice/<-> 25.8 纯虚函数、抽象基类和接口类
+<->/basic/chapter25/object-slice/<-> 25.8 对象切片（Object slicing）
 {{< /chapterlist >}}
 
 ***
