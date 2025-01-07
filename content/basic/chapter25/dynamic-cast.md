@@ -69,21 +69,42 @@ int main()
 
 在该程序中，函数getObject()始终返回Base指针，但该指针可以指向Base或Derived对象。在Base指针实际指向Derived对象的情况下，如何调用Derived::getName()？
 
-一种方法是将一个名为getName()的虚函数添加到Base中（因此我们可以使用Base指针/引用调用它，并将其动态解析为Derived::getName()）。但如果使用实际指向Base对象的Base指针/引用调用它，该函数将返回什么？没有任何真正有意义的结果。而且，仅由派生类关注的东西来污染我们的基类。
+一种方法是将一个名为getName()的虚函数添加到Base中（因此我们可以使用Base指针/引用调用它，并将其动态解析为Derived::getName()）。但如果使用实际指向Base对象的Base指针/引用调用它，该函数将返回什么？没有任何真正有意义的结果。而且，仅由派生类关注的东西污染了我们的基类。
 
-我们知道C++将隐式地允许您将Derived指针转换为Base指针（实际上，getObject（）就是这样做的）。该过程有时称为上播。然而，如果有一种方法可以将基本指针转换回派生指针，该怎么办？然后，我们可以使用该指针直接调用Derived:：getName（），而根本不必担心虚函数解析。
+我们知道C++隐式地允许您将Derived指针转换为Base指针（实际上，getObject()就是这样做的）。该过程有时称为类型向上转换。如果有一种方法可以将Base指针转换回Derived指针，我们就可以使用该指针直接调用Derived::getName()，而根本不必使用虚函数解析。
 
-dynamic_cast
+***
+## dynamic_cast
 
-C++提供了一个名为dynamic_cast的转换操作符，可以用于此目的。尽管动态强制转换具有一些不同的功能，但到目前为止，动态强制转换最常见的用途是将基类指针转换为派生类指针。这个过程被称为向下投射。
+C++提供了一个名为dynamic_cast的转换操作符，可以用于此目的。尽管dynamic_cast具有一些不同的功能，但到目前为止，最常见的用途是将基类指针转换为派生类指针。这个过程被称为向下转换。
 
-使用dynamic_cast就像static_cast一样工作。下面是上面的示例main（），使用dynamic_cast将Base指针转换回Derived指针：
+使用dynamic_cast就像static_cast一样。下面是对应上面的示例
 
-int main（）{Base*b{getObject（true）}；派生*d{dynamic_cast<Derived*>（b）}；//使用动态转换将基指针转换为派生指针std:：cout<<“派生的名称是：”<<d->getName（）<<'\n'；删除b；返回0；}
+```C++
+int main()
+{
+	Base* b{ getObject(true) };
 
-这会打印：Derived的名称是：Apple dynamic_cast failure.
+	Derived* d{ dynamic_cast<Derived*>(b) }; // 使用 dynamic cast 将 Base 指针转换为 Derived 指针
 
-上面的示例之所以有效，是因为b实际上指向DerivedObject，因此将b转换为Derivedpointer是成功的。然而，我们做了一个相当危险的假设：b指向派生对象。如果b没有指向派生对象怎么办？通过将参数从true更改为false来轻松测试这一点。在这种情况下，getObject（）将返回指向Base对象的Base指针。当我们试图将其动态转换为Derived时，它将失败，因为无法进行转换。
+	std::cout << "The name of the Derived is: " << d->getName() << '\n';
+
+	delete b;
+
+	return 0;
+}
+```
+
+这会打印：
+
+```C++
+The name of the Derived is: Apple
+```
+
+***
+## dynamic_cast失败的情况
+
+上面的示例之所以有效，是因为b实际上指向Derived对象，因此将b转换为Derived指针是成功的。然而，我们做了一个相当危险的假设：b指向Derived对象。如果b没有指向Derived对象怎么办？通过将参数从true更改为false可以来轻松测试这一点。在这种情况下，getObject()将返回指向Base对象的Base指针。当我们试图将其dynamic_cast为Derived时，它将失败，因为无法进行转换。
 
 如果dynamic_cast失败，转换的结果将是空指针。
 
