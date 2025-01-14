@@ -748,7 +748,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter25/object-slice/<-> 25.8 对象切片（Object slicing）
 <-->
-<->/basic/chapter25/dynamic-cast/<-> 25.9 对象切片（Object slicing）
+<->/basic/chapter25/dynamic-cast/<-> 25.9 dynamic_cast
 {{< /chapterlist >}}
 
 ***

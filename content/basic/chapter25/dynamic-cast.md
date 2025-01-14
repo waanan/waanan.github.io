@@ -297,3 +297,9 @@ int main()
 运行时类型信息（RTTI，run-time type information）是C++的一项功能，它在运行时暴露有关对象数据类型的信息。dynamic_cast利用了此功能。由于RTTI具有相当大的空间性能开销，因此一些编译器允许您将RTTI关闭。当然，如果这样做，dynamic_cast将无法正常工作。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/object-slice/" next="/" >}}
+25.8 对象切片（Object slicing）
+<--->
+主页
+{{< /prevnext >}}

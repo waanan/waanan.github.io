@@ -308,8 +308,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter25/virtual-base-class/" next="/" >}}
+{{< prevnext prev="/basic/chapter25/virtual-base-class/" next="/basic/chapter25/dynamic-cast/" >}}
 25.7 虚基类
 <--->
-主页
+25.9 dynamic_cast
 {{< /prevnext >}}
