@@ -26,8 +26,6 @@ public:
 
 在处理带继承的类时，事情变得有点复杂。C++有第三个访问说明符，之前没有谈到，因为它只在继承上下文中有用。protected访问说明符允许成员所属的类、友元类和派生类访问该成员。然而，不能从类外部访问protected的成员。
 
-类Base{public:int m_public{}；//任何受保护的人都可以访问：int m_protected{}；//可以由基成员、朋友和派生类private:int m_private{}；//只能由基成员和朋友访问（但不能由派生类访问）}；派生的类：public Base{public:Derived（）{m_public=1；//允许：可以从派生类m_protected=2访问公共基成员；//allowed:可以从派生类别m_private=3访问受保护的基成员；//不允许：不能从派生类}}访问私有基成员；int main（）{Base Base；Base.m_public=1；//allowed:可以从外部类Base.m_protected=2；//不允许：不能从外部类Base.m_private=3；//禁止：不能从外面的类访问私有成员return 0；}
-
 ```C++
 class Base
 {
