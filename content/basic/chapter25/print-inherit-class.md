@@ -59,53 +59,155 @@ std::cout << "b is a " << b << '\n'; // 更好的版本
 ***
 ## 使用「操作符<<」的挑战
 
-让我们从重载操作符<<<开始，以典型的方式：
+让我们从重载操作符<<<开始，典型的方式：
 
-#include<iostream>class-Base{public:virtual-Voidprint（）const{std:：cout<<“Base”；}friend-std:：ostream&operator<<（std::ostream＆out，const-Base&b）{out<<“Base”；return-out；}}；派生的类：public Base{public:void print（）const override{std:：cout<<“Derived”；}friend std::ostream&operator<<（std::ostream&out，const Derived&d）{out<<“Delived”；return out；}}；int main（）{基数b{}；标准：：cout<<b<<'\n'；派生d{}；标准：：cout<<d<<'\n'；返回0；}
+```C++
+#include <iostream>
 
-因为这里不需要虚拟函数解析，所以该程序按预期工作，并打印：
+class Base
+{
+public:
+	virtual void print() const { std::cout << "Base"; }
 
-Base Derived Now，
+	friend std::ostream& operator<<(std::ostream& out, const Base& b)
+	{
+		out << "Base";
+		return out;
+	}
+};
 
-考虑下面的main（）函数：
+class Derived : public Base
+{
+public:
+	void print() const override { std::cout << "Derived"; }
 
-intmain（”{Derivedd{}；基&bref{d}；标准：：cout<<bref<<'\n'；返回0；}
+	friend std::ostream& operator<<(std::ostream& out, const Derived& d)
+	{
+		out << "Derived";
+		return out;
+	}
+};
+
+int main()
+{
+	Base b{};
+	std::cout << b << '\n';
+
+	Derived d{};
+	std::cout << d << '\n';
+
+	return 0;
+}
+```
+
+因为这里不需要虚函数解析，所以该程序按预期工作，并打印：
+
+```C++
+Base
+Derived
+```
+
+现在，考虑下面的main()函数：
+
+```C++
+int main()
+{
+    Derived d{};
+    Base& bref{ d };
+    std::cout << bref << '\n';
+
+    return 0;
+}
+```
 
 这个程序打印：
 
+```C++
 Base
+```
 
-这可能不是我们期望的。发生这种情况是因为处理基本对象的运算符<<的版本不是虚拟的，因此std:：cout<<bref调用处理基本对象而不是派生对象的运算符<的版本。
+这可能不是我们期望的。发生这种情况是因为 操作符<< 不是虚函数，因此调用的不是Derived对象而是Base对象对应的函数。
 
 这就是挑战所在。
 
-我们可以使运算符<<虚拟吗？
+***
+## 可以使「操作符<<」成为虚函数吗？
 
-如果这个问题是操作符<<不是虚拟的，我们不能简单地将其虚拟化吗？
+我们能简单地将 操作符<< 虚函数化吗？
 
 简而言之，答案是否定的。
 
 这有许多原因。
 
-首先，只有成员函数可以虚拟化——这是有意义的，因为只有类可以从其他类继承，并且没有办法覆盖位于类之外的函数（您可以重载非成员函数，但不能覆盖它们）。由于我们通常将操作符<<实现为友元，并且友元不被视为成员函数，因此操作符<<<的友元版本不符合虚拟化的条件。（有关我们为什么以这种方式实现运算符<<的回顾，请重新访问第21.5课——使用成员函数重载运算符）。
+首先，只有成员函数可以虚函数化——这是有意义的，因为只有类可以从其他类继承，并且没有办法覆盖位于类之外的函数（您可以重载非成员函数，但不能覆盖它们）。由于我们通常将 操作符<< 实现为友元，并且友元不被视为成员函数，因此 操作符<< 的友元版本不符合虚函数化的条件。
 
-其次，即使我们可以虚拟化运算符<<，也存在这样的问题：Base:：operator<<和Derived:：operator<<的函数参数不同（基本版本将采用Base参数，而派生版本将采用Derived参数）。因此，派生版本不会被视为基本版本的覆盖，因此不符合虚拟函数解析的条件。
+其次，即使我们可以虚函数化 操作符<<，也存在这样的问题： Base::operator<< 和 Derived::operator<< 的函数参数不同（Base版本将采用Base类作为参数，而Derived版本将采用Derived类作为参数）。因此，Derived版本不会被视为Base版本的重写，因此不符合虚函数解析的条件。
 
-那么，程序员应该做什么呢？
+那么，应该做什么呢？
 
-一个解决方案
+***
+## 一个解决方案
 
-答案，正如它所证明的，出奇地简单。
+答案出奇地简单。
 
-首先，我们像往常一样在基类中设置操作符<<作为朋友。但不是让操作符<<确定要打印的内容，而是让它调用可以虚拟化的普通成员函数！这个虚拟函数将完成确定每个类要打印的内容的工作。
+首先，我们像往常一样在基类中设置 操作符<< 作为友元。但不让 操作符<< 直接操作要打印的内容，而是让它调用可以虚拟化的普通成员函数！这个虚函数将完成确定每个类要打印的内容的工作。
 
-在第一个解决方案中，我们的虚拟成员函数（我们称为identify（））返回一个std:：string，它由Base:：operator打印<<：
+在这个解决方案中，我们的成员虚函数（我们称为identify()）返回一个std::string，然后由 Base::operator<< 打印：
 
-#include<iostream>class-Base{public://这是我们的重载操作符<<friend std::ostream&operator<<（std::ostream&out，const Base&b：：string identity（）const{return“Base”；}}；类Derived:public Base{public://这是我们的override identity（）函数，用于处理Derived case std:：string identify（）const override{return“Deriveed”；}}；int main（）{基数b{}；标准：：cout<<b<<'\n'；派生d{}；标准：：cout<<d<<'\n'；//请注意，即使没有显式处理派生对象Base&bref{d}的运算符<<，也可以使用该方法；标准：：cout<<bref<<'\n'；返回0；}
+```C++
+#include <iostream>
+
+class Base
+{
+public:
+	// 新的 operator<<
+	friend std::ostream& operator<<(std::ostream& out, const Base& b)
+	{
+		// 调用虚函数 identify() 获取要打印的信息
+		out << b.identify();
+		return out;
+	}
+
+	// 依靠成员函数 identify() 获取要打印的信息
+	// 因为 identify() 是普通的成员函数, 所以可以被设置为虚函数
+	virtual std::string identify() const
+	{
+		return "Base";
+	}
+};
+
+class Derived : public Base
+{
+public:
+	// 重写的 identify() 函数，处理 Derived 的情况
+	std::string identify() const override
+	{
+		return "Derived";
+	}
+};
+
+int main()
+{
+	Base b{};
+	std::cout << b << '\n';
+
+	Derived d{};
+	std::cout << d << '\n'; // 注， operator<< 可以处理 Derived 对象
+
+	Base& bref{ d };
+	std::cout << bref << '\n';
+
+	return 0;
+}
+```
 
 这将打印预期的结果：
 
-Base Derived Derived.
+```C++
+Base
+Derived
+Derived
+```
 
 让我们更详细地检查一下它是如何工作的。在Base b的情况下，使用引用Base对象的参数b调用运算符<<。虚函数调用b.identify（）因此解析为Base:：identify（），它返回要打印的“Base”。这里没什么特别的。
 
