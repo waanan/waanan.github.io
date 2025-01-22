@@ -751,6 +751,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter25/dynamic-cast/<-> 25.9 dynamic_cast
 <-->
 <->/basic/chapter25/print-inherit-class/<-> 25.10 dynamic_cast
+<-->
+<->/basic/chapter25/summary/<-> 25.11 dynamic_cast
 {{< /chapterlist >}}
 
 ***
