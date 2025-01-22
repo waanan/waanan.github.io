@@ -298,8 +298,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter25/object-slice/" next="/" >}}
+{{< prevnext prev="/basic/chapter25/object-slice/" next="/basic/chapter25/print-inherit-class/" >}}
 25.8 对象切片（Object slicing）
 <--->
-主页
+25.10 使用运算符<<打印继承的类
 {{< /prevnext >}}

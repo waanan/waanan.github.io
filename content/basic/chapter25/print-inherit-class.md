@@ -317,3 +317,9 @@ Derived: Employee(Jim, 4)
 在此版本中，Base::operator<< 本身不进行任何打印。相反，它只是调用虚成员函数print()并给其传递给stream对象。然后，print()函数使用该stream对象进行自己的打印。Base::print()使用stream对象打印“Base”。更有趣的是，Derived::print()使用stream对象来打印“Derived:”，并调用Employee::operator<<来打印成员m_e的值。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/dynamic-cast/" next="/basic/chapter25/summary/" >}}
+25.9 dynamic_cast
+<--->
+25.11 第25章总结
+{{< /prevnext >}}

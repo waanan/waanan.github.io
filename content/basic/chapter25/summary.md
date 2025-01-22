@@ -39,3 +39,9 @@ dynamic_cast可用于将指向基类对象的指针转换为指向派生类对�
 为继承类重载 操作符<< 的最简单方法是为基类编写 操作符<<，然后调用虚拟成员函数进行打印。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/print-inherit-class/" next="/" >}}
+25.10 使用运算符<<打印继承的类
+<--->
+主页
+{{< /prevnext >}}
