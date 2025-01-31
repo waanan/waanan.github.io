@@ -761,6 +761,8 @@ date: 2022-12-28T16:40:41+08:00
 第二十六章 模板
 <--->
 <->/basic/chapter26/template-class/<-> 26.0 指向派生对象的基类指针和引用
+<-->
+<->/basic/chapter26/no-type-template-param/<-> 26.1 指向派生对象的基类指针和引用
 {{< /chapterlist >}}
 
 ***
