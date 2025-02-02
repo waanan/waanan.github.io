@@ -765,6 +765,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter26/no-type-template-param/<-> 26.1 指向派生对象的基类指针和引用
 <-->
 <->/basic/chapter26/func-template-specialization/<-> 26.2 指向派生对象的基类指针和引用
+<-->
+<->/basic/chapter26/class-template-specialization/<-> 26.3 指向派生对象的基类指针和引用
 {{< /chapterlist >}}
 
 ***
