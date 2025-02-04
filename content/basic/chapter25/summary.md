@@ -40,8 +40,8 @@ dynamic_cast可用于将指向基类对象的指针转换为指向派生类对�
 
 ***
 
-{{< prevnext prev="/basic/chapter25/print-inherit-class/" next="/" >}}
+{{< prevnext prev="/basic/chapter25/print-inherit-class/" next="/basic/chapter26/template-class/" >}}
 25.10 使用运算符<<打印继承的类
 <--->
-主页
+26.0 模板类
 {{< /prevnext >}}

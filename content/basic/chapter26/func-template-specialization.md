@@ -188,3 +188,9 @@ int main()
 那么该怎么做呢？我们将在下一课中讨论类模板特化。
 
 ***
+
+{{< prevnext prev="/basic/chapter26/no-type-template-param/" next="/basic/chapter26/class-template-specialization/" >}}
+26.1 模板非类型参数
+<--->
+26.3 类模板特化
+{{< /prevnext >}}

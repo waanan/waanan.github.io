@@ -108,3 +108,9 @@ int main()
 在这种情况下，编译器将发出错误。
 
 ***
+
+{{< prevnext prev="/basic/chapter26/template-class/" next="/basic/chapter26/func-template-specialization/" >}}
+26.0 模板类
+<--->
+26.2 函数模板特化
+{{< /prevnext >}}

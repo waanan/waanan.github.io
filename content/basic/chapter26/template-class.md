@@ -371,3 +371,9 @@ template class Array<double>; // 显式实例化模板 Array<double>
 这种方法可能更有效（取决于编译器和链接器处理模板和重复定义的方式），但需要为每个程序维护templates.cpp文件。
 
 ***
+
+{{< prevnext prev="/basic/chapter25/summary/" next="/basic/chapter26/no-type-template-param/" >}}
+25.11 第25章总结
+<--->
+26.1 模板非类型参数
+{{< /prevnext >}}

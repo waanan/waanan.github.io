@@ -760,13 +760,13 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十六章 模板
 <--->
-<->/basic/chapter26/template-class/<-> 26.0 指向派生对象的基类指针和引用
+<->/basic/chapter26/template-class/<-> 26.0 模板类
 <-->
-<->/basic/chapter26/no-type-template-param/<-> 26.1 指向派生对象的基类指针和引用
+<->/basic/chapter26/no-type-template-param/<-> 26.1 模板非类型参数
 <-->
-<->/basic/chapter26/func-template-specialization/<-> 26.2 指向派生对象的基类指针和引用
+<->/basic/chapter26/func-template-specialization/<-> 26.2 函数模板特化
 <-->
-<->/basic/chapter26/class-template-specialization/<-> 26.3 指向派生对象的基类指针和引用
+<->/basic/chapter26/class-template-specialization/<-> 26.3 类模板特化
 {{< /chapterlist >}}
 
 ***
