@@ -84,7 +84,7 @@ int main()
 }
 ```
 
-上面的程序产生了两个编译错误：一个是B::getName1()，一个是B::getName2()，因为两者都没有覆盖A的函数。B::getName3()确实覆盖了A::getName2()，因此该行不会产生编译错误。
+上面的程序产生了两个编译错误：一个是B::getName1()，一个是B::getName2()，因为两者都没有覆盖A的函数。B::getName3()确实覆盖了A::getName3()，因此该行不会产生编译错误。
 
 使用override说明符不会带来性能损失，而且它有助于确保您确实重写了您认为应该重写的函数，所以所有虚函数都应该使用override说明符进行标记。此外，由于override说明符意味着virtual，因此不需要使用override说明符和virtual关键字同时标记函数。
 
