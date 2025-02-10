@@ -139,19 +139,17 @@ public:
 在某些情况下，您可能希望指向Derived对象的Base指针调用Base::getName()，而不是Derived::getName()。为此，只需使用域解析操作符：
 
 ```C++
-#include <string_view>
-class Base
+#include <iostream>
+int main()
 {
-public:
-    virtual ~Base() = default;
-    virtual std::string_view getName() const { return "Base"; }
-};
+    Derived derived {};
+    const Base& base { derived };
 
-class Derived: public Base
-{
-public:
-    virtual std::string_view getName() const { return "Derived"; }
-};
+    // 调用 Base::getName() 而不是 Derived::getName()
+    std::cout << base.Base::getName() << '\n';
+
+    return 0;
+}
 ```
 
 您可能不会经常使用它，但知道至少是可以实现的。
