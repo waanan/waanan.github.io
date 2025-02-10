@@ -522,3 +522,9 @@ int main()
 这与上面的打印相同的结果，但重复代码少得多。
 
 ***
+
+{{< prevnext prev="/basic/chapter26/class-template-specialization/" next="/basic/chapter26/pointer-part-template-special/" >}}
+26.3 类模板特化
+<--->
+26.5 指针的部分模板特化
+{{< /prevnext >}}

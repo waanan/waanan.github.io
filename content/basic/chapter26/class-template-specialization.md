@@ -365,8 +365,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter26/func-template-specialization/" next="/" >}}
+{{< prevnext prev="/basic/chapter26/func-template-specialization/" next="/basic/chapter26/part-template-special/" >}}
 26.2 函数模板特化
 <--->
-主页
+26.4 部分模板特化
 {{< /prevnext >}}

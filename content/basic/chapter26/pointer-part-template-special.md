@@ -327,3 +327,9 @@ int main()
 当您希望模版类以不同的方式处理指针和非指针实现时，使用模板类部分特化是非常有用的，但这种方式需要对最终用户是完全透明的。
 
 ***
+
+{{< prevnext prev="/basic/chapter26/part-template-special/" next="/" >}}
+26.4 部分模板特化
+<--->
+主页
+{{< /prevnext >}}

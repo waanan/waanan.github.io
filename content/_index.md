@@ -768,9 +768,9 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter26/class-template-specialization/<-> 26.3 类模板特化
 <-->
-<->/basic/chapter26/part-template-special/<-> 26.4 类模板特化
+<->/basic/chapter26/part-template-special/<-> 26.4 部分模板特化
 <-->
-<->/basic/chapter26/pointer-part-template-special/<-> 26.5 类模板特化
+<->/basic/chapter26/pointer-part-template-special/<-> 26.5 指针的部分模板特化
 {{< /chapterlist >}}
 
 ***
