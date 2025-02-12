@@ -328,8 +328,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter26/part-template-special/" next="/" >}}
+{{< prevnext prev="/basic/chapter26/part-template-special/" next="/basic/chapter26/summary/" >}}
 26.4 部分模板特化
 <--->
-主页
+26.6 第26章总结
 {{< /prevnext >}}

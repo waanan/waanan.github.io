@@ -14,3 +14,9 @@ date: 2025-01-22T20:47:14+08:00
 C++标准库中的许多类都使用模板，包括std::array和std:∶vector。模板通常用于实现容器类，因此容器可以编写一次，并与任何适当的类型一起使用。
 
 ***
+
+{{< prevnext prev="/basic/chapter26/pointer-part-template-special/" next="/" >}}
+26.5 指针的部分模板特化
+<--->
+主页
+{{< /prevnext >}}
