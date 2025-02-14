@@ -780,7 +780,7 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十七章 异常
 <--->
-<->/basic/chapter27/exception-need/<-> 27.0 模板类
+<->/basic/chapter27/exception-need/<-> 27.0 为什么需要异常机制
 {{< /chapterlist >}}
 
 ***

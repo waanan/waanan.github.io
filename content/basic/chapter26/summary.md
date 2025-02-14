@@ -15,8 +15,8 @@ C++标准库中的许多类都使用模板，包括std::array和std:∶vector。
 
 ***
 
-{{< prevnext prev="/basic/chapter26/pointer-part-template-special/" next="/" >}}
+{{< prevnext prev="/basic/chapter26/pointer-part-template-special/" next="/basic/chapter27/exception-need/" >}}
 26.5 指针的部分模板特化
 <--->
-主页
+27.0 为什么需要异常机制
 {{< /prevnext >}}

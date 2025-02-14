@@ -107,3 +107,9 @@ int main()
 在下一课中，我们将了解异常在C++中的工作方式。
 
 ***
+
+{{< prevnext prev="/basic/chapter26/summary/" next="/" >}}
+26.6 第26章总结
+<--->
+主页
+{{< /prevnext >}}
