@@ -242,3 +242,9 @@ Error: Can not take sqrt of negative number
 第四，main()中的catch块可以用于捕获致命错误并以干净的方式终止程序。
 
 ***
+
+{{< prevnext prev="/basic/chapter27/exception-need/" next="/basic/chapter27/exception-func-stack-unwind/" >}}
+27.0 为什么需要异常机制
+<--->
+27.2 异常、函数和堆栈展开
+{{< /prevnext >}}

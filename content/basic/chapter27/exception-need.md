@@ -108,8 +108,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter26/summary/" next="/" >}}
+{{< prevnext prev="/basic/chapter26/summary/" next="/basic/chapter27/exception-basic/" >}}
 26.6 第26章总结
 <--->
-主页
+27.1 基本异常处理
 {{< /prevnext >}}
