@@ -786,7 +786,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter27/exception-func-stack-unwind/<-> 27.2 异常、函数和堆栈展开
 <-->
-<->/basic/chapter27/uncatch-catchall/<-> 27.3 异常、函数和堆栈展开
+<->/basic/chapter27/uncatch-catchall/<-> 27.3 未捕获的异常和捕获所有异常
 {{< /chapterlist >}}
 
 ***

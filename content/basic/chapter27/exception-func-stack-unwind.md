@@ -227,8 +227,8 @@ A()也有一个try块，对B()的调用在其中，因此程序会查看是否�
 
 ***
 
-{{< prevnext prev="/basic/chapter27/exception-basic/" next="/" >}}
+{{< prevnext prev="/basic/chapter27/exception-basic/" next="/basic/chapter27/uncatch-catchall/" >}}
 27.1 基本异常处理
 <--->
-主页
+27.3 未捕获的异常和捕获所有异常
 {{< /prevnext >}}

@@ -225,3 +225,9 @@ int main()
 为此，我们创建了类DummyException，该类不能被实例化，因为它有一个已删除的默认构造函数，而没有其他构造函数。当未定义NDEBUG时，我们在catch处理程序中编译捕获DummyException类型的异常。因为我们不能创建DummyException，所以这个catch处理程序永远不会捕获任何东西。因此，任何达到这一点的异常都不会被处理。
 
 ***
+
+{{< prevnext prev="/basic/chapter27/exception-func-stack-unwind/" next="/" >}}
+27.2 异常、函数和堆栈展开
+<--->
+主页
+{{< /prevnext >}}
