@@ -203,7 +203,7 @@ int main()
 {{< alert success >}}
 **一个提醒**
 
-Constexpr函数是隐式内联的，但Constexpr变量不是隐式内嵌的。
+Constexpr函数是隐式内联的，但Constexpr变量不是隐式内联的。
 
 {{< /alert >}}
 
