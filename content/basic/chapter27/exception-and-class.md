@@ -138,10 +138,10 @@ private:
 ***
 ## 异常类
 
-使用基本数据类型（如int）作为异常类型的主要问题之一是，它们本质上是模糊的。一个更大的问题是，当一个try块中有多个语句或函数调用时，消除异常的含义的歧义。
+使用基本数据类型（如int）作为异常类型的主要问题之一是，它们本质上是模糊的。一个更大的问题是，当一个try块中有多个语句或函数调用时，异常的含义会有歧义。
 
 ```C++
-// Using the IntArray overloaded operator[] above
+// 使用上面重载 operator[] 的 IntArray
 
 try
 {
@@ -149,11 +149,11 @@ try
 }
 catch (int value)
 {
-    // What are we catching here?
+    // 这里捕获了什么?
 }
 ```
 
-在这个例子中，如果我们捕获一个int异常，那它到底告诉了我们什么？数组索引之一是否超出界限？运算符+是否导致整数溢出？操作员new是否因内存不足而失败？不幸的是，在这种情况下，没有简单的方法来消除歧义。虽然我们可以抛出constchar*异常来解决识别错误的问题，但这仍然不能为我们提供以不同的方式处理来自不同来源的异常的能力。
+在这个例子中，如果我们捕获一个int异常，那它到底告诉了我们什么？数组索引之一是否超出界限？运算符+是否导致整数溢出？new是否因内存不足而失败？不幸的是，在这种情况下，没有简单的方法来消除歧义。虽然我们可以抛出const char *异常来解决识别错误的问题，但这仍然不能以不同的方式处理来自不同来源的异常。
 
 解决这个问题的一种方法是使用异常类。异常类只是一个普通类，专门设计为作为异常抛出。让我们设计一个简单的异常类，与IntArray类一起使用：
 
@@ -200,7 +200,7 @@ public:
 class IntArray
 {
 private:
-	int m_data[3]{}; // assume array is length 3 for simplicity
+	int m_data[3]{}; // 简单起见，这里先固定长度为3
 
 public:
 	IntArray() {}
@@ -223,7 +223,7 @@ int main()
 
 	try
 	{
-		int value{ array[5] }; // out of range subscript
+		int value{ array[5] }; // 超出数组范围
 	}
 	catch (const ArrayException& exception)
 	{
@@ -232,19 +232,19 @@ int main()
 }
 ```
 
-使用这样的类，我们可以让异常返回发生的问题的描述，这为错误提供了上下文。由于ArrayException是其自己的唯一类型，因此我们可以专门捕获数组类引发的异常，并根据需要将它们与其他异常区别对待。
+使用这样的类，我们可以让异常返回发生的问题描述，这为错误提供了上下文信息。由于ArrayException是唯一的类型，因此我们可以专门捕获IntArray类引发的异常，并根据需要将它们与其他异常区别对待。
 
-请注意，异常处理程序应该通过引用而不是通过值来捕获类异常对象。这可以防止编译器在捕获异常的位置复制该异常，当异常是类对象时，这可能会非常昂贵，并防止在处理派生异常类（我们稍后将讨论）时进行对象切片。通常应避免通过指针捕获异常，除非您有特定的原因这样做。
+请注意，异常处理程序应该通过引用而不是通过值来捕获类异常对象。这可以防止编译器在捕获异常的位置复制该异常。当异常是类对象时，拷贝对象可能会非常昂贵。并且这防止在处理派生异常类（我们稍后将讨论）时进行对象切片。通常应避免通过指针捕获异常，除非您有特定的原因这样做。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 基本类型的异常可以被值捕获，因为它们的复制成本很低。类类型的异常应由（const）引用捕获，以防止昂贵的复制和切片。
 
 {{< /alert >}}
 
 ***
-## 例外和继承
+## 异常和继承
 
 由于可以将类作为异常抛出，并且类可以从其他类派生，因此我们需要考虑将继承的类用作异常时会发生什么情况。事实证明，异常处理程序不仅匹配特定类型的类，还匹配从该特定类型派生的类！考虑以下示例：
 
@@ -284,9 +284,13 @@ int main()
 
 在上面的例子中，我们抛出了一个Derived类型的异常。然而，该程序的输出是：
 
+```C++
+caught Base
+```
+
 发生了什么事？
 
-首先，如上所述，派生类将被基类型的处理程序捕获。因为Derived是从Base派生而来的，所以Derivedis-aBase（它们具有is-a关系）。其次，当C++试图为引发的异常查找处理程序时，它会按顺序执行。因此，C++所做的第一件事是检查Base的异常处理程序是否与Derived异常匹配。因为Derived是一个Base，所以答案是yes，并且它执行Base类型的catch块！在这种情况下，Derived的catch块甚至从未测试过。
+首先，如上所述，派生类将被基类的处理程序捕获。因为Derived是从Base派生而来的，所以Derived是一个Base（它们具有is-a关系）。其次，当C++试图为引发的异常查找处理程序时，它会按顺序执行。因此，C++所做的第一件事是检查Base类的异常处理程序是否与Derived异常匹配。因为Derived是一个Base，所以答案是yes，并且它执行Base类型的catch块！在这种情况下，Derived的catch块甚至从未检查到。
 
 为了使此示例按预期工作，我们需要翻转catch块的顺序：
 
@@ -324,43 +328,45 @@ int main()
 }	
 ```
 
-这样，Derived处理程序将在捕获Derived类型的对象时获得第一个机会（在Base处理程序可以之前）。Base类型的对象将与派生处理程序不匹配（Derived是Base，但Base不是Deriveed），因此将“落到”Base处理程序。
+这样，Derived处理程序将在捕获Derived类型的对象时获得优先处理的机会（在Base处理程序之前）。
 
-使用基类的处理程序来捕获派生类型的异常的能力被证明是非常有用的。
+如果异常对象是Base，或者Base的其它派生类，那么它不会被Derived类型的异常catch捕获住。会接着往下执行，走到Base类型的catch处理程序，然后进行处理。
+
+使用基类的异常处理程序来捕获派生类型的异常的能力是非常有用的。
 
 {{< alert success >}}
 **规则**
 
-派生异常类的句柄应列在基类的句柄之前。
+派生类的异常处理catch应在基类之前。
 
 {{< /alert >}}
 
 ***
-## 标准：：异常
+## std::exception
 
-标准库中的许多类和运算符在失败时引发异常类。例如，如果操作符new无法分配足够的内存，则它可以抛出std:：bad_alloc。失败的dynamic_cast将引发std:：bad_cast。从C++20开始，有28个不同的异常类可以抛出，在每个后续的语言标准中都添加了更多的异常类。
+标准库中的许多类和运算符在失败时引发异常类。例如，如果操作符new无法分配足够的内存，则它可以抛出std::bad_alloc。失败的dynamic_cast将引发std::bad_cast。从C++20开始，有28个不同的异常类可以抛出，在每个后续的语言标准中都添加了更多的异常类。
 
-好消息是，所有这些异常类都派生自一个名为std:：exception的类（在<exception>头中定义）。exception是一个小型接口类，旨在充当C++标准库引发的任何异常的基类。
+好消息是，所有这些异常类都派生自一个名为std::exception的类（在\<exception\>头中定义）。exception是一个小型接口类，旨在充当C++标准库引发的任何异常的基类。
 
-在大多数情况下，当标准库抛出异常时，我们不会关心它是错误的分配、错误的强制转换还是其他什么。我们只关心灾难性的错误，现在我们的程序正在爆炸。由于std:：exception，我们可以设置一个异常处理程序来捕获类型为std：：except的异常，并且我们最终将在一个地方同时捕获std：:exception.和所有派生的异常。简单！
+在大多数情况下，当标准库抛出异常时，我们不会关心它是错误的分配、错误的强制转换还是其他什么。由于所有异常都是std::exception的子类，我们可以设置一个异常处理程序来捕获类型为std::exception的异常，这样就可以处理所有标准库抛出的异常。简单！
 
 ```C++
 #include <cstddef> // for std::size_t
 #include <exception> // for std::exception
 #include <iostream>
 #include <limits>
-#include <string> // for this example
+#include <string>
 
 int main()
 {
     try
     {
-        // Your code using standard library goes here
-        // We'll trigger one of these exceptions intentionally for the sake of the example
+        // 我们的代码这里是用了标准库
+        // 一个引发异常的样例
         std::string s;
-        s.resize(std::numeric_limits<std::size_t>::max()); // will trigger a std::length_error or allocation exception
+        s.resize(std::numeric_limits<std::size_t>::max()); // 会触发 std::length_error 或者 内存分配异常
     }
-    // This handler will catch std::exception and all the derived exceptions too
+    // 这里会 catch 住 std::exception 和所有的 对应的派生类
     catch (const std::exception& exception)
     {
         std::cerr << "Standard exception: " << exception.what() << '\n';
@@ -372,38 +378,41 @@ int main()
 
 在作者的机器上，上述程序打印：
 
-上面的例子应该非常简单。值得注意的一点是，std:：exception有一个名为what（）的虚拟成员函数，该函数返回异常的C样式字符串描述。大多数派生类都重写what（）函数来更改消息。注意，该字符串仅用于描述性文本——不要将其用于比较，因为它不能保证在编译器之间是相同的。
+```C++
+Standard exception: string too long
+```
+
+上面的例子应该非常简单。值得注意的一点是，std::exception有一个名为what()的虚成员函数，该函数返回异常的C样式字符串描述。大多数派生类都重写what()函数来更改消息。注意，该字符串仅用于描述性文本——不要将其用于比较，因为它不能保证同一异常在不同编译器之间是相同的。
 
 有时，我们希望以不同的方式处理特定类型的异常。在这种情况下，我们可以为该特定类型添加处理程序，并让所有其他处理程序“落到”基础处理程序。考虑：
 
 ```C++
 try
 {
-     // code using standard library goes here
+     // 使用标准库的代码
 }
-// This handler will catch std::length_error (and any exceptions derived from it) here
+// 这里会 catch std::length_error (和任何它的派生类)
 catch (const std::length_error& exception)
 {
     std::cerr << "You ran out of memory!" << '\n';
 }
-// This handler will catch std::exception (and any exception derived from it) that fall
-// through here
+// 这里会 catch std::exception (以及非std::length_error)
 catch (const std::exception& exception)
 {
     std::cerr << "Standard exception: " << exception.what() << '\n';
 }
 ```
 
-在本例中，类型为std:：length_error的异常将由第一个处理程序捕获并在那里处理。第二个处理程序将捕获std:：exception类型的异常和所有其他派生类。
+在本例中，类型为std::length_error的异常将由第一个处理程序捕获并在那里处理。第二个处理程序将捕获std::exception类型的异常和所有其他派生类。
 
 这样的继承层次结构允许我们使用特定的处理程序来定位特定的派生异常类，或者使用基类处理程序来捕获整个异常层次结构。这允许我们在一定程度上控制我们想要处理的异常类型，同时确保我们不必做太多工作来捕获层次结构中的“其他一切”。
 
 ***
 ## 直接使用标准异常
 
-没有任何东西直接抛出std:：异常，您也不应该这样做。然而，如果其他标准异常类充分地代表了您的需求，那么您应该可以在标准库中随意抛出它们。您可以找到cppreference上所有标准异常的列表。
+没有任何东西直接抛出std::exception，您也不应该这样做。然而，如果标准异常类充分地代表了您的需求，那么您可以按需抛出它们。您可以找到cppreference上所有标准异常的列表。
 
-std:：runtime_error（作为stdexcept头的一部分包含）是一个流行的选择，因为它具有通用名称，并且其构造函数采用可定制的消息：
+std::runtime_error（作为stdexcept头文件的一部分包含）是一个流行的选择，因为它具有通用名称，并且其构造函数采用可定制的消息：
 
 ```C++
 #include <exception> // for std::exception
@@ -416,7 +425,7 @@ int main()
 	{
 		throw std::runtime_error("Bad things happened");
 	}
-	// This handler will catch std::exception and all the derived exceptions too
+	// 这里会 catch std::exception 及其所有派生类
 	catch (const std::exception& exception)
 	{
 		std::cerr << "Standard exception: " << exception.what() << '\n';
@@ -428,10 +437,14 @@ int main()
 
 这将打印：
 
-***
-## 从std::exception或std:：runtime_error派生您自己的类
+```C++
+Standard exception: Bad things happened
+```
 
-当然，您可以从std:：exception派生自己的类，并重写虚拟what（）const成员函数。下面是与上面相同的程序，其中ArrayException派生自std:：exception:
+***
+## 从std::exception或std::runtime_error派生您自己的类
+
+当然，您可以从std::exception派生自己的类，并重写const虚函数what()。下面是与上面相同的程序，其中ArrayException派生自std::exception。
 
 ```C++
 #include <exception> // for std::exception
@@ -442,7 +455,7 @@ int main()
 class ArrayException : public std::exception
 {
 private:
-	std::string m_error{}; // handle our own string
+	std::string m_error{}; // 我们自己保存的错误
 
 public:
 	ArrayException(std::string_view error)
@@ -450,14 +463,14 @@ public:
 	{
 	}
 
-	// std::exception::what() returns a const char*, so we must as well
+	// std::exception::what() 返回 const char*, 需要保持一致
 	const char* what() const noexcept override { return m_error.c_str(); }
 };
 
 class IntArray
 {
 private:
-	int m_data[3] {}; // assume array is length 3 for simplicity
+	int m_data[3] {}; // 简单起见，这里先固定长度为3
 
 public:
 	IntArray() {}
@@ -482,7 +495,7 @@ int main()
 	{
 		int value{ array[5] };
 	}
-	catch (const ArrayException& exception) // derived catch blocks go first
+	catch (const ArrayException& exception) // 派生类优先处理
 	{
 		std::cerr << "An array exception occurred (" << exception.what() << ")\n";
 	}
@@ -493,11 +506,11 @@ int main()
 }
 ```
 
-请注意，虚拟函数what（）具有说明符noexcept（这意味着函数承诺不抛出异常本身）。因此，我们的重写还应该具有说明符noexcept。
+请注意，虚函数what()具有说明符noexcept（这意味着函数承诺不抛出异常本身）。因此，我们的重写还应该具有说明符noexcept。
 
-由于std:：runtime_error已经具有字符串处理功能，因此它也是派生异常类的流行基类。std:：runtime_error可以采用C样式的字符串参数，也可以采用const std：：string&parameter。
+由于std::runtime_error已经具有字符串处理功能，因此它也是异常派生类的流行基类。std::runtime_error可以接收C样式的字符串参数，也可以接收「const std::string&」参数。
 
-下面是从std:：runtime_error派生的相同示例：
+下面是从std::runtime_error派生的相同示例：
 
 ```C++
 #include <exception> // for std::exception
@@ -508,21 +521,21 @@ int main()
 class ArrayException : public std::runtime_error
 {
 public:
-	// std::runtime_error takes either a null-terminated const char* or a const std::string&.
-	// We will follow their lead and take a const std::string&
+	// std::runtime_error 	接收 const char* 或 const std::string&.
+	// 我们这里接收 const std::string&
 	ArrayException(const std::string& error)
-		: std::runtime_error{ error } // std::runtime_error will handle the string
+		: std::runtime_error{ error } // std::runtime_error 会处理这个string
 	{
 	}
 
 
-        // no need to override what() since we can just use std::runtime_error::what()
+        // 没有必要 重写 what()，因为可以直接使用 std::runtime_error::what()
 };
 
 class IntArray
 {
 private:
-	int m_data[3]{}; // assume array is length 3 for simplicity
+	int m_data[3]{}; // 简单起见，这里先固定长度为3
 
 public:
 	IntArray() {}
@@ -547,7 +560,7 @@ int main()
 	{
 		int value{ array[5] };
 	}
-	catch (const ArrayException& exception) // derived catch blocks go first
+	catch (const ArrayException& exception) // 派生类优先处理
 	{
 		std::cerr << "An array exception occurred (" << exception.what() << ")\n";
 	}
@@ -558,16 +571,16 @@ int main()
 }
 ```
 
-您可以决定是创建自己的独立异常类、使用标准异常类，还是从std:：exception或std:：runtime_error派生自己的异常类。所有这些都是有效的方法，取决于您的目标。
+您可以决定是创建自己的独立异常类、使用标准异常类，还是从std::exception或std::runtime_error派生自己的异常类。所有这些都是有效的方法，取决于您的目标。
 
 ***
-## 异常的生存期
+## 异常的生命周期
 
-当抛出异常时，被抛出的对象通常是在堆栈上分配的临时或局部变量。然而，异常处理过程可能会展开函数，导致函数的所有局部变量被销毁。那么，被抛出的异常对象如何在堆栈展开中幸存下来呢？
+当抛出异常时，被抛出的对象通常是在堆栈上分配的临时或局部变量。然而，异常处理过程可能会展开函数栈，导致函数的所有局部变量被销毁。那么，被抛出的异常对象如何在栈展开中幸存下来呢？
 
-当抛出异常时，编译器将异常对象的副本复制到为处理异常而保留的某个未指定内存（调用堆栈之外）。这样，不管堆栈是否展开或展开多少次，都会持久化异常对象。在处理异常之前，确保异常存在。
+当抛出异常时，编译器将异常对象的副本复制到为处理异常而保留的某个未指定内存（调用栈之外）。这样，不管堆栈是否展开或展开多少次，都会持久化异常对象。在处理异常之前，确保异常存在。
 
-这意味着被抛出的对象通常需要是可复制的（即使堆栈实际上没有解除绑定）。智能编译器可以改为执行移动，或者在特定情况下完全删除副本。
+这意味着被抛出的对象通常需要是可复制的（即使栈实际上没有展开）。高度优化的编译器可以改为执行对象移动，或者在特定情况下完全删除副本创建。
 
 下面的一个示例显示了当我们尝试抛出不可复制的派生对象时发生的情况：
 
@@ -585,7 +598,7 @@ class Derived : public Base
 public:
     Derived() {}
 
-    Derived(const Derived&) = delete; // not copyable
+    Derived(const Derived&) = delete; // 不可复制
 };
 
 int main()
@@ -594,7 +607,7 @@ int main()
 
     try
     {
-        throw d; // compile error: Derived copy constructor was deleted
+        throw d; // 编译失败: Derived 拷贝构造函数被删除
     }
     catch (const Derived& derived)
     {
@@ -609,9 +622,9 @@ int main()
 }
 ```
 
-编译此程序时，编译器将抱怨派生副本构造函数不可用，并停止编译。
+编译此程序时，编译器将报错，Derived拷贝构造函数不可用，并停止编译。
 
-异常对象不应保留堆栈分配对象的指针或引用。如果引发的异常导致堆栈展开（导致堆栈分配对象的销毁），则这些指针或引用可能会悬而未决。
+异常对象不应保留栈上分配对象的指针或引用。如果引发的异常导致函数调用栈展开（导致栈上分配对象的销毁），则这些指针或引用是悬空的。
 
 {{< alert success >}}
 **提示**
