@@ -226,8 +226,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter27/exception-func-stack-unwind/" next="/" >}}
+{{< prevnext prev="/basic/chapter27/exception-func-stack-unwind/" next="/basic/chapter27/exception-and-class/" >}}
 27.2 异常、函数和堆栈展开
 <--->
-主页
+27.4 异常、类和继承
 {{< /prevnext >}}

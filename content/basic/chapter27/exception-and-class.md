@@ -634,3 +634,9 @@ int main()
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter27/uncatch-catchall/" next="/" >}}
+27.3 未捕获的异常和捕获所有异常
+<--->
+主页
+{{< /prevnext >}}
