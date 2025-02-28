@@ -16,16 +16,16 @@ public:
 	A(int x) : m_x{x}
 	{
 		if (x <= 0)
-			throw 1; // Exception thrown here
+			throw 1; // 这里抛出异常
 	}
 };
 
 class B : public A
 {
 public:
-	B(int x) : A{x} // A initialized in member initializer list of B
+	B(int x) : A{x} // A 在 B 的初始化列表里初始化
 	{
-		// What happens if creation of A fails and we want to handle it here?
+		// 如果我们想在这里处理A创建失败的情况，该怎么办?
 	}
 };
 
@@ -42,9 +42,13 @@ int main()
 }
 ```
 
-在上面的示例中，派生类B调用基类构造函数A，该构造函数可以引发异常。由于对象b的创建已放在try块中（在函数main（）中），因此如果a抛出异常，main的try块将捕获它。因此，该程序打印：
+在上面的示例中，派生类B调用基类构造函数A，该构造函数可能抛出异常。由于对象b的创建已放在try块中（在函数main()中），因此如果a抛出异常，main的try块将捕获它。因此，该程序打印：
 
-但如果我们想捕获B内部的异常呢？在调用B构造函数的主体之前，通过成员初始值设定项列表调用基构造函数A。没有办法围绕它包装标准的try块。
+```C++
+Oops
+```
+
+但如果我们想在B内部捕获异常呢？在调用B构造函数的函数体之前，通过成员初始值设定项列表调用基构造函数A。没有办法围绕它设置对应的try块。
 
 在这种情况下，我们必须使用稍微修改的try块，称为函数try块。
 
@@ -66,24 +70,24 @@ public:
 	A(int x) : m_x{x}
 	{
 		if (x <= 0)
-			throw 1; // Exception thrown here
+			throw 1; // 这里抛出异常
 	}
 };
 
 class B : public A
 {
 public:
-	B(int x) try : A{x} // note addition of try keyword here
+	B(int x) try : A{x} // 注：这里额外的 try 关键字
 	{
 	}
-	catch (...) // note this is at same level of indentation as the function itself
+	catch (...) // 注：这里和函数定义同级
 	{
-                // Exceptions from member initializer list or
-                // from constructor body are caught here
+                // 初始化列表或者构造函数函数体
+                // 抛出的异常，会在这里捕获
 
                 std::cerr << "Exception caught\n";
 
-                throw; // rethrow the existing exception
+                throw; // 重新抛出异常
 	}
 };
 
@@ -102,16 +106,21 @@ int main()
 
 运行此程序时，它会生成输出：
 
+```C++
+Exception caught
+Oops
+```
+
 让我们更详细地检查这个程序。
 
 首先，注意在成员初始值设定项列表之前添加了try关键字。这表示该点之后的所有内容（直到函数结束）都应被视为在try块内。
 
 其次，请注意，关联的catch块与整个函数处于相同的缩进级别。在try关键字和函数体末尾之间引发的任何异常都可以在此处捕获。
 
-当上面的程序运行时，变量b开始构造，它调用b的构造函数（使用函数try）。B的构造函数调用A的构造函数，然后引发异常。由于A的构造函数不处理该异常，因此该异常向上传播到B的构造函数，在那里它被B的构造函数的函数级捕获捕获。catch块打印“捕获的异常”，然后将当前异常重新抛出堆栈，该异常由main（）中的catch块捕获，后者打印“Oops”。
+当上面的程序运行时，变量b开始构造，它调用b的构造函数（使用函数try）。B的构造函数调用A的构造函数，然后引发异常。由于A的构造函数不处理该异常，因此该异常向上传播到B的构造函数，在那里它被B的构造函数的函数级catch捕获。catch块打印“Exception caught”，然后将当前异常重新抛出，该异常由main()中的catch块捕获，后者打印“Oops”。
 
 {{< alert success >}}
-**最佳做法**
+**最佳实践**
 
 当需要构造函数来处理成员初始值设定项列表中引发的异常时，请使用函数try块。
 
@@ -202,3 +211,4 @@ int main()
 
 函数try主要用于在将异常传递到堆栈之前记录失败，或者用于更改引发的异常类型。
 
+***
