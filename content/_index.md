@@ -798,7 +798,7 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter27/exception-spec-noexcept/<-> 27.8 异常规格和noexcept
 <-->
-<->/basic/chapter27/move-if-noexcept/<-> 27.9 标准：：move_if_noexcept
+<->/basic/chapter27/move-if-noexcept/<-> 27.9 std::move_if_noexcept
 <-->
 <->/basic/chapter27/summary/<-> 27.10 第27章总结
 {{< /chapterlist >}}

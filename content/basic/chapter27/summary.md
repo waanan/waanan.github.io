@@ -28,7 +28,7 @@ noexcept异常说明符可用于表示函数没有抛出异常/不会失败。
 ***
 
 {{< prevnext prev="/basic/chapter27/move-if-noexcept/" next="/" >}}
-27.9 标准：：move_if_noexcept
+27.9 std::move_if_noexcept
 <--->
 主页
 {{< /prevnext >}}

@@ -252,5 +252,5 @@ int doSomething() throw(...); // 可能抛出任何异常
 {{< prevnext prev="/basic/chapter27/exception-downside/" next="/basic/chapter27/move-if-noexcept/" >}}
 27.7 异常的风险和缺点
 <--->
-27.9 标准：：move_if_noexcept
+27.9 std::move_if_noexcept
 {{< /prevnext >}}
