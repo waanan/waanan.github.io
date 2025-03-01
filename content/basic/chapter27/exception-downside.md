@@ -141,3 +141,9 @@ catch (const PersonException& exception)
 在这种情况下，上面的前两点基本满足。一般情况下不太会发生错误。或者当用户传出错误的参数时，编写的函数无法正确执行。对于第三点，这个函数的职责也不应该负责处理错误（比如重新提示用户输入正确的文件名）。第四条比较关键，是否有更好的替代方式将错误码返回给调用者？这取决于您的计划（例如可以返回空指针或者一些错误码），如果没有更好的方式，使用异常是合理的。
 
 ***
+
+{{< prevnext prev="/basic/chapter27/function-try/" next="/basic/chapter27/exception-spec-noexcept/" >}}
+27.6 函数try块
+<--->
+27.8 异常规格和noexcept
+{{< /prevnext >}}

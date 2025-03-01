@@ -248,3 +248,9 @@ int doSomething() throw(...); // 可能抛出任何异常
 由于不完整的编译器实现、与模板函数的一些不兼容、对它们如何工作的常见误解以及标准库大多不使用它们的事实，动态异常规格在C++11中被弃用，并从C++17和C++20的语言中删除。
 
 ***
+
+{{< prevnext prev="/basic/chapter27/exception-downside/" next="/basic/chapter27/move-if-noexcept/" >}}
+27.7 异常的风险和缺点
+<--->
+27.9 标准：：move_if_noexcept
+{{< /prevnext >}}

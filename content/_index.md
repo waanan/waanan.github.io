@@ -790,17 +790,17 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter27/exception-and-class/<-> 27.4 异常、类和继承
 <-->
-<->/basic/chapter27/exception-rethrow/<-> 27.5 异常、类和继承
+<->/basic/chapter27/exception-rethrow/<-> 27.5 重新抛出异常
 <-->
-<->/basic/chapter27/function-try/<-> 27.6 异常、类和继承
+<->/basic/chapter27/function-try/<-> 27.6 函数try块
 <-->
-<->/basic/chapter27/exception-downside/<-> 27.7 异常、类和继承
+<->/basic/chapter27/exception-downside/<-> 27.7 异常的风险和缺点
 <-->
-<->/basic/chapter27/exception-spec-noexcept/<-> 27.8 异常、类和继承
+<->/basic/chapter27/exception-spec-noexcept/<-> 27.8 异常规格和noexcept
 <-->
-<->/basic/chapter27/move-if-noexcept/<-> 27.9 异常、类和继承
+<->/basic/chapter27/move-if-noexcept/<-> 27.9 标准：：move_if_noexcept
 <-->
-<->/basic/chapter27/summary/<-> 27.10 异常、类和继承
+<->/basic/chapter27/summary/<-> 27.10 第27章总结
 {{< /chapterlist >}}
 
 ***

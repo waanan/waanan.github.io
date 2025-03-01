@@ -635,8 +635,8 @@ int main()
 
 ***
 
-{{< prevnext prev="/basic/chapter27/uncatch-catchall/" next="/" >}}
+{{< prevnext prev="/basic/chapter27/uncatch-catchall/" next="/basic/chapter27/exception-rethrow/" >}}
 27.3 未捕获的异常和捕获所有异常
 <--->
-主页
+27.5 重新抛出异常
 {{< /prevnext >}}

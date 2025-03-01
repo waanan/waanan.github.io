@@ -257,3 +257,9 @@ Caught Base b, which is actually a Derived
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter27/exception-and-class/" next="/basic/chapter27/function-try/" >}}
+27.4 异常、类和继承
+<--->
+27.6 函数try块
+{{< /prevnext >}}

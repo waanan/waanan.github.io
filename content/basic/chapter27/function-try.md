@@ -224,3 +224,9 @@ Oops
 函数try主要用于将异常传递到调用栈之前记录失败，或者用于更改抛出的异常类型。
 
 ***
+
+{{< prevnext prev="/basic/chapter27/exception-rethrow/" next="/basic/chapter27/exception-downside/" >}}
+27.5 重新抛出异常
+<--->
+27.7 异常的风险和缺点
+{{< /prevnext >}}

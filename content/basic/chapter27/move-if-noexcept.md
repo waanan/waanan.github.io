@@ -209,3 +209,10 @@ std::pair的移动构造函数不是noexcept（到C++20为止），因此std::mo
 
 {{< /alert >}}
 
+***
+
+{{< prevnext prev="/basic/chapter27/exception-spec-noexcept/" next="/basic/chapter27/summary/" >}}
+27.8 异常规格和noexcept
+<--->
+27.10 第27章总结
+{{< /prevnext >}}
