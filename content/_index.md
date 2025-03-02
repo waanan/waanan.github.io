@@ -808,4 +808,5 @@ date: 2022-12-28T16:40:41+08:00
 {{< chapterlist>}}
 第二十八章 输入输出（I/O）
 <--->
+<->/basic/chapter28/io-stream/<-> 28.0 为什么需要异常机制
 {{< /chapterlist >}}
