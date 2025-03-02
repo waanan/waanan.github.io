@@ -811,4 +811,6 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter28/io-stream/<-> 28.0 为什么需要异常机制
 <-->
 <->/basic/chapter28/istream/<-> 28.1 函数try块
+<-->
+<->/basic/chapter28/ostream/<-> 28.2 函数try块
 {{< /chapterlist >}}

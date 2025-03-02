@@ -5,91 +5,135 @@ date: 2025-03-02T00:53:53+08:00
 
 在本节中，我们将研究iostream输出类（ostream）的各个方面。
 
-插入运算符
+***
+## 插入运算符
 
-插入运算符（<<）用于将信息放入输出流中。C++为所有内置数据类型预定义了插入操作，并且您已经看到了如何为自己的类重载插入操作符。
+插入运算符（<<）用于将信息放入输出流中。C++为所有内置数据类型预定义了插入操作，并且您已经看到了如何为自定义的类重载插入操作符。
 
 在关于流的课程中，您看到istream和ostream都派生自一个名为ios的类。ios（和ios_base）的任务之一是控制输出的格式选项。
 
-格式化
+***
+## 格式化
 
 有两种方法可以更改格式选项：标志和操纵器。您可以将标志视为可以打开和关闭的布尔变量。操纵器是放置在流中的对象，影响事物的输入和输出方式。
 
-要打开标志，请使用setf（）函数，并将适当的标志作为参数。例如，默认情况下，C++不会在正数之前打印+号。然而，通过使用std:：ios:：showpos标志，我们可以更改此行为：
+要打开标志，请使用setf()函数，并将适当的标志作为参数。例如，默认情况下，C++不会在正数之前打印+号。然而，通过使用std::ios::showpos标志，我们可以更改此行为：
 
 ```C++
-std::cout.setf(std::ios::showpos); // turn on the std::ios::showpos flag
+std::cout.setf(std::ios::showpos); // 打开 std::ios::showpos 标志
 std::cout << 27 << '\n';
 ```
 
 这将产生以下输出：
 
-可以使用Bitwise OR（|）运算符一次打开多个ios标志：
+```C++
++27
+```
+
+可以使用 OR（|）运算符一次打开多个ios标志：
 
 ```C++
-std::cout.setf(std::ios::showpos | std::ios::uppercase); // turn on the std::ios::showpos and std::ios::uppercase flag
+std::cout.setf(std::ios::showpos | std::ios::uppercase); // 打开 std::ios::showpos 和 std::ios::uppercase 标志
 std::cout << 1234567.89f << '\n';
 ```
 
-该输出：
-
-要关闭标志，请使用unsetf（）函数：
+输出：
 
 ```C++
-std::cout.setf(std::ios::showpos); // turn on the std::ios::showpos flag
++1.23457E+06
+```
+
+要关闭标志，请使用unsetf()函数：
+
+```C++
+std::cout.setf(std::ios::showpos); // 打开 std::ios::showpos 标志
 std::cout << 27 << '\n';
-std::cout.unsetf(std::ios::showpos); // turn off the std::ios::showpos flag
+std::cout.unsetf(std::ios::showpos); // 关闭 std::ios::showpos 标志
 std::cout << 28 << '\n';
 ```
 
 这将产生以下输出：
 
-在使用setf（）时，还有一点需要注意的技巧。许多标志属于组，称为格式组。格式组是一组执行类似（有时互斥）格式选项的标志。例如，名为“basefield”的格式组包含标志“oct”、“dec”和“hex”，这些标志控制整数值的基数。默认情况下，设置“dec”标志。因此，如果我们这样做：
+```C++
++27
+28
+```
+
+在使用setf()时，还有一点需要注意的技巧。许多标志属于同一组，称为格式组。格式组是一组执行类似（有时互斥）格式选项的标志。例如，名为“basefield”的格式组包含标志“oct”（八进制）、“dec”（十进制）和“hex”（十六进制），这些标志控制整数值的基数。默认情况下，设置“dec”标志。因此，如果我们这样做：
 
 ```C++
-std::cout.setf(std::ios::hex); // try to turn on hex output
+std::cout.setf(std::ios::hex); // 按16进制输出数字
 std::cout << 27 << '\n';
 ```
 
 我们得到以下输出：
 
-它不工作！原因是因为setf（）仅打开标志——它不够聪明，无法关闭互斥标志。因此，当我们打开std:：hex时，std:：ios:：dec仍处于打开状态，而std:∶ios:∶dec显然优先。有两种方法可以解决这个问题。
+```C++
+27
+```
 
-首先，我们可以关闭std:：ios:：dec，以便仅设置std:∶hex：
+这不工作！原因是因为setf()仅打开标志——它不够聪明，无法关闭互斥标志。因此，当我们打开std::hex时，std::ios::dec仍处于打开状态，而std:∶ios::dec显然优先级更高。有两种方法可以解决这个问题。
+
+首先，我们可以关闭std::ios::dec，以便仅设置std::hex：
 
 ```C++
-std::cout.unsetf(std::ios::dec); // turn off decimal output
-std::cout.setf(std::ios::hex); // turn on hexadecimal output
+std::cout.unsetf(std::ios::dec); // 关闭十进制格式输出
+std::cout.setf(std::ios::hex); // 打开十六进制格式输出
 std::cout << 27 << '\n';
 ```
 
 现在我们得到了预期的输出：
 
-第二种方法是使用不同形式的setf（），它接受两个参数：第一个参数是要设置的标志，第二个参数是它所属的格式化组。当使用这种形式的setf（）时，属于该组的所有标志都被关闭，只有传入的标志被打开。例如：
+```C++
+1b
+```
+
+第二种方法是使用不同形式的setf()，它接受两个参数：第一个参数是要设置的标志，第二个参数是它所属的格式化组。当使用这种形式的setf()时，属于该组的所有标志都被关闭，只有传入的标志被打开。例如：
 
 ```C++
-// Turn on std::ios::hex as the only std::ios::basefield flag
+// 设置 std::ios::hex 作为 std::ios::basefield 中的唯一标志
 std::cout.setf(std::ios::hex, std::ios::basefield);
 std::cout << 27 << '\n';
 ```
 
 这也会产生预期的输出：
 
-使用setf（）和unsetf（）往往会很尴尬，因此C++提供了第二种更改格式选项的方法：操纵器。操纵器的好处是它们足够聪明，可以打开和关闭适当的标志。下面是使用一些操纵器更改基础的示例：
+```C++
+1b
+```
+
+使用setf()和unsetf()往往会很尴尬，因此C++提供了第二种更改格式选项的方法：操纵器。操纵器的好处是它们足够聪明，可以打开和关闭适当的标志。下面是使用一些操纵器更改基础的示例：
 
 ```C++
-std::cout << std::hex << 27 << '\n'; // print 27 in hex
-std::cout << 28 << '\n'; // we're still in hex
-std::cout << std::dec << 29 << '\n'; // back to decimal
+std::cout << std::hex << 27 << '\n'; // 按十六进制打印 27
+std::cout << 28 << '\n'; // 任然在16进制模式下
+std::cout << std::dec << 29 << '\n'; // 切换回10进制
 ```
 
 该程序生成输出：
 
-通常，使用操纵器比设置和取消设置标志容易得多。许多选项通过标志和操纵器都可用（例如更改基础），然而，其他选项仅通过标志或操纵器可用，因此了解如何同时使用这两个选项非常重要。
+```C++
+1b
+1c
+29
+```
 
-有用的格式化程序
+通常，使用操纵器比设置和取消设置标志容易得多。许多选项通过标志和操纵器都可用，然而，有些选项仅通过标志或操纵器可用，因此了解如何同时使用这两个选项非常重要。
 
-下面是一些更有用的标志、操纵器和成员函数的列表。标志存在于std:：ios类中，操纵器存在于std命名空间中，成员函数存在于std:：ostream类中。
+***
+## 有用的格式化方式
+
+下面是一些更有用的标志、操纵器和成员函数的列表。标志存在于std::ios类中，操纵器存在于std命名空间中，成员函数存在于std::ostream类中。
+
+| 标记  |  效果 |
+| ----  | ----  |
+| std::ios::boolalpha | 如果设置，则bool被打印为“true” 或 “false”，否则打印为 0 或 1 |
+
+
+|  操纵器 | 效果  |
+|  ----  | ----  |
+| std::boolalpha | bool被打印为“true” 或 “false” |
+| std::noboolalpha | bool被打印为 0 或 1 |
 
 示例：
 
@@ -106,6 +150,23 @@ std::cout << std::boolalpha << true << ' ' << false << '\n';
 
 结果：
 
+```C++
+1 0
+true false
+1 0
+true false
+```
+
+| 标记  |  效果 |
+| ----  | ----  |
+| std::ios::showpos | 如果设置，正数前面会有一个 + 号 |
+
+|  操纵器 | 效果  |
+|  ----  | ----  |
+| std::showpos | 正数前面会有一个 + 号  |
+| std::noshowpos | 正数前面不会带 + 号 |
+
+
 示例：
 
 ```C++
@@ -121,6 +182,22 @@ std::cout << std::showpos << 5 << '\n';
 
 结果：
 
+```C++
+5
++5
+5
++5
+```
+
+| 标记  |  效果 |
+| ----  | ----  |
+| std::ios::uppercase | 如果设置，使用大写字母 |
+
+|  操纵器 | 效果  |
+|  ----  | ----  |
+| std::uppercase | 使用大写字母  |
+| std::nouppercase | 使用小写字母 |
+
 示例：
 
 ```C++
@@ -135,6 +212,26 @@ std::cout << std::uppercase << 12345678.9 << '\n';
 ```
 
 结果：
+
+```C++
+1.23457e+007
+1.23457E+007
+1.23457e+007
+1.23457E+007
+```
+
+| 组 | 标记  |  效果 |
+| ----  | ----  | ----  |
+| std::ios::basefield | std::ios::dec | 按10进制打印数字（默认） |
+| std::ios::basefield | std::ios::hex | 按16进制打印数字 |
+| std::ios::basefield | std::ios::oct | 按8进制打印数字 |
+| std::ios::basefield | (none) | 数字前导的格式打印 |
+
+|  操纵器 | 效果  |
+|  ----  | ----  |
+| std::dec | 按10进制打印数字  |
+| std::hex | 按16进制打印数字 |
+| std::oct | 按8进制打印数字 |
 
 示例：
 
@@ -157,13 +254,44 @@ std::cout << std::hex << 27 << '\n';
 
 结果：
 
+```C++
+27
+27
+33
+1b
+27
+33
+1b
+```
+
 现在，您应该能够看到通过标志和通过操纵器设置格式之间的关系。在未来的示例中，我们将使用操纵器，除非它们不可用。
 
-精度、符号和小数点
+***
+## 精度、符号和小数点
 
 使用操纵器（或标志），可以更改显示浮点数的精度和格式。有几个格式选项以某种复杂的方式组合在一起，因此我们将更仔细地看一看。
 
 如果使用固定或科学记数法，则精度决定分数中显示的小数位数。请注意，如果精度小于有效位数，则数字将四舍五入。
+
+| 组 | 标记  |  效果 |
+| ----  | ----  | ----  |
+| std::ios::floatfield | std::ios::fixed | 按10进制打印浮点数 |
+| std::ios::floatfield | std::ios::scientific | 按科学计数法打印浮点数 |
+| std::ios::floatfield | (none) | 位数少，使用10进制打印，位数多，使用科学计数法 |
+| std::ios::floatfield | std::ios::showpoint | 永远展示小数点 |
+
+|  操纵器 | 效果  |
+|  ----  | ----  |
+| std::fixed | 按10进制打印  |
+| std::scientific | 按科学计数法打印 |
+| std::showpoint | 永远展示小数点 |
+| std::noshowpoint | 取消showpoint选项 |
+| std::setprecision(int) | 设置打印精度 |
+
+| 成员函数 | 效果  |
+|  ----  | ----  |
+| std::ios_base::precision() | 返回当前设置的打印精度 |
+| std::ios_base::precision(int) | 设置新的打印精度，并返回旧的打印精度 |
 
 ```C++
 std::cout << std::fixed << '\n';
@@ -183,7 +311,21 @@ std::cout << std::setprecision(7) << 123.456 << '\n';
 
 产生结果：
 
-如果既不使用固定数字，也不使用科学数字，则精度决定应显示多少有效数字。同样，如果精度小于有效位数，则该数字将四舍五入。
+```C++
+123.456
+123.4560
+123.45600
+123.456000
+123.4560000
+
+1.235e+002
+1.2346e+002
+1.23456e+002
+1.234560e+002
+1.2345600e+002
+```
+
+如果既不使用fixed数字，也不使用科学数字，则精度决定应显示多少有效数字。同样，如果精度小于有效位数，则该数字将四舍五入。
 
 ```C++
 std::cout << std::setprecision(3) << 123.456 << '\n';
@@ -194,6 +336,14 @@ std::cout << std::setprecision(7) << 123.456 << '\n';
 ```
 
 产生以下结果：
+
+```C++
+123
+123.5
+123.46
+123.456
+123.456
+```
 
 使用showpoint操纵器或标志，可以使流写入小数点和尾随零。
 
@@ -207,6 +357,14 @@ std::cout << std::setprecision(7) << 123.456 << '\n';
 ```
 
 产生以下结果：
+
+```C++
+123.
+123.5
+123.46
+123.456
+123.4560
+```
 
 下面是一个包含更多示例的汇总表：
 
@@ -245,3 +403,4 @@ std::cout << std::setw(10) << std::internal << -12345 << '\n'; // print internal
 
 ostream类和iostream库包含其他可能有用的输出函数、标志和操纵器，具体取决于您需要执行的操作。与istream类一样，这些主题确实更适合于关注标准库的教程或书籍。
 
+***
