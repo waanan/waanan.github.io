@@ -368,39 +368,96 @@ std::cout << std::setprecision(7) << 123.456 << '\n';
 
 下面是一个包含更多示例的汇总表：
 
-宽度、填充字符和对齐
+|  选项 | 精度  | 12345.0 | 	0.12345  |
+|  ----  | ----  |  ----  | ----  |
+| Normal | 3 | 1.23e+004 | 0.123 |
+| Normal | 4 | 1.235e+004 | 0.1235 |
+| Normal | 5 | 12345 | 0.12345 |
+| Normal | 6 | 12345 | 0.12345 |
+| Showpoint | 3 | 1.23e+004 | 0.123 |
+| Showpoint | 4 | 1.235e+004 | 0.1235 |
+| Showpoint | 5 | 12345. | 0.12345 |
+| Showpoint | 6 | 12345.0 | 0.123450 |
+| Fixed | 3 | 12345.000 | 0.123 |
+| Fixed | 4 | 12345.0000 | 0.1235 |
+| Fixed | 5 | 12345.00000 | 0.12345 |
+| Fixed | 6 | 12345.000000 | 0.123450 |
+| Scientific | 3 | 1.235e+004 | 1.235e-001 |
+| Scientific | 4 | 1.2345e+004 | 1.2345e-001 |
+| Scientific | 5 | 1.23450e+004 | 1.23450e-001 |
+| Scientific | 6 | 1.234500e+004 | 1.234500e-001 |
 
-通常，在打印数字时，打印数字时不考虑其周围的空间。然而，可以向左或向右调整数字的打印。为了做到这一点，我们必须首先定义字段宽度，它定义了值将具有的输出空间的数量。如果实际打印的数字小于字段宽度，则它将左对齐或右对齐（按规定）。如果实际数字大于字段宽度，则不会截断它——它将溢出字段。
+***
+## 宽度、填充字符和对齐
 
-为了使用这些格式化程序中的任何一个，我们首先必须设置字段宽度。这可以通过width（int）成员函数或setw（）操纵器来完成。请注意，默认设置为右对齐。
+通常，在打印数字时，不考虑其周围的空间。然而，可以向左或向右调整数字的打印，来让上下对齐。为了做到这一点，我们必须首先定义字段宽度，它定义了值将具有的输出空间。如果实际打印的数字小于字段宽度，则它将左对齐或右对齐（按规定）。如果实际数字大于字段宽度，则不会截断它——它将溢出。
+
+| 组 | 标记  |  效果 |
+| ----  | ----  | ----  |
+| std::ios::adjustfield | std::ios::internal | 符号左对齐，数字右对齐 |
+| std::ios::adjustfield | std::ios::left | 左对齐 |
+| std::ios::adjustfield | std::ios::right | 右对齐 |
+
+|  操纵器 | 效果  |
+|  ----  | ----  |
+| std::internal | 符号左对齐，数字右对齐  |
+| std::left | 左对齐 |
+| std::right | 右对齐 |
+| std::setfill(char) | 将参数，设置为填充字符 (在 iomanip 头文件定义) |
+| std::setw(int) | 设置输入输出宽度（在 iomanip 头文件定义） |
+
+|  成员函数 | 效果  |
+|  ----  | ----  |
+| std::basic_ostream::fill() | 返回当前填充字符  |
+| std::basic_ostream::fill(char) | 设置填充字符，并返回之前的填充字符 |
+| std::ios_base::width() | 返回字段宽度 |
+| std::ios_base::width(int) | 设置字段宽度，并返回之前的字段宽度 |
+
+为了使用这些格式化程序中的任何一个，我们首先必须设置字段宽度。这可以通过width(int)成员函数或setw()操纵器来完成。请注意，默认设置为右对齐。
 
 ```C++
-std::cout << -12345 << '\n'; // print default value with no field width
-std::cout << std::setw(10) << -12345 << '\n'; // print default with field width
-std::cout << std::setw(10) << std::left << -12345 << '\n'; // print left justified
-std::cout << std::setw(10) << std::right << -12345 << '\n'; // print right justified
-std::cout << std::setw(10) << std::internal << -12345 << '\n'; // print internally justified
+std::cout << -12345 << '\n'; // 未设置字段宽度
+std::cout << std::setw(10) << -12345 << '\n'; // 设置字段宽度
+std::cout << std::setw(10) << std::left << -12345 << '\n'; // 左对齐
+std::cout << std::setw(10) << std::right << -12345 << '\n'; // 右对齐
+std::cout << std::setw(10) << std::internal << -12345 << '\n'; // internally 对齐
 ```
 
 这将产生以下结果：
 
-需要注意的一点是setw（）和width（）仅影响下一个输出语句。它们不像其他一些标志/操纵器那样是持久的。
+```C++
+-12345
+    -12345
+-12345
+    -12345
+-    12345
+```
+
+需要注意的一点是setw()和width()仅影响下一个输出语句。它们不像其他一些标志/操纵器那样是持久的。
 
 现在，让我们设置填充字符并执行相同的示例：
 
 ```C++
 std::cout.fill('*');
-std::cout << -12345 << '\n'; // print default value with no field width
-std::cout << std::setw(10) << -12345 << '\n'; // print default with field width
-std::cout << std::setw(10) << std::left << -12345 << '\n'; // print left justified
-std::cout << std::setw(10) << std::right << -12345 << '\n'; // print right justified
-std::cout << std::setw(10) << std::internal << -12345 << '\n'; // print internally justified
+std::cout << -12345 << '\n'; // 未设置字段宽度
+std::cout << std::setw(10) << -12345 << '\n'; // 设置字段宽度
+std::cout << std::setw(10) << std::left << -12345 << '\n'; // 左对齐
+std::cout << std::setw(10) << std::right << -12345 << '\n'; // 右对齐
+std::cout << std::setw(10) << std::internal << -12345 << '\n'; // internally 对齐
 ```
 
 这将产生输出：
 
+```C++
+-12345
+****-12345
+-12345****
+****-12345
+-****12345
+```
+
 请注意，字段中的所有空格都已用填充字符填充。
 
-ostream类和iostream库包含其他可能有用的输出函数、标志和操纵器，具体取决于您需要执行的操作。与istream类一样，这些主题确实更适合于关注标准库的教程或书籍。
+ostream类和iostream库包含其他可能有用的输出函数、标志和操纵器，具体取决于您需要执行的操作。与istream类一样，这些适合使用时查找对应的手册。
 
 ***
