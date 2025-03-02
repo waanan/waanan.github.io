@@ -51,3 +51,9 @@ iostream类可以处理输入和输出，允许双向I/O。
 在下一课中，我们将更详细地了解一些与I/O相关的功能。
 
 ***
+
+{{< prevnext prev="/basic/chapter27/summary/" next="/basic/chapter28/istream/" >}}
+27.10 第27章总结
+<--->
+28.1 使用istream处理输入
+{{< /prevnext >}}

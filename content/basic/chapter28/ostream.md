@@ -461,3 +461,9 @@ std::cout << std::setw(10) << std::internal << -12345 << '\n'; // internally 对
 ostream类和iostream库包含其他可能有用的输出函数、标志和操纵器，具体取决于您需要执行的操作。与istream类一样，这些适合使用时查找对应的手册。
 
 ***
+
+{{< prevnext prev="/basic/chapter28/istream/" next="/" >}}
+28.1 使用istream处理输入
+<--->
+主页
+{{< /prevnext >}}

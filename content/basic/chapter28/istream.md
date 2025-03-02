@@ -214,3 +214,9 @@ int main()
 istream包含许多其他函数和上述函数的变体，这些函数可能有用，具体取决于您需要执行的操作。您可以在[这里](https://en.cppreference.com/w/cpp/io/basic_istream)找到对应的文档。
 
 ***
+
+{{< prevnext prev="/basic/chapter28/io-stream/" next="/basic/chapter28/ostream/" >}}
+28.0 输入和输出（I/O）流
+<--->
+28.2 使用ostream和ios输出
+{{< /prevnext >}}
