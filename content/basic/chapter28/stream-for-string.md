@@ -159,3 +159,9 @@ std::cout << os.str();
 clear()重置可能已设置的任何错误标志，并将stream设置回ok状态。在下一课中，我们将详细讨论流的状态和错误标志。
 
 ***
+
+{{< prevnext prev="/basic/chapter28/ostream/" next="/" >}}
+28.2 使用ostream和ios输出
+<--->
+主页
+{{< /prevnext >}}

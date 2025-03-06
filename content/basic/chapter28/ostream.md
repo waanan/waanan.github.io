@@ -462,8 +462,8 @@ ostream类和iostream库包含其他可能有用的输出函数、标志和操�
 
 ***
 
-{{< prevnext prev="/basic/chapter28/istream/" next="/" >}}
+{{< prevnext prev="/basic/chapter28/istream/" next="/basic/chapter28/stream-for-string/" >}}
 28.1 使用istream处理输入
 <--->
-主页
+28.3 针对字符串的stream类
 {{< /prevnext >}}
