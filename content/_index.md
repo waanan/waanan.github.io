@@ -813,4 +813,8 @@ date: 2022-12-28T16:40:41+08:00
 <->/basic/chapter28/istream/<-> 28.1 使用istream处理输入
 <-->
 <->/basic/chapter28/ostream/<-> 28.2 使用ostream和ios输出
+<-->
+<->/basic/chapter28/stream-for-string/<-> 28.3 使用ostream和ios输出
+<-->
+<->/basic/chapter28/stream-state-validate-input/<-> 28.4 使用ostream和ios输出
 {{< /chapterlist >}}
