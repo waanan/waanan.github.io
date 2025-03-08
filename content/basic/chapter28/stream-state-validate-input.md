@@ -108,11 +108,15 @@ int main()
 
 注意，这段代码并不完美：用户可以说他们的名字是“asfwjweosdiweao”或其他一些胡言乱语，或者更糟的是，只是一堆空格。我们可以通过改进验证标准来稍微解决这个问题，使其仅接受包含至少一个字符和最多一个空格的字符串。
 
-现在，让我们来看另一个例子，我们将要求用户输入他们的电话号码。与用户名（长度可变，每个字符的验证标准相同）不同，电话号码是固定长度的，但验证标准因字符的位置而异。因此，我们将采取不同的方法来验证我们的电话号码输入。在这种情况下，我们将编写一个函数，该函数将根据预定的模板检查用户的输入，以查看它是否匹配。模板的工作方式如下：
+现在，让我们来看另一个例子，我们将要求用户输入他们的电话号码。与用户名（长度可变，每个字符的验证标准相同）不同，电话号码是固定长度的，但验证标准因字符的位置而异。因此，我们将采取不同的方法来验证电话号码输入。在这种情况下，我们将编写一个函数，该函数将根据预定的模板检查用户的输入，以查看它是否匹配。模板的工作方式如下：
 
-#将匹配用户输入中的任何数字。@将匹配用户输入中的任何字母字符。_将匹配任何空白。A？将匹配任何内容。否则，用户输入和模板中的字符必须完全匹配。
+‘#’将匹配用户输入中的任何数字字符。
+‘@’将匹配用户输入中的任何字母字符。
+‘_’将匹配任何空白。
+‘？’将匹配任何内容。
+否则，用户输入和模板中的字符必须完全匹配。
 
-因此，如果我们要求函数匹配模板“（###）###-####”，这意味着我们希望用户输入一个“（”字符、三个数字、一个“）”字符、一个空格、三个数、一个破折号和四个以上的数字。如果这些东西中的任何一个不匹配，输入将被拒绝。
+因此，如果我们要求函数匹配模板“（###）###-####”，这意味着我们希望用户输入一个“（”字符、三个数字字符、一个“）”字符、一个空格、三个数字字符、一个破折号和四个数字字符。如果这些东西中的任何一个不匹配，输入将被拒绝。
 
 代码如下：
 
@@ -132,8 +136,8 @@ bool inputMatches(std::string_view input, std::string_view pattern)
         return false;
     }
 
-    // This table defines all special symbols that can match a range of user input
-    // Each symbol is mapped to a function that determines whether the input is valid for that symbol
+    // 这里定义了匹配规则
+    // 每一个字符，都映射到一个判定函数，来判断是否满足规则
     static const std::map<char, int (*)(int)> validators{
       { '#', &std::isdigit },
       { '_', &std::isspace },
@@ -141,7 +145,7 @@ bool inputMatches(std::string_view input, std::string_view pattern)
       { '?', [](int) { return 1; } }
     };
 
-    // Before C++20, use
+    // 在 C++20 之前, 使用如下
     // return std::equal(input.begin(), input.end(), pattern.begin(), [](char ch, char mask) -> bool {
     // ...
 
@@ -150,15 +154,14 @@ bool inputMatches(std::string_view input, std::string_view pattern)
         
         if (found != validators.end())
         {
-            // The pattern's current element was found in the validators. Call the
-            // corresponding function.
+            // 如果判定字符是合法的
+            // 调用对应的函数
             return (*found->second)(ch);
         }
 
-        // The pattern's current element was not found in the validators. The
-        // characters have to be an exact match.
+        // 否则，判断是否能精准的匹配
         return ch == mask;
-        }); // end of lambda
+        }); // lambda 结尾
 }
 
 int main()
@@ -175,14 +178,7 @@ int main()
 }
 ```
 
-使用此函数，我们可以强制用户精确匹配我们的特定格式。然而，该函数仍然受到几个约束：if#、@、_和？是用户输入中的有效字符，该函数将不起作用，因为这些符号已被赋予特殊含义。此外，与正则表达式不同，没有表示“可以输入可变数量的字符”的模板符号。因此，这样的模板不能用于确保用户输入由空白分隔的两个单词，因为它不能处理单词长度可变的事实。对于此类问题，非模板方法通常更合适。
-
-{{< alert success >}}
-**作者注释**
-
-读者“Waldo”提供了一个C++20解决方案（使用std:：ranges），解决了这里的这些缺点
-
-{{< /alert >}}
+使用此函数，我们可以强制用户精确匹配我们的特定格式。然而，该函数仍然受到几个约束：如果用户输入了‘#’、‘_’、‘@’、‘?’，该函数将无法正常验证，因为这些符号已被赋予特殊含义。此外，与正则表达式不同，没有表示“可以输入可变数量的字符”的模板符号。因此，这样的模板不能用于确保用户输入由空白分隔的两个单词，因为它不能处理单词长度可变的事实。对于此类问题，使用正则表达式，或者特殊编写的函数更为合适。
 
 ***
 ## 数字验证
@@ -204,14 +200,14 @@ int main()
         std::cout << "Enter your age: ";
         std::cin >> age;
 
-        if (std::cin.fail()) // no extraction took place
+        if (std::cin.fail()) // 如果没能提取成功
         {
-            std::cin.clear(); // reset the state bits back to goodbit so we can use ignore()
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clear out the bad input from the stream
-            continue; // try again
+            std::cin.clear(); // 将状态设置回 goodbit，这样才能使用 ignore()
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 清空掉stream中的数据
+            continue; // 再次重试
         }
 
-        if (age <= 0) // make sure age is positive
+        if (age <= 0) // 确保用户输入的年龄是正数
             continue;
 
         break;
@@ -221,11 +217,14 @@ int main()
 }
 ```
 
-如果用户输入整数，则提取将成功。std:：cin.fail（）将计算为false，跳过条件，并且（假设用户输入了一个正数），我们将命中break语句，退出循环。
+如果用户输入整数，则提取将成功。std::cin.fail（）将计算为false，跳过条件，并且（假设用户输入了一个正数），我们将命中break语句，退出循环。
 
-如果用户输入以字母开头的输入，则提取将失败。std:：cin.fail（）将计算为true，我们将进入条件。在条件块的末尾，我们将点击continue语句，该语句将跳回到while循环的顶部，用户将被要求再次输入输入。
+如果用户输入以字母开头的输入，则提取将失败。std::cin.fail()将计算为true，将进入条件。在条件块的末尾，执行continue语句，该语句将跳回到while循环的顶部，用户将被要求再次输入。
 
-然而，还有一种情况我们尚未测试，那就是用户输入一个以数字开头但随后包含字母的字符串（例如“34abcd56”）。在这种情况下，起始数字（34）将被提取到年龄中，字符串的其余部分（“abcd56”）将留在输入流中，并且不会设置故障位。这会导致两个潜在问题：
+然而，还有一种情况我们尚未测试，那就是用户输入一个以数字开头但随后包含字母的字符串（例如“34abcd56”）。在这种情况下，起始数字（34）将被提取到age中，字符串的其余部分（“abcd56”）将留在输入流中，并且不会设置故障位。这会导致两个潜在问题：
+
+1. 如果我们认为这是有效输入，但其实在stream中残留垃圾数据
+2. 如果我们认为这是无效输入，需要进行拒绝
 
 让我们解决第一个问题。这很容易：
 
@@ -242,16 +241,16 @@ int main()
         std::cout << "Enter your age: ";
         std::cin >> age;
 
-        if (std::cin.fail()) // no extraction took place
+        if (std::cin.fail()) // 如果没能提取成功
         {
-            std::cin.clear(); // reset the state bits back to goodbit so we can use ignore()
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clear out the bad input from the stream
-            continue; // try again
+            std::cin.clear(); // 将状态设置回 goodbit，这样才能使用 ignore()
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 清空掉stream中的数据
+            continue; // 再次重试
         }
 
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clear out any additional input from the stream
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 清空掉stream中的额外数据
 
-        if (age <= 0) // make sure age is positive
+        if (age <= 0) // 确保用户输入的年龄是正数
             continue;
 
       break;
@@ -261,7 +260,7 @@ int main()
 }
 ```
 
-如果您不希望这样的输入有效，我们将不得不做一些额外的工作。幸运的是，前面的解决方案使我们走到了一半。我们可以使用gcount（）函数来确定忽略了多少个字符。如果输入有效，gcount（）应该返回1（被丢弃的换行符）。如果返回大于1，则用户输入了未正确提取的内容，我们应该要求他们输入新的输入。下面是一个例子：
+如果您不希望这样的输入有效，我们将不得不做一些额外的工作。幸运的是，前面的解决方案使我们走到了一半。我们可以使用gcount()函数来确定忽略了多少个字符。如果输入有效，gcount()应该返回1（被丢弃的换行符）。如果返回大于1，则用户输入了未正确提取的内容，我们应该要求他们输入新的输入。下面是一个例子：
 
 ```C++
 #include <iostream>
@@ -276,20 +275,20 @@ int main()
         std::cout << "Enter your age: ";
         std::cin >> age;
 
-        if (std::cin.fail()) // no extraction took place
+        if (std::cin.fail()) // 如果没能提取成功
         {
-            std::cin.clear(); // reset the state bits back to goodbit so we can use ignore()
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clear out the bad input from the stream
-            continue; // try again
+            std::cin.clear(); // 将状态设置回 goodbit，这样才能使用 ignore()
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 清空掉stream中的数据
+            continue; // 再次重试
         }
 
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clear out any additional input from the stream
-        if (std::cin.gcount() > 1) // if we cleared out more than one additional character
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 清空掉stream中的额外数据
+        if (std::cin.gcount() > 1) // 如果清空掉的字符超过一个
         {
-            continue; // we'll consider this input to be invalid
+            continue; // 认为输入不合法
         }
 
-        if (age <= 0) // make sure age is positive
+        if (age <= 0) // 确保用户输入的年龄是正数
         {
             continue;
         }
@@ -314,25 +313,25 @@ int main()
 #include <string>
 #include <string_view>
 
-// std::optional<int> returns either an int or nothing
+// std::optional<int> 返回int，或者无数据
 std::optional<int> extractAge(std::string_view age)
 {
     int result{};
-    const auto end{ age.data() + age.length() }; // get end iterator of underlying C-style string
+    const auto end{ age.data() + age.length() }; // 找到C样式字符串的结尾
 
-    // Try to parse an int from age
-    // If we got an error of some kind...
+    // 尝试将 age 解析为一个 int
+    // 如果失败
     if (std::from_chars(age.data(), end, result).ec != std::errc{})
     {
-        return {}; // return nothing
+        return {}; // 什么也不返回
     }
 
-    if (result <= 0) // make sure age is positive
+    if (result <= 0) // 确保用户输入的年龄是正数
     {
-        return {}; // return nothing
+        return {}; // 什么也不返回
     }
 
-    return result; // return an int value
+    return result; // 返回提取结果
 }
 
 int main()
@@ -344,23 +343,23 @@ int main()
         std::cout << "Enter your age: ";
         std::string strAge{};
 
-        // Try to get a line of input
+        // 尝试读一行数据
         if (!std::getline(std::cin >> std::ws, strAge))
         {
-            // If we failed, clean up and try again
+            // 如果失败了，清空输入，再次重试
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');    
             continue;
         }
 
-        // Try to extract the age
+        // 尝试提取年龄
         auto extracted{ extractAge(strAge) };
 
-        // If we failed, try again
+        // 如果提起失败，再次重试
         if (!extracted)
             continue;
 
-        age = *extracted; // get the value
+        age = *extracted; // 获取提取的值
         break;
     }
 
@@ -368,7 +367,7 @@ int main()
 }
 ```
 
-这种方法是否比直接的数字提取工作得多，取决于您的验证参数和限制。
+这种方法是否比直接的数字提取进行更多的工作，取决于您的验证参数和限制。
 
 正如您所看到的，在C++中进行输入验证是一项大量的工作。幸运的是，许多这样的任务（例如，作为字符串进行数字验证）可以很容易地转换为可以在各种情况下重用的函数。
 
