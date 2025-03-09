@@ -216,3 +216,9 @@ outf.close();
 ```
 
 ***
+
+{{< prevnext prev="/basic/chapter28/stream-state-validate-input/" next="/basic/chapter28/random-file-io/" >}}
+28.4 流的状态和输入验证
+<--->
+28.6 随机文件I/O
+{{< /prevnext >}}

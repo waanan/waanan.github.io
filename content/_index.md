@@ -816,9 +816,9 @@ date: 2022-12-28T16:40:41+08:00
 <-->
 <->/basic/chapter28/stream-for-string/<-> 28.3 针对字符串的stream类
 <-->
-<->/basic/chapter28/stream-state-validate-input/<-> 28.4 针对字符串的stream类
+<->/basic/chapter28/stream-state-validate-input/<-> 28.4 流的状态和输入验证
 <-->
-<->/basic/chapter28/basic-file-io/<-> 28.5 针对字符串的stream类
+<->/basic/chapter28/basic-file-io/<-> 28.5 基本文件I/O
 <-->
-<->/basic/chapter28/random-file-io/<-> 28.6 针对字符串的stream类
+<->/basic/chapter28/random-file-io/<-> 28.6 随机文件I/O
 {{< /chapterlist >}}

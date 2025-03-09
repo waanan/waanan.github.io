@@ -255,3 +255,9 @@ Th#s #s l#n# 4
 {{< /alert >}}
 
 ***
+
+{{< prevnext prev="/basic/chapter28/basic-file-io/" next="/" >}}
+28.5 基本文件I/O
+<--->
+主页
+{{< /prevnext >}}

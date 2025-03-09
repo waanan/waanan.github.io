@@ -372,3 +372,9 @@ int main()
 正如您所看到的，在C++中进行输入验证是一项大量的工作。幸运的是，许多这样的任务（例如，作为字符串进行数字验证）可以很容易地转换为可以在各种情况下重用的函数。
 
 ***
+
+{{< prevnext prev="/basic/chapter28/stream-for-string/" next="/basic/chapter28/basic-file-io/" >}}
+28.3 针对字符串的stream类
+<--->
+28.5 基本文件I/O
+{{< /prevnext >}}
