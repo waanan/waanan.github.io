@@ -160,8 +160,8 @@ clear()重置可能已设置的任何错误标志，并将stream设置回ok状�
 
 ***
 
-{{< prevnext prev="/basic/chapter28/ostream/" next="/" >}}
+{{< prevnext prev="/basic/chapter28/ostream/" next="/basic/chapter28/stream-state-validate-input/" >}}
 28.2 使用ostream和ios输出
 <--->
-主页
+28.4 流的状态和输入验证
 {{< /prevnext >}}
