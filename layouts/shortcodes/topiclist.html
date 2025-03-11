@@ -1,0 +1,15 @@
+<div class="row">
+    {{ range split .Inner "<-->" }}
+        {{ $item_sp := split . "<->" }}
+        {{ $rpath := index $item_sp 1}}
+        {{ $rtext := index $item_sp 2}}
+        <div class="col-sm-3 mb-3 mb-sm-0">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">{{ $rtext }}</p>
+                <a href="{{ $rtext }}" class="btn-outline-primary">go</a>
+              </div>
+            </div>
+          </div>
+    {{ end}}
+</div>
