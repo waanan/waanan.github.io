@@ -13,7 +13,7 @@ def get_f_title(f_path, pre, next):
     ffo.close()
 
 def deal_file(f_path, pre, next):
-    f_a = "./content" + f_path
+    f_a = "./content/lib" + f_path
     f_b = f_a + "index.md"
     f_c = f_a[:-1] + ".md"
     if os.path.exists(f_b):
@@ -22,12 +22,12 @@ def deal_file(f_path, pre, next):
         return get_f_title(f_c, pre, next)
 
 
-fi = open("./content/_index.md")
+fi = open("./content/lib/_index.md")
 data = fi.read()
 fi.close()
 
 sps = data.split("\n")
-lst = [("/", "主页")]
+lst = [("/lib/", "常用库")]
 
 for line in sps:
     if not line.startswith("<->"):
@@ -36,7 +36,7 @@ for line in sps:
     p = xx[1]
     t = xx[2].strip()
     lst.append((p, t))
-lst.append(("/", "主页"))
+lst.append(("/lib/", "常用库"))
 
 i = 1
 while i < len(lst) - 1:
