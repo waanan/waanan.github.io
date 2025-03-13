@@ -11,7 +11,7 @@ def get_f_title(f_path):
     return title
 
 def get_title(f_path):
-    f_a = "./content/lib" + f_path
+    f_a = "./content/" + f_path
     f_b = f_a + "index.md"
     f_c = f_a[:-1] + ".md"
     if os.path.exists(f_b):
