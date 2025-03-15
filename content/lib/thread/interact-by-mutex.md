@@ -19,3 +19,9 @@ int answer = 42;
 
 
 ***
+
+{{< prevnext prev="/lib/thread/thread-life/" next="/lib/thread/dead-lock/" >}}
+0.1 线程的生命周期
+<--->
+0.3 死锁，以及如何避免
+{{< /prevnext >}}

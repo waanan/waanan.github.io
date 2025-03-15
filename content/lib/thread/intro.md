@@ -74,8 +74,8 @@ Two Thread Work Done
 
 ***
 
-{{< prevnext prev="/lib/" next="/lib/" >}}
+{{< prevnext prev="/lib/" next="/lib/thread/thread-life/" >}}
 常用库
 <--->
-常用库
+0.1 线程的生命周期
 {{< /prevnext >}}

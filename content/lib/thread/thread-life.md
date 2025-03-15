@@ -279,3 +279,9 @@ t2.join(); // t2 现在是线程的所有者
 std::thread的这种资源管理和所有权语义，与std::unique_ptr有一定的相似之处。
 
 ***
+
+{{< prevnext prev="/lib/thread/intro/" next="/lib/thread/interact-by-mutex/" >}}
+0.0 多线程简介
+<--->
+0.2 多线程间交互-mutex（施工中）
+{{< /prevnext >}}
