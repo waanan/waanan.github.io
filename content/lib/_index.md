@@ -22,4 +22,6 @@ date: 2025-03-11T21:40:41+08:00
 第零章 多线程
 <--->
 <->/lib/thread/intro/<-> 0.0 多线程简介
+<-->
+<->/lib/thread/thread-life/<-> 0.1 多线程简介
 {{< /chapterlist >}}
