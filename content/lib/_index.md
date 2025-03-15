@@ -24,4 +24,14 @@ date: 2025-03-11T21:40:41+08:00
 <->/lib/thread/intro/<-> 0.0 多线程简介
 <-->
 <->/lib/thread/thread-life/<-> 0.1 多线程简介
+<-->
+<->/lib/thread/interact-by-mutex/<-> 0.2 多线程简介
+<-->
+<->/lib/thread/dead-lock/<-> 0.3 多线程简介
+<-->
+<->/lib/thread/interact-by-queue/<-> 0.4 多线程简介
+<-->
+<->/lib/thread/interact-by-notify<-> 0.5 多线程简介
+<-->
+<->/lib/thread/atomic-var/<-> 0.6 多线程简介
 {{< /chapterlist >}}
