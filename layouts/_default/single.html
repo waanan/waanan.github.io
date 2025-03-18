@@ -3,6 +3,7 @@
 {{ end }}
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
+  本节阅读量: <span class="waline-pageview-count" data-path="{{ .RelPermalink }}" ></span>
   <hr>
   {{ .Content }}
 {{ end }}
