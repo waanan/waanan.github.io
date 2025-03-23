@@ -71,7 +71,80 @@ Thread 2 Get mtx2
 
 ```
 
-然后程序就一直无法结束。
+然后程序就一直无法结束运行。
+
+让我们看看发生了什么。
+
+程序启动后，线程t1和t2同时开始执行。然后t1获取了mtx1，t2获取了mtx2。然后t1和t2分别sleep了1秒。在这之后，t1尝试获取mtx2，t2尝试获取mtx1。显然无法成功，t1和t2会一直互相等待。main函数则一直在t1.join()的地方，等待t1执行完成。所以main函数也处于等待状态。整个程序中的三个线程都无法推进执行流。
+
+***
+## 按固定顺序为资源加锁
+
+避免死锁，最简单的情况，就是按固定顺序为资源加锁。
+
+可以按照顺序为资源编号，例如r1，r2，r3等等。获取资源时，从编号小的开始获取。例如A需要获取 r1 -> r2 -> r3。B需要获取 r2 -> r3。如果A获取到了r3，那么在此之前A一定获取了r2。那么B一定不会和A互相等待与抢占。
+
+这里将上面的例子进行修改，t1和t2，都mtx1 -> mtx2的顺序进行资源获取:
+
+```C++
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+std::mutex mtx1;
+std::mutex mtx2;
+
+void thread1() {
+    std::lock_guard<std::mutex> lg1(mtx1);  // 线程1先获取mtx1
+    std::cout << "Thread 1 Get mtx1" << std::endl;
+
+    // 线程一做一些逻辑
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+    std::lock_guard<std::mutex> lg2(mtx2);  // 线程1再获取mtx2
+    std::cout << "Thread 1 Get mtx2" << std::endl;
+
+    // 线程一执行结束
+    std::cout << "Thread 1 Finish" << std::endl;
+}
+
+void thread2() {
+    std::lock_guard<std::mutex> lg1(mtx1);  // 线程2先获取mtx1
+    std::cout << "Thread 2 Get mtx1" << std::endl;
+    
+    // 线程二做一些逻辑
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+    std::lock_guard<std::mutex> lg2(mtx2);  // 线程二再获取mtx2
+    std::cout << "Thread 2 Get mtx2" << std::endl;
+
+    // 线程二执行结束
+    std::cout << "Thread 2 Finish" << std::endl;
+}
+
+int main() {
+    std::thread t1(thread1);
+    std::thread t2(thread2);
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+```
+
+这打印:
+
+```C++
+Thread 1 Get mtx1
+Thread 1 Get mtx2
+Thread 1 Finish
+Thread 2 Get mtx1
+Thread 2 Get mtx2
+Thread 2 Finish
+```
+
+程序正常执行结束。
 
 ***
 
