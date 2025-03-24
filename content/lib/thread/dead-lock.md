@@ -149,7 +149,7 @@ Thread 2 Finish
 ***
 
 {{< prevnext prev="/lib/thread/interact-by-mutex/" next="/lib/thread/interact-by-queue/" >}}
-0.2 多线程间交互-mutex（施工中）
+0.2 多线程间交互-mutex
 <--->
-0.4 多线程间交互-消息队列
+0.4 多线程间交互-消息队列(施工中)
 {{< /prevnext >}}

@@ -25,11 +25,11 @@ date: 2025-03-11T21:40:41+08:00
 <-->
 <->/lib/thread/thread-life/<-> 0.1 线程的生命周期
 <-->
-<->/lib/thread/interact-by-mutex/<-> 0.2 多线程间交互-mutex（施工中）
+<->/lib/thread/interact-by-mutex/<-> 0.2 多线程间交互-mutex
 <-->
 <->/lib/thread/dead-lock/<-> 0.3 死锁，以及如何避免
 <-->
-<->/lib/thread/interact-by-queue/<-> 0.4 多线程间交互-消息队列
+<->/lib/thread/interact-by-queue/<-> 0.4 多线程间交互-消息队列(施工中)
 <-->
 <->/lib/thread/interact-by-notify/<-> 0.5 多线程间交互-wait与notify
 <-->
