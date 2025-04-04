@@ -1,0 +1,48 @@
+{
+    "basic" : [
+        {
+            "dir_path" : "chapter0",
+            "dir_name" : "序章",
+            "page_list" : [
+                {
+                    "page_path" : "/basic/chapter0/introduction-to-site/",
+                    "page_name" : "0.0 网站简介"
+                },
+                {
+                    "page_path" : "/basic/chapter0/introduction-to-programming-languages/",
+                    "page_name" : "0.1 什么是编程语言"
+                }
+            ]
+        },
+        {
+            "dir_path" : "chapter1",
+            "dir_name" : "序章",
+            "page_list" : [
+                {
+                    "page_path" : "/basic/chapter0/introduction-to-site/",
+                    "page_name" : "网站简介"
+                },
+                {
+                    "page_path" : "/basic/chapter0/introduction-to-programming-languages/",
+                    "page_name" : "什么是编程语言"
+                }
+            ]
+        }
+    ],
+    "lib" : [
+        {
+            "dir_path" : "chapter0",
+            "dir_name" : "序章",
+            "page_list" : [
+                {
+                    "page_path" : "/basic/chapter0/introduction-to-site/",
+                    "page_name" : "网站简介"
+                },
+                {
+                    "page_path" : "/basic/chapter0/introduction-to-programming-languages/",
+                    "page_name" : "什么是编程语言"
+                }
+            ]
+        }
+    ]
+}
