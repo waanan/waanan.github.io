@@ -1,6 +1,43 @@
 {{ define "title" }}
   {{ .Title }} &ndash; {{ .Site.Title }}
 {{ end }}
+{{ define "side-index" }}
+  {{ $split_path := split .RelPermalink "/" }}
+  {{ $p1 := index $split_path 1 }}
+  {{ if in (slice "basic" "lib") $p1 }}
+    {{ $p2 := index $split_path 2 }}
+    <div class="bg-white sticky-top scroll-container" style="height: 100vh;">
+      <a href="#" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <svg class="bi pe-none me-2" width="30" height="24"></svg>
+        <span class="fs-5 fw-semibold">章节目录</span>
+      </a>
+      {{ $chapters := .Site.Data.chapters }}
+      <ul class="list-unstyled ps-0">
+        <!-- 遍历所有章节 -->
+        {{ range $sectionName, $sectionData := $chapters }}
+          {{ if eq $sectionName $p1 }}
+            <!-- 遍历每个章节中的目录 -->
+            {{ range $sectionData }}
+              <li class="mb-1">
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#{{ .dir_path }}" aria-expanded="{{ if eq .dir_path $p2 }}true{{ else }}false{{ end }}">
+                  {{ .dir_name }}
+                </button>
+                <div class="collapse {{ if eq .dir_path $p2 }}show{{ end }}" id="{{ .dir_path }}">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <!-- 遍历每个目录中的页面 -->
+                    {{ range .page_list }}
+                      <li><a href="{{ .page_path }}" class="link-dark d-inline-flex text-decoration-none rounded">{{ .page_name }}</a></li>
+                    {{ end }}
+                  </ul>
+                </div>
+              </li>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      </ul>
+    </div>
+  {{ end }}
+{{ end }}
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   本节阅读量: <span class="waline-pageview-count" data-path="{{ .RelPermalink }}" ></span>
