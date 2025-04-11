@@ -3,7 +3,6 @@ title: "C样式数组退化"
 date: 2024-08-13T13:06:02+08:00
 ---
 
-***
 ## C数组传递挑战
 
 C语言的设计者遇到了一个问题。考虑以下简单程序:
@@ -152,7 +151,7 @@ true
 int main()
 {
     const int arr[] { 9, 7, 5, 3, 1 };
-    std::cout << arr[2]; // 访问退化了的数组的第 2 个元素, 打印 5
+    std::cout << arr[2]; // 访问退化了的数组 索引为2的元素, 打印 5
 
     return 0;
 }
@@ -168,7 +167,7 @@ int main()
     const int arr[] { 9, 7, 5, 3, 1 };
     
     const int* ptr{ arr };  // 显式使用指针
-    std::cout << ptr[2];    // 使用 ptr 去获取第二个元素 2, 打印 5
+    std::cout << ptr[2];    // 使用 ptr 去获取 索引为2的元素, 打印 5
 
     return 0;
 }
