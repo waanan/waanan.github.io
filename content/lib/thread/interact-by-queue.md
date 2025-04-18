@@ -86,29 +86,40 @@ int main() {
 
 如果要实现线程安全的队列，你可能会想。这很简单，包装一个类，然后将上述的四个函数，使用锁保护起来就可以了。
 
-因此可能会写出下面的代码：
+因此可能会写出下面的代码（以int队列为例）：
 
 ```C++
 #include <mutex>
 #include <queue>
 
-template <typename T>
 class ThreadSafeQueue {
 public:
-    void Push(T v) {
+    void Push(int v) {
         std::lock_guard<std::mutex> lg(mtx_); // 加锁
         queue.push(v); // 将元素添加到队列中
     }
 
-    T Pop() {
+    void Pop() {
         std::lock_guard<std::mutex> lg(mtx_); // 加锁
-        return q_.pop();
+        q_.pop();
+    }
+
+    int Front() {
+        std::lock_guard<std::mutex> lg(mtx_); // 加锁
+        return q_.front();
+    }
+
+    bool Empty() {
+        std::lock_guard<std::mutex> lg(mtx_); // 加锁
+        return q_.empty();
     }
 
 private:
     std::mutex mtx_;
-    std::queue<T> q_;
-}
+    std::queue<int> q_;
+};
+
+
 ```
 
 ***
